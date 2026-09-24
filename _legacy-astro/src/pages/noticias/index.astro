@@ -1,0 +1,8 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { NewsListApp } from "../../components/react/NewsListApp";
+---
+
+<Layout title="Notícias">
+  <NewsListApp client:only="react" />
+</Layout>

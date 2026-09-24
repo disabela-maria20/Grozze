@@ -1,0 +1,16 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { MoviePage } from "../../components/react/MoviePage";
+import { allBaseMovieIds, baseMovie } from "../../lib/catalog";
+
+export function getStaticPaths() {
+  return allBaseMovieIds().map((id) => ({ params: { id } }));
+}
+
+const { id } = Astro.params;
+const m = baseMovie(id!);
+---
+
+<Layout title={m?.t} description={m?.syn}>
+  <MoviePage id={id!} client:only="react" />
+</Layout>

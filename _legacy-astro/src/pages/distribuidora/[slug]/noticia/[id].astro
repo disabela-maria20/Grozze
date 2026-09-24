@@ -1,0 +1,22 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import { ArticleApp } from "../../../../components/react/ArticleApp";
+import { DISTRIBUTORS, NEWS } from "../../../../lib/catalog";
+
+export function getStaticPaths() {
+  const paths: { params: { slug: string; id: string } }[] = [];
+  for (const d of DISTRIBUTORS.filter((x) => x.status === "active" && x.public)) {
+    for (const n of NEWS.filter((n) => n.dist === d.slug)) {
+      paths.push({ params: { slug: d.slug, id: n.id } });
+    }
+  }
+  return paths;
+}
+
+const { slug, id } = Astro.params;
+const n = NEWS.find((x) => x.id === id);
+---
+
+<Layout title={n?.t} description={n?.p}>
+  <ArticleApp id={id!} scope={slug} client:only="react" />
+</Layout>

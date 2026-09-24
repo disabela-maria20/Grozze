@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "snapshotDate": "2026-09-18",
+  "referenceDate": "2026-09-18",
+  "observedDate": "2026-09-17",
+  "cineWeekFrom": "2026-09-17",
+  "cineWeekTo": "2026-09-23",
+  "city": "São Paulo",
+  "uf": "SP",
+  "mode": "homologation",
+  "sourceFile": "Grozze_Produto_Completo_V42_FAVORITOS_EMBREVE_TRAILER.html",
+  "caveat": "Horários de 18 a 23/09 replicados a partir de 17/09 para simulação; pré-vendas mantidas nas datas do snapshot. Sem consulta ao vivo nesta revisão."
+}

@@ -1,0 +1,8 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { NotFound } from "../components/react/NotFound";
+---
+
+<Layout title="Página não encontrada">
+  <NotFound client:only="react" />
+</Layout>

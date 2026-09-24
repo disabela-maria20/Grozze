@@ -1,0 +1,8 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { ContactApp } from "../components/react/ContactApp";
+---
+
+<Layout title="Contato">
+  <ContactApp newsletter={false} client:only="react" />
+</Layout>

@@ -1,0 +1,68 @@
+[
+  {
+    "id": "horario-decide",
+    "k": "Comportamento",
+    "t": "Por que o horário decide mais do que parece",
+    "d": "8 set 2026",
+    "p": "Quando a intenção já existe, a janela disponível pode ser o principal filtro da escolha.",
+    "dist": "",
+    "body": "Quando a intenção já existe, a janela disponível pode ser o principal filtro da escolha.",
+    "demo": true,
+    "image": ""
+  },
+  {
+    "id": "estreias-mes",
+    "k": "Estreias",
+    "t": "O que chega aos cinemas nas próximas semanas",
+    "d": "6 set 2026",
+    "p": "Uma seleção de próximos lançamentos para acompanhar.",
+    "dist": "disney",
+    "body": "Uma seleção de próximos lançamentos para acompanhar.",
+    "demo": true,
+    "image": ""
+  },
+  {
+    "id": "imax-perto",
+    "k": "Guia",
+    "t": "Como encontrar uma sessão IMAX perto de você",
+    "d": "4 set 2026",
+    "p": "Tecnologia, distância e horário entram na mesma decisão.",
+    "dist": "warner",
+    "body": "Tecnologia, distância e horário entram na mesma decisão.",
+    "demo": true,
+    "image": ""
+  },
+  {
+    "id": "cinema-bairro",
+    "k": "Cidade",
+    "t": "Descobrir cinema pelo bairro, não pela rede",
+    "d": "2 set 2026",
+    "p": "Uma busca mais natural para quem sabe onde estará, mas ainda não escolheu o filme.",
+    "dist": "paris",
+    "body": "Uma busca mais natural para quem sabe onde estará, mas ainda não escolheu o filme.",
+    "demo": true,
+    "image": ""
+  },
+  {
+    "id": "depois-22",
+    "k": "Lista",
+    "t": "Filmes para quem só consegue ir depois das 22h",
+    "d": "30 ago 2026",
+    "p": "Curadoria orientada por momento e disponibilidade.",
+    "dist": "universal",
+    "body": "Curadoria orientada por momento e disponibilidade.",
+    "demo": true,
+    "image": ""
+  },
+  {
+    "id": "salvar-lancamento",
+    "k": "Produto",
+    "t": "Salvar antes da estreia muda a relação com o lançamento",
+    "d": "28 ago 2026",
+    "p": "Guarde os filmes que deseja encontrar depois.",
+    "dist": "disney",
+    "body": "Guarde os filmes que deseja encontrar depois.",
+    "demo": true,
+    "image": ""
+  }
+]

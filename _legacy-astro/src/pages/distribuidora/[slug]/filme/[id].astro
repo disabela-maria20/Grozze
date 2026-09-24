@@ -1,0 +1,22 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import { MoviePage } from "../../../../components/react/MoviePage";
+import { allMovies, baseMovie, DISTRIBUTORS } from "../../../../lib/catalog";
+
+export function getStaticPaths() {
+  const paths: { params: { slug: string; id: string } }[] = [];
+  for (const d of DISTRIBUTORS.filter((x) => x.status === "active" && x.public)) {
+    for (const m of allMovies().filter((m) => m.dist === d.slug)) {
+      paths.push({ params: { slug: d.slug, id: m.id } });
+    }
+  }
+  return paths;
+}
+
+const { slug, id } = Astro.params;
+const m = baseMovie(id!);
+---
+
+<Layout title={m?.t} description={m?.syn}>
+  <MoviePage id={id!} scope={slug} client:only="react" />
+</Layout>

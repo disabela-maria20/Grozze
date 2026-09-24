@@ -1,0 +1,8 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { HomeApp } from "../components/react/HomeApp";
+---
+
+<Layout>
+  <HomeApp client:only="react" />
+</Layout>

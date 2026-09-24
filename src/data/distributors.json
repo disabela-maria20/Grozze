@@ -1,0 +1,82 @@
+[
+  {
+    "slug": "disney",
+    "name": "Disney",
+    "formal": "Walt Disney Studios",
+    "status": "active",
+    "public": true,
+    "site": "disney.com.br",
+    "desc": "Distribuidora cadastrada no protótipo Grozze. A página reúne os títulos associados, sessões abertas, próximos lançamentos e conteúdo editorial.",
+    "featured": "diabo-prada-2"
+  },
+  {
+    "slug": "warner",
+    "name": "Warner Bros. Pictures",
+    "formal": "Warner Bros. Pictures",
+    "status": "active",
+    "public": true,
+    "site": "warnerbros.com",
+    "desc": "Perfil público demonstrativo com catálogo e calendário vinculados aos filmes da distribuidora.",
+    "featured": "horizonte-impar"
+  },
+  {
+    "slug": "universal",
+    "name": "Universal Pictures",
+    "formal": "Universal Pictures",
+    "status": "active",
+    "public": true,
+    "site": "universalpictures.com.br",
+    "desc": "Perfil público demonstrativo. Os filmes são relacionados automaticamente pela base Grozze.",
+    "featured": "ecos-silencio"
+  },
+  {
+    "slug": "sony",
+    "name": "Sony Pictures",
+    "formal": "Sony Pictures",
+    "status": "active",
+    "public": true,
+    "site": "sonypictures.com.br",
+    "desc": "Distribuidora cadastrada para demonstrar a página pública data-driven.",
+    "featured": "cidade-submersa"
+  },
+  {
+    "slug": "paramount",
+    "name": "Paramount Pictures",
+    "formal": "Paramount Pictures",
+    "status": "active",
+    "public": true,
+    "site": "paramount.com",
+    "desc": "Perfil demonstrativo com títulos em cartaz e próximos lançamentos.",
+    "featured": "ultimo-andar"
+  },
+  {
+    "slug": "paris",
+    "name": "Paris Filmes",
+    "formal": "Paris Filmes",
+    "status": "active",
+    "public": true,
+    "site": "parisfilmes.com.br",
+    "desc": "Perfil demonstrativo de distribuidora nacional dentro do ecossistema Grozze.",
+    "featured": "depois-chuva"
+  },
+  {
+    "slug": "diamond",
+    "name": "Diamond Films",
+    "formal": "Diamond Films",
+    "status": "draft",
+    "public": false,
+    "site": "diamondfilms.com",
+    "desc": "Cadastro em rascunho. Enquanto não for publicado, não existe página pública.",
+    "featured": "coracao-ferro"
+  },
+  {
+    "slug": "vitrine",
+    "name": "Vitrine Filmes",
+    "formal": "Vitrine Filmes",
+    "status": "inactive",
+    "public": false,
+    "site": "vitrinefilmes.com.br",
+    "desc": "Entidade vinculada ao filme, mas sem página pública ativa.",
+    "featured": "agente-secreto"
+  }
+]

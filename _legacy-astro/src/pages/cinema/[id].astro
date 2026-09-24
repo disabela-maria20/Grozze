@@ -1,0 +1,16 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { CinemaPage } from "../../components/react/CinemaPage";
+import { allCinemas, cinema } from "../../lib/catalog";
+
+export function getStaticPaths() {
+  return allCinemas().map((c) => ({ params: { id: c.id } }));
+}
+
+const { id } = Astro.params;
+const c = cinema(id!);
+---
+
+<Layout title={c?.name} description={c?.address}>
+  <CinemaPage id={id!} client:only="react" />
+</Layout>

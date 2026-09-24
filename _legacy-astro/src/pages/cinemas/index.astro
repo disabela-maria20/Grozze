@@ -1,0 +1,8 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { CinemasApp } from "../../components/react/CinemasApp";
+---
+
+<Layout title="Cinemas">
+  <CinemasApp client:only="react" />
+</Layout>

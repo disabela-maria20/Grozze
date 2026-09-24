@@ -1,0 +1,8 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { CatalogApp } from "../../components/react/CatalogApp";
+---
+
+<Layout title="Filmes">
+  <CatalogApp client:only="react" />
+</Layout>
