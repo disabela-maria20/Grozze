@@ -2,11 +2,27 @@
  * Contratos (payloads e respostas) da API do Grozze.
  * Os mesmos tipos valem para o mock (`./mock`) e para o backend real.
  */
-import type { AuditEntry, ConsentState, ContentState, Lead, MovieOverride, Preferences, Profile } from "@/shared/lib/types";
+import type {
+  AuditEntry,
+  ConsentState,
+  ContentState,
+  Lead,
+  MovieOverride,
+  Preferences,
+  Profile,
+} from '@/shared/lib/types';
 
-export type { AuditEntry, ConsentState, ContentState, Lead, MovieOverride, Preferences, Profile };
+export type {
+  AuditEntry,
+  ConsentState,
+  ContentState,
+  Lead,
+  MovieOverride,
+  Preferences,
+  Profile,
+};
 
-export type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
+export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
 /** Corpo de erro padrão retornado pela API. */
 export interface ApiErrorBody {
@@ -33,7 +49,7 @@ export interface AuthResponse {
 
 /* ---------- Conta ---------- */
 
-export type AvatarId = Profile["avatar"];
+export type AvatarId = Profile['avatar'];
 
 export interface UpdateMeRequest {
   name?: string;
@@ -41,7 +57,7 @@ export interface UpdateMeRequest {
   preferences?: Preferences;
 }
 
-export type FavoriteKind = "movies" | "cinemas";
+export type FavoriteKind = 'movies' | 'cinemas';
 
 export interface FavoritesResponse {
   savedMovies: string[];
@@ -50,7 +66,7 @@ export interface FavoritesResponse {
 
 /* ---------- Leads e contato ---------- */
 
-export type LeadSource = "Contato" | "Newsletter" | "Cadastro";
+export type LeadSource = 'Contato' | 'Newsletter' | 'Cadastro';
 
 export interface CreateLeadRequest {
   source: LeadSource;
@@ -80,6 +96,8 @@ export type CreateConsentRequest = ConsentState;
 /* ---------- CMS ---------- */
 
 /** Campos aceitos pelo editor do CMS. `cast` pode vir como lista ou texto separado por vírgulas. */
-export type MovieOverrideInput = Partial<Record<Exclude<keyof MovieOverride, "cast">, string>> & {
+export type MovieOverrideInput = Partial<
+  Record<Exclude<keyof MovieOverride, 'cast'>, string>
+> & {
   cast?: string[] | string;
 };

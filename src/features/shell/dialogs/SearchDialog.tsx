@@ -1,36 +1,49 @@
-"use client";
+'use client';
 
-import { useMemo, useState } from "react";
-import { allMovies, dateLabel, movieHref, normalize, sortedCinemas, statusLabel } from "@/shared/lib/catalog";
-import { useAppStore } from "@/shared/store/store";
-import { Icon } from "@/shared/ui/Icon";
+import { useMemo, useState } from 'react';
+import { allMovies } from '@/shared/lib/catalog/allMovies';
+import { dateLabel } from '@/shared/lib/catalog/dateLabel';
+import { movieHref } from '@/shared/lib/catalog/movieHref';
+import { normalize } from '@/shared/lib/catalog/normalize';
+import { sortedCinemas } from '@/shared/lib/catalog/sortedCinemas';
+import { statusLabel } from '@/shared/lib/catalog/statusLabel';
+import { useAppStore } from '@/shared/store/useAppStore';
+import { Icon } from '@/shared/ui/Icon';
 
 export function SearchDialog({ scope }: { scope?: string | null }) {
-  const [q, setQ] = useState("");
+  const [q, setQ] = useState('');
   const content = useAppStore((s) => s.content);
   const cinemaSaved = useAppStore((s) => s.cinemaSaved);
 
   const { movies, cinemas } = useMemo(() => {
     const n = normalize(q);
     const ms = allMovies(content)
-      .filter((m) => (!scope || m.dist === scope) && normalize(m.t + " " + m.genre).includes(n))
+      .filter(
+        (m) =>
+          (!scope || m.dist === scope) &&
+          normalize(m.t + ' ' + m.genre).includes(n)
+      )
       .slice(0, 7);
     const cs = scope
       ? []
       : sortedCinemas(cinemaSaved)
-          .filter((c) => normalize(c.name + " " + c.address).includes(n))
+          .filter((c) => normalize(c.name + ' ' + c.address).includes(n))
           .slice(0, 4);
     return { movies: ms, cinemas: cs };
-  }, [q, scope, content]);
+  }, [q, scope, content, cinemaSaved]);
 
   const hasResults = movies.length || cinemas.length;
 
   return (
     <div>
-      <h2 className="text-[34px] leading-[1.08] tracking-tight m-0 mb-4 pr-10">Buscar</h2>
+      <h2 className="text-[34px] leading-[1.08] tracking-tight m-0 mb-4 pr-10">
+        Buscar
+      </h2>
       <label className="flex items-center gap-2.5 flex-1 min-w-0 min-h-[52px] rounded-2xl border border-line bg-surface px-4">
         <Icon name="search" />
+        {/* The search dialog opens ready to type */}
         <input
+          // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus
           value={q}
           onChange={(e) => setQ(e.target.value)}
@@ -40,9 +53,15 @@ export function SearchDialog({ scope }: { scope?: string | null }) {
         />
       </label>
       <div className="mt-4">
-        {!hasResults && <p className="text-muted">Nenhum resultado encontrado.</p>}
+        {!hasResults && (
+          <p className="text-muted">Nenhum resultado encontrado.</p>
+        )}
         {movies.map((m) => (
-          <a key={m.id} className="block mb-1.5 p-4 rounded-2xl border border-line bg-surface2" href={movieHref(m.id, scope)}>
+          <a
+            key={m.id}
+            className="block mb-1.5 p-4 rounded-2xl border border-line bg-surface2"
+            href={movieHref(m.id, scope)}
+          >
             <strong className="block">{m.t}</strong>
             <small className="text-muted text-xs mt-1.5 block">
               {statusLabel(m)} · {dateLabel(m.releaseDate)}
@@ -50,7 +69,11 @@ export function SearchDialog({ scope }: { scope?: string | null }) {
           </a>
         ))}
         {cinemas.map((c) => (
-          <a key={c.id} className="block mb-1.5 p-4 rounded-2xl border border-line bg-surface2" href={`/cinema/${c.id}`}>
+          <a
+            key={c.id}
+            className="block mb-1.5 p-4 rounded-2xl border border-line bg-surface2"
+            href={`/cinema/${c.id}`}
+          >
             <strong className="block">{c.name}</strong>
             <small className="text-muted text-xs mt-1.5 block">Cinema</small>
           </a>

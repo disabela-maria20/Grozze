@@ -1,6 +1,9 @@
-"use client";
+'use client';
 
-import { META, SESSIONS, allBaseMovieIds, allCinemas } from "@/shared/lib/catalog";
+import { META } from '@/shared/lib/catalog/META';
+import { SESSIONS } from '@/shared/lib/catalog/SESSIONS';
+import { allBaseMovieIds } from '@/shared/lib/catalog/allBaseMovieIds';
+import { allCinemas } from '@/shared/lib/catalog/allCinemas';
 
 export function SnapshotDialog() {
   return (
@@ -9,21 +12,24 @@ export function SnapshotDialog() {
       <p className="text-sm text-muted leading-relaxed mb-5">{META.caveat}</p>
       <dl className="grid grid-cols-2 gap-4 mb-5">
         {[
-          ["Catálogo unificado", `${allBaseMovieIds().length} filmes`],
-          ["Programação", `${SESSIONS.length} sessões na amostra`],
-          ["Cinemas", `${allCinemas().length} em São Paulo`],
-          ["Integração ao vivo", "Não conectada"],
+          ['Catálogo unificado', `${allBaseMovieIds().length} filmes`],
+          ['Programação', `${SESSIONS.length} sessões na amostra`],
+          ['Cinemas', `${allCinemas().length} em São Paulo`],
+          ['Integração ao vivo', 'Não conectada'],
         ].map(([dt, dd]) => (
           <div key={dt}>
-            <dt className="text-[11px] uppercase text-faint tracking-wide">{dt}</dt>
+            <dt className="text-[11px] uppercase text-faint tracking-wide">
+              {dt}
+            </dt>
             <dd className="mt-1 text-base font-semibold">{dd}</dd>
           </div>
         ))}
       </dl>
       <p className="text-xs text-faint leading-relaxed">
-        Autenticação, CMS e leads funcionam localmente para testes. Checkout, entrega de e-mails, atualização automática e controle
-        administrativo seguro dependem de backend. Dados de IMDb, artes e vídeos foram preservados do arquivo de origem e não
-        revalidados nesta revisão.
+        Autenticação, CMS e leads funcionam localmente para testes. Checkout,
+        entrega de e-mails, atualização automática e controle administrativo
+        seguro dependem de backend. Dados de IMDb, artes e vídeos foram
+        preservados do arquivo de origem e não revalidados nesta revisão.
       </p>
     </div>
   );

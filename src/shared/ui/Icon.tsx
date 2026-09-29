@@ -9,14 +9,21 @@ const PATHS: Record<string, string> = {
   play: '<path d="m8 4 12 8-12 8Z"/>',
   pause: '<path d="M8 5v14M16 5v14"/>',
   close: '<path d="m6 6 12 12M18 6 6 18"/>',
-  ticket: '<path d="M3 5h18v5a2 2 0 0 0 0 4v5H3v-5a2 2 0 0 0 0-4V5Z"/><path d="M15 5v2m0 4v2m0 4v2"/>',
+  ticket:
+    '<path d="M3 5h18v5a2 2 0 0 0 0 4v5H3v-5a2 2 0 0 0 0-4V5Z"/><path d="M15 5v2m0 4v2m0 4v2"/>',
   filter: '<path d="M4 5h16l-6 7v7l-4 2v-9Z"/>',
   clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
   check: '<path d="m5 12 4 4L20 5"/>',
   chevron: '<path d="m8 4 8 8-8 8"/>',
 };
 
-export function Icon({ name, className = "" }: { name: keyof typeof PATHS | string; className?: string }) {
+export function Icon({
+  name,
+  className = '',
+}: {
+  name: keyof typeof PATHS | string;
+  className?: string;
+}) {
   return (
     <svg
       className={`w-[22px] h-[22px] stroke-current stroke-[1.8] fill-none [stroke-linecap:round] [stroke-linejoin:round] shrink-0 ${className}`}

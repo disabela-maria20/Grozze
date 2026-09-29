@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
-import { ClientOnly } from "@/shared/ui/ClientOnly";
-import { CinemasApp } from "@/features/cinemas/CinemasApp";
+import type { Metadata } from 'next';
+import { ClientOnly } from '@/shared/ui/ClientOnly';
+import { CinemasApp } from '@/features/cinemas';
 
-export const metadata: Metadata = { title: "Cinemas" };
+export const metadata: Metadata = { title: 'Cinemas' };
 
 export default function Page() {
   return (

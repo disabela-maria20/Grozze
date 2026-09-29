@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
-import { ClientOnly } from "@/shared/ui/ClientOnly";
-import { LoginPageApp } from "@/features/auth/LoginPageApp";
+import type { Metadata } from 'next';
+import { ClientOnly } from '@/shared/ui/ClientOnly';
+import { LoginPageApp } from '@/features/auth';
 
-export const metadata: Metadata = { title: "Entrar" };
+export const metadata: Metadata = { title: 'Entrar' };
 
 export default function Page() {
   return (

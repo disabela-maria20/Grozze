@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
-import { ClientOnly } from "@/shared/ui/ClientOnly";
-import { NewsListApp } from "@/features/news/NewsListApp";
+import type { Metadata } from 'next';
+import { ClientOnly } from '@/shared/ui/ClientOnly';
+import { NewsListApp } from '@/features/news';
 
-export const metadata: Metadata = { title: "Notícias" };
+export const metadata: Metadata = { title: 'Notícias' };
 
 export default function Page() {
   return (

@@ -8,12 +8,7 @@
     "lat": -23.5913,
     "lng": -46.6894,
     "roomCount": 9,
-    "tech": [
-      "IMAX",
-      "VIP",
-      "4DX",
-      "LED"
-    ]
+    "tech": ["IMAX", "VIP", "4DX", "LED"]
   },
   {
     "id": "446",
@@ -24,10 +19,7 @@
     "lat": -23.5725,
     "lng": -46.6957,
     "roomCount": 9,
-    "tech": [
-      "XD / D-BOX",
-      "D-BOX"
-    ]
+    "tech": ["XD / D-BOX", "D-BOX"]
   },
   {
     "id": "502",
@@ -38,9 +30,7 @@
     "lat": -23.5707,
     "lng": -46.6433,
     "roomCount": 7,
-    "tech": [
-      "Tradicional"
-    ]
+    "tech": ["Tradicional"]
   },
   {
     "id": "296",
@@ -51,10 +41,7 @@
     "lat": -23.5618,
     "lng": -46.5596,
     "roomCount": 9,
-    "tech": [
-      "IMAX",
-      "4DX"
-    ]
+    "tech": ["IMAX", "4DX"]
   },
   {
     "id": "1488",
@@ -65,9 +52,7 @@
     "lat": -23.5265,
     "lng": -46.6804,
     "roomCount": 11,
-    "tech": [
-      "IMAX"
-    ]
+    "tech": ["IMAX"]
   },
   {
     "id": "351",
@@ -78,8 +63,6 @@
     "lat": -23.556,
     "lng": -46.662,
     "roomCount": 1,
-    "tech": [
-      "Tradicional"
-    ]
+    "tech": ["Tradicional"]
   }
 ]

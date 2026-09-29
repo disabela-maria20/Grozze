@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
-import { ClientOnly } from "@/shared/ui/ClientOnly";
-import { AccountApp } from "@/features/account/AccountApp";
+import type { Metadata } from 'next';
+import { ClientOnly } from '@/shared/ui/ClientOnly';
+import { AccountApp } from '@/features/account';
 
-export const metadata: Metadata = { title: "Minha Grozze" };
+export const metadata: Metadata = { title: 'Minha Grozze' };
 
 export default function Page() {
   return (

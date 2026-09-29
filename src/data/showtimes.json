@@ -13,9 +13,7 @@
     "presale": false,
     "simulated": false,
     "id": "23266|446|2026-09-17|Sala 09|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -31,9 +29,7 @@
     "presale": false,
     "simulated": false,
     "id": "23757|446|2026-09-17|Sala 04|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23653",
@@ -49,9 +45,7 @@
     "presale": false,
     "simulated": false,
     "id": "23653|446|2026-09-17|Sala 07|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -67,9 +61,7 @@
     "presale": false,
     "simulated": false,
     "id": "23266|502|2026-09-17|Sala 2|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -85,9 +77,7 @@
     "presale": false,
     "simulated": false,
     "id": "23266|1488|2026-09-17|Sala 1|Tradicional|Nacional|13:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -103,9 +93,7 @@
     "presale": false,
     "simulated": false,
     "id": "23266|553|2026-09-17|Sala 3 - VIP|VIP|Nacional|13:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -121,9 +109,7 @@
     "presale": false,
     "simulated": false,
     "id": "22659|553|2026-09-17|Sala 5 - Onyx 4k LED|LED|Legendado|13:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23309",
@@ -139,9 +125,7 @@
     "presale": false,
     "simulated": false,
     "id": "23309|502|2026-09-17|Sala 6|Tradicional|Dublado / original|13:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -157,9 +141,7 @@
     "presale": false,
     "simulated": false,
     "id": "23266|296|2026-09-17|Sala 2|Tradicional|Nacional|13:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -175,9 +157,7 @@
     "presale": false,
     "simulated": false,
     "id": "22782|296|2026-09-17|Sala 5|Tradicional|Dublado / original|14:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -193,9 +173,7 @@
     "presale": false,
     "simulated": false,
     "id": "22955|296|2026-09-17|Sala 9|4DX|Dublado / original|14:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -211,9 +189,7 @@
     "presale": false,
     "simulated": false,
     "id": "22782|553|2026-09-17|Sala 8 - VIP|VIP|Dublado / original|14:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -229,9 +205,7 @@
     "presale": false,
     "simulated": false,
     "id": "22955|1488|2026-09-17|Sala 7|Tradicional|Dublado / original|14:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -247,9 +221,7 @@
     "presale": false,
     "simulated": false,
     "id": "22659|446|2026-09-17|Sala 06|Tradicional|Dublado / original|14:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -265,9 +237,7 @@
     "presale": false,
     "simulated": false,
     "id": "23757|446|2026-09-17|Sala 04|Tradicional|Nacional|14:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -283,9 +253,7 @@
     "presale": false,
     "simulated": false,
     "id": "22659|502|2026-09-17|Sala 3|Tradicional|Legendado|14:25",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -301,9 +269,7 @@
     "presale": false,
     "simulated": false,
     "id": "23511|1488|2026-09-17|Sala 11 IMAX|IMAX|Dublado / original|14:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -319,9 +285,7 @@
     "presale": false,
     "simulated": false,
     "id": "22659|296|2026-09-17|Sala 8|Tradicional|Dublado / original|14:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -337,9 +301,7 @@
     "presale": false,
     "simulated": false,
     "id": "23266|446|2026-09-17|Sala 09|Tradicional|Nacional|14:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -355,9 +317,7 @@
     "presale": false,
     "simulated": false,
     "id": "23511|553|2026-09-17|Sala 1 IMAX|IMAX|Legendado|14:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -373,9 +333,7 @@
     "presale": false,
     "simulated": false,
     "id": "22659|1488|2026-09-17|Sala 2|Tradicional|Dublado / original|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -391,9 +349,7 @@
     "presale": false,
     "simulated": false,
     "id": "23511|296|2026-09-17|Sala 1 IMAX|IMAX|Dublado / original|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -409,9 +365,7 @@
     "presale": false,
     "simulated": false,
     "id": "22782|446|2026-09-17|Sala 02|Tradicional|Legendado|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -427,9 +381,7 @@
     "presale": false,
     "simulated": false,
     "id": "23511|502|2026-09-17|Sala 1|Tradicional|Dublado / original|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -445,9 +397,7 @@
     "presale": false,
     "simulated": false,
     "id": "23266|553|2026-09-17|Sala 7 - VIP|VIP|Nacional|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -463,9 +413,7 @@
     "presale": false,
     "simulated": false,
     "id": "23266|1488|2026-09-17|Sala 1|Tradicional|Nacional|15:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -481,9 +429,7 @@
     "presale": false,
     "simulated": false,
     "id": "23266|502|2026-09-17|Sala 2|Tradicional|Nacional|15:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -499,9 +445,7 @@
     "presale": false,
     "simulated": false,
     "id": "23511|446|2026-09-17|Sala 08|D-BOX|Legendado|16:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -517,9 +461,7 @@
     "presale": false,
     "simulated": false,
     "id": "23266|296|2026-09-17|Sala 2|Tradicional|Nacional|16:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23309",
@@ -535,9 +477,7 @@
     "presale": false,
     "simulated": false,
     "id": "23309|446|2026-09-17|Sala 05|Tradicional|Dublado / original|16:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -553,9 +493,7 @@
     "presale": false,
     "simulated": false,
     "id": "22955|502|2026-09-17|Sala 6|Tradicional|Dublado / original|16:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23309",
@@ -571,9 +509,7 @@
     "presale": false,
     "simulated": false,
     "id": "23309|1488|2026-09-17|Sala 7|Tradicional|Dublado / original|16:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -589,9 +525,7 @@
     "presale": false,
     "simulated": false,
     "id": "22659|446|2026-09-17|Sala 01|XD / D-BOX|Legendado|16:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -607,9 +541,7 @@
     "presale": false,
     "simulated": false,
     "id": "23643|296|2026-09-17|Sala 5|Tradicional|Dublado / original|16:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -625,9 +557,7 @@
     "presale": false,
     "simulated": false,
     "id": "23511|1488|2026-09-17|Sala 11 IMAX|IMAX|Legendado|16:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -643,9 +573,7 @@
     "presale": false,
     "simulated": false,
     "id": "23757|1488|2026-09-17|Sala 8|Tradicional|Nacional|16:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -661,9 +589,7 @@
     "presale": false,
     "simulated": false,
     "id": "22955|446|2026-09-17|Sala 07|Tradicional|Dublado / original|16:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -679,9 +605,7 @@
     "presale": false,
     "simulated": false,
     "id": "23757|446|2026-09-17|Sala 04|Tradicional|Nacional|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -697,9 +621,7 @@
     "presale": false,
     "simulated": false,
     "id": "22782|502|2026-09-17|Sala 5|Tradicional|Legendado|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -715,9 +637,7 @@
     "presale": false,
     "simulated": false,
     "id": "23511|553|2026-09-17|Sala 1 IMAX|IMAX|Legendado|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -733,9 +653,7 @@
     "presale": false,
     "simulated": false,
     "id": "22782|553|2026-09-17|Sala 8 - VIP|VIP|Dublado / original|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -751,9 +669,7 @@
     "presale": false,
     "simulated": false,
     "id": "23511|296|2026-09-17|Sala 1 IMAX|IMAX|Dublado / original|17:05",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -769,9 +685,7 @@
     "presale": false,
     "simulated": false,
     "id": "23643|1488|2026-09-17|Sala 10|Tradicional|Legendado|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -787,9 +701,7 @@
     "presale": false,
     "simulated": false,
     "id": "23643|446|2026-09-17|Sala 06|Tradicional|Dublado / original|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -805,9 +717,7 @@
     "presale": false,
     "simulated": false,
     "id": "23511|502|2026-09-17|Sala 1|Tradicional|Legendado|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -823,9 +733,7 @@
     "presale": false,
     "simulated": false,
     "id": "22659|553|2026-09-17|Sala 5 - Onyx 4k LED|LED|Dublado / original|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -841,9 +749,7 @@
     "presale": false,
     "simulated": false,
     "id": "23266|446|2026-09-17|Sala 09|Tradicional|Nacional|17:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -859,9 +765,7 @@
     "presale": false,
     "simulated": false,
     "id": "22659|502|2026-09-17|Sala 3|Tradicional|Legendado|17:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -877,9 +781,7 @@
     "presale": false,
     "simulated": false,
     "id": "23643|553|2026-09-17|Sala 6 - VIP|VIP|Legendado|17:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -895,9 +797,7 @@
     "presale": false,
     "simulated": false,
     "id": "23757|296|2026-09-17|Sala 3|Tradicional|Nacional|17:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -913,9 +813,7 @@
     "presale": false,
     "simulated": false,
     "id": "23266|1488|2026-09-17|Sala 1|Tradicional|Nacional|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -931,9 +829,7 @@
     "presale": false,
     "simulated": false,
     "id": "22659|1488|2026-09-17|Sala 2|Tradicional|Dublado / original|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -949,9 +845,7 @@
     "presale": false,
     "simulated": false,
     "id": "22782|446|2026-09-17|Sala 02|Tradicional|Legendado|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -967,9 +861,7 @@
     "presale": false,
     "simulated": false,
     "id": "23266|553|2026-09-17|Sala 7 - VIP|VIP|Nacional|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -985,9 +877,7 @@
     "presale": false,
     "simulated": false,
     "id": "23266|502|2026-09-17|Sala 2|Tradicional|Nacional|18:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -1003,9 +893,7 @@
     "presale": false,
     "simulated": false,
     "id": "22659|296|2026-09-17|Sala 9|4DX|Dublado / original|18:25",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -1021,9 +909,7 @@
     "presale": false,
     "simulated": false,
     "id": "23266|296|2026-09-17|Sala 2|Tradicional|Nacional|18:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -1039,9 +925,7 @@
     "presale": false,
     "simulated": false,
     "id": "23511|446|2026-09-17|Sala 05|Tradicional|Dublado / original|18:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -1057,9 +941,7 @@
     "presale": false,
     "simulated": false,
     "id": "23511|1488|2026-09-17|Sala 11 IMAX|IMAX|Legendado|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -1075,9 +957,7 @@
     "presale": false,
     "simulated": false,
     "id": "23757|1488|2026-09-17|Sala 8|Tradicional|Nacional|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -1093,9 +973,7 @@
     "presale": false,
     "simulated": false,
     "id": "22782|1488|2026-09-17|Sala 9|Tradicional|Legendado|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -1111,9 +989,7 @@
     "presale": false,
     "simulated": false,
     "id": "22782|296|2026-09-17|Sala 5|Tradicional|Dublado / original|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -1129,9 +1005,7 @@
     "presale": false,
     "simulated": false,
     "id": "23511|296|2026-09-17|Sala 1 IMAX|IMAX|Legendado|19:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -1147,9 +1021,7 @@
     "presale": false,
     "simulated": false,
     "id": "23511|553|2026-09-17|Sala 1 IMAX|IMAX|Legendado|19:15",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23653",
@@ -1165,9 +1037,7 @@
     "presale": false,
     "simulated": false,
     "id": "23653|446|2026-09-17|Sala 07|Tradicional|Nacional|19:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -1183,9 +1053,7 @@
     "presale": false,
     "simulated": false,
     "id": "23643|1488|2026-09-17|Sala 10|Tradicional|Legendado|19:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -1201,9 +1069,7 @@
     "presale": false,
     "simulated": false,
     "id": "23511|446|2026-09-17|Sala 01|XD / D-BOX|Dublado / original|19:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -1219,9 +1085,7 @@
     "presale": false,
     "simulated": false,
     "id": "23511|502|2026-09-17|Sala 1|Tradicional|Dublado / original|19:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -1237,9 +1101,7 @@
     "presale": false,
     "simulated": false,
     "id": "23643|446|2026-09-17|Sala 06|Tradicional|Legendado|19:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -1255,9 +1117,7 @@
     "presale": false,
     "simulated": false,
     "id": "23757|296|2026-09-17|Sala 3|Tradicional|Nacional|20:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -1273,9 +1133,7 @@
     "presale": false,
     "simulated": false,
     "id": "23757|446|2026-09-17|Sala 04|Tradicional|Nacional|20:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -1291,9 +1149,7 @@
     "presale": false,
     "simulated": false,
     "id": "23492|553|2026-09-17|Sala 8 - VIP|VIP|Legendado|20:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -1309,9 +1165,7 @@
     "presale": false,
     "simulated": false,
     "id": "23266|446|2026-09-17|Sala 09|Tradicional|Nacional|20:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -1327,9 +1181,7 @@
     "presale": false,
     "simulated": false,
     "id": "23643|553|2026-09-17|Sala 6 - VIP|VIP|Dublado / original|20:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -1345,9 +1197,7 @@
     "presale": false,
     "simulated": false,
     "id": "23266|1488|2026-09-17|Sala 1|Tradicional|Nacional|20:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -1363,9 +1213,7 @@
     "presale": false,
     "simulated": false,
     "id": "22659|296|2026-09-17|Sala 8|Tradicional|Dublado / original|20:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -1381,9 +1229,7 @@
     "presale": false,
     "simulated": false,
     "id": "22659|553|2026-09-17|Sala 5 - Onyx 4k LED|LED|Legendado|20:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -1399,9 +1245,7 @@
     "presale": false,
     "simulated": false,
     "id": "23492|296|2026-09-17|Sala 4|Tradicional|Dublado / original|20:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -1417,9 +1261,7 @@
     "presale": false,
     "simulated": false,
     "id": "23266|502|2026-09-17|Sala 2|Tradicional|Nacional|20:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -1435,9 +1277,7 @@
     "presale": false,
     "simulated": false,
     "id": "22659|1488|2026-09-17|Sala 2|Tradicional|Dublado / original|21:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -1453,9 +1293,7 @@
     "presale": false,
     "simulated": false,
     "id": "23266|553|2026-09-17|Sala 7 - VIP|VIP|Nacional|21:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -1471,9 +1309,7 @@
     "presale": false,
     "simulated": false,
     "id": "23757|1488|2026-09-17|Sala 8|Tradicional|Nacional|21:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -1489,9 +1325,7 @@
     "presale": false,
     "simulated": false,
     "id": "22659|502|2026-09-17|Sala 3|Tradicional|Legendado|21:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -1507,9 +1341,7 @@
     "presale": false,
     "simulated": false,
     "id": "23511|1488|2026-09-17|Sala 11 IMAX|IMAX|Dublado / original|21:15",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -1525,9 +1357,7 @@
     "presale": false,
     "simulated": false,
     "id": "23511|296|2026-09-17|Sala 1 IMAX|IMAX|Legendado|21:15",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -1543,9 +1373,7 @@
     "presale": false,
     "simulated": false,
     "id": "23511|553|2026-09-17|Sala 1 IMAX|IMAX|Legendado|21:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -1561,9 +1389,7 @@
     "presale": false,
     "simulated": false,
     "id": "22782|1488|2026-09-17|Sala 9|Tradicional|Legendado|21:35",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -1579,9 +1405,7 @@
     "presale": false,
     "simulated": false,
     "id": "23266|296|2026-09-17|Sala 2|Tradicional|Nacional|21:35",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -1597,9 +1421,7 @@
     "presale": false,
     "simulated": false,
     "id": "22659|446|2026-09-17|Sala 07|Tradicional|Legendado|21:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -1615,9 +1437,7 @@
     "presale": false,
     "simulated": false,
     "id": "23643|296|2026-09-17|Sala 5|Tradicional|Dublado / original|21:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -1633,9 +1453,7 @@
     "presale": false,
     "simulated": false,
     "id": "23643|1488|2026-09-17|Sala 10|Tradicional|Legendado|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -1651,9 +1469,7 @@
     "presale": false,
     "simulated": false,
     "id": "23492|1488|2026-09-17|Sala 3|Tradicional|Dublado / original|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -1669,9 +1485,7 @@
     "presale": false,
     "simulated": false,
     "id": "23511|446|2026-09-17|Sala 01|XD / D-BOX|Legendado|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -1687,9 +1501,7 @@
     "presale": false,
     "simulated": false,
     "id": "23511|502|2026-09-17|Sala 1|Tradicional|Legendado|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -1705,9 +1517,7 @@
     "presale": false,
     "simulated": false,
     "id": "23757|296|2026-09-17|Sala 3|Tradicional|Nacional|22:05",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -1723,9 +1533,7 @@
     "presale": false,
     "simulated": false,
     "id": "22782|502|2026-09-17|Sala 5|Tradicional|Legendado|22:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -1741,9 +1549,7 @@
     "presale": false,
     "simulated": false,
     "id": "23492|446|2026-09-17|Sala 06|Tradicional|Dublado / original|22:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -1759,9 +1565,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|446|2026-09-18|Sala 09|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -1777,9 +1581,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|446|2026-09-18|Sala 04|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23653",
@@ -1795,9 +1597,7 @@
     "presale": false,
     "simulated": true,
     "id": "23653|446|2026-09-18|Sala 07|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -1813,9 +1613,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|502|2026-09-18|Sala 2|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -1831,9 +1629,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|1488|2026-09-18|Sala 1|Tradicional|Nacional|13:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -1849,9 +1645,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|553|2026-09-18|Sala 3 - VIP|VIP|Nacional|13:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -1867,9 +1661,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|553|2026-09-18|Sala 5 - Onyx 4k LED|LED|Legendado|13:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23309",
@@ -1885,9 +1677,7 @@
     "presale": false,
     "simulated": true,
     "id": "23309|502|2026-09-18|Sala 6|Tradicional|Dublado / original|13:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -1903,9 +1693,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|296|2026-09-18|Sala 2|Tradicional|Nacional|13:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -1921,9 +1709,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|296|2026-09-18|Sala 5|Tradicional|Dublado / original|14:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -1939,9 +1725,7 @@
     "presale": false,
     "simulated": true,
     "id": "22955|296|2026-09-18|Sala 9|4DX|Dublado / original|14:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23698",
@@ -1956,9 +1740,7 @@
     "observed": true,
     "presale": true,
     "id": "23698|351|2026-09-18|Sala 1|Tradicional|Nacional|14:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -1974,9 +1756,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|553|2026-09-18|Sala 8 - VIP|VIP|Dublado / original|14:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -1992,9 +1772,7 @@
     "presale": false,
     "simulated": true,
     "id": "22955|1488|2026-09-18|Sala 7|Tradicional|Dublado / original|14:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -2010,9 +1788,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|446|2026-09-18|Sala 06|Tradicional|Dublado / original|14:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -2028,9 +1804,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|446|2026-09-18|Sala 04|Tradicional|Nacional|14:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -2046,9 +1820,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|502|2026-09-18|Sala 3|Tradicional|Legendado|14:25",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -2064,9 +1836,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|1488|2026-09-18|Sala 11 IMAX|IMAX|Dublado / original|14:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -2082,9 +1852,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|296|2026-09-18|Sala 8|Tradicional|Dublado / original|14:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -2100,9 +1868,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|446|2026-09-18|Sala 09|Tradicional|Nacional|14:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -2118,9 +1884,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|553|2026-09-18|Sala 1 IMAX|IMAX|Legendado|14:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -2136,9 +1900,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|1488|2026-09-18|Sala 2|Tradicional|Dublado / original|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -2154,9 +1916,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|296|2026-09-18|Sala 1 IMAX|IMAX|Dublado / original|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -2172,9 +1932,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|446|2026-09-18|Sala 02|Tradicional|Legendado|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -2190,9 +1948,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|502|2026-09-18|Sala 1|Tradicional|Dublado / original|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -2208,9 +1964,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|553|2026-09-18|Sala 7 - VIP|VIP|Nacional|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -2226,9 +1980,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|1488|2026-09-18|Sala 1|Tradicional|Nacional|15:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -2244,9 +1996,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|502|2026-09-18|Sala 2|Tradicional|Nacional|15:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -2262,9 +2012,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|446|2026-09-18|Sala 08|D-BOX|Legendado|16:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -2280,9 +2028,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|296|2026-09-18|Sala 2|Tradicional|Nacional|16:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23309",
@@ -2298,9 +2044,7 @@
     "presale": false,
     "simulated": true,
     "id": "23309|446|2026-09-18|Sala 05|Tradicional|Dublado / original|16:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -2316,9 +2060,7 @@
     "presale": false,
     "simulated": true,
     "id": "22955|502|2026-09-18|Sala 6|Tradicional|Dublado / original|16:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23309",
@@ -2334,9 +2076,7 @@
     "presale": false,
     "simulated": true,
     "id": "23309|1488|2026-09-18|Sala 7|Tradicional|Dublado / original|16:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -2352,9 +2092,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|446|2026-09-18|Sala 01|XD / D-BOX|Legendado|16:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -2370,9 +2108,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|296|2026-09-18|Sala 5|Tradicional|Dublado / original|16:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -2388,9 +2124,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|1488|2026-09-18|Sala 11 IMAX|IMAX|Legendado|16:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -2406,9 +2140,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|1488|2026-09-18|Sala 8|Tradicional|Nacional|16:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -2424,9 +2156,7 @@
     "presale": false,
     "simulated": true,
     "id": "22955|446|2026-09-18|Sala 07|Tradicional|Dublado / original|16:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -2442,9 +2172,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|446|2026-09-18|Sala 04|Tradicional|Nacional|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -2460,9 +2188,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|502|2026-09-18|Sala 5|Tradicional|Legendado|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -2478,9 +2204,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|553|2026-09-18|Sala 1 IMAX|IMAX|Legendado|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -2496,9 +2220,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|553|2026-09-18|Sala 8 - VIP|VIP|Dublado / original|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -2514,9 +2236,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|296|2026-09-18|Sala 1 IMAX|IMAX|Dublado / original|17:05",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -2532,9 +2252,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|1488|2026-09-18|Sala 10|Tradicional|Legendado|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -2550,9 +2268,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|446|2026-09-18|Sala 06|Tradicional|Dublado / original|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -2568,9 +2284,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|502|2026-09-18|Sala 1|Tradicional|Legendado|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -2586,9 +2300,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|553|2026-09-18|Sala 5 - Onyx 4k LED|LED|Dublado / original|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -2604,9 +2316,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|446|2026-09-18|Sala 09|Tradicional|Nacional|17:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -2622,9 +2332,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|502|2026-09-18|Sala 3|Tradicional|Legendado|17:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -2640,9 +2348,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|553|2026-09-18|Sala 6 - VIP|VIP|Legendado|17:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -2658,9 +2364,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|296|2026-09-18|Sala 3|Tradicional|Nacional|17:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -2676,9 +2380,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|1488|2026-09-18|Sala 1|Tradicional|Nacional|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -2694,9 +2396,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|1488|2026-09-18|Sala 2|Tradicional|Dublado / original|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -2712,9 +2412,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|446|2026-09-18|Sala 02|Tradicional|Legendado|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -2730,9 +2428,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|553|2026-09-18|Sala 7 - VIP|VIP|Nacional|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -2748,9 +2444,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|502|2026-09-18|Sala 2|Tradicional|Nacional|18:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -2766,9 +2460,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|296|2026-09-18|Sala 9|4DX|Dublado / original|18:25",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -2784,9 +2476,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|296|2026-09-18|Sala 2|Tradicional|Nacional|18:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -2802,9 +2492,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|446|2026-09-18|Sala 05|Tradicional|Dublado / original|18:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -2820,9 +2508,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|1488|2026-09-18|Sala 11 IMAX|IMAX|Legendado|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -2838,9 +2524,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|1488|2026-09-18|Sala 8|Tradicional|Nacional|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -2856,9 +2540,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|1488|2026-09-18|Sala 9|Tradicional|Legendado|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -2874,9 +2556,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|296|2026-09-18|Sala 5|Tradicional|Dublado / original|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -2892,9 +2572,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|296|2026-09-18|Sala 1 IMAX|IMAX|Legendado|19:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -2910,9 +2588,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|553|2026-09-18|Sala 1 IMAX|IMAX|Legendado|19:15",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23653",
@@ -2928,9 +2604,7 @@
     "presale": false,
     "simulated": true,
     "id": "23653|446|2026-09-18|Sala 07|Tradicional|Nacional|19:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -2946,9 +2620,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|1488|2026-09-18|Sala 10|Tradicional|Legendado|19:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -2964,9 +2636,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|446|2026-09-18|Sala 01|XD / D-BOX|Dublado / original|19:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -2982,9 +2652,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|502|2026-09-18|Sala 1|Tradicional|Dublado / original|19:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -3000,9 +2668,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|446|2026-09-18|Sala 06|Tradicional|Legendado|19:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -3018,9 +2684,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|296|2026-09-18|Sala 3|Tradicional|Nacional|20:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -3036,9 +2700,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|446|2026-09-18|Sala 04|Tradicional|Nacional|20:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -3054,9 +2716,7 @@
     "presale": false,
     "simulated": true,
     "id": "23492|553|2026-09-18|Sala 8 - VIP|VIP|Legendado|20:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -3072,9 +2732,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|446|2026-09-18|Sala 09|Tradicional|Nacional|20:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -3090,9 +2748,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|553|2026-09-18|Sala 6 - VIP|VIP|Dublado / original|20:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -3108,9 +2764,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|1488|2026-09-18|Sala 1|Tradicional|Nacional|20:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -3126,9 +2780,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|296|2026-09-18|Sala 8|Tradicional|Dublado / original|20:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -3144,9 +2796,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|553|2026-09-18|Sala 5 - Onyx 4k LED|LED|Legendado|20:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -3162,9 +2812,7 @@
     "presale": false,
     "simulated": true,
     "id": "23492|296|2026-09-18|Sala 4|Tradicional|Dublado / original|20:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -3180,9 +2828,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|502|2026-09-18|Sala 2|Tradicional|Nacional|20:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -3198,9 +2844,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|1488|2026-09-18|Sala 2|Tradicional|Dublado / original|21:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -3216,9 +2860,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|553|2026-09-18|Sala 7 - VIP|VIP|Nacional|21:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -3234,9 +2876,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|1488|2026-09-18|Sala 8|Tradicional|Nacional|21:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -3252,9 +2892,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|502|2026-09-18|Sala 3|Tradicional|Legendado|21:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -3270,9 +2908,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|1488|2026-09-18|Sala 11 IMAX|IMAX|Dublado / original|21:15",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -3288,9 +2924,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|296|2026-09-18|Sala 1 IMAX|IMAX|Legendado|21:15",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -3306,9 +2940,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|553|2026-09-18|Sala 1 IMAX|IMAX|Legendado|21:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -3324,9 +2956,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|1488|2026-09-18|Sala 9|Tradicional|Legendado|21:35",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -3342,9 +2972,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|296|2026-09-18|Sala 2|Tradicional|Nacional|21:35",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -3360,9 +2988,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|446|2026-09-18|Sala 07|Tradicional|Legendado|21:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -3378,9 +3004,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|296|2026-09-18|Sala 5|Tradicional|Dublado / original|21:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -3396,9 +3020,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|1488|2026-09-18|Sala 10|Tradicional|Legendado|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -3414,9 +3036,7 @@
     "presale": false,
     "simulated": true,
     "id": "23492|1488|2026-09-18|Sala 3|Tradicional|Dublado / original|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -3432,9 +3052,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|446|2026-09-18|Sala 01|XD / D-BOX|Legendado|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -3450,9 +3068,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|502|2026-09-18|Sala 1|Tradicional|Legendado|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -3468,9 +3084,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|296|2026-09-18|Sala 3|Tradicional|Nacional|22:05",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -3486,9 +3100,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|502|2026-09-18|Sala 5|Tradicional|Legendado|22:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -3504,9 +3116,7 @@
     "presale": false,
     "simulated": true,
     "id": "23492|446|2026-09-18|Sala 06|Tradicional|Dublado / original|22:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -3522,9 +3132,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|446|2026-09-19|Sala 09|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -3540,9 +3148,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|446|2026-09-19|Sala 04|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23653",
@@ -3558,9 +3164,7 @@
     "presale": false,
     "simulated": true,
     "id": "23653|446|2026-09-19|Sala 07|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -3576,9 +3180,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|502|2026-09-19|Sala 2|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23474",
@@ -3593,9 +3195,7 @@
     "observed": true,
     "presale": true,
     "id": "23474|502|2026-09-19|Sala 7|Tradicional|Dublado / original|12:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -3611,9 +3211,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|1488|2026-09-19|Sala 1|Tradicional|Nacional|13:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -3629,9 +3227,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|553|2026-09-19|Sala 3 - VIP|VIP|Nacional|13:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23474",
@@ -3646,9 +3242,7 @@
     "observed": true,
     "presale": true,
     "id": "23474|553|2026-09-19|Sala 4 - 4DX|4DX|Dublado / original|13:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -3664,9 +3258,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|553|2026-09-19|Sala 5 - Onyx 4k LED|LED|Legendado|13:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23309",
@@ -3682,9 +3274,7 @@
     "presale": false,
     "simulated": true,
     "id": "23309|502|2026-09-19|Sala 6|Tradicional|Dublado / original|13:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -3700,9 +3290,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|296|2026-09-19|Sala 2|Tradicional|Nacional|13:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -3718,9 +3306,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|296|2026-09-19|Sala 5|Tradicional|Dublado / original|14:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -3736,9 +3322,7 @@
     "presale": false,
     "simulated": true,
     "id": "22955|296|2026-09-19|Sala 9|4DX|Dublado / original|14:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -3754,9 +3338,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|553|2026-09-19|Sala 8 - VIP|VIP|Dublado / original|14:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -3772,9 +3354,7 @@
     "presale": false,
     "simulated": true,
     "id": "22955|1488|2026-09-19|Sala 7|Tradicional|Dublado / original|14:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -3790,9 +3370,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|446|2026-09-19|Sala 06|Tradicional|Dublado / original|14:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -3808,9 +3386,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|446|2026-09-19|Sala 04|Tradicional|Nacional|14:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -3826,9 +3402,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|502|2026-09-19|Sala 3|Tradicional|Legendado|14:25",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -3844,9 +3418,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|1488|2026-09-19|Sala 11 IMAX|IMAX|Dublado / original|14:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -3862,9 +3434,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|296|2026-09-19|Sala 8|Tradicional|Dublado / original|14:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -3880,9 +3450,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|446|2026-09-19|Sala 09|Tradicional|Nacional|14:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -3898,9 +3466,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|553|2026-09-19|Sala 1 IMAX|IMAX|Legendado|14:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -3916,9 +3482,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|1488|2026-09-19|Sala 2|Tradicional|Dublado / original|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -3934,9 +3498,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|296|2026-09-19|Sala 1 IMAX|IMAX|Dublado / original|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -3952,9 +3514,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|446|2026-09-19|Sala 02|Tradicional|Legendado|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -3970,9 +3530,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|502|2026-09-19|Sala 1|Tradicional|Dublado / original|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -3988,9 +3546,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|553|2026-09-19|Sala 7 - VIP|VIP|Nacional|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -4006,9 +3562,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|1488|2026-09-19|Sala 1|Tradicional|Nacional|15:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -4024,9 +3578,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|502|2026-09-19|Sala 2|Tradicional|Nacional|15:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -4042,9 +3594,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|446|2026-09-19|Sala 08|D-BOX|Legendado|16:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -4060,9 +3610,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|296|2026-09-19|Sala 2|Tradicional|Nacional|16:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23309",
@@ -4078,9 +3626,7 @@
     "presale": false,
     "simulated": true,
     "id": "23309|446|2026-09-19|Sala 05|Tradicional|Dublado / original|16:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -4096,9 +3642,7 @@
     "presale": false,
     "simulated": true,
     "id": "22955|502|2026-09-19|Sala 6|Tradicional|Dublado / original|16:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23309",
@@ -4114,9 +3658,7 @@
     "presale": false,
     "simulated": true,
     "id": "23309|1488|2026-09-19|Sala 7|Tradicional|Dublado / original|16:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -4132,9 +3674,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|446|2026-09-19|Sala 01|XD / D-BOX|Legendado|16:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -4150,9 +3690,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|296|2026-09-19|Sala 5|Tradicional|Dublado / original|16:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -4168,9 +3706,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|1488|2026-09-19|Sala 11 IMAX|IMAX|Legendado|16:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -4186,9 +3722,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|1488|2026-09-19|Sala 8|Tradicional|Nacional|16:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -4204,9 +3738,7 @@
     "presale": false,
     "simulated": true,
     "id": "22955|446|2026-09-19|Sala 07|Tradicional|Dublado / original|16:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -4222,9 +3754,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|446|2026-09-19|Sala 04|Tradicional|Nacional|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -4240,9 +3770,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|502|2026-09-19|Sala 5|Tradicional|Legendado|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -4258,9 +3786,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|553|2026-09-19|Sala 1 IMAX|IMAX|Legendado|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -4276,9 +3802,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|553|2026-09-19|Sala 8 - VIP|VIP|Dublado / original|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -4294,9 +3818,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|296|2026-09-19|Sala 1 IMAX|IMAX|Dublado / original|17:05",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -4312,9 +3834,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|1488|2026-09-19|Sala 10|Tradicional|Legendado|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -4330,9 +3850,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|446|2026-09-19|Sala 06|Tradicional|Dublado / original|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -4348,9 +3866,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|502|2026-09-19|Sala 1|Tradicional|Legendado|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -4366,9 +3882,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|553|2026-09-19|Sala 5 - Onyx 4k LED|LED|Dublado / original|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -4384,9 +3898,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|446|2026-09-19|Sala 09|Tradicional|Nacional|17:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -4402,9 +3914,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|502|2026-09-19|Sala 3|Tradicional|Legendado|17:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -4420,9 +3930,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|553|2026-09-19|Sala 6 - VIP|VIP|Legendado|17:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -4438,9 +3946,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|296|2026-09-19|Sala 3|Tradicional|Nacional|17:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -4456,9 +3962,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|1488|2026-09-19|Sala 1|Tradicional|Nacional|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -4474,9 +3978,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|1488|2026-09-19|Sala 2|Tradicional|Dublado / original|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -4492,9 +3994,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|446|2026-09-19|Sala 02|Tradicional|Legendado|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -4510,9 +4010,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|553|2026-09-19|Sala 7 - VIP|VIP|Nacional|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -4528,9 +4026,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|502|2026-09-19|Sala 2|Tradicional|Nacional|18:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -4546,9 +4042,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|296|2026-09-19|Sala 9|4DX|Dublado / original|18:25",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -4564,9 +4058,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|296|2026-09-19|Sala 2|Tradicional|Nacional|18:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -4582,9 +4074,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|446|2026-09-19|Sala 05|Tradicional|Dublado / original|18:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -4600,9 +4090,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|1488|2026-09-19|Sala 11 IMAX|IMAX|Legendado|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -4618,9 +4106,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|1488|2026-09-19|Sala 8|Tradicional|Nacional|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -4636,9 +4122,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|1488|2026-09-19|Sala 9|Tradicional|Legendado|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -4654,9 +4138,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|296|2026-09-19|Sala 5|Tradicional|Dublado / original|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23585",
@@ -4671,9 +4153,7 @@
     "observed": true,
     "presale": true,
     "id": "23585|296|2026-09-19|Sala 4|Tradicional|Dublado / original|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -4689,9 +4169,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|296|2026-09-19|Sala 1 IMAX|IMAX|Legendado|19:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23585",
@@ -4706,9 +4184,7 @@
     "observed": true,
     "presale": true,
     "id": "23585|1488|2026-09-19|Sala 9|Tradicional|Legendado|19:15",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -4724,9 +4200,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|553|2026-09-19|Sala 1 IMAX|IMAX|Legendado|19:15",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23653",
@@ -4742,9 +4216,7 @@
     "presale": false,
     "simulated": true,
     "id": "23653|446|2026-09-19|Sala 07|Tradicional|Nacional|19:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23585",
@@ -4759,9 +4231,7 @@
     "observed": true,
     "presale": true,
     "id": "23585|446|2026-09-19|Sala 02|Tradicional|Legendado|19:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -4777,9 +4247,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|1488|2026-09-19|Sala 10|Tradicional|Legendado|19:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -4795,9 +4263,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|446|2026-09-19|Sala 01|XD / D-BOX|Dublado / original|19:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -4813,9 +4279,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|502|2026-09-19|Sala 1|Tradicional|Dublado / original|19:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -4831,9 +4295,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|446|2026-09-19|Sala 06|Tradicional|Legendado|19:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -4849,9 +4311,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|296|2026-09-19|Sala 3|Tradicional|Nacional|20:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -4867,9 +4327,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|446|2026-09-19|Sala 04|Tradicional|Nacional|20:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -4885,9 +4343,7 @@
     "presale": false,
     "simulated": true,
     "id": "23492|553|2026-09-19|Sala 8 - VIP|VIP|Legendado|20:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23585",
@@ -4902,9 +4358,7 @@
     "observed": true,
     "presale": true,
     "id": "23585|553|2026-09-19|Sala 8 - VIP|VIP|Dublado / original|20:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -4920,9 +4374,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|446|2026-09-19|Sala 09|Tradicional|Nacional|20:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -4938,9 +4390,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|553|2026-09-19|Sala 6 - VIP|VIP|Dublado / original|20:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -4956,9 +4406,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|1488|2026-09-19|Sala 1|Tradicional|Nacional|20:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -4974,9 +4422,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|296|2026-09-19|Sala 8|Tradicional|Dublado / original|20:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -4992,9 +4438,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|553|2026-09-19|Sala 5 - Onyx 4k LED|LED|Legendado|20:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -5010,9 +4454,7 @@
     "presale": false,
     "simulated": true,
     "id": "23492|296|2026-09-19|Sala 4|Tradicional|Dublado / original|20:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -5028,9 +4470,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|502|2026-09-19|Sala 2|Tradicional|Nacional|20:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -5046,9 +4486,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|1488|2026-09-19|Sala 2|Tradicional|Dublado / original|21:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -5064,9 +4502,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|553|2026-09-19|Sala 7 - VIP|VIP|Nacional|21:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -5082,9 +4518,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|1488|2026-09-19|Sala 8|Tradicional|Nacional|21:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -5100,9 +4534,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|502|2026-09-19|Sala 3|Tradicional|Legendado|21:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -5118,9 +4550,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|1488|2026-09-19|Sala 11 IMAX|IMAX|Dublado / original|21:15",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -5136,9 +4566,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|296|2026-09-19|Sala 1 IMAX|IMAX|Legendado|21:15",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -5154,9 +4582,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|553|2026-09-19|Sala 1 IMAX|IMAX|Legendado|21:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -5172,9 +4598,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|1488|2026-09-19|Sala 9|Tradicional|Legendado|21:35",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -5190,9 +4614,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|296|2026-09-19|Sala 2|Tradicional|Nacional|21:35",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -5208,9 +4630,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|446|2026-09-19|Sala 07|Tradicional|Legendado|21:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -5226,9 +4646,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|296|2026-09-19|Sala 5|Tradicional|Dublado / original|21:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -5244,9 +4662,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|1488|2026-09-19|Sala 10|Tradicional|Legendado|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -5262,9 +4678,7 @@
     "presale": false,
     "simulated": true,
     "id": "23492|1488|2026-09-19|Sala 3|Tradicional|Dublado / original|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -5280,9 +4694,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|446|2026-09-19|Sala 01|XD / D-BOX|Legendado|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -5298,9 +4710,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|502|2026-09-19|Sala 1|Tradicional|Legendado|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -5316,9 +4726,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|296|2026-09-19|Sala 3|Tradicional|Nacional|22:05",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -5334,9 +4742,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|502|2026-09-19|Sala 5|Tradicional|Legendado|22:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -5352,9 +4758,7 @@
     "presale": false,
     "simulated": true,
     "id": "23492|446|2026-09-19|Sala 06|Tradicional|Dublado / original|22:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -5370,9 +4774,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|446|2026-09-20|Sala 09|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -5388,9 +4790,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|446|2026-09-20|Sala 04|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23653",
@@ -5406,9 +4806,7 @@
     "presale": false,
     "simulated": true,
     "id": "23653|446|2026-09-20|Sala 07|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -5424,9 +4822,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|502|2026-09-20|Sala 2|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -5442,9 +4838,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|1488|2026-09-20|Sala 1|Tradicional|Nacional|13:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -5460,9 +4854,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|553|2026-09-20|Sala 3 - VIP|VIP|Nacional|13:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -5478,9 +4870,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|553|2026-09-20|Sala 5 - Onyx 4k LED|LED|Legendado|13:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23309",
@@ -5496,9 +4886,7 @@
     "presale": false,
     "simulated": true,
     "id": "23309|502|2026-09-20|Sala 6|Tradicional|Dublado / original|13:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -5514,9 +4902,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|296|2026-09-20|Sala 2|Tradicional|Nacional|13:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -5532,9 +4918,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|296|2026-09-20|Sala 5|Tradicional|Dublado / original|14:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -5550,9 +4934,7 @@
     "presale": false,
     "simulated": true,
     "id": "22955|296|2026-09-20|Sala 9|4DX|Dublado / original|14:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -5568,9 +4950,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|553|2026-09-20|Sala 8 - VIP|VIP|Dublado / original|14:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -5586,9 +4966,7 @@
     "presale": false,
     "simulated": true,
     "id": "22955|1488|2026-09-20|Sala 7|Tradicional|Dublado / original|14:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -5604,9 +4982,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|446|2026-09-20|Sala 06|Tradicional|Dublado / original|14:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -5622,9 +4998,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|446|2026-09-20|Sala 04|Tradicional|Nacional|14:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -5640,9 +5014,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|502|2026-09-20|Sala 3|Tradicional|Legendado|14:25",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -5658,9 +5030,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|1488|2026-09-20|Sala 11 IMAX|IMAX|Dublado / original|14:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -5676,9 +5046,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|296|2026-09-20|Sala 8|Tradicional|Dublado / original|14:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -5694,9 +5062,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|446|2026-09-20|Sala 09|Tradicional|Nacional|14:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -5712,9 +5078,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|553|2026-09-20|Sala 1 IMAX|IMAX|Legendado|14:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -5730,9 +5094,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|1488|2026-09-20|Sala 2|Tradicional|Dublado / original|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -5748,9 +5110,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|296|2026-09-20|Sala 1 IMAX|IMAX|Dublado / original|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -5766,9 +5126,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|446|2026-09-20|Sala 02|Tradicional|Legendado|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -5784,9 +5142,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|502|2026-09-20|Sala 1|Tradicional|Dublado / original|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -5802,9 +5158,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|553|2026-09-20|Sala 7 - VIP|VIP|Nacional|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -5820,9 +5174,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|1488|2026-09-20|Sala 1|Tradicional|Nacional|15:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -5838,9 +5190,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|502|2026-09-20|Sala 2|Tradicional|Nacional|15:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -5856,9 +5206,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|446|2026-09-20|Sala 08|D-BOX|Legendado|16:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -5874,9 +5222,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|296|2026-09-20|Sala 2|Tradicional|Nacional|16:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23309",
@@ -5892,9 +5238,7 @@
     "presale": false,
     "simulated": true,
     "id": "23309|446|2026-09-20|Sala 05|Tradicional|Dublado / original|16:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -5910,9 +5254,7 @@
     "presale": false,
     "simulated": true,
     "id": "22955|502|2026-09-20|Sala 6|Tradicional|Dublado / original|16:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23309",
@@ -5928,9 +5270,7 @@
     "presale": false,
     "simulated": true,
     "id": "23309|1488|2026-09-20|Sala 7|Tradicional|Dublado / original|16:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -5946,9 +5286,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|446|2026-09-20|Sala 01|XD / D-BOX|Legendado|16:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -5964,9 +5302,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|296|2026-09-20|Sala 5|Tradicional|Dublado / original|16:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -5982,9 +5318,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|1488|2026-09-20|Sala 11 IMAX|IMAX|Legendado|16:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -6000,9 +5334,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|1488|2026-09-20|Sala 8|Tradicional|Nacional|16:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -6018,9 +5350,7 @@
     "presale": false,
     "simulated": true,
     "id": "22955|446|2026-09-20|Sala 07|Tradicional|Dublado / original|16:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -6036,9 +5366,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|446|2026-09-20|Sala 04|Tradicional|Nacional|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -6054,9 +5382,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|502|2026-09-20|Sala 5|Tradicional|Legendado|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -6072,9 +5398,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|553|2026-09-20|Sala 1 IMAX|IMAX|Legendado|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -6090,9 +5414,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|553|2026-09-20|Sala 8 - VIP|VIP|Dublado / original|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -6108,9 +5430,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|296|2026-09-20|Sala 1 IMAX|IMAX|Dublado / original|17:05",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -6126,9 +5446,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|1488|2026-09-20|Sala 10|Tradicional|Legendado|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -6144,9 +5462,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|446|2026-09-20|Sala 06|Tradicional|Dublado / original|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -6162,9 +5478,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|502|2026-09-20|Sala 1|Tradicional|Legendado|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -6180,9 +5494,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|553|2026-09-20|Sala 5 - Onyx 4k LED|LED|Dublado / original|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -6198,9 +5510,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|446|2026-09-20|Sala 09|Tradicional|Nacional|17:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -6216,9 +5526,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|502|2026-09-20|Sala 3|Tradicional|Legendado|17:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -6234,9 +5542,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|553|2026-09-20|Sala 6 - VIP|VIP|Legendado|17:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -6252,9 +5558,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|296|2026-09-20|Sala 3|Tradicional|Nacional|17:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -6270,9 +5574,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|1488|2026-09-20|Sala 1|Tradicional|Nacional|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -6288,9 +5590,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|1488|2026-09-20|Sala 2|Tradicional|Dublado / original|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23787",
@@ -6305,9 +5605,7 @@
     "observed": true,
     "presale": true,
     "id": "23787|296|2026-09-20|Sala 8|Tradicional|Legendado|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -6323,9 +5621,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|446|2026-09-20|Sala 02|Tradicional|Legendado|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23787",
@@ -6340,9 +5636,7 @@
     "observed": true,
     "presale": true,
     "id": "23787|446|2026-09-20|Sala 06|Tradicional|Dublado / original|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -6358,9 +5652,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|553|2026-09-20|Sala 7 - VIP|VIP|Nacional|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -6376,9 +5668,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|502|2026-09-20|Sala 2|Tradicional|Nacional|18:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -6394,9 +5684,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|296|2026-09-20|Sala 9|4DX|Dublado / original|18:25",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -6412,9 +5700,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|296|2026-09-20|Sala 2|Tradicional|Nacional|18:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -6430,9 +5716,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|446|2026-09-20|Sala 05|Tradicional|Dublado / original|18:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -6448,9 +5732,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|1488|2026-09-20|Sala 11 IMAX|IMAX|Legendado|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -6466,9 +5748,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|1488|2026-09-20|Sala 8|Tradicional|Nacional|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -6484,9 +5764,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|1488|2026-09-20|Sala 9|Tradicional|Legendado|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -6502,9 +5780,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|296|2026-09-20|Sala 5|Tradicional|Dublado / original|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -6520,9 +5796,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|296|2026-09-20|Sala 1 IMAX|IMAX|Legendado|19:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -6538,9 +5812,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|553|2026-09-20|Sala 1 IMAX|IMAX|Legendado|19:15",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23653",
@@ -6556,9 +5828,7 @@
     "presale": false,
     "simulated": true,
     "id": "23653|446|2026-09-20|Sala 07|Tradicional|Nacional|19:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -6574,9 +5844,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|1488|2026-09-20|Sala 10|Tradicional|Legendado|19:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -6592,9 +5860,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|446|2026-09-20|Sala 01|XD / D-BOX|Dublado / original|19:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -6610,9 +5876,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|502|2026-09-20|Sala 1|Tradicional|Dublado / original|19:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -6628,9 +5892,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|446|2026-09-20|Sala 06|Tradicional|Legendado|19:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -6646,9 +5908,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|296|2026-09-20|Sala 3|Tradicional|Nacional|20:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -6664,9 +5924,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|446|2026-09-20|Sala 04|Tradicional|Nacional|20:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -6682,9 +5940,7 @@
     "presale": false,
     "simulated": true,
     "id": "23492|553|2026-09-20|Sala 8 - VIP|VIP|Legendado|20:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -6700,9 +5956,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|446|2026-09-20|Sala 09|Tradicional|Nacional|20:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -6718,9 +5972,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|553|2026-09-20|Sala 6 - VIP|VIP|Dublado / original|20:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -6736,9 +5988,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|1488|2026-09-20|Sala 1|Tradicional|Nacional|20:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -6754,9 +6004,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|296|2026-09-20|Sala 8|Tradicional|Dublado / original|20:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -6772,9 +6020,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|553|2026-09-20|Sala 5 - Onyx 4k LED|LED|Legendado|20:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -6790,9 +6036,7 @@
     "presale": false,
     "simulated": true,
     "id": "23492|296|2026-09-20|Sala 4|Tradicional|Dublado / original|20:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -6808,9 +6052,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|502|2026-09-20|Sala 2|Tradicional|Nacional|20:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -6826,9 +6068,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|1488|2026-09-20|Sala 2|Tradicional|Dublado / original|21:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -6844,9 +6084,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|553|2026-09-20|Sala 7 - VIP|VIP|Nacional|21:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -6862,9 +6100,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|1488|2026-09-20|Sala 8|Tradicional|Nacional|21:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -6880,9 +6116,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|502|2026-09-20|Sala 3|Tradicional|Legendado|21:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -6898,9 +6132,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|1488|2026-09-20|Sala 11 IMAX|IMAX|Dublado / original|21:15",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -6916,9 +6148,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|296|2026-09-20|Sala 1 IMAX|IMAX|Legendado|21:15",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -6934,9 +6164,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|553|2026-09-20|Sala 1 IMAX|IMAX|Legendado|21:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -6952,9 +6180,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|1488|2026-09-20|Sala 9|Tradicional|Legendado|21:35",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -6970,9 +6196,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|296|2026-09-20|Sala 2|Tradicional|Nacional|21:35",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -6988,9 +6212,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|446|2026-09-20|Sala 07|Tradicional|Legendado|21:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -7006,9 +6228,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|296|2026-09-20|Sala 5|Tradicional|Dublado / original|21:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -7024,9 +6244,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|1488|2026-09-20|Sala 10|Tradicional|Legendado|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -7042,9 +6260,7 @@
     "presale": false,
     "simulated": true,
     "id": "23492|1488|2026-09-20|Sala 3|Tradicional|Dublado / original|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -7060,9 +6276,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|446|2026-09-20|Sala 01|XD / D-BOX|Legendado|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -7078,9 +6292,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|502|2026-09-20|Sala 1|Tradicional|Legendado|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -7096,9 +6308,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|296|2026-09-20|Sala 3|Tradicional|Nacional|22:05",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -7114,9 +6324,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|502|2026-09-20|Sala 5|Tradicional|Legendado|22:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -7132,9 +6340,7 @@
     "presale": false,
     "simulated": true,
     "id": "23492|446|2026-09-20|Sala 06|Tradicional|Dublado / original|22:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -7150,9 +6356,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|446|2026-09-21|Sala 09|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -7168,9 +6372,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|446|2026-09-21|Sala 04|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23653",
@@ -7186,9 +6388,7 @@
     "presale": false,
     "simulated": true,
     "id": "23653|446|2026-09-21|Sala 07|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -7204,9 +6404,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|502|2026-09-21|Sala 2|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -7222,9 +6420,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|1488|2026-09-21|Sala 1|Tradicional|Nacional|13:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -7240,9 +6436,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|553|2026-09-21|Sala 3 - VIP|VIP|Nacional|13:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -7258,9 +6452,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|553|2026-09-21|Sala 5 - Onyx 4k LED|LED|Legendado|13:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23309",
@@ -7276,9 +6468,7 @@
     "presale": false,
     "simulated": true,
     "id": "23309|502|2026-09-21|Sala 6|Tradicional|Dublado / original|13:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -7294,9 +6484,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|296|2026-09-21|Sala 2|Tradicional|Nacional|13:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -7312,9 +6500,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|296|2026-09-21|Sala 5|Tradicional|Dublado / original|14:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -7330,9 +6516,7 @@
     "presale": false,
     "simulated": true,
     "id": "22955|296|2026-09-21|Sala 9|4DX|Dublado / original|14:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -7348,9 +6532,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|553|2026-09-21|Sala 8 - VIP|VIP|Dublado / original|14:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -7366,9 +6548,7 @@
     "presale": false,
     "simulated": true,
     "id": "22955|1488|2026-09-21|Sala 7|Tradicional|Dublado / original|14:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -7384,9 +6564,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|446|2026-09-21|Sala 06|Tradicional|Dublado / original|14:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -7402,9 +6580,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|446|2026-09-21|Sala 04|Tradicional|Nacional|14:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -7420,9 +6596,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|502|2026-09-21|Sala 3|Tradicional|Legendado|14:25",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -7438,9 +6612,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|1488|2026-09-21|Sala 11 IMAX|IMAX|Dublado / original|14:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -7456,9 +6628,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|296|2026-09-21|Sala 8|Tradicional|Dublado / original|14:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -7474,9 +6644,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|446|2026-09-21|Sala 09|Tradicional|Nacional|14:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -7492,9 +6660,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|553|2026-09-21|Sala 1 IMAX|IMAX|Legendado|14:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -7510,9 +6676,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|1488|2026-09-21|Sala 2|Tradicional|Dublado / original|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -7528,9 +6692,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|296|2026-09-21|Sala 1 IMAX|IMAX|Dublado / original|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -7546,9 +6708,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|446|2026-09-21|Sala 02|Tradicional|Legendado|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -7564,9 +6724,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|502|2026-09-21|Sala 1|Tradicional|Dublado / original|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -7582,9 +6740,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|553|2026-09-21|Sala 7 - VIP|VIP|Nacional|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -7600,9 +6756,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|1488|2026-09-21|Sala 1|Tradicional|Nacional|15:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -7618,9 +6772,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|502|2026-09-21|Sala 2|Tradicional|Nacional|15:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -7636,9 +6788,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|446|2026-09-21|Sala 08|D-BOX|Legendado|16:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -7654,9 +6804,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|296|2026-09-21|Sala 2|Tradicional|Nacional|16:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23309",
@@ -7672,9 +6820,7 @@
     "presale": false,
     "simulated": true,
     "id": "23309|446|2026-09-21|Sala 05|Tradicional|Dublado / original|16:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -7690,9 +6836,7 @@
     "presale": false,
     "simulated": true,
     "id": "22955|502|2026-09-21|Sala 6|Tradicional|Dublado / original|16:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23309",
@@ -7708,9 +6852,7 @@
     "presale": false,
     "simulated": true,
     "id": "23309|1488|2026-09-21|Sala 7|Tradicional|Dublado / original|16:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -7726,9 +6868,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|446|2026-09-21|Sala 01|XD / D-BOX|Legendado|16:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -7744,9 +6884,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|296|2026-09-21|Sala 5|Tradicional|Dublado / original|16:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -7762,9 +6900,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|1488|2026-09-21|Sala 11 IMAX|IMAX|Legendado|16:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -7780,9 +6916,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|1488|2026-09-21|Sala 8|Tradicional|Nacional|16:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -7798,9 +6932,7 @@
     "presale": false,
     "simulated": true,
     "id": "22955|446|2026-09-21|Sala 07|Tradicional|Dublado / original|16:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -7816,9 +6948,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|446|2026-09-21|Sala 04|Tradicional|Nacional|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -7834,9 +6964,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|502|2026-09-21|Sala 5|Tradicional|Legendado|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -7852,9 +6980,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|553|2026-09-21|Sala 1 IMAX|IMAX|Legendado|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -7870,9 +6996,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|553|2026-09-21|Sala 8 - VIP|VIP|Dublado / original|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -7888,9 +7012,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|296|2026-09-21|Sala 1 IMAX|IMAX|Dublado / original|17:05",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -7906,9 +7028,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|1488|2026-09-21|Sala 10|Tradicional|Legendado|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -7924,9 +7044,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|446|2026-09-21|Sala 06|Tradicional|Dublado / original|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -7942,9 +7060,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|502|2026-09-21|Sala 1|Tradicional|Legendado|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -7960,9 +7076,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|553|2026-09-21|Sala 5 - Onyx 4k LED|LED|Dublado / original|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -7978,9 +7092,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|446|2026-09-21|Sala 09|Tradicional|Nacional|17:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -7996,9 +7108,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|502|2026-09-21|Sala 3|Tradicional|Legendado|17:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -8014,9 +7124,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|553|2026-09-21|Sala 6 - VIP|VIP|Legendado|17:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -8032,9 +7140,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|296|2026-09-21|Sala 3|Tradicional|Nacional|17:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -8050,9 +7156,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|1488|2026-09-21|Sala 1|Tradicional|Nacional|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -8068,9 +7172,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|1488|2026-09-21|Sala 2|Tradicional|Dublado / original|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -8086,9 +7188,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|446|2026-09-21|Sala 02|Tradicional|Legendado|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -8104,9 +7204,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|553|2026-09-21|Sala 7 - VIP|VIP|Nacional|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -8122,9 +7220,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|502|2026-09-21|Sala 2|Tradicional|Nacional|18:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -8140,9 +7236,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|296|2026-09-21|Sala 9|4DX|Dublado / original|18:25",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -8158,9 +7252,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|296|2026-09-21|Sala 2|Tradicional|Nacional|18:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -8176,9 +7268,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|446|2026-09-21|Sala 05|Tradicional|Dublado / original|18:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -8194,9 +7284,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|1488|2026-09-21|Sala 11 IMAX|IMAX|Legendado|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -8212,9 +7300,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|1488|2026-09-21|Sala 8|Tradicional|Nacional|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -8230,9 +7316,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|1488|2026-09-21|Sala 9|Tradicional|Legendado|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -8248,9 +7332,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|296|2026-09-21|Sala 5|Tradicional|Dublado / original|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -8266,9 +7348,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|296|2026-09-21|Sala 1 IMAX|IMAX|Legendado|19:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -8284,9 +7364,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|553|2026-09-21|Sala 1 IMAX|IMAX|Legendado|19:15",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23653",
@@ -8302,9 +7380,7 @@
     "presale": false,
     "simulated": true,
     "id": "23653|446|2026-09-21|Sala 07|Tradicional|Nacional|19:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -8320,9 +7396,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|1488|2026-09-21|Sala 10|Tradicional|Legendado|19:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -8338,9 +7412,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|446|2026-09-21|Sala 01|XD / D-BOX|Dublado / original|19:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -8356,9 +7428,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|502|2026-09-21|Sala 1|Tradicional|Dublado / original|19:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -8374,9 +7444,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|446|2026-09-21|Sala 06|Tradicional|Legendado|19:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -8392,9 +7460,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|296|2026-09-21|Sala 3|Tradicional|Nacional|20:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -8410,9 +7476,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|446|2026-09-21|Sala 04|Tradicional|Nacional|20:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -8428,9 +7492,7 @@
     "presale": false,
     "simulated": true,
     "id": "23492|553|2026-09-21|Sala 8 - VIP|VIP|Legendado|20:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -8446,9 +7508,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|446|2026-09-21|Sala 09|Tradicional|Nacional|20:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -8464,9 +7524,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|553|2026-09-21|Sala 6 - VIP|VIP|Dublado / original|20:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -8482,9 +7540,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|1488|2026-09-21|Sala 1|Tradicional|Nacional|20:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -8500,9 +7556,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|296|2026-09-21|Sala 8|Tradicional|Dublado / original|20:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -8518,9 +7572,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|553|2026-09-21|Sala 5 - Onyx 4k LED|LED|Legendado|20:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -8536,9 +7588,7 @@
     "presale": false,
     "simulated": true,
     "id": "23492|296|2026-09-21|Sala 4|Tradicional|Dublado / original|20:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -8554,9 +7604,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|502|2026-09-21|Sala 2|Tradicional|Nacional|20:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -8572,9 +7620,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|1488|2026-09-21|Sala 2|Tradicional|Dublado / original|21:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -8590,9 +7636,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|553|2026-09-21|Sala 7 - VIP|VIP|Nacional|21:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -8608,9 +7652,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|1488|2026-09-21|Sala 8|Tradicional|Nacional|21:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -8626,9 +7668,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|502|2026-09-21|Sala 3|Tradicional|Legendado|21:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -8644,9 +7684,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|1488|2026-09-21|Sala 11 IMAX|IMAX|Dublado / original|21:15",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -8662,9 +7700,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|296|2026-09-21|Sala 1 IMAX|IMAX|Legendado|21:15",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -8680,9 +7716,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|553|2026-09-21|Sala 1 IMAX|IMAX|Legendado|21:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -8698,9 +7732,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|1488|2026-09-21|Sala 9|Tradicional|Legendado|21:35",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -8716,9 +7748,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|296|2026-09-21|Sala 2|Tradicional|Nacional|21:35",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -8734,9 +7764,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|446|2026-09-21|Sala 07|Tradicional|Legendado|21:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -8752,9 +7780,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|296|2026-09-21|Sala 5|Tradicional|Dublado / original|21:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -8770,9 +7796,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|1488|2026-09-21|Sala 10|Tradicional|Legendado|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -8788,9 +7812,7 @@
     "presale": false,
     "simulated": true,
     "id": "23492|1488|2026-09-21|Sala 3|Tradicional|Dublado / original|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -8806,9 +7828,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|446|2026-09-21|Sala 01|XD / D-BOX|Legendado|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -8824,9 +7844,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|502|2026-09-21|Sala 1|Tradicional|Legendado|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -8842,9 +7860,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|296|2026-09-21|Sala 3|Tradicional|Nacional|22:05",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -8860,9 +7876,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|502|2026-09-21|Sala 5|Tradicional|Legendado|22:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -8878,9 +7892,7 @@
     "presale": false,
     "simulated": true,
     "id": "23492|446|2026-09-21|Sala 06|Tradicional|Dublado / original|22:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -8896,9 +7908,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|446|2026-09-22|Sala 09|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -8914,9 +7924,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|446|2026-09-22|Sala 04|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23653",
@@ -8932,9 +7940,7 @@
     "presale": false,
     "simulated": true,
     "id": "23653|446|2026-09-22|Sala 07|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -8950,9 +7956,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|502|2026-09-22|Sala 2|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -8968,9 +7972,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|1488|2026-09-22|Sala 1|Tradicional|Nacional|13:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -8986,9 +7988,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|553|2026-09-22|Sala 3 - VIP|VIP|Nacional|13:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -9004,9 +8004,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|553|2026-09-22|Sala 5 - Onyx 4k LED|LED|Legendado|13:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23309",
@@ -9022,9 +8020,7 @@
     "presale": false,
     "simulated": true,
     "id": "23309|502|2026-09-22|Sala 6|Tradicional|Dublado / original|13:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -9040,9 +8036,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|296|2026-09-22|Sala 2|Tradicional|Nacional|13:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -9058,9 +8052,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|296|2026-09-22|Sala 5|Tradicional|Dublado / original|14:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -9076,9 +8068,7 @@
     "presale": false,
     "simulated": true,
     "id": "22955|296|2026-09-22|Sala 9|4DX|Dublado / original|14:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -9094,9 +8084,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|553|2026-09-22|Sala 8 - VIP|VIP|Dublado / original|14:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -9112,9 +8100,7 @@
     "presale": false,
     "simulated": true,
     "id": "22955|1488|2026-09-22|Sala 7|Tradicional|Dublado / original|14:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -9130,9 +8116,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|446|2026-09-22|Sala 06|Tradicional|Dublado / original|14:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -9148,9 +8132,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|446|2026-09-22|Sala 04|Tradicional|Nacional|14:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -9166,9 +8148,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|502|2026-09-22|Sala 3|Tradicional|Legendado|14:25",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -9184,9 +8164,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|1488|2026-09-22|Sala 11 IMAX|IMAX|Dublado / original|14:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -9202,9 +8180,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|296|2026-09-22|Sala 8|Tradicional|Dublado / original|14:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -9220,9 +8196,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|446|2026-09-22|Sala 09|Tradicional|Nacional|14:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -9238,9 +8212,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|553|2026-09-22|Sala 1 IMAX|IMAX|Legendado|14:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -9256,9 +8228,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|1488|2026-09-22|Sala 2|Tradicional|Dublado / original|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -9274,9 +8244,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|296|2026-09-22|Sala 1 IMAX|IMAX|Dublado / original|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -9292,9 +8260,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|446|2026-09-22|Sala 02|Tradicional|Legendado|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -9310,9 +8276,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|502|2026-09-22|Sala 1|Tradicional|Dublado / original|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -9328,9 +8292,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|553|2026-09-22|Sala 7 - VIP|VIP|Nacional|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -9346,9 +8308,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|1488|2026-09-22|Sala 1|Tradicional|Nacional|15:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -9364,9 +8324,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|502|2026-09-22|Sala 2|Tradicional|Nacional|15:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -9382,9 +8340,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|446|2026-09-22|Sala 08|D-BOX|Legendado|16:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -9400,9 +8356,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|296|2026-09-22|Sala 2|Tradicional|Nacional|16:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23309",
@@ -9418,9 +8372,7 @@
     "presale": false,
     "simulated": true,
     "id": "23309|446|2026-09-22|Sala 05|Tradicional|Dublado / original|16:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -9436,9 +8388,7 @@
     "presale": false,
     "simulated": true,
     "id": "22955|502|2026-09-22|Sala 6|Tradicional|Dublado / original|16:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23309",
@@ -9454,9 +8404,7 @@
     "presale": false,
     "simulated": true,
     "id": "23309|1488|2026-09-22|Sala 7|Tradicional|Dublado / original|16:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -9472,9 +8420,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|446|2026-09-22|Sala 01|XD / D-BOX|Legendado|16:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -9490,9 +8436,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|296|2026-09-22|Sala 5|Tradicional|Dublado / original|16:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -9508,9 +8452,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|1488|2026-09-22|Sala 11 IMAX|IMAX|Legendado|16:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -9526,9 +8468,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|1488|2026-09-22|Sala 8|Tradicional|Nacional|16:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -9544,9 +8484,7 @@
     "presale": false,
     "simulated": true,
     "id": "22955|446|2026-09-22|Sala 07|Tradicional|Dublado / original|16:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -9562,9 +8500,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|446|2026-09-22|Sala 04|Tradicional|Nacional|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -9580,9 +8516,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|502|2026-09-22|Sala 5|Tradicional|Legendado|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -9598,9 +8532,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|553|2026-09-22|Sala 1 IMAX|IMAX|Legendado|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -9616,9 +8548,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|553|2026-09-22|Sala 8 - VIP|VIP|Dublado / original|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -9634,9 +8564,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|296|2026-09-22|Sala 1 IMAX|IMAX|Dublado / original|17:05",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -9652,9 +8580,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|1488|2026-09-22|Sala 10|Tradicional|Legendado|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -9670,9 +8596,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|446|2026-09-22|Sala 06|Tradicional|Dublado / original|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -9688,9 +8612,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|502|2026-09-22|Sala 1|Tradicional|Legendado|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -9706,9 +8628,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|553|2026-09-22|Sala 5 - Onyx 4k LED|LED|Dublado / original|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -9724,9 +8644,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|446|2026-09-22|Sala 09|Tradicional|Nacional|17:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -9742,9 +8660,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|502|2026-09-22|Sala 3|Tradicional|Legendado|17:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -9760,9 +8676,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|553|2026-09-22|Sala 6 - VIP|VIP|Legendado|17:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -9778,9 +8692,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|296|2026-09-22|Sala 3|Tradicional|Nacional|17:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -9796,9 +8708,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|1488|2026-09-22|Sala 1|Tradicional|Nacional|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -9814,9 +8724,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|1488|2026-09-22|Sala 2|Tradicional|Dublado / original|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -9832,9 +8740,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|446|2026-09-22|Sala 02|Tradicional|Legendado|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -9850,9 +8756,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|553|2026-09-22|Sala 7 - VIP|VIP|Nacional|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -9868,9 +8772,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|502|2026-09-22|Sala 2|Tradicional|Nacional|18:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -9886,9 +8788,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|296|2026-09-22|Sala 9|4DX|Dublado / original|18:25",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -9904,9 +8804,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|296|2026-09-22|Sala 2|Tradicional|Nacional|18:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -9922,9 +8820,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|446|2026-09-22|Sala 05|Tradicional|Dublado / original|18:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -9940,9 +8836,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|1488|2026-09-22|Sala 11 IMAX|IMAX|Legendado|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -9958,9 +8852,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|1488|2026-09-22|Sala 8|Tradicional|Nacional|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -9976,9 +8868,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|1488|2026-09-22|Sala 9|Tradicional|Legendado|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -9994,9 +8884,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|296|2026-09-22|Sala 5|Tradicional|Dublado / original|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -10012,9 +8900,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|296|2026-09-22|Sala 1 IMAX|IMAX|Legendado|19:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -10030,9 +8916,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|553|2026-09-22|Sala 1 IMAX|IMAX|Legendado|19:15",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23653",
@@ -10048,9 +8932,7 @@
     "presale": false,
     "simulated": true,
     "id": "23653|446|2026-09-22|Sala 07|Tradicional|Nacional|19:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -10066,9 +8948,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|1488|2026-09-22|Sala 10|Tradicional|Legendado|19:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -10084,9 +8964,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|446|2026-09-22|Sala 01|XD / D-BOX|Dublado / original|19:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -10102,9 +8980,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|502|2026-09-22|Sala 1|Tradicional|Dublado / original|19:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -10120,9 +8996,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|446|2026-09-22|Sala 06|Tradicional|Legendado|19:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -10138,9 +9012,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|296|2026-09-22|Sala 3|Tradicional|Nacional|20:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -10156,9 +9028,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|446|2026-09-22|Sala 04|Tradicional|Nacional|20:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -10174,9 +9044,7 @@
     "presale": false,
     "simulated": true,
     "id": "23492|553|2026-09-22|Sala 8 - VIP|VIP|Legendado|20:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -10192,9 +9060,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|446|2026-09-22|Sala 09|Tradicional|Nacional|20:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -10210,9 +9076,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|553|2026-09-22|Sala 6 - VIP|VIP|Dublado / original|20:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -10228,9 +9092,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|1488|2026-09-22|Sala 1|Tradicional|Nacional|20:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -10246,9 +9108,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|296|2026-09-22|Sala 8|Tradicional|Dublado / original|20:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -10264,9 +9124,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|553|2026-09-22|Sala 5 - Onyx 4k LED|LED|Legendado|20:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -10282,9 +9140,7 @@
     "presale": false,
     "simulated": true,
     "id": "23492|296|2026-09-22|Sala 4|Tradicional|Dublado / original|20:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -10300,9 +9156,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|502|2026-09-22|Sala 2|Tradicional|Nacional|20:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -10318,9 +9172,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|1488|2026-09-22|Sala 2|Tradicional|Dublado / original|21:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -10336,9 +9188,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|553|2026-09-22|Sala 7 - VIP|VIP|Nacional|21:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -10354,9 +9204,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|1488|2026-09-22|Sala 8|Tradicional|Nacional|21:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -10372,9 +9220,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|502|2026-09-22|Sala 3|Tradicional|Legendado|21:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -10390,9 +9236,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|1488|2026-09-22|Sala 11 IMAX|IMAX|Dublado / original|21:15",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -10408,9 +9252,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|296|2026-09-22|Sala 1 IMAX|IMAX|Legendado|21:15",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -10426,9 +9268,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|553|2026-09-22|Sala 1 IMAX|IMAX|Legendado|21:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -10444,9 +9284,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|1488|2026-09-22|Sala 9|Tradicional|Legendado|21:35",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -10462,9 +9300,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|296|2026-09-22|Sala 2|Tradicional|Nacional|21:35",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -10480,9 +9316,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|446|2026-09-22|Sala 07|Tradicional|Legendado|21:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -10498,9 +9332,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|296|2026-09-22|Sala 5|Tradicional|Dublado / original|21:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -10516,9 +9348,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|1488|2026-09-22|Sala 10|Tradicional|Legendado|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -10534,9 +9364,7 @@
     "presale": false,
     "simulated": true,
     "id": "23492|1488|2026-09-22|Sala 3|Tradicional|Dublado / original|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -10552,9 +9380,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|446|2026-09-22|Sala 01|XD / D-BOX|Legendado|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -10570,9 +9396,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|502|2026-09-22|Sala 1|Tradicional|Legendado|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -10588,9 +9412,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|296|2026-09-22|Sala 3|Tradicional|Nacional|22:05",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -10606,9 +9428,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|502|2026-09-22|Sala 5|Tradicional|Legendado|22:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -10624,9 +9444,7 @@
     "presale": false,
     "simulated": true,
     "id": "23492|446|2026-09-22|Sala 06|Tradicional|Dublado / original|22:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -10642,9 +9460,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|446|2026-09-23|Sala 09|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -10660,9 +9476,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|446|2026-09-23|Sala 04|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23653",
@@ -10678,9 +9492,7 @@
     "presale": false,
     "simulated": true,
     "id": "23653|446|2026-09-23|Sala 07|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -10696,9 +9508,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|502|2026-09-23|Sala 2|Tradicional|Nacional|12:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -10714,9 +9524,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|1488|2026-09-23|Sala 1|Tradicional|Nacional|13:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -10732,9 +9540,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|553|2026-09-23|Sala 3 - VIP|VIP|Nacional|13:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -10750,9 +9556,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|553|2026-09-23|Sala 5 - Onyx 4k LED|LED|Legendado|13:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23309",
@@ -10768,9 +9572,7 @@
     "presale": false,
     "simulated": true,
     "id": "23309|502|2026-09-23|Sala 6|Tradicional|Dublado / original|13:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -10786,9 +9588,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|296|2026-09-23|Sala 2|Tradicional|Nacional|13:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -10804,9 +9604,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|296|2026-09-23|Sala 5|Tradicional|Dublado / original|14:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -10822,9 +9620,7 @@
     "presale": false,
     "simulated": true,
     "id": "22955|296|2026-09-23|Sala 9|4DX|Dublado / original|14:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -10840,9 +9636,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|553|2026-09-23|Sala 8 - VIP|VIP|Dublado / original|14:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -10858,9 +9652,7 @@
     "presale": false,
     "simulated": true,
     "id": "22955|1488|2026-09-23|Sala 7|Tradicional|Dublado / original|14:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -10876,9 +9668,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|446|2026-09-23|Sala 06|Tradicional|Dublado / original|14:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -10894,9 +9684,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|446|2026-09-23|Sala 04|Tradicional|Nacional|14:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -10912,9 +9700,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|502|2026-09-23|Sala 3|Tradicional|Legendado|14:25",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -10930,9 +9716,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|1488|2026-09-23|Sala 11 IMAX|IMAX|Dublado / original|14:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -10948,9 +9732,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|296|2026-09-23|Sala 8|Tradicional|Dublado / original|14:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -10966,9 +9748,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|446|2026-09-23|Sala 09|Tradicional|Nacional|14:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -10984,9 +9764,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|553|2026-09-23|Sala 1 IMAX|IMAX|Legendado|14:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -11002,9 +9780,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|1488|2026-09-23|Sala 2|Tradicional|Dublado / original|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -11020,9 +9796,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|296|2026-09-23|Sala 1 IMAX|IMAX|Dublado / original|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -11038,9 +9812,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|446|2026-09-23|Sala 02|Tradicional|Legendado|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -11056,9 +9828,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|502|2026-09-23|Sala 1|Tradicional|Dublado / original|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -11074,9 +9844,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|553|2026-09-23|Sala 7 - VIP|VIP|Nacional|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -11092,9 +9860,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|1488|2026-09-23|Sala 1|Tradicional|Nacional|15:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -11110,9 +9876,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|502|2026-09-23|Sala 2|Tradicional|Nacional|15:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -11128,9 +9892,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|446|2026-09-23|Sala 08|D-BOX|Legendado|16:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -11146,9 +9908,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|296|2026-09-23|Sala 2|Tradicional|Nacional|16:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23309",
@@ -11164,9 +9924,7 @@
     "presale": false,
     "simulated": true,
     "id": "23309|446|2026-09-23|Sala 05|Tradicional|Dublado / original|16:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -11182,9 +9940,7 @@
     "presale": false,
     "simulated": true,
     "id": "22955|502|2026-09-23|Sala 6|Tradicional|Dublado / original|16:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23309",
@@ -11200,9 +9956,7 @@
     "presale": false,
     "simulated": true,
     "id": "23309|1488|2026-09-23|Sala 7|Tradicional|Dublado / original|16:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -11218,9 +9972,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|446|2026-09-23|Sala 01|XD / D-BOX|Legendado|16:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -11236,9 +9988,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|296|2026-09-23|Sala 5|Tradicional|Dublado / original|16:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -11254,9 +10004,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|1488|2026-09-23|Sala 11 IMAX|IMAX|Legendado|16:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -11272,9 +10020,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|1488|2026-09-23|Sala 8|Tradicional|Nacional|16:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22955",
@@ -11290,9 +10036,7 @@
     "presale": false,
     "simulated": true,
     "id": "22955|446|2026-09-23|Sala 07|Tradicional|Dublado / original|16:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -11308,9 +10052,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|446|2026-09-23|Sala 04|Tradicional|Nacional|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -11326,9 +10068,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|502|2026-09-23|Sala 5|Tradicional|Legendado|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -11344,9 +10084,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|553|2026-09-23|Sala 1 IMAX|IMAX|Legendado|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -11362,9 +10100,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|553|2026-09-23|Sala 8 - VIP|VIP|Dublado / original|17:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -11380,9 +10116,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|296|2026-09-23|Sala 1 IMAX|IMAX|Dublado / original|17:05",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -11398,9 +10132,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|1488|2026-09-23|Sala 10|Tradicional|Legendado|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -11416,9 +10148,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|446|2026-09-23|Sala 06|Tradicional|Dublado / original|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -11434,9 +10164,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|502|2026-09-23|Sala 1|Tradicional|Legendado|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -11452,9 +10180,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|553|2026-09-23|Sala 5 - Onyx 4k LED|LED|Dublado / original|17:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -11470,9 +10196,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|446|2026-09-23|Sala 09|Tradicional|Nacional|17:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -11488,9 +10212,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|502|2026-09-23|Sala 3|Tradicional|Legendado|17:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -11506,9 +10228,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|553|2026-09-23|Sala 6 - VIP|VIP|Legendado|17:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -11524,9 +10244,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|296|2026-09-23|Sala 3|Tradicional|Nacional|17:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -11542,9 +10260,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|1488|2026-09-23|Sala 1|Tradicional|Nacional|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -11560,9 +10276,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|1488|2026-09-23|Sala 2|Tradicional|Dublado / original|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -11578,9 +10292,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|446|2026-09-23|Sala 02|Tradicional|Legendado|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -11596,9 +10308,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|553|2026-09-23|Sala 7 - VIP|VIP|Nacional|18:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -11614,9 +10324,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|502|2026-09-23|Sala 2|Tradicional|Nacional|18:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -11632,9 +10340,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|296|2026-09-23|Sala 9|4DX|Dublado / original|18:25",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -11650,9 +10356,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|296|2026-09-23|Sala 2|Tradicional|Nacional|18:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -11668,9 +10372,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|446|2026-09-23|Sala 05|Tradicional|Dublado / original|18:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -11686,9 +10388,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|1488|2026-09-23|Sala 11 IMAX|IMAX|Legendado|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -11704,9 +10404,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|1488|2026-09-23|Sala 8|Tradicional|Nacional|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -11722,9 +10420,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|1488|2026-09-23|Sala 9|Tradicional|Legendado|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -11740,9 +10436,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|296|2026-09-23|Sala 5|Tradicional|Dublado / original|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -11758,9 +10452,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|296|2026-09-23|Sala 1 IMAX|IMAX|Legendado|19:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -11776,9 +10468,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|553|2026-09-23|Sala 1 IMAX|IMAX|Legendado|19:15",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23653",
@@ -11794,9 +10484,7 @@
     "presale": false,
     "simulated": true,
     "id": "23653|446|2026-09-23|Sala 07|Tradicional|Nacional|19:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -11812,9 +10500,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|1488|2026-09-23|Sala 10|Tradicional|Legendado|19:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -11830,9 +10516,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|446|2026-09-23|Sala 01|XD / D-BOX|Dublado / original|19:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -11848,9 +10532,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|502|2026-09-23|Sala 1|Tradicional|Dublado / original|19:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -11866,9 +10548,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|446|2026-09-23|Sala 06|Tradicional|Legendado|19:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -11884,9 +10564,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|296|2026-09-23|Sala 3|Tradicional|Nacional|20:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -11902,9 +10580,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|446|2026-09-23|Sala 04|Tradicional|Nacional|20:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -11920,9 +10596,7 @@
     "presale": false,
     "simulated": true,
     "id": "23492|553|2026-09-23|Sala 8 - VIP|VIP|Legendado|20:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -11938,9 +10612,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|446|2026-09-23|Sala 09|Tradicional|Nacional|20:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -11956,9 +10628,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|553|2026-09-23|Sala 6 - VIP|VIP|Dublado / original|20:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -11974,9 +10644,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|1488|2026-09-23|Sala 1|Tradicional|Nacional|20:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -11992,9 +10660,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|296|2026-09-23|Sala 8|Tradicional|Dublado / original|20:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -12010,9 +10676,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|553|2026-09-23|Sala 5 - Onyx 4k LED|LED|Legendado|20:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -12028,9 +10692,7 @@
     "presale": false,
     "simulated": true,
     "id": "23492|296|2026-09-23|Sala 4|Tradicional|Dublado / original|20:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -12046,9 +10708,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|502|2026-09-23|Sala 2|Tradicional|Nacional|20:50",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -12064,9 +10724,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|1488|2026-09-23|Sala 2|Tradicional|Dublado / original|21:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -12082,9 +10740,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|553|2026-09-23|Sala 7 - VIP|VIP|Nacional|21:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -12100,9 +10756,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|1488|2026-09-23|Sala 8|Tradicional|Nacional|21:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -12118,9 +10772,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|502|2026-09-23|Sala 3|Tradicional|Legendado|21:10",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -12136,9 +10788,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|1488|2026-09-23|Sala 11 IMAX|IMAX|Dublado / original|21:15",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -12154,9 +10804,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|296|2026-09-23|Sala 1 IMAX|IMAX|Legendado|21:15",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -12172,9 +10820,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|553|2026-09-23|Sala 1 IMAX|IMAX|Legendado|21:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -12190,9 +10836,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|1488|2026-09-23|Sala 9|Tradicional|Legendado|21:35",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23266",
@@ -12208,9 +10852,7 @@
     "presale": false,
     "simulated": true,
     "id": "23266|296|2026-09-23|Sala 2|Tradicional|Nacional|21:35",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22659",
@@ -12226,9 +10868,7 @@
     "presale": false,
     "simulated": true,
     "id": "22659|446|2026-09-23|Sala 07|Tradicional|Legendado|21:40",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -12244,9 +10884,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|296|2026-09-23|Sala 5|Tradicional|Dublado / original|21:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23643",
@@ -12262,9 +10900,7 @@
     "presale": false,
     "simulated": true,
     "id": "23643|1488|2026-09-23|Sala 10|Tradicional|Legendado|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -12280,9 +10916,7 @@
     "presale": false,
     "simulated": true,
     "id": "23492|1488|2026-09-23|Sala 3|Tradicional|Dublado / original|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -12298,9 +10932,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|446|2026-09-23|Sala 01|XD / D-BOX|Legendado|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23511",
@@ -12316,9 +10948,7 @@
     "presale": false,
     "simulated": true,
     "id": "23511|502|2026-09-23|Sala 1|Tradicional|Legendado|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23757",
@@ -12334,9 +10964,7 @@
     "presale": false,
     "simulated": true,
     "id": "23757|296|2026-09-23|Sala 3|Tradicional|Nacional|22:05",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22782",
@@ -12352,9 +10980,7 @@
     "presale": false,
     "simulated": true,
     "id": "22782|502|2026-09-23|Sala 5|Tradicional|Legendado|22:20",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23492",
@@ -12370,9 +10996,7 @@
     "presale": false,
     "simulated": true,
     "id": "23492|446|2026-09-23|Sala 06|Tradicional|Dublado / original|22:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23523",
@@ -12387,9 +11011,7 @@
     "observed": true,
     "presale": true,
     "id": "23523|553|2026-09-24|Sala 1 IMAX|IMAX|Legendado|14:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23039",
@@ -12404,9 +11026,7 @@
     "observed": true,
     "presale": true,
     "id": "23039|351|2026-09-24|Sala 1|Tradicional|Nacional|15:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23916",
@@ -12421,9 +11041,7 @@
     "observed": true,
     "presale": true,
     "id": "23916|553|2026-09-25|Sala 8 - VIP|VIP|Nacional|22:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23763",
@@ -12438,9 +11056,7 @@
     "observed": true,
     "presale": true,
     "id": "23763|296|2026-09-30|Sala 9|4DX|Legendado|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23763",
@@ -12455,9 +11071,7 @@
     "observed": true,
     "presale": true,
     "id": "23763|446|2026-09-30|Sala 07|Tradicional|Dublado / original|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23763",
@@ -12472,9 +11086,7 @@
     "observed": true,
     "presale": true,
     "id": "23763|553|2026-09-30|Sala 6 - VIP|VIP|Legendado|19:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22545",
@@ -12489,9 +11101,7 @@
     "observed": true,
     "presale": true,
     "id": "22545|553|2026-10-01|Sala 2 - Laser Lounge|VIP|Legendado|13:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "22545",
@@ -12506,9 +11116,7 @@
     "observed": true,
     "presale": true,
     "id": "22545|553|2026-10-01|Sala 7 - VIP|VIP|Legendado|13:45",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23313",
@@ -12523,9 +11131,7 @@
     "observed": true,
     "presale": true,
     "id": "23313|1488|2026-10-08|Sala 6|Tradicional|Nacional|13:30",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23313",
@@ -12540,9 +11146,7 @@
     "observed": true,
     "presale": true,
     "id": "23313|296|2026-10-08|Sala 6|Tradicional|Nacional|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   },
   {
     "movie": "23313",
@@ -12557,8 +11161,6 @@
     "observed": true,
     "presale": true,
     "id": "23313|553|2026-10-08|Sala 3 - VIP|VIP|Nacional|15:00",
-    "sellers": [
-      "ingresso"
-    ]
+    "sellers": ["ingresso"]
   }
 ]

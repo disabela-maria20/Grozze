@@ -1,13 +1,15 @@
-"use client";
+'use client';
 
-import { usePathname } from "next/navigation";
-import { useAppStore } from "@/shared/store/store";
-import { NAV, SECONDARY_NAV, pathFor } from "@/shared/lib/nav";
-import { activeRootFromPath } from "@/shared/lib/route";
-import { useAccountAction } from "@/shared/lib/useAccountAction";
-import { Avatar } from "@/shared/ui/Avatar";
-import { TextLink } from "@/shared/ui/ui";
-import { Icon } from "@/shared/ui/Icon";
+import { usePathname } from 'next/navigation';
+import { useAppStore } from '@/shared/store/useAppStore';
+import { NAV } from '../lib/nav/NAV';
+import { SECONDARY_NAV } from '../lib/nav/SECONDARY_NAV';
+import { pathFor } from '../lib/nav/pathFor';
+import { activeRootFromPath } from '@/shared/lib/route/activeRootFromPath';
+import { useAccountAction } from '@/features/account';
+import { Avatar } from '@/features/account';
+import { TextLink } from '@/shared/ui/TextLink';
+import { Icon } from '@/shared/ui/Icon';
 
 export function MenuDialog() {
   const logged = useAppStore((s) => s.logged());
@@ -24,8 +26,12 @@ export function MenuDialog() {
       <div className="flex items-center gap-3 pt-7.5 pb-4.5">
         <Avatar size="large" />
         <div>
-          <strong className="block">{logged ? profile!.name : "Sua Grozze"}</strong>
-          <TextLink onClick={accountAction}>{logged ? "Abrir minha conta" : "Entrar ou criar conta"}</TextLink>
+          <strong className="block">
+            {logged ? profile!.name : 'Sua Grozze'}
+          </strong>
+          <TextLink onClick={accountAction}>
+            {logged ? 'Abrir minha conta' : 'Entrar ou criar conta'}
+          </TextLink>
         </div>
       </div>
       <nav className="grid gap-1">
@@ -33,7 +39,7 @@ export function MenuDialog() {
           <a
             key={p}
             href={pathFor(p)}
-            aria-current={active === p ? "page" : undefined}
+            aria-current={active === p ? 'page' : undefined}
             className="min-h-[46px] flex items-center text-left border-0 bg-transparent text-[#cad5cc] px-3 rounded-[10px] text-[17px] aria-[current=page]:text-lime aria-[current=page]:bg-lime-soft"
           >
             {l}
@@ -41,7 +47,7 @@ export function MenuDialog() {
         ))}
         <button
           type="button"
-          onClick={() => openDialog("location")}
+          onClick={() => openDialog('location')}
           className="min-h-[46px] flex items-center gap-2 text-left border-0 bg-transparent text-[#cad5cc] px-3 rounded-[10px] text-[17px]"
         >
           <Icon name="pin" className="w-[18px] h-[18px]" /> {location.label}
@@ -49,19 +55,27 @@ export function MenuDialog() {
       </nav>
       <nav className="grid gap-1 border-t border-line mt-5 pt-3.5">
         {SECONDARY_NAV.map(([p, l]) => (
-          <a key={p} href={pathFor(p)} className="min-h-[46px] flex items-center text-left border-0 bg-transparent text-muted px-3 rounded-[10px] text-sm">
+          <a
+            key={p}
+            href={pathFor(p)}
+            className="min-h-[46px] flex items-center text-left border-0 bg-transparent text-muted px-3 rounded-[10px] text-sm"
+          >
             {l}
           </a>
         ))}
         <button
           type="button"
-          onClick={() => openDialog("consent")}
+          onClick={() => openDialog('consent')}
           className="min-h-[46px] flex items-center text-left border-0 bg-transparent text-muted px-3 rounded-[10px] text-sm"
         >
           Preferências de cookies
         </button>
         {logged && (
-          <button type="button" onClick={logout} className="min-h-[46px] flex items-center text-left border-0 bg-transparent text-muted px-3 rounded-[10px] text-sm">
+          <button
+            type="button"
+            onClick={logout}
+            className="min-h-[46px] flex items-center text-left border-0 bg-transparent text-muted px-3 rounded-[10px] text-sm"
+          >
             Sair
           </button>
         )}

@@ -1,6 +1,8 @@
-"use client";
+'use client';
 
-import { useEffect, useState, type ReactNode } from "react";
+import { useSyncExternalStore, type ReactNode } from 'react';
+
+const noopSubscribe = () => () => {};
 
 /**
  * Renders children only after the component has mounted in the browser, so
@@ -9,8 +11,11 @@ import { useEffect, useState, type ReactNode } from "react";
  * overrides). Equivalent to Astro's `client:only="react"` islands.
  */
 export function ClientOnly({ children }: { children: ReactNode }) {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  const mounted = useSyncExternalStore(
+    noopSubscribe,
+    () => true,
+    () => false
+  );
   if (!mounted) return null;
   return <>{children}</>;
 }

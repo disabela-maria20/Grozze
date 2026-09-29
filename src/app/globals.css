@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "@fontsource-variable/inter";
+@import 'tailwindcss';
+@import '@fontsource-variable/inter';
 
 @theme {
   --breakpoint-sm: 700px;
@@ -7,7 +7,9 @@
   --breakpoint-lg: 1160px;
   --breakpoint-xl: 1220px;
 
-  --font-sans: "Inter Variable", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans:
+    'Inter Variable', ui-sans-serif, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', sans-serif;
 
   --color-bg: #050807;
   --color-surface: #0b100d;
@@ -18,6 +20,7 @@
   --color-line: rgba(255, 255, 255, 0.1);
   --color-lime: #c8ff39;
   --color-lime-soft: rgba(200, 255, 57, 0.08);
+  --color-danger: #ff8f80;
 
   --radius-app: 18px;
 }
@@ -38,12 +41,16 @@ body {
 }
 
 body::before {
-  content: "";
+  content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: -1;
-  background: radial-gradient(ellipse at 90% 0, rgba(200, 255, 57, 0.04), transparent 52%);
+  background: radial-gradient(
+    ellipse at 90% 0,
+    rgba(200, 255, 57, 0.04),
+    transparent 52%
+  );
 }
 
 [hidden] {

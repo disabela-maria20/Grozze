@@ -99,7 +99,7 @@ export interface NewsItem {
   image?: string;
 }
 
-export type MovieStatus = "now" | "presale" | "soon";
+export type MovieStatus = 'now' | 'presale' | 'soon';
 
 export interface Preferences {
   language: string;
@@ -112,7 +112,7 @@ export interface Profile {
   savedMovies: string[];
   savedCinemas: string[];
   preferences: Preferences;
-  avatar: "initial" | "star" | "moon" | "sun";
+  avatar: 'initial' | 'star' | 'moon' | 'sun';
 }
 
 export interface MovieOverride {
@@ -166,6 +166,6 @@ export interface ConsentState {
 
 export interface LocationState {
   label: string;
-  mode: "manual" | "geolocation";
+  mode: 'manual' | 'geolocation';
   coords?: { lat: number; lng: number };
 }

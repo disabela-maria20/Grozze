@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useAppStore } from "@/shared/store/store";
-import { Button } from "@/shared/ui/ui";
+import { useAppStore } from '@/shared/store/useAppStore';
+import { Button } from '@/shared/ui/Button';
 
 export function PartnerDialog({ seller }: { seller: string }) {
   const closeDialog = useAppStore((s) => s.closeDialog);
@@ -9,8 +9,8 @@ export function PartnerDialog({ seller }: { seller: string }) {
     <div>
       <h2 className="text-[28px] m-0 mb-3 pr-10">Canal de venda</h2>
       <p className="text-sm text-muted leading-relaxed mb-5">
-        Você escolheu {seller === "ingresso" ? "Ingresso.com" : seller}. A ligação de compra para esta sessão não está integrada na
-        homologação.
+        Você escolheu {seller === 'ingresso' ? 'Ingresso.com' : seller}. A
+        ligação de compra para esta sessão não está integrada na homologação.
       </p>
       <Button primary onClick={() => closeDialog()}>
         Voltar à programação

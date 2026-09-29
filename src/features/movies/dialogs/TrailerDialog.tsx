@@ -1,8 +1,9 @@
-"use client";
+'use client';
 
-import { movie, videoId } from "@/shared/lib/catalog";
-import { useAppStore } from "@/shared/store/store";
-import { Button } from "@/shared/ui/ui";
+import { movie } from '@/shared/lib/catalog/movie';
+import { videoId } from '@/shared/lib/catalog/videoId';
+import { useAppStore } from '@/shared/store/useAppStore';
+import { Button } from '@/shared/ui/Button';
 
 export function TrailerDialog({ movieId }: { movieId: string }) {
   const content = useAppStore((s) => s.content);
@@ -14,7 +15,9 @@ export function TrailerDialog({ movieId }: { movieId: string }) {
     return (
       <div>
         <h2 className="text-[28px] m-0 mb-3 pr-10">Trailer</h2>
-        <p className="text-sm text-muted mb-5">O trailer de {m.t} ainda não está disponível.</p>
+        <p className="text-sm text-muted mb-5">
+          O trailer de {m.t} ainda não está disponível.
+        </p>
         <Button onClick={() => closeDialog()}>Voltar ao filme</Button>
       </div>
     );
@@ -30,7 +33,10 @@ export function TrailerDialog({ movieId }: { movieId: string }) {
         allowFullScreen
         referrerPolicy="strict-origin-when-cross-origin"
       />
-      <p className="text-xs text-faint mt-2.5">Player externo incorporado. A disponibilidade do vídeo depende do provedor.</p>
+      <p className="text-xs text-faint mt-2.5">
+        Player externo incorporado. A disponibilidade do vídeo depende do
+        provedor.
+      </p>
     </div>
   );
 }
