@@ -104,6 +104,8 @@ export type MovieStatus = 'now' | 'presale' | 'soon';
 export interface Preferences {
   language: string;
   format: string;
+  /** Optional: profiles saved before this field existed don't have it. */
+  genres?: string[];
 }
 
 export interface Profile {

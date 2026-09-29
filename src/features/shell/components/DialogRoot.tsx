@@ -14,7 +14,6 @@ import { ConsentDialog } from '../dialogs/ConsentDialog';
 import { MenuDialog } from '../dialogs/MenuDialog';
 import { NowDialog } from '../dialogs/NowDialog';
 import { SearchDialog } from '../dialogs/SearchDialog';
-import { SnapshotDialog } from '../dialogs/SnapshotDialog';
 
 const LABELS: Record<string, string> = {
   auth: 'Entrar',
@@ -27,7 +26,6 @@ const LABELS: Record<string, string> = {
   search: 'Buscar',
   prices: 'Preços',
   partner: 'Simulação de encaminhamento',
-  snapshot: 'Sobre a homologação',
   'account-hub': 'Conta neste hub',
 };
 
@@ -69,9 +67,6 @@ export function DialogRoot() {
       break;
     case 'partner':
       content = <PartnerDialog seller={props.seller as string} />;
-      break;
-    case 'snapshot':
-      content = <SnapshotDialog />;
       break;
     case 'account-hub':
       content = <AccountHubDialog scope={props.scope as string} />;

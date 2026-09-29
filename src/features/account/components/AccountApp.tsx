@@ -25,6 +25,7 @@ import { MovieCard } from '@/features/movies';
 import { Button } from '@/shared/ui/Button';
 import { EmptyState } from '@/shared/ui/EmptyState';
 import { Field } from '@/shared/ui/Field';
+import { GenrePicker } from '@/shared/ui/GenrePicker';
 import { TextLink } from '@/shared/ui/TextLink';
 import { inputClass } from '@/shared/ui/inputClass';
 
@@ -152,6 +153,7 @@ function PreferencesTab() {
         'Todos') as PreferencesValues['language'],
       format: (profile.preferences?.format ||
         'Todos') as PreferencesValues['format'],
+      genres: profile.preferences?.genres ?? [],
     },
   });
 
@@ -189,9 +191,11 @@ function PreferencesTab() {
             ))}
           </select>
         </Field>
-        <p className="text-xs text-faint mb-4">
-          O envio de alertas não está ativo nesta homologação.
-        </p>
+        <GenrePicker
+          label="Gêneros favoritos"
+          error={errors.genres?.message}
+          inputProps={register('genres')}
+        />
         <Button primary type="submit" disabled={updatePreferences.isPending}>
           {updatePreferences.isPending ? 'Salvando…' : 'Salvar preferências'}
         </Button>

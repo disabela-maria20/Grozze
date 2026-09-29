@@ -9,11 +9,6 @@ export default function Page() {
         <h1 className="text-[46px] max-sm:text-[35px] leading-[1.1] -tracking-[0.045em] mb-5">
           Termos de Uso
         </h1>
-        <div className="border-l-[3px] border-lime p-3.5 px-4.5 bg-lime-soft rounded-r-xl text-sm mb-5.5">
-          Versão de homologação, sem venda integrada de ingressos e sem
-          autenticação de produção. Este texto descreve o funcionamento testável
-          do arquivo, não substitui os termos finais da operação.
-        </div>
         <h2 className="text-2xl mt-7 mb-2.5">Consulta de filmes e sessões</h2>
         <p className="text-[#c0cbc2] text-base leading-[1.75]">
           As informações exibidas correspondem a uma amostra congelada da
@@ -31,9 +26,7 @@ export default function Page() {
         </p>
         <h2 className="text-2xl mt-7 mb-2.5">Conta e favoritos</h2>
         <p className="text-[#c0cbc2] text-base leading-[1.75]">
-          A identificação desta homologação é simulada. O armazenamento local
-          permite testar favoritos e preferências, mas não representa uma conta
-          segura de produção.
+          Favoritos e preferências da conta ficam armazenados neste navegador.
         </p>
         <h2 className="text-2xl mt-7 mb-2.5">
           Conteúdo e material promocional

@@ -23,8 +23,7 @@ export function ConsentDialog() {
         Preferências de cookies
       </h2>
       <p className="text-sm text-muted leading-relaxed mb-5">
-        Este é o mesmo controle usado no primeiro acesso. Não há publicidade ou
-        analytics ativos nesta homologação.
+        Este é o mesmo controle usado no primeiro acesso.
       </p>
       <form onSubmit={handleSubmit(({ optional }) => saveConsent(optional))}>
         <div className="grid gap-3 my-5">

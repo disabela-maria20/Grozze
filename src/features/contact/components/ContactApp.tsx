@@ -38,7 +38,7 @@ export function ContactApp({ newsletter = false }: { newsletter?: boolean }) {
       {
         onSuccess: () => {
           reset(EMPTY);
-          toast('Registro salvo para homologação. Nenhum e-mail foi enviado.');
+          toast(newsletter ? 'Cadastro realizado.' : 'Mensagem enviada.');
         },
       }
     )
@@ -110,10 +110,6 @@ export function ContactApp({ newsletter = false }: { newsletter?: boolean }) {
             </label>
             <FieldError message={errors.marketingConsent?.message} />
           </div>
-          <p className="text-xs text-faint mb-4">
-            Formulário de homologação: o envio é registrado localmente, sem
-            mensagem real.
-          </p>
           <Button primary type="submit" disabled={captureLead.isPending}>
             {captureLead.isPending
               ? 'Enviando…'

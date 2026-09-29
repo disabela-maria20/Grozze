@@ -101,13 +101,6 @@ export function Footer() {
           <button
             type="button"
             className="text-faint hover:text-lime"
-            onClick={() => openDialog('snapshot')}
-          >
-            Ambiente de homologação · agenda de setembro/2026
-          </button>
-          <button
-            type="button"
-            className="text-faint hover:text-lime"
             onClick={() => openDialog('consent')}
           >
             Preferências de cookies

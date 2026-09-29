@@ -11,7 +11,7 @@ export function TextLink({
   return (
     <button
       className={cx(
-        'border-0 bg-transparent p-0 py-1.5 text-[#dce3dc] text-sm inline-flex items-center gap-1.5 hover:text-lime transition-colors',
+        'cursor-pointer border-0 bg-transparent p-0 py-1.5 text-[#dce3dc] text-sm inline-flex items-center gap-1.5 hover:text-lime transition-colors',
         full && 'w-full justify-center',
         className
       )}

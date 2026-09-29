@@ -151,9 +151,7 @@ function CmsMovieEditor({ id }: { id: string }) {
         </Field>
         <div className="flex items-center gap-2.5 flex-wrap sticky bottom-3 p-3 border border-line rounded-2xl bg-[rgba(10,16,12,.96)]">
           <Button primary type="submit" disabled={publishOverride.isPending}>
-            {publishOverride.isPending
-              ? 'Publicando…'
-              : 'Publicar na homologação'}
+            {publishOverride.isPending ? 'Publicando…' : 'Publicar'}
           </Button>
           <Button
             type="button"
@@ -173,11 +171,9 @@ function CmsMovieEditor({ id }: { id: string }) {
             Ver ficha
           </a>
         </div>
-        <p className="text-xs text-faint mt-3">
-          Salvo neste navegador. Não publica em um servidor nem altera a base
-          AIDA.
-          {Object.hasOwn(content.movies, id) ? ' (com override ativo)' : ''}
-        </p>
+        {Object.hasOwn(content.movies, id) && (
+          <p className="text-xs text-faint mt-3">Override ativo.</p>
+        )}
       </form>
     </div>
   );
@@ -236,7 +232,7 @@ function LeadsTab() {
         </div>
       ) : (
         <div className="border border-line rounded-app p-5 bg-surface text-muted">
-          Nenhum formulário recebido neste navegador.
+          Nenhum formulário recebido.
         </div>
       )}
       <p className="text-xs text-faint mt-4">
@@ -325,14 +321,6 @@ function DataTab() {
           </label>
         </div>
       </div>
-      <div className="p-6 max-sm:p-4.5 border border-line bg-surface rounded-app mt-4.5">
-        <h3 className="text-lg mb-2">Antes de produção</h3>
-        <p className="text-muted text-sm">
-          Conectar API autorizada AIDA, autenticação/ACL, banco de usuários,
-          CRM, serviço de consentimento e canal de compra por sessão. Este
-          painel local não é uma área administrativa protegida.
-        </p>
-      </div>
     </div>
   );
 }
@@ -376,10 +364,6 @@ export function AdminApp() {
             Grozze CMS
           </h1>
         </header>
-        <div className="border border-lime/25 bg-lime-soft text-[#bdceba] text-[13px] rounded-2xl px-4 py-3 mb-5.5">
-          Homologação local. Este painel não possui autorização de produção. Não
-          armazene dados pessoais reais ou credenciais.
-        </div>
         <nav className="flex gap-2 mb-6 overflow-auto no-scrollbar">
           {TABS.map(([v, l]) => (
             <button

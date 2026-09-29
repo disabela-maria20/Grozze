@@ -57,8 +57,7 @@ export function NowDialog() {
         Começando agora
       </h2>
       <p className="text-sm text-muted leading-relaxed mb-5">
-        Consulta à agenda de homologação · {dateLabel(today)} {hourLabel}. Os
-        horários podem ser simulados.
+        Agenda de {dateLabel(today)} · {hourLabel}.
       </p>
       {groups.length ? (
         <div className="grid gap-4">

@@ -65,8 +65,7 @@ export function SessionDialog({ sessionId }: { sessionId: string }) {
         {s.simulated
           ? 'Horário replicado para simular esta data.'
           : 'Sessão observada no snapshot de setembro/2026.'}{' '}
-        Esta homologação não reserva ingressos e não está conectada ao checkout
-        da sessão.
+        A compra do ingresso é feita no canal de venda.
       </div>
     </div>
   );

@@ -39,6 +39,8 @@ export interface LoginRequest {
 export interface RegisterRequest {
   name: string;
   email: string;
+  password: string;
+  favoriteGenres: string[];
   marketingConsent: boolean;
 }
 

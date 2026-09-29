@@ -10,17 +10,11 @@ export default function Page() {
         <h1 className="text-[46px] max-sm:text-[35px] leading-[1.1] -tracking-[0.045em] mb-5">
           Política de Privacidade
         </h1>
-        <div className="border-l-[3px] border-lime p-3.5 px-4.5 bg-lime-soft rounded-r-xl text-sm mb-5.5">
-          Informações desta homologação. A política de produção precisa
-          identificar o controlador, os canais de atendimento, os prazos de
-          retenção e as integrações efetivamente utilizadas antes da publicação.
-        </div>
-        <h2 className="text-2xl mt-7 mb-2.5">Dados neste protótipo</h2>
+        <h2 className="text-2xl mt-7 mb-2.5">Dados armazenados</h2>
         <p className="text-[#c0cbc2] text-base leading-[1.75]">
           Nome, e-mail, favoritos, preferências e formulários enviados são
           guardados neste navegador. Não há cadastro em servidor nem envio
-          automático a um CRM. Não use dados sensíveis ou credenciais reais para
-          testar.
+          automático a um CRM.
         </p>
         <h2 className="text-2xl mt-7 mb-2.5">Localização</h2>
         <p className="text-[#c0cbc2] text-base leading-[1.75]">
@@ -37,16 +31,15 @@ export default function Page() {
         </p>
         <h2 className="text-2xl mt-7 mb-2.5">Preferências e controle</h2>
         <p className="text-[#c0cbc2] text-base leading-[1.75] mb-4">
-          Você pode rever a escolha de cookies no painel abaixo. Neste
-          protótipo, não há ferramentas de publicidade ou analytics ativas.
-          Limpar os dados do site no navegador remove o armazenamento local.
+          Você pode rever a escolha de cookies no painel abaixo. Não há
+          ferramentas de publicidade ou analytics ativas. Limpar os dados do
+          site no navegador remove o armazenamento local.
         </p>
         <CookiePreferencesButton />
         <h2 className="text-2xl mt-7 mb-2.5">Contato</h2>
         <p className="text-[#c0cbc2] text-base leading-[1.75]">
-          O formulário de contato registra apenas uma mensagem local para
-          homologação. O atendimento real e o canal do controlador devem ser
-          configurados antes da operação pública.
+          As mensagens enviadas pelo formulário de contato ficam armazenadas
+          neste navegador.
         </p>
       </article>
     </div>

@@ -18,7 +18,7 @@ export function exportLeadsCsv(leads: Lead[]) {
     'scope',
   ];
   downloadFile(
-    'grozze-leads-homologacao.csv',
+    'grozze-leads.csv',
     '﻿' +
       [cols, ...leads.map((l) => cols.map((c) => l[c]))]
         .map((r) => r.map(cell).join(';'))

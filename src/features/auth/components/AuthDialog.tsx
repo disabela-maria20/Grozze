@@ -8,6 +8,7 @@ import { loginSchema, type LoginValues } from '../schema/loginSchema';
 import { signupSchema, type SignupValues } from '../schema/signupSchema';
 import { Button } from '@/shared/ui/Button';
 import { Field } from '@/shared/ui/Field';
+import { GenrePicker } from '@/shared/ui/GenrePicker';
 import { TextLink } from '@/shared/ui/TextLink';
 import { inputClass } from '@/shared/ui/inputClass';
 
@@ -19,14 +20,11 @@ function LoginForm() {
     formState: { errors },
   } = useForm<LoginValues>({
     resolver: zodResolver(loginSchema),
-    defaultValues: { email: '' },
+    defaultValues: { email: '', password: '' },
   });
 
   return (
-    <form
-      noValidate
-      onSubmit={handleSubmit(({ email }) => login.mutate({ email }))}
-    >
+    <form noValidate onSubmit={handleSubmit((values) => login.mutate(values))}>
       <Field label="E-mail" error={errors.email?.message}>
         <input
           className={inputClass}
@@ -37,20 +35,17 @@ function LoginForm() {
           {...register('email')}
         />
       </Field>
-      <Field label="Senha de teste">
+      <Field label="Senha" error={errors.password?.message}>
         <input
           className={inputClass}
-          name="password"
           type="password"
-          defaultValue="demonstracao"
-          autoComplete="off"
+          autoComplete="current-password"
+          aria-invalid={!!errors.password}
+          {...register('password')}
         />
-        <small className="text-xs text-faint">
-          A senha não é validada nem armazenada.
-        </small>
       </Field>
       <Button primary full type="submit" disabled={login.isPending}>
-        {login.isPending ? 'Entrando…' : 'Entrar na homologação'}
+        {login.isPending ? 'Entrando…' : 'Entrar'}
       </Button>
     </form>
   );
@@ -64,14 +59,29 @@ function SignupForm() {
     formState: { errors },
   } = useForm<SignupValues>({
     resolver: zodResolver(signupSchema),
-    defaultValues: { name: '', email: '', marketingConsent: false },
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      favoriteGenres: [],
+      marketingConsent: false,
+    },
   });
 
   return (
     <form
       noValidate
-      onSubmit={handleSubmit((values) =>
-        login.mutate({ ...values, signup: true })
+      onSubmit={handleSubmit(
+        ({ name, email, password, favoriteGenres, marketingConsent }) =>
+          login.mutate({
+            name,
+            email,
+            password,
+            favoriteGenres,
+            marketingConsent,
+            signup: true,
+          })
       )}
     >
       <Field label="Nome" error={errors.name?.message}>
@@ -92,6 +102,29 @@ function SignupForm() {
           {...register('email')}
         />
       </Field>
+      <Field label="Senha" error={errors.password?.message}>
+        <input
+          className={inputClass}
+          type="password"
+          autoComplete="new-password"
+          aria-invalid={!!errors.password}
+          {...register('password')}
+        />
+      </Field>
+      <Field label="Confirmar senha" error={errors.confirmPassword?.message}>
+        <input
+          className={inputClass}
+          type="password"
+          autoComplete="new-password"
+          aria-invalid={!!errors.confirmPassword}
+          {...register('confirmPassword')}
+        />
+      </Field>
+      <GenrePicker
+        label="Gêneros favoritos (opcional)"
+        error={errors.favoriteGenres?.message}
+        inputProps={register('favoriteGenres')}
+      />
       <label className="flex items-start gap-2.5 text-[13px] mb-4">
         <input
           type="checkbox"
@@ -101,7 +134,7 @@ function SignupForm() {
         <span>Quero receber novidades (opcional).</span>
       </label>
       <Button primary full type="submit" disabled={login.isPending}>
-        {login.isPending ? 'Criando conta…' : 'Criar conta de teste'}
+        {login.isPending ? 'Criando conta…' : 'Criar conta'}
       </Button>
     </form>
   );
@@ -109,42 +142,18 @@ function SignupForm() {
 
 export function AuthDialog({ signup: initialSignup }: { signup?: boolean }) {
   const [signup, setSignup] = useState(!!initialSignup);
-  const demo = useLoginMutation();
 
   return (
     <div>
       <h2 className="text-[34px] leading-[1.08] tracking-tight m-0 mb-3 pr-10">
         {signup ? 'Criar minha conta' : 'Entrar'}
       </h2>
-      <p className="text-sm text-muted leading-relaxed">
+      <p className="text-sm text-muted leading-relaxed mb-5">
         {signup
           ? 'Guarde seus filmes e cinemas favoritos.'
           : 'Continue de onde parou.'}
       </p>
-      <div className="grid grid-cols-2 gap-2.5 my-5">
-        <Button disabled title="Integração não conectada nesta homologação">
-          Google
-        </Button>
-        <Button disabled title="Integração não conectada nesta homologação">
-          Apple
-        </Button>
-      </div>
-      <p className="text-xs text-faint leading-relaxed mb-4">
-        Identificação de teste. Google e Apple ainda não estão conectados; não
-        use credenciais reais.
-      </p>
       {signup ? <SignupForm /> : <LoginForm />}
-      <div className="mt-3">
-        <Button
-          full
-          disabled={demo.isPending}
-          onClick={() =>
-            demo.mutate({ name: 'Henrique', email: 'henrique@grozze.demo' })
-          }
-        >
-          Entrar como usuário de teste
-        </Button>
-      </div>
       <div className="text-[11px] text-faint text-center my-4 tracking-[0.12em]">
         {signup ? 'Já tem conta?' : 'Ainda não tem conta?'}
       </div>

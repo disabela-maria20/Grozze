@@ -5,7 +5,7 @@ export const metadata: Metadata = { title: 'Perguntas frequentes' };
 const ITEMS: [string, string][] = [
   [
     'A Grozze vende ingressos?',
-    'A Grozze ajuda a encontrar a sessão. A compra e o atendimento do ingresso são realizados pelo parceiro de venda. Nesta homologação, o checkout não está integrado.',
+    'A Grozze ajuda a encontrar a sessão. A compra e o atendimento do ingresso são realizados pelo parceiro de venda.',
   ],
   [
     'Preciso de uma conta para buscar sessões?',

@@ -33,9 +33,6 @@ export function ArticleApp({
           {n.k}
         </div>
         <p className="text-[#c0cbc2] text-base leading-[1.75]">{n.body}</p>
-        <p className="text-xs text-faint mt-5">
-          Conteúdo editorial demonstrativo do protótipo.
-        </p>
       </article>
       <MovieSection title="Filmes relacionados" list={related} scope={scope} />
     </div>

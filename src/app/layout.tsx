@@ -4,7 +4,7 @@ import { AppShell } from '@/features/shell';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Grozze | V1 RC2',
+    default: 'Grozze',
     template: '%s · Grozze',
   },
   description: 'Filmes, cinemas e sessões para decidir mais rápido.',

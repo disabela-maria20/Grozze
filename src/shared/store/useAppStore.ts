@@ -115,7 +115,8 @@ interface AppState {
     name: string,
     email: string,
     signup?: boolean,
-    marketingConsent?: boolean
+    marketingConsent?: boolean,
+    favoriteGenres?: string[]
   ) => { ok: boolean; hadPending: boolean };
   logout: () => void;
   updateProfileName: (name: string) => void;
@@ -147,7 +148,7 @@ function logAudit(action: string, id: string, fields: string[] = []) {
     action,
     id: String(id || ''),
     fields,
-    actor: 'Editor de homologação',
+    actor: 'Editor',
   });
   storage.write(KEYS.audit, a.slice(0, 250));
   return a.slice(0, 250);
@@ -157,7 +158,7 @@ const initialProfiles = migrateProfiles();
 
 const initialContent = migrateContent();
 
-const initialSession = tabStorage.read<{ email: string; mode: string } | null>(
+const initialSession = tabStorage.read<{ email: string } | null>(
   KEYS.session,
   null
 );
@@ -248,7 +249,13 @@ export const useAppStore = create<AppState>((set, get) => ({
     );
   },
 
-  completeLogin: (name, email, signup = false, marketingConsent = false) => {
+  completeLogin: (
+    name,
+    email,
+    signup = false,
+    marketingConsent = false,
+    favoriteGenres
+  ) => {
     const normalizedEmail = email.trim().toLowerCase();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
       get().toast('Informe um e-mail válido.');
@@ -264,11 +271,14 @@ export const useAppStore = create<AppState>((set, get) => ({
       savedMovies: arrayIds(prev?.savedMovies),
       savedCinemas: arrayIds(prev?.savedCinemas),
       avatar: prev?.avatar || 'initial',
-      preferences: prev?.preferences || { language: 'Todos', format: 'Todos' },
+      preferences: {
+        ...(prev?.preferences || { language: 'Todos', format: 'Todos' }),
+        ...(favoriteGenres ? { genres: favoriteGenres } : {}),
+      },
     };
     const profiles = { ...state.profiles, [normalizedEmail]: nextProfile };
     storage.write(KEYS.profiles, profiles);
-    tabStorage.write(KEYS.session, { email: normalizedEmail, mode: 'demo' });
+    tabStorage.write(KEYS.session, { email: normalizedEmail });
     if (signup) {
       state.captureLead({
         source: 'Cadastro',
@@ -285,7 +295,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       if (typeof window !== 'undefined')
         window.scrollTo({ top: pending.scrollY, behavior: 'instant' });
     } else {
-      get().toast('Você entrou na conta de teste.');
+      get().toast('Você entrou na sua conta.');
     }
     return { ok: true, hadPending: !!pending };
   },
@@ -371,7 +381,7 @@ export const useAppStore = create<AppState>((set, get) => ({
     storage.write(KEYS.content, content);
     const audit = logAudit('Override publicado', id, Object.keys(o));
     set({ content, audit });
-    state.toast('Conteúdo publicado nesta homologação.');
+    state.toast('Conteúdo publicado.');
   },
 
   removeOverride: (id) => {
@@ -407,7 +417,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       Object.keys(next.movies)
     );
     set({ content: next, audit });
-    get().toast('Overrides importados nesta homologação.');
+    get().toast('Overrides importados.');
   },
 
   captureLead: ({
