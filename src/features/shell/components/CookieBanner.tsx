@@ -1,7 +1,7 @@
 'use client';
 
-import { useAppStore } from '@/shared/store/useAppStore';
-import { Button } from '@/shared/ui/Button';
+import { useAppStore } from '@/shared/store';
+import { Button } from '@/shared/ui';
 
 export function CookieBanner() {
   const consent = useAppStore((s) => s.consent);

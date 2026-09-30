@@ -2,10 +2,10 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useAppStore } from '@/shared/store/useAppStore';
-import { scopeFromPath } from '@/shared/lib/route/scopeFromPath';
+import { useAppStore } from '@/shared/store';
+import { scopeFromPath } from '@/shared/lib/route';
 import { useAccountAction } from '@/features/account';
-import { Icon } from '@/shared/ui/Icon';
+import { Icon } from '@/shared/ui';
 
 export function BottomNav() {
   const pathname = usePathname();

@@ -3,14 +3,14 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useLoginMutation } from '../api/useLoginMutation';
-import { loginSchema, type LoginValues } from '../schema/loginSchema';
-import { signupSchema, type SignupValues } from '../schema/signupSchema';
-import { Button } from '@/shared/ui/Button';
-import { Field } from '@/shared/ui/Field';
-import { GenrePicker } from '@/shared/ui/GenrePicker';
-import { TextLink } from '@/shared/ui/TextLink';
-import { inputClass } from '@/shared/ui/inputClass';
+import { useLoginMutation } from '../api';
+import {
+  loginSchema,
+  type LoginValues,
+  signupSchema,
+  type SignupValues,
+} from '../schema';
+import { Button, Field, GenrePicker, TextLink, inputClass } from '@/shared/ui';
 
 function LoginForm() {
   const login = useLoginMutation();

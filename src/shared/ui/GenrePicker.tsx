@@ -1,7 +1,7 @@
 'use client';
 
 import type { UseFormRegisterReturn } from 'react-hook-form';
-import { GENRES } from '@/shared/lib/catalog/GENRES';
+import { GENRES } from '@/shared/lib/catalog';
 import { FieldError } from './FieldError';
 
 /** Multi-select of catalog genres rendered as toggle chips (checkboxes). */

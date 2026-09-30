@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import { ClientOnly } from '@/shared/ui/ClientOnly';
+import { ClientOnly } from '@/shared/ui';
 import { DistributorPage } from '@/features/distributors';
-import { DISTRIBUTORS } from '@/shared/lib/catalog/DISTRIBUTORS';
+import { DISTRIBUTORS } from '@/shared/lib/catalog';
 
 export function generateStaticParams() {
   return DISTRIBUTORS.filter((d) => d.status === 'active' && d.public).map(

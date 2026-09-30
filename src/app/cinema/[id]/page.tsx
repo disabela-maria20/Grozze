@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
-import { ClientOnly } from '@/shared/ui/ClientOnly';
+import { ClientOnly } from '@/shared/ui';
 import { CinemaPage } from '@/features/cinemas';
-import { allCinemas } from '@/shared/lib/catalog/allCinemas';
-import { cinema } from '@/shared/lib/catalog/cinema';
+import { allCinemas, cinema } from '@/shared/lib/catalog';
 
 export function generateStaticParams() {
   return allCinemas().map((c) => ({ id: c.id }));

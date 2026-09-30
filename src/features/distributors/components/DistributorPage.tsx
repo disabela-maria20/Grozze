@@ -1,16 +1,16 @@
 'use client';
 
-import { allMovies } from '@/shared/lib/catalog/allMovies';
-import { DISTRIBUTORS } from '@/shared/lib/catalog/DISTRIBUTORS';
-import { hasSessions } from '@/shared/lib/catalog/hasSessions';
-import { movieHref } from '@/shared/lib/catalog/movieHref';
-import { NEWS } from '@/shared/lib/catalog/NEWS';
-import { useAppStore } from '@/shared/store/useAppStore';
-import { MovieMeta } from '@/features/movies';
-import { MovieSection } from '@/features/movies';
+import {
+  allMovies,
+  DISTRIBUTORS,
+  hasSessions,
+  movieHref,
+  NEWS,
+} from '@/shared/lib/catalog';
+import { useAppStore } from '@/shared/store';
+import { MovieMeta, MovieSection } from '@/features/movies';
 import { NewsSection } from '@/features/news';
-import { NotFound } from '@/shared/ui/NotFound';
-import { Icon } from '@/shared/ui/Icon';
+import { NotFound, Icon } from '@/shared/ui';
 
 export function DistributorPage({ slug }: { slug: string }) {
   const content = useAppStore((s) => s.content);

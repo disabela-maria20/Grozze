@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
-import { ClientOnly } from '@/shared/ui/ClientOnly';
+import { ClientOnly } from '@/shared/ui';
 import { MoviePage } from '@/features/movies';
-import { allMovies } from '@/shared/lib/catalog/allMovies';
-import { baseMovie } from '@/shared/lib/catalog/baseMovie';
-import { DISTRIBUTORS } from '@/shared/lib/catalog/DISTRIBUTORS';
+import { allMovies, baseMovie, DISTRIBUTORS } from '@/shared/lib/catalog';
 
 export function generateStaticParams() {
   const paths: { slug: string; id: string }[] = [];

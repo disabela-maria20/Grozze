@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import { ClientOnly } from '@/shared/ui/ClientOnly';
+import { ClientOnly } from '@/shared/ui';
 import { ArticleApp } from '@/features/news';
-import { NEWS } from '@/shared/lib/catalog/NEWS';
+import { NEWS } from '@/shared/lib/catalog';
 
 export function generateStaticParams() {
   return NEWS.map((n) => ({ id: n.id }));

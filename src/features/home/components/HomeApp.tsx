@@ -1,16 +1,17 @@
 'use client';
 
-import { useAppStore } from '@/shared/store/useAppStore';
-import { allCinemas } from '@/shared/lib/catalog/allCinemas';
-import { currentMovies } from '@/shared/lib/catalog/currentMovies';
-import { NEWS } from '@/shared/lib/catalog/NEWS';
-import { preMovies } from '@/shared/lib/catalog/preMovies';
-import { soonMovies } from '@/shared/lib/catalog/soonMovies';
+import { useAppStore } from '@/shared/store';
+import {
+  allCinemas,
+  currentMovies,
+  NEWS,
+  preMovies,
+  soonMovies,
+} from '@/shared/lib/catalog';
 import { useAccountAction } from '@/features/account';
 import { MovieSection } from '@/features/movies';
 import { NewsSection } from '@/features/news';
-import { Button } from '@/shared/ui/Button';
-import { Icon } from '@/shared/ui/Icon';
+import { Button, Icon } from '@/shared/ui';
 import { HomeHero } from './HomeHero';
 
 export function HomeApp() {

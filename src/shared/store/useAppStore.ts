@@ -1,6 +1,6 @@
 'use client';
 
-import { validateOverride } from '@/shared/lib/catalog/validateOverride';
+import { validateOverride } from '@/shared/lib/catalog';
 import type {
   AuditEntry,
   ConsentState,

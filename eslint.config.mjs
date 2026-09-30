@@ -66,6 +66,24 @@ export default [
               message:
                 'Importe outra feature pelo index público: @/features/<nome>',
             },
+            {
+              // Barrels: quem está fora da pasta importa pelo index
+              group: [
+                '@/shared/api/*',
+                '@/shared/lib/catalog/*',
+                '@/shared/lib/route/*',
+                '@/shared/lib/validation/*',
+                '@/shared/store/*',
+                '@/shared/ui/*',
+                '../api/*',
+                '../schema/*',
+                '../components/*',
+                '../dialogs/*',
+                '../hooks/*',
+              ],
+              message:
+                'Importe pelo barrel da pasta (ex.: @/shared/ui, ../api).',
+            },
           ],
         },
       ],

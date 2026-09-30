@@ -1,15 +1,11 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { useAppStore } from '@/shared/store/useAppStore';
-import { NAV } from '../lib/nav/NAV';
-import { SECONDARY_NAV } from '../lib/nav/SECONDARY_NAV';
-import { pathFor } from '../lib/nav/pathFor';
-import { activeRootFromPath } from '@/shared/lib/route/activeRootFromPath';
-import { useAccountAction } from '@/features/account';
-import { Avatar } from '@/features/account';
-import { TextLink } from '@/shared/ui/TextLink';
-import { Icon } from '@/shared/ui/Icon';
+import { useAppStore } from '@/shared/store';
+import { NAV, SECONDARY_NAV, pathFor } from '../lib/nav';
+import { activeRootFromPath } from '@/shared/lib/route';
+import { useAccountAction, Avatar } from '@/features/account';
+import { TextLink, Icon } from '@/shared/ui';
 
 export function MenuDialog() {
   const logged = useAppStore((s) => s.logged());

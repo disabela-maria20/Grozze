@@ -3,15 +3,12 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { useAppStore } from '@/shared/store/useAppStore';
-import { NAV } from '../lib/nav/NAV';
-import { pathFor } from '../lib/nav/pathFor';
-import { activeRootFromPath } from '@/shared/lib/route/activeRootFromPath';
-import { scopeFromPath } from '@/shared/lib/route/scopeFromPath';
-import { useAccountAction } from '@/features/account';
-import { DISTRIBUTORS } from '@/shared/lib/catalog/DISTRIBUTORS';
-import { Avatar } from '@/features/account';
-import { Icon } from '@/shared/ui/Icon';
+import { useAppStore } from '@/shared/store';
+import { NAV, pathFor } from '../lib/nav';
+import { activeRootFromPath, scopeFromPath } from '@/shared/lib/route';
+import { useAccountAction, Avatar } from '@/features/account';
+import { DISTRIBUTORS } from '@/shared/lib/catalog';
+import { Icon } from '@/shared/ui';
 
 export function Header() {
   const pathname = usePathname();

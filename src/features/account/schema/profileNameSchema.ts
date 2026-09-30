@@ -1,4 +1,4 @@
-import { nameField } from '@/shared/lib/validation/nameField';
+import { nameField } from '@/shared/lib/validation';
 import { z } from 'zod';
 
 export const profileNameSchema = z.object({ name: nameField });

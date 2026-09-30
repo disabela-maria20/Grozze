@@ -1,20 +1,20 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { allMovies } from '@/shared/lib/catalog/allMovies';
-import { dateLabel } from '@/shared/lib/catalog/dateLabel';
-import { movie } from '@/shared/lib/catalog/movie';
-import { movieHref } from '@/shared/lib/catalog/movieHref';
-import { MONTH_NAMES } from '@/shared/lib/catalog/MONTH_NAMES';
-import { status } from '@/shared/lib/catalog/status';
-import { unique } from '@/shared/lib/catalog/unique';
-import { validDate } from '@/shared/lib/catalog/validDate';
-import { useAppStore } from '@/shared/store/useAppStore';
+import {
+  allMovies,
+  dateLabel,
+  movie,
+  movieHref,
+  MONTH_NAMES,
+  status,
+  unique,
+  validDate,
+} from '@/shared/lib/catalog';
+import { useAppStore } from '@/shared/store';
 import { MovieCard } from './MovieCard';
 import { MoviePoster } from './MoviePoster';
-import { Chip } from '@/shared/ui/Chip';
-import { Rail } from '@/shared/ui/Rail';
-import { Icon } from '@/shared/ui/Icon';
+import { Chip, Rail, Icon } from '@/shared/ui';
 import { SaveButton } from './SaveButton';
 
 export function ComingSoonApp() {

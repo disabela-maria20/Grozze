@@ -1,10 +1,9 @@
 'use client';
 
 import { MovieCard } from '@/features/movies';
-import { allMovies } from '@/shared/lib/catalog/allMovies';
-import { useAppStore } from '@/shared/store/useAppStore';
-import { Button } from '@/shared/ui/Button';
-import { TextLink } from '@/shared/ui/TextLink';
+import { allMovies } from '@/shared/lib/catalog';
+import { useAppStore } from '@/shared/store';
+import { Button, TextLink } from '@/shared/ui';
 
 export function AccountHubDialog({ scope }: { scope: string }) {
   const content = useAppStore((s) => s.content);

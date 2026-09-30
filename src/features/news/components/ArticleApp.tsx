@@ -1,10 +1,9 @@
 'use client';
 
-import { allMovies } from '@/shared/lib/catalog/allMovies';
-import { NEWS } from '@/shared/lib/catalog/NEWS';
-import { useAppStore } from '@/shared/store/useAppStore';
+import { allMovies, NEWS } from '@/shared/lib/catalog';
+import { useAppStore } from '@/shared/store';
 import { MovieSection } from '@/features/movies';
-import { NotFound } from '@/shared/ui/NotFound';
+import { NotFound } from '@/shared/ui';
 
 export function ArticleApp({
   id,

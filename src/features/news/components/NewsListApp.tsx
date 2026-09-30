@@ -1,10 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { NEWS } from '@/shared/lib/catalog/NEWS';
-import { unique } from '@/shared/lib/catalog/unique';
+import { NEWS, unique } from '@/shared/lib/catalog';
 import { NewsCard } from './NewsCard';
-import { Chip } from '@/shared/ui/Chip';
+import { Chip } from '@/shared/ui';
 
 export function NewsListApp() {
   const categories = ['Todos', ...unique(NEWS.map((n) => n.k))];

@@ -1,23 +1,22 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { cinema } from '@/shared/lib/catalog/cinema';
-import { dateLabel } from '@/shared/lib/catalog/dateLabel';
-import { dateParts } from '@/shared/lib/catalog/dateParts';
-import { defaultFilmState } from '@/shared/lib/catalog/defaultFilmState';
-import { filterGroupOptions } from '@/shared/lib/catalog/filterGroupOptions';
-import { filterRows } from '@/shared/lib/catalog/filterRows';
-import { groupedRooms } from '@/shared/lib/catalog/groupedRooms';
-import { hasSessions } from '@/shared/lib/catalog/hasSessions';
-import { movieDates } from '@/shared/lib/catalog/movieDates';
-import { validDate } from '@/shared/lib/catalog/validDate';
-import { useAppStore } from '@/shared/store/useAppStore';
+import {
+  cinema,
+  dateLabel,
+  dateParts,
+  defaultFilmState,
+  filterGroupOptions,
+  filterRows,
+  groupedRooms,
+  hasSessions,
+  movieDates,
+  validDate,
+  type SessionFilterState,
+} from '@/shared/lib/catalog';
+import { useAppStore } from '@/shared/store';
 import type { Movie, Showtime } from '@/shared/lib/types';
-import { type SessionFilterState } from '@/shared/lib/catalog/SessionFilterState';
-import { HeartButton } from '@/shared/ui/HeartButton';
-import { Rail } from '@/shared/ui/Rail';
-import { TextLink } from '@/shared/ui/TextLink';
-import { Icon } from '@/shared/ui/Icon';
+import { HeartButton, Rail, TextLink, Icon } from '@/shared/ui';
 
 function HourButtons({ rows }: { rows: Showtime[] }) {
   const openDialog = useAppStore((s) => s.openDialog);

@@ -1,9 +1,8 @@
 'use client';
 
-import { movie } from '@/shared/lib/catalog/movie';
-import { videoId } from '@/shared/lib/catalog/videoId';
-import { useAppStore } from '@/shared/store/useAppStore';
-import { Button } from '@/shared/ui/Button';
+import { movie, videoId } from '@/shared/lib/catalog';
+import { useAppStore } from '@/shared/store';
+import { Button } from '@/shared/ui';
 
 export function TrailerDialog({ movieId }: { movieId: string }) {
   const content = useAppStore((s) => s.content);

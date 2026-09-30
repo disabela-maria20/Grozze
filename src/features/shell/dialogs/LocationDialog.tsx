@@ -2,13 +2,9 @@
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useAppStore } from '@/shared/store/useAppStore';
-import { CITY_OPTIONS } from '../schema/CITY_OPTIONS';
-import { locationSchema, type LocationValues } from '../schema/locationSchema';
-import { Button } from '@/shared/ui/Button';
-import { Field } from '@/shared/ui/Field';
-import { inputClass } from '@/shared/ui/inputClass';
-import { Icon } from '@/shared/ui/Icon';
+import { useAppStore } from '@/shared/store';
+import { CITY_OPTIONS, locationSchema, type LocationValues } from '../schema';
+import { Button, Field, inputClass, Icon } from '@/shared/ui';
 
 export function LocationDialog() {
   const setLocationManual = useAppStore((s) => s.setLocationManual);

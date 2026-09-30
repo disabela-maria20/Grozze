@@ -3,14 +3,10 @@
 import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useAppStore } from '@/shared/store/useAppStore';
-import { useCreateLeadMutation } from '../api/useCreateLeadMutation';
-import { contactSchema, type ContactValues } from '../schema/contactSchema';
-import { Button } from '@/shared/ui/Button';
-import { Field } from '@/shared/ui/Field';
-import { FieldError } from '@/shared/ui/FieldError';
-import { inputClass } from '@/shared/ui/inputClass';
-
+import { useAppStore } from '@/shared/store';
+import { useCreateLeadMutation } from '../api';
+import { contactSchema, type ContactValues } from '../schema';
+import { Button, Field, FieldError, inputClass } from '@/shared/ui';
 const EMPTY: ContactValues = {
   name: '',
   email: '',

@@ -2,9 +2,9 @@
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useAppStore } from '@/shared/store/useAppStore';
-import { consentSchema, type ConsentValues } from '../schema/consentSchema';
-import { Button } from '@/shared/ui/Button';
+import { useAppStore } from '@/shared/store';
+import { consentSchema, type ConsentValues } from '../schema';
+import { Button } from '@/shared/ui';
 
 export function ConsentDialog() {
   const consent = useAppStore((s) => s.consent);

@@ -1,14 +1,16 @@
 'use client';
 
 import type { ReactNode } from 'react';
-import { useAppStore } from '@/shared/store/useAppStore';
-import { dateLabel } from '@/shared/lib/catalog/dateLabel';
-import { movieHref } from '@/shared/lib/catalog/movieHref';
-import { status } from '@/shared/lib/catalog/status';
-import { statusLabel } from '@/shared/lib/catalog/statusLabel';
+import { useAppStore } from '@/shared/store';
+import {
+  dateLabel,
+  movieHref,
+  status,
+  statusLabel,
+} from '@/shared/lib/catalog';
 import type { Movie } from '@/shared/lib/types';
 import { MoviePoster } from './MoviePoster';
-import { HeartButton } from '@/shared/ui/HeartButton';
+import { HeartButton } from '@/shared/ui';
 
 export function MovieCard({
   m,

@@ -1,8 +1,8 @@
 'use client';
 
-import { cinema } from '@/shared/lib/catalog/cinema';
-import { useAppStore } from '@/shared/store/useAppStore';
-import { Button } from '@/shared/ui/Button';
+import { cinema } from '@/shared/lib/catalog';
+import { useAppStore } from '@/shared/store';
+import { Button } from '@/shared/ui';
 
 export function PricesDialog({ cinemaId }: { cinemaId: string }) {
   const closeDialog = useAppStore((s) => s.closeDialog);

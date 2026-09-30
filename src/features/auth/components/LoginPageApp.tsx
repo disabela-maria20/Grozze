@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAppStore } from '@/shared/store/useAppStore';
+import { useAppStore } from '@/shared/store';
 import { AuthDialog } from './AuthDialog';
 
 export function LoginPageApp({ signup }: { signup: boolean }) {

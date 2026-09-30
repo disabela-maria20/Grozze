@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useAppStore } from '@/shared/store/useAppStore';
+import { useAppStore } from '@/shared/store';
 
 export function Toast() {
   const message = useAppStore((s) => s.toastMessage);

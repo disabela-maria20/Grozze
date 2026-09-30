@@ -1,12 +1,8 @@
+import { emailField } from '@/shared/lib/validation';
 import { z } from 'zod';
 
 export const loginSchema = z.object({
-  email: z
-    .string()
-    .trim()
-    .min(1, 'Informe seu e-mail.')
-    .max(254, 'O e-mail deve possuir no máximo 254 caracteres.')
-    .email('Digite um e-mail válido.'),
+  email: emailField,
   password: z
     .string()
     .min(1, 'Informe sua senha.')

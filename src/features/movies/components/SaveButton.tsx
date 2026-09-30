@@ -1,8 +1,8 @@
 'use client';
 
-import { useAppStore } from '@/shared/store/useAppStore';
+import { useAppStore } from '@/shared/store';
 import type { Movie } from '@/shared/lib/types';
-import { Icon } from '@/shared/ui/Icon';
+import { Icon } from '@/shared/ui';
 
 export function SaveButton({ m, path }: { m: Movie; path: string }) {
   const on = useAppStore((s) => s.movieSaved(m.id));

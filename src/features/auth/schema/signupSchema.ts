@@ -1,5 +1,4 @@
-import { emailField } from '@/shared/lib/validation/emailField';
-import { nameField } from '@/shared/lib/validation/nameField';
+import { emailField, nameField } from '@/shared/lib/validation';
 import { z } from 'zod';
 
 export const signupSchema = z

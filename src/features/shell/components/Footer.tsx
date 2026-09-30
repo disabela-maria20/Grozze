@@ -2,9 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useAppStore } from '@/shared/store/useAppStore';
-import { scopeFromPath } from '@/shared/lib/route/scopeFromPath';
-import { DISTRIBUTORS } from '@/shared/lib/catalog/DISTRIBUTORS';
+import { useAppStore } from '@/shared/store';
+import { scopeFromPath } from '@/shared/lib/route';
+import { DISTRIBUTORS } from '@/shared/lib/catalog';
 
 const GROUPS: [string, [string, string][]][] = [
   [

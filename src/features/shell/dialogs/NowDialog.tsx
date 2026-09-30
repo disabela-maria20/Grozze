@@ -1,14 +1,16 @@
 'use client';
 
 import { useMemo } from 'react';
-import { cinema } from '@/shared/lib/catalog/cinema';
-import { dateLabel } from '@/shared/lib/catalog/dateLabel';
-import { groupedRooms } from '@/shared/lib/catalog/groupedRooms';
-import { movie } from '@/shared/lib/catalog/movie';
-import { SESSIONS } from '@/shared/lib/catalog/SESSIONS';
-import { useAppStore } from '@/shared/store/useAppStore';
+import {
+  cinema,
+  dateLabel,
+  groupedRooms,
+  movie,
+  SESSIONS,
+} from '@/shared/lib/catalog';
+import { useAppStore } from '@/shared/store';
 import { MoviePoster } from '@/features/movies';
-import { LinkButton } from '@/shared/ui/LinkButton';
+import { LinkButton } from '@/shared/ui';
 
 export function NowDialog() {
   const content = useAppStore((s) => s.content);

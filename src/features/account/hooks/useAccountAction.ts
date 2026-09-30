@@ -1,8 +1,8 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
-import { useAppStore } from '@/shared/store/useAppStore';
-import { scopeFromPath } from '@/shared/lib/route/scopeFromPath';
+import { useAppStore } from '@/shared/store';
+import { scopeFromPath } from '@/shared/lib/route';
 
 /** Mirrors the original `accountAction()`: gated by login, aware of distributor-hub scope. */
 export function useAccountAction() {

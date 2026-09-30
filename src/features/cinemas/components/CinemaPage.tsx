@@ -1,18 +1,18 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { cinema } from '@/shared/lib/catalog/cinema';
-import { cinemaDates } from '@/shared/lib/catalog/cinemaDates';
-import { dateParts } from '@/shared/lib/catalog/dateParts';
-import { groupedRooms } from '@/shared/lib/catalog/groupedRooms';
-import { movie } from '@/shared/lib/catalog/movie';
-import { unique } from '@/shared/lib/catalog/unique';
-import { SESSIONS } from '@/shared/lib/catalog/SESSIONS';
-import { useAppStore } from '@/shared/store/useAppStore';
+import {
+  cinema,
+  cinemaDates,
+  dateParts,
+  groupedRooms,
+  movie,
+  unique,
+  SESSIONS,
+} from '@/shared/lib/catalog';
+import { useAppStore } from '@/shared/store';
 import { MoviePoster } from '@/features/movies';
-import { NotFound } from '@/shared/ui/NotFound';
-import { Rail } from '@/shared/ui/Rail';
-import { Icon } from '@/shared/ui/Icon';
+import { NotFound, Rail, Icon } from '@/shared/ui';
 
 function HourButtons({ rows }: { rows: (typeof SESSIONS)[number][] }) {
   const openDialog = useAppStore((s) => s.openDialog);

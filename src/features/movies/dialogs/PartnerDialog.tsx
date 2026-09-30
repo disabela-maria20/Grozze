@@ -1,7 +1,7 @@
 'use client';
 
-import { useAppStore } from '@/shared/store/useAppStore';
-import { Button } from '@/shared/ui/Button';
+import { useAppStore } from '@/shared/store';
+import { Button } from '@/shared/ui';
 
 export function PartnerDialog({ seller }: { seller: string }) {
   const closeDialog = useAppStore((s) => s.closeDialog);

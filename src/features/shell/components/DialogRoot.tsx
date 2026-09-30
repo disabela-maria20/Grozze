@@ -1,20 +1,19 @@
 'use client';
 
 import type { ReactNode } from 'react';
-import { useAppStore } from '@/shared/store/useAppStore';
-import { DialogShell } from '@/shared/ui/DialogShell';
+import { useAppStore } from '@/shared/store';
+import { DialogShell } from '@/shared/ui';
 import { AuthDialog } from '@/features/auth';
-import { SessionDialog } from '@/features/movies';
-import { TrailerDialog } from '@/features/movies';
-import { PartnerDialog } from '@/features/movies';
+import { SessionDialog, TrailerDialog, PartnerDialog } from '@/features/movies';
 import { PricesDialog } from '@/features/cinemas';
 import { AccountHubDialog } from '@/features/account';
-import { LocationDialog } from '../dialogs/LocationDialog';
-import { ConsentDialog } from '../dialogs/ConsentDialog';
-import { MenuDialog } from '../dialogs/MenuDialog';
-import { NowDialog } from '../dialogs/NowDialog';
-import { SearchDialog } from '../dialogs/SearchDialog';
-
+import {
+  LocationDialog,
+  ConsentDialog,
+  MenuDialog,
+  NowDialog,
+  SearchDialog,
+} from '../dialogs';
 const LABELS: Record<string, string> = {
   auth: 'Entrar',
   session: 'Confirmação da sessão',

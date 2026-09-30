@@ -2,8 +2,7 @@
 
 import type { Movie } from '@/shared/lib/types';
 import { MovieCard } from './MovieCard';
-import { Rail } from '@/shared/ui/Rail';
-import { Icon } from '@/shared/ui/Icon';
+import { Rail, Icon } from '@/shared/ui';
 
 export function MovieSection({
   title,

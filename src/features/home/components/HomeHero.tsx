@@ -1,12 +1,11 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { movieHref } from '@/shared/lib/catalog/movieHref';
-import { statusLabel } from '@/shared/lib/catalog/statusLabel';
-import { useAppStore } from '@/shared/store/useAppStore';
+import { movieHref, statusLabel } from '@/shared/lib/catalog';
+import { useAppStore } from '@/shared/store';
 import type { Movie } from '@/shared/lib/types';
 import { MovieMeta } from '@/features/movies';
-import { Icon } from '@/shared/ui/Icon';
+import { Icon } from '@/shared/ui';
 
 export function HomeHero({ list }: { list: Movie[] }) {
   const [index, setIndex] = useState(0);

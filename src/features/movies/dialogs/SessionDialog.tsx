@@ -1,13 +1,9 @@
 'use client';
 
-import { cinema } from '@/shared/lib/catalog/cinema';
-import { dateLabel } from '@/shared/lib/catalog/dateLabel';
-import { movie } from '@/shared/lib/catalog/movie';
-import { sessionIndex } from '@/shared/lib/catalog/sessionIndex';
-import { useAppStore } from '@/shared/store/useAppStore';
-import { MoviePoster } from '../components/MoviePoster';
-import { Button } from '@/shared/ui/Button';
-import { Icon } from '@/shared/ui/Icon';
+import { cinema, dateLabel, movie, sessionIndex } from '@/shared/lib/catalog';
+import { useAppStore } from '@/shared/store';
+import { MoviePoster } from '../components';
+import { Button, Icon } from '@/shared/ui';
 
 export function SessionDialog({ sessionId }: { sessionId: string }) {
   const content = useAppStore((s) => s.content);

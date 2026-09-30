@@ -1,8 +1,7 @@
 'use client';
 
-import { useAppStore } from '@/shared/store/useAppStore';
-import { cinema } from '@/shared/lib/catalog/cinema';
-import { movie } from '@/shared/lib/catalog/movie';
+import { useAppStore } from '@/shared/store';
+import { cinema, movie } from '@/shared/lib/catalog';
 import { Icon } from './Icon';
 
 export function HeartButton({

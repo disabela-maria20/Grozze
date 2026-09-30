@@ -1,14 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { dateLabel } from '@/shared/lib/catalog/dateLabel';
-import { hasSessions } from '@/shared/lib/catalog/hasSessions';
-import { status } from '@/shared/lib/catalog/status';
-import { useAppStore } from '@/shared/store/useAppStore';
+import { dateLabel, hasSessions, status } from '@/shared/lib/catalog';
+import { useAppStore } from '@/shared/store';
 import type { Movie } from '@/shared/lib/types';
 import { MovieMeta } from './MovieMeta';
-import { Icon } from '@/shared/ui/Icon';
-import { TextLink } from '@/shared/ui/TextLink';
+import { Icon, TextLink } from '@/shared/ui';
 import { SaveButton } from './SaveButton';
 
 export function MovieHero({ m, path }: { m: Movie; path: string }) {

@@ -1,34 +1,34 @@
 'use client';
 
 import Link from 'next/link';
-import { allMovies } from '@/shared/lib/catalog/allMovies';
-import { sortedCinemas } from '@/shared/lib/catalog/sortedCinemas';
+import { allMovies, sortedCinemas } from '@/shared/lib/catalog';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useAppStore } from '@/shared/store/useAppStore';
-import { useUpdatePreferencesMutation } from '../api/useUpdatePreferencesMutation';
-import { useUpdateProfileNameMutation } from '../api/useUpdateProfileNameMutation';
-import { FORMAT_OPTIONS } from '../schema/FORMAT_OPTIONS';
-import { LANGUAGE_OPTIONS } from '../schema/LANGUAGE_OPTIONS';
+import { useAppStore } from '@/shared/store';
 import {
+  useUpdatePreferencesMutation,
+  useUpdateProfileNameMutation,
+} from '../api';
+import {
+  FORMAT_OPTIONS,
+  LANGUAGE_OPTIONS,
   preferencesSchema,
   type PreferencesValues,
-} from '../schema/preferencesSchema';
-import {
   profileNameSchema,
   type ProfileNameValues,
-} from '../schema/profileNameSchema';
+} from '../schema';
 import { AuthDialog } from '@/features/auth';
 import { Avatar } from './Avatar';
 import { CinemaCard } from '@/features/cinemas';
 import { MovieCard } from '@/features/movies';
-import { Button } from '@/shared/ui/Button';
-import { EmptyState } from '@/shared/ui/EmptyState';
-import { Field } from '@/shared/ui/Field';
-import { GenrePicker } from '@/shared/ui/GenrePicker';
-import { TextLink } from '@/shared/ui/TextLink';
-import { inputClass } from '@/shared/ui/inputClass';
-
+import {
+  Button,
+  EmptyState,
+  Field,
+  GenrePicker,
+  TextLink,
+  inputClass,
+} from '@/shared/ui';
 const ACCOUNT_TABS: [string, string][] = [
   ['', 'Visão geral'],
   ['salvos', 'Filmes favoritos'],

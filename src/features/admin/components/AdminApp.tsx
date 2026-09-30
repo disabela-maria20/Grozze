@@ -1,26 +1,26 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { allBaseMovieIds } from '@/shared/lib/catalog/allBaseMovieIds';
-import { allCinemas } from '@/shared/lib/catalog/allCinemas';
-import { allMovies } from '@/shared/lib/catalog/allMovies';
-import { baseMovie } from '@/shared/lib/catalog/baseMovie';
-import { META } from '@/shared/lib/catalog/META';
-import { movie } from '@/shared/lib/catalog/movie';
-import { SESSIONS } from '@/shared/lib/catalog/SESSIONS';
-import { statusLabel } from '@/shared/lib/catalog/statusLabel';
-import { exportLeadsCsv } from '@/shared/store/exportLeadsCsv';
-import { useAppStore } from '@/shared/store/useAppStore';
-import { downloadFile } from '@/shared/store/downloadFile';
+import {
+  allBaseMovieIds,
+  allCinemas,
+  allMovies,
+  baseMovie,
+  META,
+  movie,
+  SESSIONS,
+  statusLabel,
+} from '@/shared/lib/catalog';
+import { exportLeadsCsv, useAppStore, downloadFile } from '@/shared/store';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useImportContentMutation } from '../api/useImportContentMutation';
-import { usePublishOverrideMutation } from '../api/usePublishOverrideMutation';
-import { useRemoveOverrideMutation } from '../api/useRemoveOverrideMutation';
-import { cmsMovieSchema, type CmsMovieValues } from '../schema/cmsMovieSchema';
-import { Button } from '@/shared/ui/Button';
-import { Field } from '@/shared/ui/Field';
-import { inputClass } from '@/shared/ui/inputClass';
+import {
+  useImportContentMutation,
+  usePublishOverrideMutation,
+  useRemoveOverrideMutation,
+} from '../api';
+import { cmsMovieSchema, type CmsMovieValues } from '../schema';
+import { Button, Field, inputClass } from '@/shared/ui';
 import type { Movie, MovieOverride } from '@/shared/lib/types';
 
 const TABS: [string, string][] = [

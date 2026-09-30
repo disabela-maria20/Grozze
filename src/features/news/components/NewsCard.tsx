@@ -1,6 +1,6 @@
 'use client';
 
-import { newsHref } from '@/shared/lib/catalog/newsHref';
+import { newsHref } from '@/shared/lib/catalog';
 import type { NewsItem } from '@/shared/lib/types';
 
 export function NewsCard({ n, scope }: { n: NewsItem; scope?: string | null }) {

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { ClientOnly } from '@/shared/ui/ClientOnly';
+import { ClientOnly } from '@/shared/ui';
 import { CatalogApp } from '@/features/movies';
 
 export const metadata: Metadata = { title: 'Filmes' };

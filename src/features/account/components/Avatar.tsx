@@ -1,7 +1,7 @@
 'use client';
 
-import { useAppStore } from '@/shared/store/useAppStore';
-import { Icon } from '@/shared/ui/Icon';
+import { useAppStore } from '@/shared/store';
+import { Icon } from '@/shared/ui';
 
 const AVATAR_CHARS: Record<string, string> = { star: '★', moon: '☾', sun: '☀' };
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { ratingColor } from '@/shared/lib/catalog/ratingColor';
+import { ratingColor } from '@/shared/lib/catalog';
 
 export function RatingBadge({ rating }: { rating: string | undefined }) {
   const r = ratingColor(rating);

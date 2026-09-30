@@ -1,7 +1,7 @@
 'use client';
 
 import type { Movie } from '@/shared/lib/types';
-import { statusLabel } from '@/shared/lib/catalog/statusLabel';
+import { statusLabel } from '@/shared/lib/catalog';
 
 export function MoviePoster({
   m,

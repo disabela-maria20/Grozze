@@ -1,18 +1,10 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { movieList } from '@/shared/lib/catalog/movieList';
-import { normalize } from '@/shared/lib/catalog/normalize';
-import { SESSIONS } from '@/shared/lib/catalog/SESSIONS';
-import { status } from '@/shared/lib/catalog/status';
-import { useAppStore } from '@/shared/store/useAppStore';
+import { movieList, normalize, SESSIONS, status } from '@/shared/lib/catalog';
+import { useAppStore } from '@/shared/store';
 import { MovieCard } from './MovieCard';
-import { Chip } from '@/shared/ui/Chip';
-import { EmptyState } from '@/shared/ui/EmptyState';
-import { Rail } from '@/shared/ui/Rail';
-import { TextLink } from '@/shared/ui/TextLink';
-import { Icon } from '@/shared/ui/Icon';
-
+import { Chip, EmptyState, Rail, TextLink, Icon } from '@/shared/ui';
 const STATUS_OPTIONS: [string, string][] = [
   ['all', 'Todos'],
   ['now', 'Em cartaz'],

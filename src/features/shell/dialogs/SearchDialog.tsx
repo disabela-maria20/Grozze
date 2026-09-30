@@ -1,14 +1,16 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { allMovies } from '@/shared/lib/catalog/allMovies';
-import { dateLabel } from '@/shared/lib/catalog/dateLabel';
-import { movieHref } from '@/shared/lib/catalog/movieHref';
-import { normalize } from '@/shared/lib/catalog/normalize';
-import { sortedCinemas } from '@/shared/lib/catalog/sortedCinemas';
-import { statusLabel } from '@/shared/lib/catalog/statusLabel';
-import { useAppStore } from '@/shared/store/useAppStore';
-import { Icon } from '@/shared/ui/Icon';
+import {
+  allMovies,
+  dateLabel,
+  movieHref,
+  normalize,
+  sortedCinemas,
+  statusLabel,
+} from '@/shared/lib/catalog';
+import { useAppStore } from '@/shared/store';
+import { Icon } from '@/shared/ui';
 
 export function SearchDialog({ scope }: { scope?: string | null }) {
   const [q, setQ] = useState('');

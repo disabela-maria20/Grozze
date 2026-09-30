@@ -6,7 +6,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
-import { useAppStore } from '@/shared/store/useAppStore';
+import { useAppStore } from '@/shared/store';
 
 function createQueryClient() {
   return new QueryClient({

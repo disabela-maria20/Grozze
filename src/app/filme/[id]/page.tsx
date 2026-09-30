@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
-import { ClientOnly } from '@/shared/ui/ClientOnly';
+import { ClientOnly } from '@/shared/ui';
 import { MoviePage } from '@/features/movies';
-import { allBaseMovieIds } from '@/shared/lib/catalog/allBaseMovieIds';
-import { baseMovie } from '@/shared/lib/catalog/baseMovie';
+import { allBaseMovieIds, baseMovie } from '@/shared/lib/catalog';
 
 export function generateStaticParams() {
   return allBaseMovieIds().map((id) => ({ id }));

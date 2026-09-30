@@ -1,7 +1,7 @@
 'use client';
 
-import { request } from '@/shared/api/request';
-import { useAppStore } from '@/shared/store/useAppStore';
+import { request } from '@/shared/api';
+import { useAppStore } from '@/shared/store';
 import { useMutation } from '@tanstack/react-query';
 
 export function useRemoveOverrideMutation() {

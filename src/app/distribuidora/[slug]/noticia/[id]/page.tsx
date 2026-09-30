@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
-import { ClientOnly } from '@/shared/ui/ClientOnly';
+import { ClientOnly } from '@/shared/ui';
 import { ArticleApp } from '@/features/news';
-import { DISTRIBUTORS } from '@/shared/lib/catalog/DISTRIBUTORS';
-import { NEWS } from '@/shared/lib/catalog/NEWS';
+import { DISTRIBUTORS, NEWS } from '@/shared/lib/catalog';
 
 export function generateStaticParams() {
   const paths: { slug: string; id: string }[] = [];

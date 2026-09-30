@@ -1,5 +1,4 @@
-import { ClientOnly } from '@/shared/ui/ClientOnly';
-import { NotFound } from '@/shared/ui/NotFound';
+import { ClientOnly, NotFound } from '@/shared/ui';
 
 export default function NotFoundPage() {
   return (

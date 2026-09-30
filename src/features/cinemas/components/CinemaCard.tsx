@@ -1,9 +1,9 @@
 'use client';
 
-import { useAppStore } from '@/shared/store/useAppStore';
-import { distanceKm } from '@/shared/lib/catalog/distanceKm';
+import { useAppStore } from '@/shared/store';
+import { distanceKm } from '@/shared/lib/catalog';
 import type { Cinema } from '@/shared/lib/types';
-import { HeartButton } from '@/shared/ui/HeartButton';
+import { HeartButton } from '@/shared/ui';
 
 export function CinemaCard({ c }: { c: Cinema }) {
   const saved = useAppStore((s) => s.cinemaSaved(c.id));

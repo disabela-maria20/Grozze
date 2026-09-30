@@ -1,8 +1,7 @@
 'use client';
 
-import { request } from '@/shared/api/request';
-import type { CreateLeadRequest } from '@/shared/api/types';
-import { useAppStore } from '@/shared/store/useAppStore';
+import { request, type CreateLeadRequest } from '@/shared/api';
+import { useAppStore } from '@/shared/store';
 import { useMutation } from '@tanstack/react-query';
 
 export function useCreateLeadMutation() {

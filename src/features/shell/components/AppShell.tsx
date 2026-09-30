@@ -1,7 +1,7 @@
 'use client';
 
-import { QueryProvider } from '@/shared/api/QueryProvider';
-import { ClientOnly } from '@/shared/ui/ClientOnly';
+import { QueryProvider } from '@/shared/api';
+import { ClientOnly } from '@/shared/ui';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { BottomNav } from './BottomNav';

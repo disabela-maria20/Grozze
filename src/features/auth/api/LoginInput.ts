@@ -1,6 +1,6 @@
 'use client';
 
-import type { RegisterRequest } from '@/shared/api/types';
+import type { RegisterRequest } from '@/shared/api';
 
 export type LoginInput = Pick<RegisterRequest, 'email' | 'password'> &
   Partial<

@@ -1,15 +1,10 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { normalize } from '@/shared/lib/catalog/normalize';
-import { sortedCinemas } from '@/shared/lib/catalog/sortedCinemas';
-import { useAppStore } from '@/shared/store/useAppStore';
+import { normalize, sortedCinemas } from '@/shared/lib/catalog';
+import { useAppStore } from '@/shared/store';
 import { CinemaCard } from './CinemaCard';
-import { Chip } from '@/shared/ui/Chip';
-import { EmptyState } from '@/shared/ui/EmptyState';
-import { Rail } from '@/shared/ui/Rail';
-import { Icon } from '@/shared/ui/Icon';
-
+import { Chip, EmptyState, Rail, Icon } from '@/shared/ui';
 const FORMATS = ['all', 'IMAX', 'VIP', '4DX', 'LED'];
 
 export function CinemasApp() {

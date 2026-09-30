@@ -1,4 +1,4 @@
-import { ClientOnly } from '@/shared/ui/ClientOnly';
+import { ClientOnly } from '@/shared/ui';
 import { HomeApp } from '@/features/home';
 
 export default function Page() {
