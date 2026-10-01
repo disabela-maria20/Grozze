@@ -23,8 +23,6 @@ export interface RawMovie {
   tag?: string;
   spSessions?: number;
   releaseDate: string;
-  /** First date with a scheduled session (YYYY-MM-DD), when known. */
-  firstShowtime?: string;
   source?: string;
   sourceAsOf?: string;
   poster?: string;

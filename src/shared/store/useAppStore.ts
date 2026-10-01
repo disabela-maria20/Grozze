@@ -368,7 +368,7 @@ export const useAppStore = create<AppState>((set, get) => ({
     };
     storage.write(KEYS.location, { label: 'São Paulo, SP', mode: 'manual' });
     set({ location, dialog: null });
-    get().toast('Localização usada para ordenar os cinemas da amostra.');
+    get().toast('Localização usada para mostrar os cinemas perto de você.');
   },
 
   publishOverride: (id, values) => {

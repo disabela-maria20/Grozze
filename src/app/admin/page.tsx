@@ -8,7 +8,7 @@ export default function Page() {
   return (
     <ClientOnly>
       <CatalogGate>
-      <AdminApp />
+        <AdminApp />
       </CatalogGate>
     </ClientOnly>
   );

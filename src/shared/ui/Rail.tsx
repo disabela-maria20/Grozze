@@ -27,17 +27,26 @@ export function Rail({
       startX: e.clientX,
       startScroll: el.scrollLeft,
     };
-    el.setPointerCapture(e.pointerId);
   };
   const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     const el = ref.current;
     if (!el || !drag.current.active) return;
     const dx = e.clientX - drag.current.startX;
-    if (Math.abs(dx) > 4) drag.current.moved = true;
+    if (!drag.current.moved) {
+      if (Math.abs(dx) <= 4) return;
+      drag.current.moved = true;
+      // Capture only once it's a real drag: capturing on pointerdown
+      // retargets the click to the rail, so cards and chips never opened
+      el.setPointerCapture(e.pointerId);
+    }
     el.scrollLeft = drag.current.startScroll - dx;
   };
-  const endDrag = () => {
+  const endDrag = (e: React.PointerEvent<HTMLDivElement>) => {
     drag.current.active = false;
+    const el = ref.current;
+    if (el?.hasPointerCapture(e.pointerId)) {
+      el.releasePointerCapture(e.pointerId);
+    }
   };
   const onClickCapture = (e: React.MouseEvent<HTMLDivElement>) => {
     if (drag.current.moved) {

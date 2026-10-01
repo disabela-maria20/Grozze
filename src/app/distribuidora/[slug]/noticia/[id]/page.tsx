@@ -34,7 +34,7 @@ export default async function Page({
   return (
     <ClientOnly>
       <CatalogGate>
-      <ArticleApp id={id} scope={slug} />
+        <ArticleApp id={id} scope={slug} />
       </CatalogGate>
     </ClientOnly>
   );

@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { movieList, normalize, SESSIONS, status } from '@/shared/lib/catalog';
+import { movieList, normalize, status } from '@/shared/lib/catalog';
 import { useAppStore } from '@/shared/store';
 import { MovieCard } from './MovieCard';
 import { Chip, EmptyState, Rail, TextLink, Icon } from '@/shared/ui';
@@ -10,7 +10,6 @@ const STATUS_OPTIONS: [string, string][] = [
   ['now', 'Em cartaz'],
   ['presale', 'Pré-venda'],
 ];
-const FORMATS = ['IMAX', 'VIP', '4DX', 'LED'];
 
 export function CatalogApp() {
   const content = useAppStore((s) => s.content);
@@ -19,18 +18,15 @@ export function CatalogApp() {
   const [filmStatus, setFilmStatus] = useState(
     () => new URLSearchParams(window.location.search).get('status') ?? 'all'
   );
-  const [filmFormat, setFilmFormat] = useState('all');
 
   const list = useMemo(() => {
     const q = normalize(query);
     return movieList(content).filter(
       (m) =>
         (!q || normalize(m.t + ' ' + m.genre).includes(q)) &&
-        (filmStatus === 'all' || status(m) === filmStatus) &&
-        (filmFormat === 'all' ||
-          SESSIONS.some((s) => s.movie === m.id && s.tech === filmFormat))
+        (filmStatus === 'all' || status(m) === filmStatus)
     );
-  }, [query, filmStatus, filmFormat, content]);
+  }, [query, filmStatus, content]);
 
   return (
     <div className="page pt-[120px] max-sm:pt-[101px] pb-13 min-h-[65vh]">
@@ -61,15 +57,6 @@ export function CatalogApp() {
                 {l}
               </Chip>
             ))}
-            {FORMATS.map((f) => (
-              <Chip
-                key={f}
-                active={filmFormat === f}
-                onClick={() => setFilmFormat((cur) => (cur === f ? 'all' : f))}
-              >
-                {f}
-              </Chip>
-            ))}
           </Rail>
         </div>
         <div className="text-[13px] text-muted mb-4">
@@ -88,7 +75,6 @@ export function CatalogApp() {
               onClick={() => {
                 setQuery('');
                 setFilmStatus('all');
-                setFilmFormat('all');
               }}
             >
               Limpar busca e filtros

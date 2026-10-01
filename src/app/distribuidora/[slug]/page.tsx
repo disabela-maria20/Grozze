@@ -28,7 +28,7 @@ export default async function Page({
   return (
     <ClientOnly>
       <CatalogGate>
-      <DistributorPage slug={slug} />
+        <DistributorPage slug={slug} />
       </CatalogGate>
     </ClientOnly>
   );

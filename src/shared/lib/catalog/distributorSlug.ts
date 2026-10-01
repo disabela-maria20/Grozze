@@ -18,7 +18,9 @@ export function distributorSlug(name: string | null | undefined): string {
   if (ALIASES[n]) return ALIASES[n];
   const d = DISTRIBUTORS.find(
     (x) =>
-      n.startsWith(normalize(x.name)) || n === x.slug || n.startsWith(x.slug + ' ')
+      n.startsWith(normalize(x.name)) ||
+      n === x.slug ||
+      n.startsWith(x.slug + ' ')
   );
   return d?.slug ?? n.replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }

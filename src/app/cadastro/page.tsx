@@ -8,7 +8,7 @@ export default function Page() {
   return (
     <ClientOnly>
       <CatalogGate>
-      <LoginPageApp signup={true} />
+        <LoginPageApp signup={true} />
       </CatalogGate>
     </ClientOnly>
   );

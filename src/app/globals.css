@@ -25,7 +25,36 @@
   --radius-app: 18px;
 }
 
+/* Tailwind's preflight resets buttons to `cursor: default`; every clickable
+   control gets the hand cursor, disabled ones show they can't be used. */
+@layer base {
+  button,
+  [role='button'],
+  [type='button'],
+  [type='submit'],
+  [type='reset'],
+  label:has(> input[type='checkbox']),
+  label:has(> input[type='radio']),
+  label:has(> input[type='file']),
+  summary,
+  select {
+    cursor: pointer;
+  }
+
+  :is(
+    button,
+    [type='button'],
+    [type='submit'],
+    [type='reset'],
+    select
+  ):disabled,
+  [aria-disabled='true'] {
+    cursor: not-allowed;
+  }
+}
+
 html {
+  scroll-behavior: smooth;
   scroll-padding-top: 180px;
   scroll-padding-bottom: 90px;
   color-scheme: dark;
@@ -99,6 +128,55 @@ body::before {
 }
 .animate-drawer-in {
   animation: drawer-in 0.23s ease;
+}
+
+/* FilmLoader: a spinning reel feeding a running film strip */
+@keyframes reel-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes film-run {
+  to {
+    background-position-x: -44px;
+  }
+}
+@keyframes film-flicker {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.animate-reel-spin {
+  animation: reel-spin 1.6s linear infinite;
+}
+.film-strip {
+  background:
+    repeating-linear-gradient(
+        90deg,
+        transparent 0 6px,
+        var(--color-bg) 6px 12px,
+        transparent 12px 22px
+      )
+      top / 22px 5px repeat-x,
+    repeating-linear-gradient(
+        90deg,
+        transparent 0 6px,
+        var(--color-bg) 6px 12px,
+        transparent 12px 22px
+      )
+      bottom / 22px 5px repeat-x,
+    repeating-linear-gradient(
+      90deg,
+      rgba(200, 255, 57, 0.85) 0 40px,
+      rgba(200, 255, 57, 0.35) 40px 44px
+    );
+  animation:
+    film-run 0.9s linear infinite,
+    film-flicker 1.8s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

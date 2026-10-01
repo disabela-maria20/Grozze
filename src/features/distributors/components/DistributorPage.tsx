@@ -6,6 +6,7 @@ import {
   hasSessions,
   movieHref,
   NEWS,
+  statusLabel,
 } from '@/shared/lib/catalog';
 import { useAppStore } from '@/shared/store';
 import { MovieMeta, MovieSection } from '@/features/movies';
@@ -49,7 +50,7 @@ export function DistributorPage({ slug }: { slug: string }) {
           <div className="w-[min(1220px,calc(100%-56px))] max-sm:w-[calc(100%-32px)] mx-auto min-h-[450px] pt-[70px] flex items-end pb-10">
             <div className="w-[720px] max-w-full">
               <div className="text-[11px] tracking-[0.17em] uppercase font-extrabold text-lime mb-2">
-                {lead.tag}
+                {statusLabel(lead)}
               </div>
               <h1 className="text-[44px] max-sm:text-[32px] font-extrabold leading-[1.1] -tracking-[0.04em] mb-3">
                 {lead.t}

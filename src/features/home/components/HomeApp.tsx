@@ -81,7 +81,7 @@ export function HomeApp() {
                 >
                   <strong className="block">{c.name}</strong>
                   <small className="block text-muted text-xs mt-1.5">
-                    {c.network} · {c.tech.join(' · ')}
+                    {[c.network, c.city].filter(Boolean).join(' · ')}
                   </small>
                 </a>
               ))}
@@ -115,7 +115,8 @@ export function HomeApp() {
         title="Ainda dá tempo"
         list={cur
           .slice()
-          .sort((a, b) => (a.spSessions || 0) - (b.spSessions || 0))
+          // Oldest releases first: the ones closest to leaving theaters
+          .sort((a, b) => a.releaseDate.localeCompare(b.releaseDate))
           .slice(0, 5)}
         id="lastchance"
       />

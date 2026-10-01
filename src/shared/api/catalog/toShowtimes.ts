@@ -16,9 +16,11 @@ function language(v: string | null): string {
 
 /** "IMAX 2D", "3D"... */
 function tech(room: ApiShowtimeRoom): string {
-  return [room.imax ? 'IMAX' : '', String(room.format || '').trim()]
-    .filter(Boolean)
-    .join(' ') || 'Tradicional';
+  return (
+    [room.imax ? 'IMAX' : '', String(room.format || '').trim()]
+      .filter(Boolean)
+      .join(' ') || 'Tradicional'
+  );
 }
 
 /** Sales channel name from the checkout URL ("checkout.ingresso.com"). */

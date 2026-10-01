@@ -5,7 +5,7 @@ export default function Page() {
   return (
     <ClientOnly>
       <CatalogGate>
-      <HomeApp />
+        <HomeApp />
       </CatalogGate>
     </ClientOnly>
   );

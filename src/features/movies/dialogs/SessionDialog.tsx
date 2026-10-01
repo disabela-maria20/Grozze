@@ -4,14 +4,14 @@ import { useMovieShowtimesQuery } from '@/shared/api';
 import { cinema, dateLabel, movie } from '@/shared/lib/catalog';
 import { useAppStore } from '@/shared/store';
 import { MoviePoster } from '../components';
-import { Icon, LinkButton } from '@/shared/ui';
+import { FilmLoader, Icon, LinkButton } from '@/shared/ui';
 
 export function SessionDialog({ sessionId }: { sessionId: string }) {
   const content = useAppStore((s) => s.content);
   // Session ids start with the movie id (see `toShowtimes`)
   const movieId = String(sessionId || '').split('|')[0];
   const { data, isPending } = useMovieShowtimesQuery(movieId);
-  if (isPending) return <p className="text-muted">Carregando sessão…</p>;
+  if (isPending) return <FilmLoader label="Carregando sessão…" compact />;
   const s = data?.find((x) => x.id === sessionId);
   const m = s && movie(s.movie, content);
   if (!s || !m) return <p>Essa sessão não está disponível.</p>;

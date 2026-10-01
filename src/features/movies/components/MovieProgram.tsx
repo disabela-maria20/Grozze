@@ -17,7 +17,7 @@ import {
 import { useMovieShowtimesQuery } from '@/shared/api';
 import { useAppStore } from '@/shared/store';
 import type { Movie, Showtime } from '@/shared/lib/types';
-import { HeartButton, Rail, TextLink, Icon } from '@/shared/ui';
+import { FilmLoader, HeartButton, Icon, Rail, TextLink } from '@/shared/ui';
 
 function HourButtons({ rows }: { rows: Showtime[] }) {
   const openDialog = useAppStore((s) => s.openDialog);
@@ -310,17 +310,16 @@ export function MovieProgram({
           Programação
         </p>
         <h2 className="text-[32px] tracking-tight mb-5">Escolha sua sessão</h2>
-        <div
-          className="border border-lime/20 rounded-app p-6 bg-lime-soft"
-          role={showtimes.isPending ? 'status' : undefined}
-        >
-          <p className="text-lg m-0 mb-3">
-            {showtimes.isPending
-              ? 'Carregando sessões…'
-              : showtimes.isError
+        <div className="border border-lime/20 rounded-app p-6 bg-lime-soft">
+          {showtimes.isPending ? (
+            <FilmLoader label={`Buscando sessões em ${location.label}…`} />
+          ) : (
+            <p className="text-lg m-0 mb-3">
+              {showtimes.isError
                 ? 'Não foi possível carregar as sessões.'
                 : `Ainda não há sessões em ${location.label} para esse filme.`}
-          </p>
+            </p>
+          )}
           {showtimes.isError && (
             <TextLink onClick={() => showtimes.refetch()}>
               Tentar novamente

@@ -6,11 +6,10 @@ import {
   allCinemas,
   allMovies,
   baseMovie,
-  META,
   movie,
-  SESSIONS,
   statusLabel,
 } from '@/shared/lib/catalog';
+import { CATALOG_API_URL } from '@/shared/api';
 import { exportLeadsCsv, useAppStore, downloadFile } from '@/shared/store';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -295,18 +294,20 @@ function DataTab() {
 
   return (
     <div>
-      <h2 className="text-2xl mb-4">Snapshot e integrações</h2>
+      <h2 className="text-2xl mb-4">Catálogo e integrações</h2>
       <div className="p-6 max-sm:p-4.5 border border-line bg-surface rounded-app">
         <p className="m-0 mb-2">
           <strong>
-            {allBaseMovieIds().length} filmes · {allCinemas().length} cinemas ·{' '}
-            {SESSIONS.length} sessões
+            {allBaseMovieIds().length} filmes · {allCinemas().length} cinemas
           </strong>
         </p>
-        <p className="text-muted text-sm">{META.caveat}</p>
+        <p className="text-muted text-sm">
+          Filmes, cinemas e sessões vêm da API {CATALOG_API_URL} (cache de cinco
+          minutos). As sessões são carregadas por filme.
+        </p>
         <p className="text-xs text-faint mt-2.5">
-          Os títulos de Em breve foram incorporados à mesma coleção. Todas as
-          telas, incluindo a Home e o CMS, usam o mesmo resolvedor de conteúdo.
+          Os overrides publicados aqui se aplicam por cima dos dados da API, em
+          todas as telas, incluindo a Home.
         </p>
         <div className="flex items-center gap-2.5 flex-wrap mt-4.5">
           <Button onClick={exportContentJson}>Exportar overrides JSON</Button>

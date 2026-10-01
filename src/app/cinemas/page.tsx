@@ -8,7 +8,7 @@ export default function Page() {
   return (
     <ClientOnly>
       <CatalogGate>
-      <CinemasApp />
+        <CinemasApp />
       </CatalogGate>
     </ClientOnly>
   );

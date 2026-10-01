@@ -1,4 +1,4 @@
-// Server-safe: no React. The query hooks live in `shared/api` itself.
+// No React here, so server components can fetch too.
 export * from './apiTypes';
 export * from './CATALOG_API_URL';
 export * from './CATALOG_CACHE_SECONDS';

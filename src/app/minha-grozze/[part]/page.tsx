@@ -20,7 +20,7 @@ export default async function Page({
   return (
     <ClientOnly>
       <CatalogGate>
-      <AccountApp part={normalized} />
+        <AccountApp part={normalized} />
       </CatalogGate>
     </ClientOnly>
   );

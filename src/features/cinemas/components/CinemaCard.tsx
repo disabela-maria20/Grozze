@@ -30,8 +30,13 @@ export function CinemaCard({ c }: { c: Cinema }) {
           {km !== null
             ? `${km.toFixed(1).replace('.', ',')} km em linha reta · `
             : ''}
-          {c.roomCount} {c.roomCount === 1 ? 'sala' : 'salas'} ·{' '}
-          {c.tech.join(' · ')}
+          {[
+            c.city && `${c.city}, ${c.uf}`,
+            c.roomCount &&
+              `${c.roomCount} ${c.roomCount === 1 ? 'sala' : 'salas'}`,
+          ]
+            .filter(Boolean)
+            .join(' · ')}
         </small>
       </div>
       <HeartButton kind="cinema" id={c.id} path={`/cinema/${c.id}`} />

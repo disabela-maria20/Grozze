@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { CatalogGate, ClientOnly } from '@/shared/ui';
 import { MoviePage } from '@/features/movies';
-import { getMovies } from '@/shared/api/catalog';
+import { getMovies } from '@/shared/api';
 
 export async function generateMetadata({
   params,

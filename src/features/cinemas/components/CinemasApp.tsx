@@ -1,28 +1,27 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { normalize, sortedCinemas } from '@/shared/lib/catalog';
+import { inLocation, normalize, sortedCinemas } from '@/shared/lib/catalog';
 import { useAppStore } from '@/shared/store';
 import { CinemaCard } from './CinemaCard';
-import { Chip, EmptyState, Rail, Icon } from '@/shared/ui';
-const FORMATS = ['all', 'IMAX', 'VIP', '4DX', 'LED'];
+import { EmptyState, Icon } from '@/shared/ui';
 
 export function CinemasApp() {
   const cinemaSaved = useAppStore((s) => s.cinemaSaved);
   const location = useAppStore((s) => s.location);
   const [query, setQuery] = useState('');
-  const [format, setFormat] = useState('all');
   const [mapOpen, setMapOpen] = useState(false);
 
   const list = useMemo(() => {
-    return sortedCinemas(cinemaSaved, location.coords).filter(
-      (c) =>
-        (!query ||
-          normalize(c.name + ' ' + c.address).includes(normalize(query))) &&
-        (format === 'all' || c.tech.some((t) => t.includes(format)))
+    const q = normalize(query);
+    // Searching looks nationwide; the default list stays near the user
+    return sortedCinemas(cinemaSaved, location.coords).filter((c) =>
+      q
+        ? normalize([c.name, c.address, c.city].join(' ')).includes(q)
+        : cinemaSaved(c.id) || inLocation(c, location)
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query, format, location]);
+  }, [query, location]);
 
   return (
     <div className="page pt-[120px] max-sm:pt-[101px] pb-13 min-h-[65vh]">
@@ -38,18 +37,11 @@ export function CinemasApp() {
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Buscar cinema ou bairro"
-              aria-label="Buscar cinema ou bairro"
+              placeholder="Buscar cinema, bairro ou cidade"
+              aria-label="Buscar cinema, bairro ou cidade"
               className="min-w-0 w-full text-app-text border-0 outline-none bg-transparent text-base h-[50px] max-sm:h-[46px]"
             />
           </label>
-          <Rail className="flex-none w-auto max-sm:w-full">
-            {FORMATS.map((f) => (
-              <Chip key={f} active={format === f} onClick={() => setFormat(f)}>
-                {f === 'all' ? 'Todos' : f}
-              </Chip>
-            ))}
-          </Rail>
         </div>
         <div className="grid grid-cols-[0.95fr_1.05fr] max-md:grid-cols-1 gap-6.5">
           <div className="sticky top-[104px] h-[440px] max-md:static max-md:h-[280px] border border-line rounded-[20px] overflow-hidden bg-[radial-gradient(circle_at_50%_40%,#26382b,#0c140e)] grid place-items-center text-center">

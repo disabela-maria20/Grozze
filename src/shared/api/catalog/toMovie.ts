@@ -1,6 +1,7 @@
 import {
   dateLabel,
   distributorSlug,
+  nowInSaoPaulo,
   safeImage,
   validDate,
   videoId,
@@ -14,7 +15,9 @@ export function catalogImage(file: string | null | undefined): string {
   const f = String(file || '').trim();
   if (!f) return '';
   return safeImage(
-    /^https?:\/\//i.test(f) ? f : `${CATALOG_IMAGE_URL}/${encodeURIComponent(f)}`
+    /^https?:\/\//i.test(f)
+      ? f
+      : `${CATALOG_IMAGE_URL}/${encodeURIComponent(f)}`
   );
 }
 
@@ -40,7 +43,15 @@ const day = (v: string | null | undefined) => {
 
 export function toMovie(m: ApiMovie): Movie {
   const asset = (type: string) => m.assets?.find((a) => a.type === type);
-  const releaseDate = day(m.release_date) || day(m.first_showtime_date);
+  const released = day(m.release_date);
+  const firstShowtime = day(m.first_showtime_date);
+  const today = nowInSaoPaulo().date;
+  // A past release whose sessions haven't started yet is a re-release (or a
+  // return to theaters): what matters to the user is when sessions begin.
+  const releaseDate =
+    !released || (released < today && firstShowtime > today)
+      ? firstShowtime || released
+      : released;
   const poster = catalogImage(m.poster || asset('cartaz')?.image);
   return {
     id: String(m.id),
@@ -59,7 +70,6 @@ export function toMovie(m: ApiMovie): Movie {
     dist: distributorSlug(m.distributor),
     release: dateLabel(releaseDate),
     releaseDate,
-    firstShowtime: day(m.first_showtime_date),
     source: 'API do catálogo',
     poster,
     backdrop: catalogImage(asset('capa')?.image) || poster,

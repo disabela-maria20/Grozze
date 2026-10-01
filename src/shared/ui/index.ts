@@ -8,6 +8,7 @@ export * from './DialogShell';
 export * from './EmptyState';
 export * from './Field';
 export * from './FieldError';
+export * from './FilmLoader';
 export * from './GenrePicker';
 export * from './HeartButton';
 export * from './Icon';

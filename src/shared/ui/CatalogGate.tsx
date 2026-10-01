@@ -3,6 +3,7 @@
 import type { ReactNode } from 'react';
 import { useCatalogQuery } from '@/shared/api';
 import { Button } from './Button';
+import { FilmLoader } from './FilmLoader';
 
 /**
  * Renders children once the catalog (movies + cinemas) has loaded from the
@@ -32,9 +33,7 @@ export function CatalogGate({
       </Button>
     </div>
   ) : (
-    <p className="m-0" role="status">
-      Carregando filmes e cinemas…
-    </p>
+    <FilmLoader label="Carregando filmes e cinemas…" compact={compact} />
   );
 
   if (compact) return <div className="text-muted text-sm">{body}</div>;

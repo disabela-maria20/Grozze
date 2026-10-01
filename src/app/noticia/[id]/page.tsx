@@ -26,7 +26,7 @@ export default async function Page({
   return (
     <ClientOnly>
       <CatalogGate>
-      <ArticleApp id={id} />
+        <ArticleApp id={id} />
       </CatalogGate>
     </ClientOnly>
   );

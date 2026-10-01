@@ -1,5 +1,9 @@
 /** Current date and time in São Paulo, the catalog's reference timezone. */
-export function nowInSaoPaulo(): { date: string; hour: string; minute: string } {
+export function nowInSaoPaulo(): {
+  date: string;
+  hour: string;
+  minute: string;
+} {
   const parts = new Intl.DateTimeFormat('en-CA', {
     timeZone: 'America/Sao_Paulo',
     year: 'numeric',
