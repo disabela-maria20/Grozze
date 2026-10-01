@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { ClientOnly } from '@/shared/ui';
+import { CatalogGate, ClientOnly } from '@/shared/ui';
 import { ArticleApp } from '@/features/news';
 import { DISTRIBUTORS, NEWS } from '@/shared/lib/catalog';
 
@@ -33,7 +33,9 @@ export default async function Page({
   const { slug, id } = await params;
   return (
     <ClientOnly>
+      <CatalogGate>
       <ArticleApp id={id} scope={slug} />
+      </CatalogGate>
     </ClientOnly>
   );
 }

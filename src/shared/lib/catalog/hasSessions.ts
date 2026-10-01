@@ -1,4 +1,4 @@
-import { SESSIONS } from './SESSIONS';
+import { baseMovies } from './baseMovies';
 
-export const hasSessions = (id: string): boolean =>
-  SESSIONS.some((s) => s.movie === String(id));
+/** The API only lists movies that have upcoming sessions. */
+export const hasSessions = (id: string): boolean => baseMovies.has(String(id));

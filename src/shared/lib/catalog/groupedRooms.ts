@@ -15,7 +15,9 @@ export function groupedRooms(
     (pref.language && pref.language !== 'Todos' && s.lang === pref.language
       ? 2
       : 0) +
-    (pref.format && pref.format !== 'Todos' && s.tech === pref.format ? 1 : 0);
+    (pref.format && pref.format !== 'Todos' && s.tech.includes(pref.format)
+      ? 1
+      : 0);
   return [...map.values()]
     .sort(
       (a, b) =>

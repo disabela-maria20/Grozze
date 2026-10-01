@@ -1,14 +1,14 @@
 import type { Movie, MovieStatus } from '../types';
-import { META } from './META';
-import { SESSIONS } from './SESSIONS';
 import { hasSessions } from './hasSessions';
+import { nowInSaoPaulo } from './nowInSaoPaulo';
 import { validDate } from './validDate';
 
 export function status(m: Movie | null | undefined): MovieStatus {
   if (!m) return 'soon';
-  if (m.presale && SESSIONS.some((s) => s.movie === m.id)) return 'presale';
-  if (validDate(m.releaseDate) && m.releaseDate > META.referenceDate) {
-    return hasSessions(m.id) ? 'presale' : 'soon';
-  }
-  return 'now';
+  const today = nowInSaoPaulo().date;
+  const upcoming =
+    (validDate(m.releaseDate) && m.releaseDate > today) ||
+    (validDate(m.firstShowtime) && m.firstShowtime! > today);
+  if (!upcoming) return 'now';
+  return hasSessions(m.id) ? 'presale' : 'soon';
 }

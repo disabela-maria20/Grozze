@@ -1,17 +1,3 @@
-export interface Meta {
-  schemaVersion: number;
-  snapshotDate: string;
-  referenceDate: string;
-  observedDate: string;
-  cineWeekFrom: string;
-  cineWeekTo: string;
-  city: string;
-  uf: string;
-  mode: string;
-  sourceFile: string;
-  caveat: string;
-}
-
 export interface ImdbInfo {
   score?: string;
   votes?: string;
@@ -21,7 +7,8 @@ export interface ImdbInfo {
 export interface RawMovie {
   id: string;
   t: string;
-  status: string;
+  /** Legacy snapshot field; use `status(m)` instead. */
+  status?: string;
   genre: string;
   dur: string;
   rating?: string;
@@ -36,6 +23,8 @@ export interface RawMovie {
   tag?: string;
   spSessions?: number;
   releaseDate: string;
+  /** First date with a scheduled session (YYYY-MM-DD), when known. */
+  firstShowtime?: string;
   source?: string;
   sourceAsOf?: string;
   poster?: string;
@@ -52,11 +41,14 @@ export interface Cinema {
   name: string;
   network: string;
   address: string;
-  distance: string;
-  lat: number;
-  lng: number;
+  neighborhood: string;
+  city: string;
+  uf: string;
+  lat: number | null;
+  lng: number | null;
   roomCount: number;
-  tech: string[];
+  phones: string[];
+  siteUrl: string;
 }
 
 export interface Showtime {
@@ -65,15 +57,12 @@ export interface Showtime {
   theater: string;
   date: string;
   time: string;
-  seller: string;
   tech: string;
   lang: string;
-  sub: boolean;
   room: string;
-  observed: boolean;
-  presale: boolean;
-  simulated: boolean;
-  sellers: string[];
+  /** Sales channel label, derived from the purchase URL host. */
+  seller: string;
+  purchaseUrl: string;
 }
 
 export interface Distributor {

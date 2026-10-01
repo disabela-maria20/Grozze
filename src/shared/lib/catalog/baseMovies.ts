@@ -1,6 +1,4 @@
-import moviesJson from '@/data/movies.json';
 import type { Movie } from '../types';
 
-export const baseMovies = new Map<string, Movie>(
-  (moviesJson as Movie[]).map((m) => [String(m.id), Object.freeze({ ...m })])
-);
+/** Movies loaded from the catalog API. Filled by `setCatalog`. */
+export const baseMovies = new Map<string, Movie>();

@@ -1,5 +1,6 @@
 export * from './Button';
 export * from './buttonStyles';
+export * from './CatalogGate';
 export * from './Chip';
 export * from './ClientOnly';
 export * from './cx';

@@ -9,11 +9,12 @@ import {
   filterGroupOptions,
   filterRows,
   groupedRooms,
-  hasSessions,
+  inLocation,
   movieDates,
   validDate,
   type SessionFilterState,
 } from '@/shared/lib/catalog';
+import { useMovieShowtimesQuery } from '@/shared/api';
 import { useAppStore } from '@/shared/store';
 import type { Movie, Showtime } from '@/shared/lib/types';
 import { HeartButton, Rail, TextLink, Icon } from '@/shared/ui';
@@ -136,11 +137,11 @@ function FavoriteDiscovery() {
 }
 
 function ProgramLists({
-  movieId,
+  rows: allRows,
   filter,
   scope,
 }: {
-  movieId: string;
+  rows: Showtime[];
   filter: SessionFilterState;
   scope?: string | null;
 }) {
@@ -148,7 +149,7 @@ function ProgramLists({
   const cinemaSaved = useAppStore((s) => s.cinemaSaved);
   const profile = useAppStore((s) => s.profile());
 
-  const rows = filterRows(movieId, filter);
+  const rows = filterRows(allRows, filter);
   const groups = new Map<string, Showtime[]>();
   rows.forEach((s) => {
     if (!groups.has(s.theater)) groups.set(s.theater, []);
@@ -230,19 +231,19 @@ function ProgramLists({
 }
 
 function FilterGroup({
-  movieId,
+  rows: allRows,
   filter,
   onChange,
   filterKey,
   label,
 }: {
-  movieId: string;
+  rows: Showtime[];
   filter: SessionFilterState;
   onChange: (key: keyof SessionFilterState, value: string) => void;
   filterKey: 'tech' | 'lang' | 'cinema';
   label: string;
 }) {
-  const options = filterGroupOptions(movieId, filter, filterKey);
+  const options = filterGroupOptions(allRows, filter, filterKey);
   if (!options) return null;
   return (
     <div className="mb-5.5">
@@ -280,27 +281,52 @@ export function MovieProgram({
   m: Movie;
   scope?: string | null;
 }) {
-  const [filter, setFilter] = useState<SessionFilterState>(() =>
-    defaultFilmState(m.id)
-  );
+  const location = useAppStore((s) => s.location);
+  const showtimes = useMovieShowtimesQuery(m.id);
+  const [state, setFilter] = useState<SessionFilterState>(defaultFilmState);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const dates = useMemo(() => movieDates(m.id), [m.id]);
+  // The API is nationwide: keep only the cinemas near the user
+  const rows = useMemo(
+    () =>
+      (showtimes.data || []).filter((s) => {
+        const c = cinema(s.theater);
+        return !!c && inLocation(c, location);
+      }),
+    [showtimes.data, location]
+  );
+  const dates = useMemo(() => movieDates(rows), [rows]);
+  // Until a date is picked (or if it's gone after a refetch), use the first
+  const filter = dates.includes(state.date)
+    ? state
+    : { ...state, date: dates[0] || '' };
 
   const setFilterKey = (key: keyof SessionFilterState, value: string) =>
-    setFilter((f) => ({ ...f, [key]: value }));
+    setFilter({ ...filter, [key]: value });
 
-  if (!hasSessions(m.id)) {
+  if (!rows.length) {
     return (
       <section id="sessoes" className="py-8 scroll-mt-[170px]">
         <p className="text-[11px] tracking-[0.17em] uppercase font-extrabold text-lime mb-2">
           Programação
         </p>
         <h2 className="text-[32px] tracking-tight mb-5">Escolha sua sessão</h2>
-        <div className="border border-lime/20 rounded-app p-6 bg-lime-soft">
+        <div
+          className="border border-lime/20 rounded-app p-6 bg-lime-soft"
+          role={showtimes.isPending ? 'status' : undefined}
+        >
           <p className="text-lg m-0 mb-3">
-            Ainda não há sessões disponíveis para esse filme.
+            {showtimes.isPending
+              ? 'Carregando sessões…'
+              : showtimes.isError
+                ? 'Não foi possível carregar as sessões.'
+                : `Ainda não há sessões em ${location.label} para esse filme.`}
           </p>
-          {validDate(m.releaseDate) && (
+          {showtimes.isError && (
+            <TextLink onClick={() => showtimes.refetch()}>
+              Tentar novamente
+            </TextLink>
+          )}
+          {showtimes.isSuccess && validDate(m.releaseDate) && (
             <div className="inline-flex items-center gap-3 px-3.5 py-2.5 border border-lime/30 bg-lime-soft rounded-[14px]">
               <small className="text-[#c3cfc1] text-[11px] uppercase tracking-[0.12em]">
                 Estreia
@@ -346,21 +372,21 @@ export function MovieProgram({
         >
           <h3 className="text-base mb-4.5 max-sm:hidden">Filtrar sessões</h3>
           <FilterGroup
-            movieId={m.id}
+            rows={rows}
             filter={filter}
             onChange={setFilterKey}
             filterKey="tech"
             label="Experiência"
           />
           <FilterGroup
-            movieId={m.id}
+            rows={rows}
             filter={filter}
             onChange={setFilterKey}
             filterKey="lang"
             label="Idioma"
           />
           <FilterGroup
-            movieId={m.id}
+            rows={rows}
             filter={filter}
             onChange={setFilterKey}
             filterKey="cinema"
@@ -368,12 +394,12 @@ export function MovieProgram({
           />
           <TextLink
             onClick={() =>
-              setFilter((f) => ({
-                ...f,
+              setFilter({
+                ...filter,
                 tech: 'Todos',
                 lang: 'Todos',
                 cinema: 'Todos',
-              }))
+              })
             }
           >
             Limpar filtros
@@ -409,7 +435,7 @@ export function MovieProgram({
             })}
           </Rail>
           <div className="mt-4">
-            <ProgramLists movieId={m.id} filter={filter} scope={scope} />
+            <ProgramLists rows={rows} filter={filter} scope={scope} />
           </div>
         </div>
       </div>

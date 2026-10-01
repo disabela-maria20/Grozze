@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { ClientOnly } from '@/shared/ui';
+import { CatalogGate, ClientOnly } from '@/shared/ui';
 import { DistributorPage } from '@/features/distributors';
 import { DISTRIBUTORS } from '@/shared/lib/catalog';
 
@@ -27,7 +27,9 @@ export default async function Page({
   const { slug } = await params;
   return (
     <ClientOnly>
+      <CatalogGate>
       <DistributorPage slug={slug} />
+      </CatalogGate>
     </ClientOnly>
   );
 }

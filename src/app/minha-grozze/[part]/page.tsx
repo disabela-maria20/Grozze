@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { ClientOnly } from '@/shared/ui';
+import { CatalogGate, ClientOnly } from '@/shared/ui';
 import { AccountApp } from '@/features/account';
 
 export function generateStaticParams() {
@@ -19,7 +19,9 @@ export default async function Page({
   const normalized = part === 'alertas' ? 'preferencias' : part;
   return (
     <ClientOnly>
+      <CatalogGate>
       <AccountApp part={normalized} />
+      </CatalogGate>
     </ClientOnly>
   );
 }

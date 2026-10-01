@@ -1,17 +1,21 @@
 'use client';
 
-import { cinema, dateLabel, movie, sessionIndex } from '@/shared/lib/catalog';
+import { useMovieShowtimesQuery } from '@/shared/api';
+import { cinema, dateLabel, movie } from '@/shared/lib/catalog';
 import { useAppStore } from '@/shared/store';
 import { MoviePoster } from '../components';
-import { Button, Icon } from '@/shared/ui';
+import { Icon, LinkButton } from '@/shared/ui';
 
 export function SessionDialog({ sessionId }: { sessionId: string }) {
   const content = useAppStore((s) => s.content);
-  const openDialog = useAppStore((s) => s.openDialog);
-  const s = sessionIndex.get(sessionId);
-  if (!s) return <p>Essa sessão não está disponível.</p>;
-  const m = movie(s.movie, content)!;
-  const c = cinema(s.theater)!;
+  // Session ids start with the movie id (see `toShowtimes`)
+  const movieId = String(sessionId || '').split('|')[0];
+  const { data, isPending } = useMovieShowtimesQuery(movieId);
+  if (isPending) return <p className="text-muted">Carregando sessão…</p>;
+  const s = data?.find((x) => x.id === sessionId);
+  const m = s && movie(s.movie, content);
+  if (!s || !m) return <p>Essa sessão não está disponível.</p>;
+  const c = cinema(s.theater);
 
   return (
     <div>
@@ -25,7 +29,7 @@ export function SessionDialog({ sessionId }: { sessionId: string }) {
         <MoviePoster m={m} className="w-[62px] shrink-0 rounded-[9px]" />
         <div>
           <h3 className="text-[22px] leading-[1.2] m-0 mb-1">{m.t}</h3>
-          <p className="text-muted m-0 text-[13px]">{c.name}</p>
+          <p className="text-muted m-0 text-[13px]">{c?.name}</p>
         </div>
       </div>
       <dl className="grid grid-cols-2 gap-4 my-6">
@@ -35,7 +39,7 @@ export function SessionDialog({ sessionId }: { sessionId: string }) {
           ['Sala', s.room],
           ['Experiência', s.tech],
           ['Idioma', s.lang],
-          ['Cinema', c.name],
+          ['Cinema', c?.name || '—'],
         ].map(([dt, dd]) => (
           <div key={dt}>
             <dt className="text-[11px] uppercase text-faint tracking-wide">
@@ -45,23 +49,20 @@ export function SessionDialog({ sessionId }: { sessionId: string }) {
           </div>
         ))}
       </dl>
-      <div className="flex flex-wrap items-center gap-2.5">
-        {s.sellers.map((seller) => (
-          <Button
-            key={seller}
-            primary
-            onClick={() => openDialog('partner', { seller })}
-          >
-            {seller === 'ingresso' ? 'Ingresso.com' : seller}{' '}
-            <Icon name="arrow" className="w-4 h-4" />
-          </Button>
-        ))}
-      </div>
+      {s.purchaseUrl && (
+        <LinkButton
+          primary
+          href={s.purchaseUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Comprar {s.seller ? `na ${s.seller}` : 'ingresso'}{' '}
+          <Icon name="arrow" className="w-4 h-4" />
+        </LinkButton>
+      )}
       <div className="border border-lime/25 bg-lime-soft p-3.5 rounded-[13px] text-xs text-[#c5d2be] mt-4">
-        {s.simulated
-          ? 'Horário replicado para simular esta data.'
-          : 'Sessão observada no snapshot de setembro/2026.'}{' '}
-        A compra do ingresso é feita no canal de venda.
+        A compra do ingresso é feita no canal de venda. Horários sujeitos a
+        alteração pelo cinema.
       </div>
     </div>
   );

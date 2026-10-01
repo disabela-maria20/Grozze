@@ -2,9 +2,9 @@
 
 import type { ReactNode } from 'react';
 import { useAppStore } from '@/shared/store';
-import { DialogShell } from '@/shared/ui';
+import { CatalogGate, DialogShell } from '@/shared/ui';
 import { AuthDialog } from '@/features/auth';
-import { SessionDialog, TrailerDialog, PartnerDialog } from '@/features/movies';
+import { SessionDialog, TrailerDialog } from '@/features/movies';
 import { PricesDialog } from '@/features/cinemas';
 import { AccountHubDialog } from '@/features/account';
 import {
@@ -24,9 +24,11 @@ const LABELS: Record<string, string> = {
   now: 'Começando agora',
   search: 'Buscar',
   prices: 'Preços',
-  partner: 'Simulação de encaminhamento',
   'account-hub': 'Conta neste hub',
 };
+
+/** Dialogs that don't read the catalog open without waiting for the API. */
+const CATALOG_FREE = new Set(['location', 'consent', 'menu']);
 
 export function DialogRoot() {
   const dialog = useAppStore((s) => s.dialog);
@@ -64,9 +66,6 @@ export function DialogRoot() {
     case 'prices':
       content = <PricesDialog cinemaId={props.cinemaId as string} />;
       break;
-    case 'partner':
-      content = <PartnerDialog seller={props.seller as string} />;
-      break;
     case 'account-hub':
       content = <AccountHubDialog scope={props.scope as string} />;
       break;
@@ -82,7 +81,11 @@ export function DialogRoot() {
       video={dialog.id === 'trailer'}
       menu={dialog.id === 'menu'}
     >
-      {content}
+      {CATALOG_FREE.has(dialog.id) ? (
+        content
+      ) : (
+        <CatalogGate compact>{content}</CatalogGate>
+      )}
     </DialogShell>
   );
 }

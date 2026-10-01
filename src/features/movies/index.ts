@@ -7,6 +7,5 @@ export * from './components/MovieMeta';
 export * from './components/MoviePage';
 export * from './components/MoviePoster';
 export * from './components/MovieSection';
-export * from './dialogs/PartnerDialog';
 export * from './dialogs/SessionDialog';
 export * from './dialogs/TrailerDialog';

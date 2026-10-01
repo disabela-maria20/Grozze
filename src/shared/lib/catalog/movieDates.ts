@@ -1,8 +1,6 @@
-import { SESSIONS } from './SESSIONS';
+import type { Showtime } from '../types';
 import { unique } from './unique';
 
-export function movieDates(id: string): string[] {
-  return unique(
-    SESSIONS.filter((s) => s.movie === id).map((s) => s.date)
-  ).sort();
+export function movieDates(rows: Showtime[]): string[] {
+  return unique(rows.map((s) => s.date)).sort();
 }

@@ -1,11 +1,7 @@
 import type { Metadata } from 'next';
-import { ClientOnly } from '@/shared/ui';
+import { CatalogGate, ClientOnly } from '@/shared/ui';
 import { CinemaPage } from '@/features/cinemas';
-import { allCinemas, cinema } from '@/shared/lib/catalog';
-
-export function generateStaticParams() {
-  return allCinemas().map((c) => ({ id: c.id }));
-}
+import { getCinema } from '@/shared/api/catalog';
 
 export async function generateMetadata({
   params,
@@ -13,7 +9,7 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  const c = cinema(id);
+  const c = await getCinema(id).catch(() => null);
   return { title: c?.name, description: c?.address };
 }
 
@@ -25,7 +21,9 @@ export default async function Page({
   const { id } = await params;
   return (
     <ClientOnly>
-      <CinemaPage id={id} />
+      <CatalogGate>
+        <CinemaPage id={id} />
+      </CatalogGate>
     </ClientOnly>
   );
 }

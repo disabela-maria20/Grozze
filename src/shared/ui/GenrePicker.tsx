@@ -1,7 +1,7 @@
 'use client';
 
 import type { UseFormRegisterReturn } from 'react-hook-form';
-import { GENRES } from '@/shared/lib/catalog';
+import { genres } from '@/shared/lib/catalog';
 import { FieldError } from './FieldError';
 
 /** Multi-select of catalog genres rendered as toggle chips (checkboxes). */
@@ -18,7 +18,7 @@ export function GenrePicker({
     <fieldset className="mb-4 min-w-0">
       <legend className="text-[#b4c0b6] text-[13px] mb-2">{label}</legend>
       <div className="flex flex-wrap gap-2">
-        {GENRES.map((genre) => (
+        {genres().map((genre) => (
           <label key={genre} className="cursor-pointer">
             <input
               type="checkbox"

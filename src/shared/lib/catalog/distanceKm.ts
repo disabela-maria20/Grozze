@@ -4,7 +4,7 @@ export function distanceKm(
   c: Cinema,
   pos?: { lat: number; lng: number } | null
 ): number | null {
-  if (!pos) return null;
+  if (!pos || c.lat === null || c.lng === null) return null;
   const rad = (d: number) => (d * Math.PI) / 180;
   const a =
     Math.sin(rad(c.lat - pos.lat) / 2) ** 2 +
