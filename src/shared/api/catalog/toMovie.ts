@@ -36,6 +36,30 @@ function rating(value: string | null): string {
   return text.match(/^\d+/)?.[0] || '';
 }
 
+/** Spelling variants the API uses for the same genre. */
+const GENRE_ALIASES: Record<string, string> = {
+  'ficção-científica': 'Ficção científica',
+};
+
+/**
+ * Cleans the API genre list into "Drama, Terror": accepts plain lists and
+ * JSON-array strings ('["Drama", "Terror"]'), capitalizes ("animação" →
+ * "Animação"), unifies spelling variants and drops duplicates.
+ */
+function genres(value: string | null): string {
+  const names = String(value || '')
+    .replace(/[[\]"]/g, '')
+    .split(',')
+    .map((name) => name.trim().replace(/\s+/g, ' '))
+    .filter(Boolean)
+    .map(
+      (name) =>
+        GENRE_ALIASES[name.toLocaleLowerCase('pt-BR')] ||
+        name.charAt(0).toLocaleUpperCase('pt-BR') + name.slice(1)
+    );
+  return [...new Set(names)].join(', ');
+}
+
 /** "YYYY-MM-DD HH:mm:ss" → "YYYY-MM-DD"; '' when missing or invalid. */
 const day = (value: string | null | undefined) => {
   const date = String(value || '').slice(0, 10);
@@ -59,7 +83,7 @@ export function toMovie(m: ApiMovie): Movie {
   return {
     id: String(m.id),
     t: m.title.trim(),
-    genre: (m.genres || '').trim(),
+    genre: genres(m.genres),
     dur: duration(m.duration),
     rating: rating(m.age_rating),
     syn: (m.synopsis || '').trim(),

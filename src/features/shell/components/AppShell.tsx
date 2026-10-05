@@ -7,12 +7,13 @@ import { Footer } from './Footer';
 import { BottomNav } from './BottomNav';
 import { CookieBanner } from './CookieBanner';
 import { DialogRoot } from './DialogRoot';
+import { SessionBootstrap } from './SessionBootstrap';
 import { Toast } from './Toast';
 
 /**
  * Site chrome, mounted once in the root layout. Only the chrome itself
  * (header, footer, dialogs, toast) skips SSR — it depends on client-only
- * state (login, favorites, consent) read from localStorage. Page content
+ * state (login, favorites, consent) read from the browser. Page content
  * (`children`) is rendered normally: static pages (legal, FAQ) stay real
  * server-rendered HTML, while personalization-heavy feature pages opt into
  * `ClientOnly` themselves (see `shared/ui/ClientOnly`), same split the
@@ -21,6 +22,9 @@ import { Toast } from './Toast';
 export function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <QueryProvider>
+      <ClientOnly>
+        <SessionBootstrap />
+      </ClientOnly>
       <ClientOnly>
         <Header />
       </ClientOnly>

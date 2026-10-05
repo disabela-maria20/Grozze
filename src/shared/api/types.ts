@@ -1,6 +1,5 @@
 /**
  * Contratos (payloads e respostas) da API do Grozze.
- * Os mesmos tipos valem para o mock (`./mock`) e para o backend real.
  */
 import type {
   AuditEntry,
@@ -29,42 +28,7 @@ export interface ApiErrorBody {
   error: { code: string; message: string };
 }
 
-/* ---------- Autenticação ---------- */
-
-export interface LoginRequest {
-  email: string;
-  password: string;
-}
-
-export interface RegisterRequest {
-  name: string;
-  email: string;
-  password: string;
-  favoriteGenres: string[];
-  marketingConsent: boolean;
-}
-
-export interface AuthResponse {
-  token: string;
-  user: Profile;
-}
-
-/* ---------- Conta ---------- */
-
-export type AvatarId = Profile['avatar'];
-
-export interface UpdateMeRequest {
-  name?: string;
-  avatar?: AvatarId;
-  preferences?: Preferences;
-}
-
-export type FavoriteKind = 'movies' | 'cinemas';
-
-export interface FavoritesResponse {
-  savedMovies: string[];
-  savedCinemas: string[];
-}
+/* Autenticação, conta e favoritos: ver `./grozze/grozzeTypes` (API real). */
 
 /* ---------- Leads e contato ---------- */
 

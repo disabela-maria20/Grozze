@@ -116,6 +116,8 @@ export interface Preferences {
 export interface Profile {
   name: string;
   email: string;
+  /** From the Grozze API; profiles saved before login existed don't have it. */
+  role?: 'user' | 'admin';
   savedMovies: string[];
   savedCinemas: string[];
   preferences: Preferences;

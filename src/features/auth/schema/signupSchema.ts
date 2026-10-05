@@ -1,14 +1,15 @@
-import { emailField, nameField } from '@/shared/lib/validation';
+import {
+  emailField,
+  nameField,
+  newPasswordField,
+} from '@/shared/lib/validation';
 import { z } from 'zod';
 
 export const signupSchema = z
   .object({
     name: nameField,
     email: emailField,
-    password: z
-      .string()
-      .min(8, 'A senha deve ter pelo menos 8 caracteres.')
-      .max(128, 'A senha deve possuir no máximo 128 caracteres.'),
+    password: newPasswordField,
     confirmPassword: z.string().min(1, 'Confirme sua senha.'),
     favoriteGenres: z.array(z.string()),
     marketingConsent: z.boolean(),

@@ -5,5 +5,4 @@ export * from './KEYS';
 export * from './PendingFavorite';
 export * from './safeStorage';
 export * from './storage';
-export * from './tabStorage';
 export * from './useAppStore';

@@ -1,15 +1,17 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useLoginMutation } from '../api';
+import { useLoginMutation, useSignupMutation } from '../api';
 import {
   loginSchema,
   type LoginValues,
   signupSchema,
   type SignupValues,
 } from '../schema';
+import { useAppStore } from '@/shared/store';
 import { Button, Field, GenrePicker, TextLink, inputClass } from '@/shared/ui';
 
 const SIGNUP_DEFAULT_VALUES: SignupValues = {
@@ -39,6 +41,7 @@ const COPY = {
 
 function LoginForm() {
   const loginMutation = useLoginMutation();
+  const closeDialog = useAppStore((s) => s.closeDialog);
   const {
     register,
     handleSubmit,
@@ -72,6 +75,15 @@ function LoginForm() {
           {...register('password')}
         />
       </Field>
+      <p className="-mt-1 mb-4 text-right">
+        <Link
+          href="/esqueci-senha"
+          onClick={() => closeDialog()}
+          className="text-[13px] text-muted underline underline-offset-2 hover:text-lime"
+        >
+          Esqueci minha senha
+        </Link>
+      </p>
       <Button primary full type="submit" disabled={loginMutation.isPending}>
         {loginMutation.isPending ? 'Entrando…' : 'Entrar'}
       </Button>
@@ -80,7 +92,7 @@ function LoginForm() {
 }
 
 function SignupForm() {
-  const loginMutation = useLoginMutation();
+  const signupMutation = useSignupMutation();
   const {
     register,
     handleSubmit,
@@ -93,13 +105,12 @@ function SignupForm() {
   // `confirmPassword` only matters for validation and is not sent.
   const submitSignup = handleSubmit(
     ({ name, email, password, favoriteGenres, marketingConsent }) =>
-      loginMutation.mutate({
+      signupMutation.mutate({
         name,
         email,
         password,
         favoriteGenres,
         marketingConsent,
-        signup: true,
       })
   );
 
@@ -154,8 +165,8 @@ function SignupForm() {
         />
         <span>Quero receber novidades (opcional).</span>
       </label>
-      <Button primary full type="submit" disabled={loginMutation.isPending}>
-        {loginMutation.isPending ? 'Criando conta…' : 'Criar conta'}
+      <Button primary full type="submit" disabled={signupMutation.isPending}>
+        {signupMutation.isPending ? 'Criando conta…' : 'Criar conta'}
       </Button>
     </form>
   );

@@ -1,5 +1,13 @@
 'use client';
 
+// Straight from the folder, not the '@/shared/api' barrel: that one imports
+// React providers that import this store back
+import {
+  grozzeAuth,
+  type GrozzeFavorites,
+  type GrozzeUser,
+  toProfile,
+} from '@/shared/api/grozze';
 import { validateOverride } from '@/shared/lib/catalog';
 import type {
   AuditEntry,
@@ -8,7 +16,6 @@ import type {
   Lead,
   LocationState,
   MovieOverride,
-  Preferences,
   Profile,
 } from '@/shared/lib/types';
 import { create } from 'zustand';
@@ -16,7 +23,6 @@ import { type DialogState } from './DialogState';
 import { KEYS } from './KEYS';
 import { type PendingFavorite } from './PendingFavorite';
 import { storage } from './storage';
-import { tabStorage } from './tabStorage';
 
 /** Maximum number of entries kept in the CMS audit log. */
 const AUDIT_LOG_LIMIT = 250;
@@ -24,11 +30,6 @@ const AUDIT_LOG_LIMIT = 250;
 /** Normalizes an unknown value into a de-duplicated list of string ids. */
 const arrayIds = (value: unknown): string[] =>
   Array.isArray(value) ? [...new Set(value.map((id) => String(id)))] : [];
-
-const defaultPreferences = (): Preferences => ({
-  language: 'Todos',
-  format: 'Todos',
-});
 
 /** The only selectable city; also what gets persisted for geolocation. */
 const defaultLocation = (): LocationState => ({
@@ -57,33 +58,45 @@ const LEGACY_OVERRIDE_FIELDS: Record<
 };
 
 /**
- * Reads the stored profiles, importing the single user of the legacy app
- * (`grozzeUser` + its saved movies/cinemas) when it isn't registered yet.
+ * Favorites saved in this browser before they lived in the account: the
+ * profiles of the local-only login and, before that, the legacy app's single
+ * user (`grozzeUser`). Returns the ones of `email` and forgets them locally,
+ * since from now on the account keeps them.
  */
-function migrateProfiles(): Record<string, Profile> {
-  let profiles = storage.read<Record<string, Profile>>(KEYS.profiles, {});
-  if (!profiles || typeof profiles !== 'object' || Array.isArray(profiles))
-    profiles = {};
-  const legacyUser = storage.read<{ email?: string; name?: string } | null>(
+function takeLocalFavorites(email: string): GrozzeFavorites {
+  const profiles = storage.read<Record<string, Profile> | null>(
+    KEYS.profiles,
+    {}
+  );
+  const local =
+    profiles && typeof profiles === 'object' && Object.hasOwn(profiles, email)
+      ? profiles[email]
+      : null;
+  const legacyUser = storage.read<{ email?: string } | null>(
     'grozzeUser',
     null
   );
-  if (
-    legacyUser?.email &&
-    !Object.hasOwn(profiles, legacyUser.email.toLowerCase())
-  ) {
-    const email = legacyUser.email.toLowerCase();
-    profiles[email] = {
-      name: String(legacyUser.name || email.split('@')[0]),
-      email,
-      savedMovies: arrayIds(storage.read('grozzeSaved', [])),
-      savedCinemas: arrayIds(storage.read('grozzeFavCinemas', [])),
-      preferences: defaultPreferences(),
-      avatar: 'initial',
-    };
+  const isLegacyUser = legacyUser?.email?.toLowerCase() === email;
+  const favorites = {
+    movies: arrayIds([
+      ...arrayIds(local?.savedMovies),
+      ...(isLegacyUser ? arrayIds(storage.read('grozzeSaved', [])) : []),
+    ]),
+    cinemas: arrayIds([
+      ...arrayIds(local?.savedCinemas),
+      ...(isLegacyUser ? arrayIds(storage.read('grozzeFavCinemas', [])) : []),
+    ]),
+  };
+  if (local && profiles) {
+    delete profiles[email];
     storage.write(KEYS.profiles, profiles);
   }
-  return profiles;
+  if (isLegacyUser) {
+    storage.remove('grozzeUser');
+    storage.remove('grozzeSaved');
+    storage.remove('grozzeFavCinemas');
+  }
+  return favorites;
 }
 
 /** A movie entry of the legacy CMS, keyed by its old field names. */
@@ -120,9 +133,17 @@ function migrateContent(): ContentState {
   return content;
 }
 
+/**
+ * `loading` while the session is restored on page load (the access token
+ * lives in memory, so every load asks the API); then `guest` or
+ * `authenticated`.
+ */
+export type AuthStatus = 'loading' | 'guest' | 'authenticated';
+
 interface AppState {
-  profiles: Record<string, Profile>;
-  userKey: string | null;
+  /** Logged-in user (from the Grozze API), in the shape the screens use. */
+  account: Profile | null;
+  authStatus: AuthStatus;
   consent: ConsentState | null;
   content: ContentState;
   location: LocationState;
@@ -152,17 +173,18 @@ interface AppState {
     force?: boolean | null
   ) => void;
 
+  /** Logs the user in the UI after a successful login or sign-up. */
   completeLogin: (
-    name: string,
-    email: string,
-    signup?: boolean,
-    marketingConsent?: boolean,
-    favoriteGenres?: string[]
-  ) => { ok: boolean; hadPending: boolean };
+    user: GrozzeUser,
+    options?: { signup?: boolean; marketingConsent?: boolean }
+  ) => void;
+  /** Session restored on page load (`null` = not logged in). */
+  restoreSession: (user: GrozzeUser | null) => void;
+  /** Refreshes the account after the API changed it (profile edits). */
+  setAccount: (user: GrozzeUser) => void;
   logout: () => void;
-  updateProfileName: (name: string) => void;
-  updatePreferences: (prefs: Preferences) => void;
-  setAvatar: (avatar: Profile['avatar']) => void;
+  /** The API refused to renew the session (expired or revoked elsewhere). */
+  sessionExpired: () => void;
 
   saveConsent: (optional: boolean) => void;
   setLocationManual: () => void;
@@ -196,27 +218,20 @@ function logAudit(action: string, id: string, fields: string[] = []) {
   return auditLog.slice(0, AUDIT_LOG_LIMIT);
 }
 
-const initialProfiles = migrateProfiles();
-
 const initialContent = migrateContent();
 
-/** The login lasts for the browser tab (sessionStorage). */
-const initialSession = tabStorage.read<{ email: string } | null>(
-  KEYS.session,
-  null
-);
-
-const initialUserKey =
-  initialSession?.email && Object.hasOwn(initialProfiles, initialSession.email)
-    ? initialSession.email
-    : null;
-
-export const useAppStore = create<AppState>((set, get) => {
-  /** Replaces a profile (keyed by its email), persists and publishes the map. */
-  const saveProfile = (updated: Profile) => {
-    const profiles = { ...get().profiles, [updated.email]: updated };
-    storage.write(KEYS.profiles, profiles);
-    set({ profiles });
+export const useAppStore =create<AppState>((set, get) => {
+  /** Replaces the saved ids of the logged-in account. */
+  const setFavorites = (favorites: GrozzeFavorites) => {
+    const account = get().account;
+    if (!account) return;
+    set({
+      account: {
+        ...account,
+        savedMovies: favorites.movies,
+        savedCinemas: favorites.cinemas,
+      },
+    });
   };
 
   /** Persists the CMS content, records the change in the audit log and publishes both. */
@@ -232,8 +247,8 @@ export const useAppStore = create<AppState>((set, get) => {
   };
 
   return {
-    profiles: initialProfiles,
-    userKey: initialUserKey,
+    account: null,
+    authStatus: 'loading',
     consent: storage.read<ConsentState | null>(KEYS.consent, null),
     content: initialContent,
     location: storage.read<LocationState>(KEYS.location, defaultLocation()),
@@ -246,13 +261,8 @@ export const useAppStore = create<AppState>((set, get) => {
     hasHero: false,
     setHasHero: (hasHero) => set({ hasHero }),
 
-    profile: () => {
-      const { userKey, profiles } = get();
-      return userKey && Object.hasOwn(profiles, userKey)
-        ? profiles[userKey]
-        : null;
-    },
-    logged: () => !!get().profile(),
+    profile: () => get().account,
+    logged: () => get().authStatus === 'authenticated' && !!get().account,
     movieSaved: (id) => {
       const profile = get().profile();
       return !!profile && arrayIds(profile.savedMovies).includes(String(id));
@@ -293,67 +303,65 @@ export const useAppStore = create<AppState>((set, get) => {
       get().applyFavorite(kind, strId);
     },
 
-    /** `force` null toggles; true/false saves/removes. */
+    /**
+     * `force` null toggles; true/false saves/removes. The heart changes right
+     * away and goes back if the API refuses.
+     */
     applyFavorite: (kind, id, force = null) => {
       const state = get();
-      const profile = state.profile();
-      if (!profile) return;
+      const account = state.account;
+      if (!account) return;
       const key = kind === 'movie' ? 'savedMovies' : 'savedCinemas';
-      const savedIds = new Set(arrayIds(profile[key]));
+      const previousIds = arrayIds(account[key]);
+      const savedIds = new Set(previousIds);
       const shouldSave = force === null ? !savedIds.has(id) : force;
       if (shouldSave) savedIds.add(id);
       else savedIds.delete(id);
-      saveProfile({ ...profile, [key]: [...savedIds] });
+      set({ account: { ...account, [key]: [...savedIds] } });
       const messages =
         kind === 'movie' ? FAVORITE_TOASTS.movie : FAVORITE_TOASTS.cinema;
       state.toast(shouldSave ? messages.saved : messages.removed);
+
+      grozzeAuth
+        .setFavorite(kind, id, shouldSave)
+        .then(setFavorites)
+        .catch((err: unknown) => {
+          const current = get().account;
+          if (current) set({ account: { ...current, [key]: previousIds } });
+          get().toast(
+            err instanceof Error
+              ? err.message
+              : 'Não foi possível salvar o favorito.'
+          );
+        });
     },
 
-    /**
-     * Logs in (creating or updating the profile for the e-mail), records a
-     * lead on signup and applies the favorite that required the login.
-     */
-    completeLogin: (
-      name,
-      email,
-      signup = false,
-      marketingConsent = false,
-      favoriteGenres
-    ) => {
-      const normalizedEmail = email.trim().toLowerCase();
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
-        get().toast('Informe um e-mail válido.');
-        return { ok: false, hadPending: false };
-      }
+    completeLogin: (user, { signup = false, marketingConsent = false } = {}) => {
       const state = get();
-      const previousProfile = Object.hasOwn(state.profiles, normalizedEmail)
-        ? state.profiles[normalizedEmail]
-        : null;
-      const nextProfile: Profile = {
-        name:
-          name.trim() || previousProfile?.name || normalizedEmail.split('@')[0],
-        email: normalizedEmail,
-        savedMovies: arrayIds(previousProfile?.savedMovies),
-        savedCinemas: arrayIds(previousProfile?.savedCinemas),
-        avatar: previousProfile?.avatar || 'initial',
-        preferences: {
-          ...(previousProfile?.preferences || defaultPreferences()),
-          ...(favoriteGenres ? { genres: favoriteGenres } : {}),
-        },
-      };
-      const profiles = { ...state.profiles, [normalizedEmail]: nextProfile };
-      storage.write(KEYS.profiles, profiles);
-      tabStorage.write(KEYS.session, { email: normalizedEmail });
+      set({
+        account: toProfile(user),
+        authStatus: 'authenticated',
+        dialog: null,
+      });
       if (signup) {
         state.captureLead({
           source: 'Cadastro',
-          name: nextProfile.name,
-          email: normalizedEmail,
+          name: user.name,
+          email: user.email,
           marketingConsent,
         });
       }
+
+      // Favorites saved in this browser before the account move into it
+      const localFavorites = takeLocalFavorites(user.email);
+      if (localFavorites.movies.length || localFavorites.cinemas.length) {
+        grozzeAuth
+          .mergeFavorites(localFavorites)
+          .then(setFavorites)
+          .catch(() => {});
+      }
+
       const pending = state.pending;
-      set({ profiles, userKey: normalizedEmail, dialog: null });
       if (pending) {
         set({ pending: null });
         get().applyFavorite(pending.kind, pending.id, true);
@@ -362,35 +370,28 @@ export const useAppStore = create<AppState>((set, get) => {
       } else {
         get().toast('Você entrou na sua conta.');
       }
-      return { ok: true, hadPending: !!pending };
     },
 
+    restoreSession: (user) =>
+      set(
+        user
+          ? { account: toProfile(user), authStatus: 'authenticated' }
+          : { account: null, authStatus: 'guest' }
+      ),
+
+    setAccount: (user) =>
+      set({ account: toProfile(user), authStatus: 'authenticated' }),
+
     logout: () => {
-      tabStorage.remove(KEYS.session);
-      set({ userKey: null, dialog: null });
+      void grozzeAuth.logout();
+      set({ account: null, authStatus: 'guest', dialog: null });
       get().toast('Você saiu da conta.');
     },
 
-    updateProfileName: (name) => {
-      const state = get();
-      const profile = state.profile();
-      if (!profile) return;
-      saveProfile({ ...profile, name: name.trim() });
-      state.toast('Dados atualizados.');
-    },
-
-    updatePreferences: (prefs) => {
-      const state = get();
-      const profile = state.profile();
-      if (!profile) return;
-      saveProfile({ ...profile, preferences: prefs });
-      state.toast('Preferências salvas.');
-    },
-
-    setAvatar: (avatar) => {
-      const profile = get().profile();
-      if (!profile) return;
-      saveProfile({ ...profile, avatar });
+    sessionExpired: () => {
+      if (!get().account) return;
+      set({ account: null, authStatus: 'guest' });
+      get().toast('Sua sessão expirou. Entre novamente.');
     },
 
     saveConsent: (optional) => {

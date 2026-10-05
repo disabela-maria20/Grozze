@@ -5,6 +5,8 @@ import type { ReactNode } from 'react';
 import { allMovies, sortedCinemas } from '@/shared/lib/catalog';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useGrozzeListQuery } from '@/shared/api';
+import type { Profile } from '@/shared/lib/types';
 import { useAppStore } from '@/shared/store';
 import {
   useUpdatePreferencesMutation,
@@ -40,12 +42,23 @@ const ACCOUNT_TABS: [string, string][] = [
   ['conta', 'Conta'],
 ];
 
-const AVATAR_OPTIONS: ['initial' | 'star' | 'moon' | 'sun', string][] = [
+type AvatarKey = Profile['avatar'];
+
+/** Fallback while the Grozze API `/avatars` list is unavailable. */
+const AVATAR_OPTIONS: [AvatarKey, string][] = [
   ['initial', 'Inicial'],
-  ['star', '★'],
-  ['moon', '☾'],
-  ['sun', '☀'],
+  ['star', 'Estrela'],
+  ['moon', 'Lua'],
+  ['sun', 'Sol'],
 ];
+
+/** Grozze API avatar name → key saved in the profile. */
+const AVATAR_KEYS: Record<string, AvatarKey> = {
+  Inicial: 'initial',
+  Estrela: 'star',
+  Lua: 'moon',
+  Sol: 'sun',
+};
 const AVATAR_CHARS: Record<string, string> = { star: '★', moon: '☾', sun: '☀' };
 
 const PAGE_CLASS = 'page pt-[120px] max-sm:pt-[101px] pb-13 min-h-[65vh]';
@@ -247,6 +260,14 @@ function FavoriteCinemasTab({
 function PreferencesTab() {
   const profile = useAppStore((s) => s.profile())!;
   const updatePreferences = useUpdatePreferencesMutation();
+  const { data: apiLanguages } = useGrozzeListQuery('languages');
+  const { data: apiExperiences } = useGrozzeListQuery('experiences');
+  // The API lists languages without "Todos"; experiences already include it
+  const languageOptions = apiLanguages
+    ? ['Todos', ...apiLanguages.map((language) => language.nome)]
+    : LANGUAGE_OPTIONS;
+  const formatOptions =
+    apiExperiences?.map((experience) => experience.nome) ?? FORMAT_OPTIONS;
   const {
     register,
     handleSubmit,
@@ -254,10 +275,8 @@ function PreferencesTab() {
   } = useForm<PreferencesValues>({
     resolver: zodResolver(preferencesSchema),
     defaultValues: {
-      language: (profile.preferences?.language ||
-        'Todos') as PreferencesValues['language'],
-      format: (profile.preferences?.format ||
-        'Todos') as PreferencesValues['format'],
+      language: profile.preferences?.language || 'Todos',
+      format: profile.preferences?.format || 'Todos',
       genres: profile.preferences?.genres ?? [],
     },
   });
@@ -278,7 +297,7 @@ function PreferencesTab() {
             aria-invalid={!!errors.language}
             {...register('language')}
           >
-            {LANGUAGE_OPTIONS.map((option) => (
+            {languageOptions.map((option) => (
               <option key={option}>{option}</option>
             ))}
           </select>
@@ -289,7 +308,7 @@ function PreferencesTab() {
             aria-invalid={!!errors.format}
             {...register('format')}
           >
-            {FORMAT_OPTIONS.map((option) => (
+            {formatOptions.map((option) => (
               <option key={option}>{option}</option>
             ))}
           </select>
@@ -315,19 +334,26 @@ function AvatarPicker() {
   const setAvatar = useAppStore((s) => s.setAvatar);
   const currentAvatar = profile.avatar || 'initial';
   const initial = profile.name.charAt(0).toUpperCase();
+  const { data: apiAvatars } = useGrozzeListQuery('avatars');
+  // Names without a matching icon are skipped
+  const avatarOptions: [AvatarKey, string][] =
+    apiAvatars
+      ?.filter((avatar) => Object.hasOwn(AVATAR_KEYS, avatar.nome))
+      .map((avatar) => [AVATAR_KEYS[avatar.nome], avatar.nome]) ??
+    AVATAR_OPTIONS;
   return (
     <div
       className="flex flex-wrap gap-2.5 mb-5"
       role="group"
       aria-label="Escolha seu avatar"
     >
-      {AVATAR_OPTIONS.map(([avatar]) => (
+      {avatarOptions.map(([avatar, name]) => (
         <button
           key={avatar}
           type="button"
           onClick={() => setAvatar(avatar)}
           aria-pressed={currentAvatar === avatar}
-          aria-label={`Avatar ${avatar}`}
+          aria-label={`Avatar ${name}`}
           className="p-1 bg-none border border-transparent rounded-full aria-[pressed=true]:border-lime"
         >
           <span className="w-[60px] h-[60px] text-[25px] inline-grid place-items-center rounded-full font-extrabold bg-lime text-[#091006]">

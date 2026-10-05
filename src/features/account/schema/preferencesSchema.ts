@@ -1,10 +1,9 @@
 import { z } from 'zod';
-import { FORMAT_OPTIONS } from './FORMAT_OPTIONS';
-import { LANGUAGE_OPTIONS } from './LANGUAGE_OPTIONS';
 
+/** Options come from the Grozze API, so any listed name is accepted. */
 export const preferencesSchema = z.object({
-  language: z.enum(LANGUAGE_OPTIONS, 'Escolha um idioma.'),
-  format: z.enum(FORMAT_OPTIONS, 'Escolha uma experiência.'),
+  language: z.string().min(1, 'Escolha um idioma.'),
+  format: z.string().min(1, 'Escolha uma experiência.'),
   genres: z.array(z.string()),
 });
 

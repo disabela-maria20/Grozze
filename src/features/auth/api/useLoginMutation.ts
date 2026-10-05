@@ -1,27 +1,18 @@
 'use client';
 
-import { request } from '@/shared/api';
+import { grozzeAuth } from '@/shared/api';
 import { useAppStore } from '@/shared/store';
 import { useMutation } from '@tanstack/react-query';
-import { type LoginInput } from './LoginInput';
+
+export interface LoginInput {
+  email: string;
+  password: string;
+}
 
 export function useLoginMutation() {
   return useMutation({
-    // `password` is part of the API contract but never stored locally;
-    // it will be sent to the backend once authentication exists.
-    mutationFn: ({
-      name = '',
-      email,
-      signup,
-      marketingConsent,
-      favoriteGenres,
-    }: LoginInput) =>
-      request(() => {
-        const result = useAppStore
-          .getState()
-          .completeLogin(name, email, signup, marketingConsent, favoriteGenres);
-        if (!result.ok) throw new Error('Informe um e-mail válido.');
-        return result;
-      }),
+    mutationFn: ({ email, password }: LoginInput) =>
+      grozzeAuth.login(email, password),
+    onSuccess: (user) => useAppStore.getState().completeLogin(user),
   });
 }
