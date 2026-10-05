@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAppStore } from '@/shared/store';
@@ -67,13 +68,13 @@ export function ConsentDialog() {
         </div>
       </form>
       <p className="text-xs text-faint mt-4.5">
-        <a className="hover:text-lime" href="/privacidade">
+        <Link className="hover:text-lime" href="/privacidade">
           Política de Privacidade
-        </a>{' '}
+        </Link>{' '}
         ·{' '}
-        <a className="hover:text-lime" href="/termos">
+        <Link className="hover:text-lime" href="/termos">
           Termos de Uso
-        </a>
+        </Link>
       </p>
     </div>
   );

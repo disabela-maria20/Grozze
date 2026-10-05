@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useAppStore, useIsSaved } from '@/shared/store';
 import {
   allCinemas,
@@ -72,16 +73,16 @@ export function HomeApp() {
                   Cinemas favoritos
                 </h2>
               </div>
-              <a
+              <Link
                 className="text-[13px] inline-flex items-center gap-1.5 text-[#dce3dc] hover:text-lime transition-colors"
                 href="/cinemas"
               >
                 Gerenciar <Icon name="arrow" className="w-4 h-4" />
-              </a>
+              </Link>
             </div>
             <div className="grid grid-cols-3 max-sm:flex max-sm:overflow-auto max-sm:no-scrollbar gap-3.5">
               {favoriteCinemas.map((theater) => (
-                <a
+                <Link
                   key={theater.id}
                   href={`/cinema/${theater.id}`}
                   className="border border-line rounded-2xl bg-surface p-4.5 min-w-0 max-sm:shrink-0 max-sm:w-[235px]"
@@ -92,7 +93,7 @@ export function HomeApp() {
                       .filter(Boolean)
                       .join(' · ')}
                   </small>
-                </a>
+                </Link>
               ))}
             </div>
           </div>

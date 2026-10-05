@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { movieHref, statusLabel } from '@/shared/lib/catalog';
 import { useAppStore } from '@/shared/store';
@@ -79,19 +80,19 @@ export function HomeHero({ list }: { list: Movie[] }) {
             {statusLabel(film)}
           </div>
           <h1 className="text-[62px] max-sm:text-[clamp(29px,8.5vw,39px)] font-extrabold leading-[1.04] -tracking-[0.052em] my-2.5 mb-4.5 text-balance">
-            <a href={href}>{film.t}</a>
+            <Link href={href}>{film.t}</Link>
           </h1>
           <MovieMeta m={film} />
           <p className="text-[#cbd5cd] text-base max-sm:text-[13px] leading-relaxed max-w-[670px] mb-5 max-sm:mx-auto line-clamp-2">
             {film.syn}
           </p>
           <div className="flex items-center gap-2.5 flex-wrap mt-5.5 max-sm:justify-center">
-            <a
+            <Link
               className="min-h-[46px] max-sm:min-h-[43px] px-5 py-2.5 rounded-full bg-lime text-[#081004] font-extrabold inline-flex items-center gap-2 text-sm hover:bg-[#d5ff70] transition-colors"
               href={`${href}?focus=sessoes`}
             >
               <Icon name="ticket" /> Compre agora
-            </a>
+            </Link>
             <button
               type="button"
               className="min-h-[46px] max-sm:min-h-[43px] px-5 py-2.5 rounded-full border border-line bg-white/[0.035] inline-flex items-center gap-2 text-sm font-semibold hover:bg-lime-soft hover:border-lime/40 transition-colors"

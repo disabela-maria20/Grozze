@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import type { Movie } from '@/shared/lib/types';
 import { MovieCard } from './MovieCard';
 import { Rail, Icon } from '@/shared/ui';
@@ -37,12 +38,12 @@ export function MovieSection({
             </h2>
           </div>
           {morePath && list.length > 7 && (
-            <a
+            <Link
               className="text-[13px] max-sm:text-xs shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[#dce3dc] hover:text-lime transition-colors"
               href={morePath}
             >
               Ver todos <Icon name="arrow" className="w-4 h-4" />
-            </a>
+            </Link>
           )}
         </div>
         <Rail>

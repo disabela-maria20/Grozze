@@ -21,6 +21,10 @@ const changePasswordSchema = z
     newPassword: newPasswordField,
     confirmPassword: z.string().min(1, 'Confirme a nova senha.'),
   })
+  .refine((values) => values.newPassword !== values.currentPassword, {
+    path: ['newPassword'],
+    message: 'A nova senha precisa ser diferente da atual.',
+  })
   .refine((values) => values.newPassword === values.confirmPassword, {
     path: ['confirmPassword'],
     message: 'As senhas não coincidem.',

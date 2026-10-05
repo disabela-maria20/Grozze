@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = { title: 'Sobre' };
@@ -22,18 +23,18 @@ export default function Page() {
           pela venda.
         </p>
         <div className="flex items-center gap-2.5 flex-wrap mt-5">
-          <a
+          <Link
             className="min-h-[46px] px-5 py-2.5 rounded-full bg-lime text-[#081004] font-extrabold inline-flex items-center gap-2 text-sm"
             href="/filmes"
           >
             Explorar filmes
-          </a>
-          <a
+          </Link>
+          <Link
             className="min-h-[46px] px-5 py-2.5 rounded-full border border-line inline-flex items-center gap-2 text-sm font-semibold"
             href="/cinemas"
           >
             Encontrar cinemas
-          </a>
+          </Link>
         </div>
       </article>
     </div>

@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import {
   cinema,
@@ -123,12 +124,12 @@ function CinemaSessionsBlock({
         <div className="flex items-center gap-2.5 shrink-0">
           <HeartButton kind="cinema" id={cid} path="" />
           {!scope && (
-            <a
+            <Link
               className="text-xs inline-flex items-center gap-1 text-[#dce3dc] hover:text-lime"
               href={`/cinema/${cid}`}
             >
               Ver cinema <Icon name="arrow" className="w-3.5 h-3.5" />
-            </a>
+            </Link>
           )}
         </div>
       </div>
@@ -212,12 +213,12 @@ function FavoriteCinemasSection({
       <div className="flex items-center justify-between gap-2.5 mb-2.5">
         <h3 className="text-xl m-0">Cinemas favoritos</h3>
         {!scope && (
-          <a
+          <Link
             className="text-xs text-[#dce3dc] hover:text-lime"
             href="/cinemas?favoritos=1"
           >
             Gerenciar favoritos →
-          </a>
+          </Link>
         )}
       </div>
       {favoriteIds.length ? (
@@ -230,12 +231,12 @@ function FavoriteCinemasSection({
         <div className="border border-line rounded-app p-5 bg-surface text-muted">
           <p className="m-0 mb-2">{emptyMessage}</p>
           {!scope && (
-            <a
+            <Link
               className="text-xs text-[#dce3dc] hover:text-lime"
               href="/cinemas?favoritos=1"
             >
               Favoritar cinemas →
-            </a>
+            </Link>
           )}
         </div>
       )}

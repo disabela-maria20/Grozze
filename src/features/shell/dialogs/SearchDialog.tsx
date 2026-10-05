@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import {
   allMovies,
@@ -71,7 +72,7 @@ export function SearchDialog({ scope }: { scope?: string | null }) {
           <p className="text-muted">Nenhum resultado encontrado.</p>
         )}
         {movies.map((movie) => (
-          <a
+          <Link
             key={movie.id}
             className="block mb-1.5 p-4 rounded-2xl border border-line bg-surface2"
             href={movieHref(movie.id, scope)}
@@ -80,17 +81,17 @@ export function SearchDialog({ scope }: { scope?: string | null }) {
             <small className="text-muted text-xs mt-1.5 block">
               {statusLabel(movie)} · {dateLabel(movie.releaseDate)}
             </small>
-          </a>
+          </Link>
         ))}
         {cinemas.map((cinema) => (
-          <a
+          <Link
             key={cinema.id}
             className="block mb-1.5 p-4 rounded-2xl border border-line bg-surface2"
             href={`/cinema/${cinema.id}`}
           >
             <strong className="block">{cinema.name}</strong>
             <small className="text-muted text-xs mt-1.5 block">Cinema</small>
-          </a>
+          </Link>
         ))}
       </div>
     </div>

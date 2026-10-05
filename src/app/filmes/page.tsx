@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { CatalogGate, ClientOnly } from '@/shared/ui';
 import { CatalogApp } from '@/features/movies';
 
@@ -8,7 +9,9 @@ export default function Page() {
   return (
     <ClientOnly>
       <CatalogGate>
-        <CatalogApp />
+        <Suspense>
+          <CatalogApp />
+        </Suspense>
       </CatalogGate>
     </ClientOnly>
   );

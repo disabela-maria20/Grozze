@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -115,9 +116,9 @@ export function ContactApp({ newsletter = false }: { newsletter?: boolean }) {
               />
               <span>
                 {copy.consentLabel}{' '}
-                <a className="underline hover:text-lime" href="/privacidade">
+                <Link className="underline hover:text-lime" href="/privacidade">
                   Política de Privacidade
-                </a>
+                </Link>
                 .
               </span>
             </label>

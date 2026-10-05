@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { useAppStore } from '@/shared/store';
 import {
@@ -62,9 +63,9 @@ export function MovieCard({
   return (
     <article className="movie-card min-w-0 relative">
       <div className="poster-box relative min-w-0 isolate">
-        <a className="block" href={href} aria-label={`Ver ${m.t}`}>
+        <Link className="block" href={href} aria-label={`Ver ${m.t}`}>
           <MoviePoster m={m} />
-        </a>
+        </Link>
         {rank ? (
           <span className="rank-tag absolute -left-0.5 bottom-3.5 z-[4] bg-lime text-[#081004] rounded-r-xl w-[47px] h-[57px] flex items-center justify-center flex-col shadow-[0_6px_15px_#0006] pointer-events-none">
             <small className="text-[8px] font-black leading-none">TOP</small>
@@ -80,7 +81,7 @@ export function MovieCard({
         {controls}
       </div>
       <h3 className="text-[15px] leading-[1.27] mt-2.5 mb-1 break-words whitespace-normal">
-        <a href={href}>{m.t}</a>
+        <Link href={href}>{m.t}</Link>
       </h3>
       <p className="text-xs text-muted m-0 leading-relaxed">
         {soon ? m.distLabel : m.genre}

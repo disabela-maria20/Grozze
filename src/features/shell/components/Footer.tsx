@@ -78,13 +78,13 @@ function FooterLinkGroup({ group: [heading, links] }: { group: FooterGroup }) {
         {heading}
       </strong>
       {links.map(([path, label]) => (
-        <a
+        <Link
           key={path}
           href={`/${path}`}
           className="block py-1 text-[13px] text-muted hover:text-lime transition-colors"
         >
           {label}
-        </a>
+        </Link>
       ))}
     </div>
   );

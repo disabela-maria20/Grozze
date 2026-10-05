@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import {
   allMovies,
   DISTRIBUTORS,
@@ -65,12 +66,12 @@ export function DistributorPage({ slug }: { slug: string }) {
               <p className="text-[#cbd5cd] text-base leading-relaxed mb-4 max-w-[620px]">
                 {featuredMovie.syn}
               </p>
-              <a
+              <Link
                 className="min-h-[46px] px-5 py-2.5 rounded-full bg-lime text-[#081004] font-extrabold inline-flex items-center gap-2 text-sm hover:bg-[#d5ff70] transition-colors"
                 href={movieHref(featuredMovie.id, slug)}
               >
                 Ver filme <Icon name="arrow" className="w-4 h-4" />
-              </a>
+              </Link>
             </div>
           </div>
         </section>

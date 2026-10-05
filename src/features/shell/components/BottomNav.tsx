@@ -38,14 +38,14 @@ export function BottomNav() {
         />
         <span>Início</span>
       </Link>
-      <a
+      <Link
         href="/filmes"
         aria-current={sessionsActive ? 'page' : undefined}
         className="flex flex-col items-center gap-0.5 flex-1 text-[#aab6ab] text-[10px] min-h-11 justify-center aria-[current=page]:text-lime"
       >
         <Icon name="ticket" className="w-[25px] h-[25px]" />
         <span>Sessões</span>
-      </a>
+      </Link>
       <button
         type="button"
         onClick={() => openDialog('search')}

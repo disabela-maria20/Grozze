@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useAppStore } from '@/shared/store';
 import { distanceKm } from '@/shared/lib/catalog';
 import type { Cinema } from '@/shared/lib/types';
@@ -34,14 +35,14 @@ export function CinemaCard({ c }: { c: Cinema }) {
       }`}
     >
       <div>
-        <a href={`/cinema/${c.id}`}>
+        <Link href={`/cinema/${c.id}`}>
           <h2 className="text-xl max-sm:text-lg leading-[1.25] -tracking-[0.025em] m-0 mb-1.5">
             {c.name}
           </h2>
           <p className="text-muted text-[13px] max-sm:text-xs m-0 mb-1.5">
             {c.address}
           </p>
-        </a>
+        </Link>
         <small className="text-faint text-xs">
           {km !== null ? distanceLabel(km) : ''}
           {details}

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { ClientOnly } from '@/shared/ui';
 import { ResetPasswordApp } from '@/features/auth';
 
@@ -12,7 +13,9 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <ClientOnly>
-      <ResetPasswordApp />
+      <Suspense>
+        <ResetPasswordApp />
+      </Suspense>
     </ClientOnly>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import { grozzeAuth, SENSITIVE_MUTATION } from '@/shared/api';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 /** Sends the reset link. Same answer whether the e-mail has an account or not. */
 export function useForgotPasswordMutation() {
@@ -16,5 +16,17 @@ export function useResetPasswordMutation() {
     ...SENSITIVE_MUTATION,
     mutationFn: ({ token, password }: { token: string; password: string }) =>
       grozzeAuth.resetPassword(token, password),
+  });
+}
+
+/** Checks the e-mail's link on page load: valid → the account's e-mail. */
+export function useResetTokenQuery(token: string) {
+  return useQuery({
+    queryKey: ['grozze', 'reset-token', token],
+    queryFn: () => grozzeAuth.verifyResetToken(token),
+    enabled: !!token,
+    retry: false,
+    staleTime: Infinity,
+    gcTime: 0,
   });
 }

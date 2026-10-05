@@ -46,14 +46,14 @@ function SiteBrandAndNav({ activeRoot }: { activeRoot: string }) {
         aria-label="Navegação principal"
       >
         {NAV.map(([root, label]) => (
-          <a
+          <Link
             key={root}
             href={pathFor(root)}
             aria-current={activeRoot === root ? 'page' : undefined}
             className="text-[15px] font-semibold text-[#b9c2bb] py-3.5 whitespace-nowrap relative aria-[current=page]:text-lime hover:text-lime transition-colors"
           >
             {label}
-          </a>
+          </Link>
         ))}
       </nav>
     </>

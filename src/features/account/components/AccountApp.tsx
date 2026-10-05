@@ -83,9 +83,9 @@ function EmptyStateWithLink({
   return (
     <EmptyState>
       <p>{message}</p>
-      <a className={OUTLINE_BUTTON_CLASS} href={href}>
+      <Link className={OUTLINE_BUTTON_CLASS} href={href}>
         {linkLabel}
-      </a>
+      </Link>
     </EmptyState>
   );
 }
@@ -192,9 +192,9 @@ function OverviewTab({
         <SectionHeader
           title="Cinemas favoritos"
           link={
-            <a className={SECTION_LINK_CLASS} href="/cinemas?favoritos=1">
+            <Link className={SECTION_LINK_CLASS} href="/cinemas?favoritos=1">
               Gerenciar →
-            </a>
+            </Link>
           }
         />
         <CinemaList
@@ -452,7 +452,7 @@ function AccountSidebar({ part }: { part: string }) {
         aria-label="Minha Grozze"
       >
         {ACCOUNT_TABS.map(([segment, label]) => (
-          <a
+          <Link
             key={segment}
             href={accountTabHref(segment)}
             className={`px-3 py-2.5 rounded-xl text-left text-[13px] whitespace-nowrap max-sm:border max-sm:border-line max-sm:rounded-full max-sm:flex-none ${
@@ -460,7 +460,7 @@ function AccountSidebar({ part }: { part: string }) {
             }`}
           >
             {label}
-          </a>
+          </Link>
         ))}
         <button
           type="button"

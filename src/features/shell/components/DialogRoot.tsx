@@ -1,6 +1,7 @@
 'use client';
 
-import type { ReactNode } from 'react';
+import { useEffect, type ReactNode } from 'react';
+import { usePathname } from 'next/navigation';
 import { useAppStore } from '@/shared/store';
 import { CatalogGate, DialogShell } from '@/shared/ui';
 import { AuthDialog } from '@/features/auth';
@@ -35,6 +36,13 @@ const CATALOG_FREE = new Set(['location', 'consent', 'menu']);
 export function DialogRoot() {
   const dialog = useAppStore((s) => s.dialog);
   const closeDialog = useAppStore((s) => s.closeDialog);
+  const pathname = usePathname();
+
+  // Navigation no longer reloads the page, so a link inside a dialog (menu,
+  // search...) must close it; the login dialog keeps a pending favorite
+  useEffect(() => {
+    useAppStore.getState().closeDialog({ keepPending: true });
+  }, [pathname]);
 
   if (!dialog) return null;
   const dialogProps = dialog.props || {};

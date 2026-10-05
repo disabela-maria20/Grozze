@@ -1,6 +1,8 @@
 'use client';
 
+import Link from 'next/link';
 import { useMemo, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import {
   allBaseMovieIds,
   allCinemas,
@@ -90,10 +92,6 @@ function pushQueryParams(params: Record<string, string>) {
     url.searchParams.set(name, value);
   }
   window.history.pushState({}, '', url);
-}
-
-function readQueryParam(name: string): string | null {
-  return new URLSearchParams(window.location.search).get(name);
 }
 
 function SourceDataDetails({ baseData }: { baseData: Movie }) {
@@ -197,12 +195,12 @@ function CmsMovieEditor({ id }: { id: string }) {
           >
             Restaurar automático
           </Button>
-          <a
+          <Link
             className="min-h-[46px] px-5 py-2.5 rounded-full border border-line inline-flex items-center gap-2 text-sm font-semibold"
             href={`/filme/${id}`}
           >
             Ver ficha
-          </a>
+          </Link>
         </div>
         {Object.hasOwn(content.movies, id) && (
           <p className="text-xs text-faint mt-3">Override ativo.</p>
@@ -388,10 +386,10 @@ function DataTab() {
 }
 
 export function AdminApp() {
-  // Rendered inside <ClientOnly>, so `window` is available here
-  const [tab, setTab] = useState(() => readQueryParam('tab') ?? 'filmes');
+  const searchParams = useSearchParams();
+  const [tab, setTab] = useState(() => searchParams.get('tab') ?? 'filmes');
   const [selectedId, setSelectedId] = useState<string>(
-    () => readQueryParam('id') ?? allBaseMovieIds()[0]
+    () => searchParams.get('id') ?? allBaseMovieIds()[0]
   );
   const content = useAppStore((s) => s.content);
 

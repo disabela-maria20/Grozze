@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = { title: 'Termos de uso' };
@@ -41,12 +42,12 @@ export default function Page() {
           Consulte a Política de Privacidade para conhecer o uso de
           armazenamento e serviços externos nesta versão.
         </p>
-        <a
+        <Link
           className="min-h-[46px] px-5 py-2.5 rounded-full border border-line inline-flex items-center gap-2 text-sm font-semibold"
           href="/privacidade"
         >
           Política de Privacidade
-        </a>
+        </Link>
       </article>
     </div>
   );

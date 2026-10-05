@@ -1,19 +1,18 @@
 'use client';
 
-import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useResetPasswordMutation } from '../api';
+import { useResetPasswordMutation, useResetTokenQuery } from '../api';
 import { newPasswordSchema, type NewPasswordValues } from '../schema';
-import { Button, Field, LinkButton, inputClass } from '@/shared/ui';
+import { Button, Field, FilmLoader, LinkButton, inputClass } from '@/shared/ui';
 import { AuthCardPage } from './AuthCardPage';
 
-/** `?token=` of the link sent by e-mail. Rendered inside <ClientOnly>. */
-const readToken = () =>
-  new URLSearchParams(window.location.search).get('token') ?? '';
-
 export function ResetPasswordApp() {
-  const [token] = useState(readToken);
+  /** `?token=` of the link sent by e-mail. */
+  const token = useSearchParams().get('token') ?? '';
+  // Checked on load: says which account the link is for, or that it expired
+  const tokenCheck = useResetTokenQuery(token);
   const resetPassword = useResetPasswordMutation();
   const {
     register,
@@ -38,6 +37,32 @@ export function ResetPasswordApp() {
     );
   }
 
+  if (tokenCheck.isPending) {
+    return (
+      <AuthCardPage>
+        <FilmLoader label="Conferindo o link" compact />
+      </AuthCardPage>
+    );
+  }
+
+  if (tokenCheck.isError) {
+    return (
+      <AuthCardPage>
+        <h1 className="text-[34px] leading-[1.08] tracking-tight m-0 mb-3">
+          Link expirado
+        </h1>
+        <p className="text-sm text-muted leading-relaxed mb-5">
+          {tokenCheck.error.message}
+        </p>
+        <LinkButton primary href="/esqueci-senha">
+          Pedir novo link
+        </LinkButton>
+      </AuthCardPage>
+    );
+  }
+
+  const { email } = tokenCheck.data;
+
   if (resetPassword.isSuccess) {
     return (
       <AuthCardPage>
@@ -45,8 +70,9 @@ export function ResetPasswordApp() {
           Senha alterada
         </h1>
         <p className="text-sm text-muted leading-relaxed mb-5">
-          Por segurança, saímos da sua conta em todos os dispositivos. Entre de
-          novo com a senha nova.
+          A senha de <strong className="text-app-text">{email}</strong> foi
+          trocada. Por segurança, saímos dessa conta em todos os dispositivos:
+          entre de novo com a senha nova.
         </p>
         <LinkButton primary href="/entrar">
           Entrar
@@ -61,7 +87,8 @@ export function ResetPasswordApp() {
         Criar nova senha
       </h1>
       <p className="text-sm text-muted leading-relaxed mb-5">
-        Use pelo menos 8 caracteres.
+        Para a conta <strong className="text-app-text">{email}</strong>. Use
+        pelo menos 8 caracteres.
       </p>
       <form
         noValidate
@@ -69,6 +96,14 @@ export function ResetPasswordApp() {
           resetPassword.mutate({ token, password })
         )}
       >
+        <input
+          type="email"
+          name="username"
+          autoComplete="username"
+          value={email}
+          readOnly
+          hidden
+        />
         <Field label="Nova senha" error={errors.password?.message}>
           <input
             className={inputClass}

@@ -115,6 +115,13 @@ export function DialogShell({
         aria-modal="true"
         aria-label={label}
         className={menu ? MENU_PANEL_CLASS : modalPanelClass(wide, video)}
+        // A link to another page closes the dialog before the navigation
+        // starts: while open, the page is `inert`, and Next.js would skip it
+        // when restoring scroll, landing the new page at its bottom
+        onClickCapture={(event) => {
+          const link = (event.target as Element).closest('a[href]');
+          if (link?.getAttribute('href')?.startsWith('/')) onClose();
+        }}
       >
         {!menu && (
           <button

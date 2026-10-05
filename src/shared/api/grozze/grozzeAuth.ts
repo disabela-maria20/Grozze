@@ -110,6 +110,13 @@ export const grozzeAuth = {
       body: { email },
     }),
 
+  /** Which account a reset link is for; rejects when it's invalid, used or expired. */
+  verifyResetToken: (token: string) =>
+    grozzeRequest<{ email: string }>('/auth/reset-password/verify', {
+      method: 'POST',
+      body: { token },
+    }),
+
   resetPassword: (token: string, password: string) =>
     grozzeRequest<null>('/auth/reset-password', {
       method: 'POST',

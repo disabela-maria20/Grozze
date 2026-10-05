@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { movieList, normalize, status } from '@/shared/lib/catalog';
 import { useAppStore } from '@/shared/store';
 import { MovieCard } from './MovieCard';
@@ -13,13 +14,19 @@ const STATUS_OPTIONS: [string, string][] = [
   ['presale', 'Pré-venda'],
 ];
 
+/**
+ * `?status=` picks the initial filter; the `key` starts over when a link
+ * changes it while this page is open.
+ */
 export function CatalogApp() {
+  const initialStatus = useSearchParams().get('status') ?? 'all';
+  return <Catalog key={initialStatus} initialStatus={initialStatus} />;
+}
+
+function Catalog({ initialStatus }: { initialStatus: string }) {
   const content = useAppStore((s) => s.content);
   const [query, setQuery] = useState('');
-  // Rendered inside <ClientOnly>, so `window` is available here
-  const [filmStatus, setFilmStatus] = useState(
-    () => new URLSearchParams(window.location.search).get('status') ?? 'all'
-  );
+  const [filmStatus, setFilmStatus] = useState(initialStatus);
 
   const list = useMemo(() => {
     const normalizedQuery = normalize(query);

@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import {
   allMovies,
@@ -98,18 +99,18 @@ export function ComingSoonApp() {
                   {lead.syn}
                 </p>
                 <div className="flex items-center gap-2.5 mt-4.5 flex-wrap">
-                  <a
+                  <Link
                     className="min-h-[46px] px-5 py-2.5 rounded-full bg-lime text-[#081004] font-extrabold inline-flex items-center gap-2 text-sm hover:bg-[#d5ff70] transition-colors"
                     href={movieHref(lead.id)}
                   >
                     Ver filme <Icon name="arrow" className="w-4 h-4" />
-                  </a>
+                  </Link>
                   <SaveButton m={lead} path={movieHref(lead.id)} />
                 </div>
               </div>
-              <a href={movieHref(lead.id)} className="max-sm:hidden">
+              <Link href={movieHref(lead.id)} className="max-sm:hidden">
                 <MoviePoster m={lead} className="w-[200px]" />
-              </a>
+              </Link>
             </div>
           </section>
         )}

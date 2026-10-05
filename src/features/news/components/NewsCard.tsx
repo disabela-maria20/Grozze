@@ -1,11 +1,12 @@
 'use client';
 
+import Link from 'next/link';
 import { newsHref } from '@/shared/lib/catalog';
 import type { NewsItem } from '@/shared/lib/types';
 
 export function NewsCard({ n, scope }: { n: NewsItem; scope?: string | null }) {
   return (
-    <a
+    <Link
       className="news-card border border-line bg-surface rounded-2xl overflow-hidden block min-w-0 max-sm:grid max-sm:grid-cols-[108px_minmax(0,1fr)]"
       href={newsHref(n.id, scope)}
     >
@@ -18,6 +19,6 @@ export function NewsCard({ n, scope }: { n: NewsItem; scope?: string | null }) {
         </h3>
         <p className="text-muted text-[13px] max-sm:text-xs m-0">{n.p}</p>
       </div>
-    </a>
+    </Link>
   );
 }

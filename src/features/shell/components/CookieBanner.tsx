@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useAppStore } from '@/shared/store';
 import { Button } from '@/shared/ui';
 
@@ -23,16 +24,16 @@ export function CookieBanner() {
         <p className="text-[13px] text-muted m-0 max-w-[720px] leading-relaxed">
           O armazenamento necessário mantém suas escolhas e o funcionamento do
           site. Você decide sobre as preferências opcionais.{' '}
-          <a
+          <Link
             className="text-muted underline hover:text-lime"
             href="/privacidade"
           >
             Política de Privacidade
-          </a>{' '}
+          </Link>{' '}
           ·{' '}
-          <a className="text-muted underline hover:text-lime" href="/termos">
+          <Link className="text-muted underline hover:text-lime" href="/termos">
             Termos de Uso
-          </a>
+          </Link>
           .
         </p>
       </div>
