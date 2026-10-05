@@ -5,26 +5,36 @@ import { filterRows } from './filterRows';
 import { type SessionFilterState } from './SessionFilterState';
 import { unique } from './unique';
 
+/**
+ * Options of one filter group ("Todos" first) for the selected date. Counts
+ * apply the other active filters but not this group's own, so every option
+ * shows how many sessions picking it would leave. `null` when the date has no
+ * values for the group.
+ */
 export function filterGroupOptions(
   rows: Showtime[],
-  f: SessionFilterState,
+  filters: SessionFilterState,
   key: 'tech' | 'lang' | 'cinema'
 ): FilterOption[] | null {
-  const day = rows.filter((s) => s.date === f.date);
+  const dayRows = rows.filter((showtime) => showtime.date === filters.date);
   const field = key === 'cinema' ? 'theater' : key;
-  const vals = unique(day.map((s) => s[field]));
-  if (!vals.length) return null;
-  const available = filterRows(rows, f, key);
-  return ['Todos', ...vals].map((v) => {
+  const values = unique(dayRows.map((showtime) => showtime[field]));
+  if (!values.length) return null;
+  const available = filterRows(rows, filters, key);
+  return ['Todos', ...values].map((value) => {
     const count =
-      v === 'Todos'
+      value === 'Todos'
         ? available.length
-        : available.filter((s) => s[field] === v).length;
+        : available.filter((showtime) => showtime[field] === value).length;
+    const label =
+      key === 'cinema' && value !== 'Todos'
+        ? cinema(value)?.name || value
+        : value;
     return {
-      value: v,
-      label: key === 'cinema' && v !== 'Todos' ? cinema(v)?.name || v : v,
+      value,
+      label,
       count,
-      active: f[key] === v,
+      active: filters[key] === value,
       disabled: count === 0,
     };
   });

@@ -21,12 +21,19 @@ export function HomeApp() {
   const openDialog = useAppStore((s) => s.openDialog);
   const accountAction = useAccountAction();
 
-  const cur = currentMovies(content);
-  const favoriteCinemas = allCinemas().filter((c) => cinemaSaved(c.id));
+  const nowShowing = currentMovies(content);
+  const favoriteCinemas = allCinemas().filter((theater) =>
+    cinemaSaved(theater.id)
+  );
+  // Oldest releases first: the ones closest to leaving theaters
+  const lastChance = nowShowing
+    .slice()
+    .sort((a, b) => a.releaseDate.localeCompare(b.releaseDate))
+    .slice(0, 5);
 
   return (
     <>
-      <HomeHero list={cur.slice(0, 5)} />
+      <HomeHero list={nowShowing.slice(0, 5)} />
 
       <section className="py-8 max-sm:py-6">
         <div className="w-[min(1220px,calc(100%-56px))] max-sm:w-[calc(100%-32px)] mx-auto">
@@ -73,15 +80,17 @@ export function HomeApp() {
               </a>
             </div>
             <div className="grid grid-cols-3 max-sm:flex max-sm:overflow-auto max-sm:no-scrollbar gap-3.5">
-              {favoriteCinemas.map((c) => (
+              {favoriteCinemas.map((theater) => (
                 <a
-                  key={c.id}
-                  href={`/cinema/${c.id}`}
+                  key={theater.id}
+                  href={`/cinema/${theater.id}`}
                   className="border border-line rounded-2xl bg-surface p-4.5 min-w-0 max-sm:shrink-0 max-sm:w-[235px]"
                 >
-                  <strong className="block">{c.name}</strong>
+                  <strong className="block">{theater.name}</strong>
                   <small className="block text-muted text-xs mt-1.5">
-                    {[c.network, c.city].filter(Boolean).join(' · ')}
+                    {[theater.network, theater.city]
+                      .filter(Boolean)
+                      .join(' · ')}
                   </small>
                 </a>
               ))}
@@ -93,7 +102,7 @@ export function HomeApp() {
       <MovieSection
         title="Perto de você"
         eyebrow="Nos cinemas"
-        list={cur}
+        list={nowShowing}
         morePath="/filmes"
         id="nearby"
       />
@@ -107,19 +116,11 @@ export function HomeApp() {
       <MovieSection
         title="Top 10"
         eyebrow="Na sua cidade"
-        list={cur}
+        list={nowShowing}
         rank
         id="top10"
       />
-      <MovieSection
-        title="Ainda dá tempo"
-        list={cur
-          .slice()
-          // Oldest releases first: the ones closest to leaving theaters
-          .sort((a, b) => a.releaseDate.localeCompare(b.releaseDate))
-          .slice(0, 5)}
-        id="lastchance"
-      />
+      <MovieSection title="Ainda dá tempo" list={lastChance} id="lastchance" />
       <MovieSection
         title="O que vem aí"
         eyebrow="Próximas estreias"

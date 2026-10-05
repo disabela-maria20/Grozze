@@ -5,9 +5,9 @@ export function safeStorage(kind: 'localStorage' | 'sessionStorage') {
   try {
     if (typeof window !== 'undefined') {
       native = window[kind];
-      const k = 'gz-test';
-      native.setItem(k, '1');
-      native.removeItem(k);
+      const probeKey = 'gz-test';
+      native.setItem(probeKey, '1');
+      native.removeItem(probeKey);
     }
   } catch {
     native = null;

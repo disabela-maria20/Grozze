@@ -12,27 +12,39 @@ import {
 import { useAppStore } from '@/shared/store';
 import { Icon } from '@/shared/ui';
 
+const MAX_MOVIE_RESULTS = 7;
+const MAX_CINEMA_RESULTS = 4;
+
+/**
+ * Catalog search over movies (title + genre) and cinemas (name + address).
+ * Inside a distributor hub (`scope`) only that distributor's movies are
+ * searched and cinemas are left out.
+ */
 export function SearchDialog({ scope }: { scope?: string | null }) {
-  const [q, setQ] = useState('');
+  const [query, setQuery] = useState('');
   const content = useAppStore((s) => s.content);
   const cinemaSaved = useAppStore((s) => s.cinemaSaved);
 
   const { movies, cinemas } = useMemo(() => {
-    const n = normalize(q);
-    const ms = allMovies(content)
+    const normalizedQuery = normalize(query);
+    const matchingMovies = allMovies(content)
       .filter(
-        (m) =>
-          (!scope || m.dist === scope) &&
-          normalize(m.t + ' ' + m.genre).includes(n)
+        (movie) =>
+          (!scope || movie.dist === scope) &&
+          normalize(movie.t + ' ' + movie.genre).includes(normalizedQuery)
       )
-      .slice(0, 7);
-    const cs = scope
+      .slice(0, MAX_MOVIE_RESULTS);
+    const matchingCinemas = scope
       ? []
       : sortedCinemas(cinemaSaved)
-          .filter((c) => normalize(c.name + ' ' + c.address).includes(n))
-          .slice(0, 4);
-    return { movies: ms, cinemas: cs };
-  }, [q, scope, content, cinemaSaved]);
+          .filter((cinema) =>
+            normalize(cinema.name + ' ' + cinema.address).includes(
+              normalizedQuery
+            )
+          )
+          .slice(0, MAX_CINEMA_RESULTS);
+    return { movies: matchingMovies, cinemas: matchingCinemas };
+  }, [query, scope, content, cinemaSaved]);
 
   const hasResults = movies.length || cinemas.length;
 
@@ -47,8 +59,8 @@ export function SearchDialog({ scope }: { scope?: string | null }) {
         <input
           // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus
-          value={q}
-          onChange={(e) => setQ(e.target.value)}
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
           placeholder="Filme, cinema ou bairro"
           aria-label="Buscar em todo o catálogo"
           className="min-w-0 w-full text-app-text border-0 outline-none bg-transparent text-base h-[50px]"
@@ -58,25 +70,25 @@ export function SearchDialog({ scope }: { scope?: string | null }) {
         {!hasResults && (
           <p className="text-muted">Nenhum resultado encontrado.</p>
         )}
-        {movies.map((m) => (
+        {movies.map((movie) => (
           <a
-            key={m.id}
+            key={movie.id}
             className="block mb-1.5 p-4 rounded-2xl border border-line bg-surface2"
-            href={movieHref(m.id, scope)}
+            href={movieHref(movie.id, scope)}
           >
-            <strong className="block">{m.t}</strong>
+            <strong className="block">{movie.t}</strong>
             <small className="text-muted text-xs mt-1.5 block">
-              {statusLabel(m)} · {dateLabel(m.releaseDate)}
+              {statusLabel(movie)} · {dateLabel(movie.releaseDate)}
             </small>
           </a>
         ))}
-        {cinemas.map((c) => (
+        {cinemas.map((cinema) => (
           <a
-            key={c.id}
+            key={cinema.id}
             className="block mb-1.5 p-4 rounded-2xl border border-line bg-surface2"
-            href={`/cinema/${c.id}`}
+            href={`/cinema/${cinema.id}`}
           >
-            <strong className="block">{c.name}</strong>
+            <strong className="block">{cinema.name}</strong>
             <small className="text-muted text-xs mt-1.5 block">Cinema</small>
           </a>
         ))}

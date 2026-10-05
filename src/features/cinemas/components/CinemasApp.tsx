@@ -12,14 +12,20 @@ export function CinemasApp() {
   const [query, setQuery] = useState('');
   const [mapOpen, setMapOpen] = useState(false);
 
-  const list = useMemo(() => {
-    const q = normalize(query);
+  const visibleCinemas = useMemo(() => {
+    const normalizedQuery = normalize(query);
     // Searching looks nationwide; the default list stays near the user
-    return sortedCinemas(cinemaSaved, location.coords).filter((c) =>
-      q
-        ? normalize([c.name, c.address, c.city].join(' ')).includes(q)
-        : cinemaSaved(c.id) || inLocation(c, location)
-    );
+    return sortedCinemas(cinemaSaved, location.coords).filter((candidate) => {
+      if (normalizedQuery) {
+        const searchableText = [
+          candidate.name,
+          candidate.address,
+          candidate.city,
+        ].join(' ');
+        return normalize(searchableText).includes(normalizedQuery);
+      }
+      return cinemaSaved(candidate.id) || inLocation(candidate, location);
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, location]);
 
@@ -73,8 +79,10 @@ export function CinemasApp() {
             )}
           </div>
           <div className="grid gap-3">
-            {list.length ? (
-              list.map((c) => <CinemaCard key={c.id} c={c} />)
+            {visibleCinemas.length ? (
+              visibleCinemas.map((cinema) => (
+                <CinemaCard key={cinema.id} c={cinema} />
+              ))
             ) : (
               <EmptyState>Nenhum cinema para esta busca.</EmptyState>
             )}

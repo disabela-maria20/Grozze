@@ -4,14 +4,25 @@ import { cinema } from '@/shared/lib/catalog';
 import { useAppStore } from '@/shared/store';
 import { Icon, LinkButton, NotFound } from '@/shared/ui';
 
+function roomCountLabel(roomCount: number) {
+  return `${roomCount} ${roomCount === 1 ? 'sala' : 'salas'}`;
+}
+
 export function CinemaPage({ id }: { id: string }) {
   const cinemaSaved = useAppStore((s) => s.cinemaSaved(id));
   const openDialog = useAppStore((s) => s.openDialog);
-  const c = cinema(id);
+  const cinemaInfo = cinema(id);
 
-  if (!c) return <NotFound />;
+  if (!cinemaInfo) return <NotFound />;
 
-  const place = [c.city, c.uf].filter(Boolean).join(' · ');
+  const place = [cinemaInfo.city, cinemaInfo.uf].filter(Boolean).join(' · ');
+  const tags = [
+    place,
+    cinemaInfo.roomCount ? roomCountLabel(cinemaInfo.roomCount) : '',
+    ...cinemaInfo.phones,
+  ].filter(Boolean);
+  const toggleFavorite = () =>
+    useAppStore.getState().requestFavorite('cinema', id, `/cinema/${id}`);
 
   return (
     <div className="page pt-[120px] max-sm:pt-[101px] pb-13 min-h-[65vh]">
@@ -19,38 +30,26 @@ export function CinemaPage({ id }: { id: string }) {
         <header className="mb-6.5 flex justify-between items-start gap-5 max-sm:block">
           <div>
             <p className="text-[11px] tracking-[0.17em] uppercase font-extrabold text-lime mb-2">
-              {c.network}
+              {cinemaInfo.network}
             </p>
             <h1 className="text-[48px] max-sm:text-[36px] -tracking-[0.05em] leading-[1.05] mb-3">
-              {c.name}
+              {cinemaInfo.name}
             </h1>
-            <p className="text-muted text-[15px] mb-3">{c.address}</p>
+            <p className="text-muted text-[15px] mb-3">{cinemaInfo.address}</p>
             <div className="flex gap-2 flex-wrap">
-              {[
-                place,
-                c.roomCount
-                  ? `${c.roomCount} ${c.roomCount === 1 ? 'sala' : 'salas'}`
-                  : '',
-                ...c.phones,
-              ]
-                .filter(Boolean)
-                .map((t) => (
-                  <span
-                    key={t}
-                    className="text-xs px-2.5 py-1.5 border border-line rounded-full text-[#bec9bf]"
-                  >
-                    {t}
-                  </span>
-                ))}
+              {tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="text-xs px-2.5 py-1.5 border border-line rounded-full text-[#bec9bf]"
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
           <button
             type="button"
-            onClick={() =>
-              useAppStore
-                .getState()
-                .requestFavorite('cinema', id, `/cinema/${id}`)
-            }
+            onClick={toggleFavorite}
             aria-pressed={cinemaSaved}
             className={`min-h-[46px] px-5 py-2.5 rounded-full border border-line inline-flex items-center justify-center gap-2 text-sm font-semibold mt-4 max-sm:mt-4.5 ${
               cinemaSaved
@@ -70,10 +69,10 @@ export function CinemaPage({ id }: { id: string }) {
           >
             Confira preços
           </button>
-          {c.siteUrl && (
+          {cinemaInfo.siteUrl && (
             <a
               className="text-[13px] inline-flex items-center gap-1.5 text-[#dce3dc] hover:text-lime transition-colors"
-              href={c.siteUrl}
+              href={cinemaInfo.siteUrl}
               target="_blank"
               rel="noopener noreferrer"
             >

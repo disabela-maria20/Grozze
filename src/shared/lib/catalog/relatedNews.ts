@@ -1,6 +1,7 @@
 import type { Movie, NewsItem } from '../types';
 import { NEWS } from './NEWS';
 
-export function relatedNews(m: Movie): NewsItem[] {
-  return NEWS.filter((n) => n.dist === m.dist);
+/** News of the movie's distributor. */
+export function relatedNews(movie: Movie): NewsItem[] {
+  return NEWS.filter((news) => news.dist === movie.dist);
 }

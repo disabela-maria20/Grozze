@@ -10,10 +10,60 @@ import { useAccountAction, Avatar } from '@/features/account';
 import { DISTRIBUTORS } from '@/shared/lib/catalog';
 import { Icon } from '@/shared/ui';
 
+const SCROLLED_THRESHOLD_PX = 4;
+
+/** Left side of the header inside a distributor hub. */
+function HubBrand({ distributorName }: { distributorName?: string }) {
+  return (
+    <>
+      <span className="text-[22px] font-extrabold tracking-tight">
+        {distributorName || 'Distribuidora'}
+      </span>
+      <span className="text-[10px] text-muted flex items-center gap-2">
+        Com tecnologia <img src="/logo.png" alt="Grozze" className="w-[63px]" />
+      </span>
+    </>
+  );
+}
+
+/** Left side of the header on the main site: logo + primary navigation. */
+function SiteBrandAndNav({ activeRoot }: { activeRoot: string }) {
+  return (
+    <>
+      <Link
+        className="shrink-0 leading-none"
+        href="/"
+        aria-label="Grozze, início"
+      >
+        <img
+          src="/logo.png"
+          alt="grozze."
+          className="w-[156px] max-sm:w-[130px] h-auto"
+        />
+      </Link>
+      <nav
+        className="hidden md:flex items-center gap-6"
+        aria-label="Navegação principal"
+      >
+        {NAV.map(([root, label]) => (
+          <a
+            key={root}
+            href={pathFor(root)}
+            aria-current={activeRoot === root ? 'page' : undefined}
+            className="text-[15px] font-semibold text-[#b9c2bb] py-3.5 whitespace-nowrap relative aria-[current=page]:text-lime hover:text-lime transition-colors"
+          >
+            {label}
+          </a>
+        ))}
+      </nav>
+    </>
+  );
+}
+
 export function Header() {
   const pathname = usePathname();
   const scope = scopeFromPath(pathname);
-  const active = activeRootFromPath(pathname);
+  const activeRoot = activeRootFromPath(pathname);
   const logged = useAppStore((s) => s.logged());
   const profile = useAppStore((s) => s.profile());
   const location = useAppStore((s) => s.location);
@@ -23,7 +73,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 4);
+    const onScroll = () => setScrolled(window.scrollY > SCROLLED_THRESHOLD_PX);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -33,57 +83,26 @@ export function Header() {
     document.body.classList.toggle('is-hub', !!scope);
   }, [scope]);
 
-  const hub = scope ? DISTRIBUTORS.find((d) => d.slug === scope) : null;
+  const hubDistributor = scope
+    ? DISTRIBUTORS.find((distributor) => distributor.slug === scope)
+    : null;
+  // Transparent over a hero image until the page scrolls
+  const isSolid = scrolled || !hasHero;
 
   return (
     <header
       id="site-header"
       className={`fixed top-0 left-0 right-0 z-50 h-[84px] max-sm:h-[76px] border-b backdrop-blur-2xl transition-colors ${
-        scrolled || !hasHero
+        isSolid
           ? 'bg-bg/[0.93] border-line'
           : 'bg-gradient-to-b from-bg/[0.68] to-transparent border-transparent backdrop-blur-none'
       }`}
     >
       <div className="w-[min(1220px,calc(100%-56px))] max-sm:w-[calc(100%-32px)] mx-auto h-full flex items-center gap-7 max-sm:gap-2.5">
         {scope ? (
-          <>
-            <span className="text-[22px] font-extrabold tracking-tight">
-              {hub?.name || 'Distribuidora'}
-            </span>
-            <span className="text-[10px] text-muted flex items-center gap-2">
-              Com tecnologia{' '}
-              <img src="/logo.png" alt="Grozze" className="w-[63px]" />
-            </span>
-          </>
+          <HubBrand distributorName={hubDistributor?.name} />
         ) : (
-          <>
-            <Link
-              className="shrink-0 leading-none"
-              href="/"
-              aria-label="Grozze, início"
-            >
-              <img
-                src="/logo.png"
-                alt="grozze."
-                className="w-[156px] max-sm:w-[130px] h-auto"
-              />
-            </Link>
-            <nav
-              className="hidden md:flex items-center gap-6"
-              aria-label="Navegação principal"
-            >
-              {NAV.map(([p, l]) => (
-                <a
-                  key={p}
-                  href={pathFor(p)}
-                  aria-current={active === p ? 'page' : undefined}
-                  className="text-[15px] font-semibold text-[#b9c2bb] py-3.5 whitespace-nowrap relative aria-[current=page]:text-lime hover:text-lime transition-colors"
-                >
-                  {l}
-                </a>
-              ))}
-            </nav>
-          </>
+          <SiteBrandAndNav activeRoot={activeRoot} />
         )}
         <div className="ml-auto flex items-center gap-2">
           <button

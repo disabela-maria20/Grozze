@@ -12,37 +12,40 @@ import { CATALOG_IMAGE_URL } from './CATALOG_IMAGE_URL';
 
 /** File names are relative to the image host; full URLs pass through. */
 export function catalogImage(file: string | null | undefined): string {
-  const f = String(file || '').trim();
-  if (!f) return '';
+  const fileName = String(file || '').trim();
+  if (!fileName) return '';
   return safeImage(
-    /^https?:\/\//i.test(f)
-      ? f
-      : `${CATALOG_IMAGE_URL}/${encodeURIComponent(f)}`
+    /^https?:\/\//i.test(fileName)
+      ? fileName
+      : `${CATALOG_IMAGE_URL}/${encodeURIComponent(fileName)}`
   );
 }
 
 /** "99" → "1h39"; "45" → "45 min". */
 function duration(minutes: string | null): string {
-  const n = Number.parseInt(minutes || '', 10);
-  if (!Number.isFinite(n) || n <= 0) return '';
-  if (n < 60) return `${n} min`;
-  return `${Math.floor(n / 60)}h${String(n % 60).padStart(2, '0')}`;
+  const total = Number.parseInt(minutes || '', 10);
+  if (!Number.isFinite(total) || total <= 0) return '';
+  if (total < 60) return `${total} min`;
+  return `${Math.floor(total / 60)}h${String(total % 60).padStart(2, '0')}`;
 }
 
 /** "0" / "Livre" → "Livre"; "16 anos" → "16"; "Verifique..." → "". */
 function rating(value: string | null): string {
-  const v = String(value || '').trim();
-  if (/^0$|livre/i.test(v)) return 'Livre';
-  return v.match(/^\d+/)?.[0] || '';
+  const text = String(value || '').trim();
+  if (/^0$|livre/i.test(text)) return 'Livre';
+  return text.match(/^\d+/)?.[0] || '';
 }
 
-const day = (v: string | null | undefined) => {
-  const d = String(v || '').slice(0, 10);
-  return validDate(d) ? d : '';
+/** "YYYY-MM-DD HH:mm:ss" → "YYYY-MM-DD"; '' when missing or invalid. */
+const day = (value: string | null | undefined) => {
+  const date = String(value || '').slice(0, 10);
+  return validDate(date) ? date : '';
 };
 
+/** Maps an API movie to the app's `Movie`. */
 export function toMovie(m: ApiMovie): Movie {
-  const asset = (type: string) => m.assets?.find((a) => a.type === type);
+  const asset = (type: string) =>
+    m.assets?.find((candidate) => candidate.type === type);
   const released = day(m.release_date);
   const firstShowtime = day(m.first_showtime_date);
   const today = nowInSaoPaulo().date;
@@ -62,7 +65,7 @@ export function toMovie(m: ApiMovie): Movie {
     syn: (m.synopsis || '').trim(),
     cast: (m.cast || '')
       .split(/\r?\n|,/)
-      .map((x) => x.trim())
+      .map((name) => name.trim())
       .filter(Boolean)
       .slice(0, 4),
     director: (m.director || '').trim(),

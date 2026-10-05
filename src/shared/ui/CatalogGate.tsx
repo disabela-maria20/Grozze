@@ -20,7 +20,37 @@ export function CatalogGate({
   const { data, error, refetch, isFetching } = useCatalogQuery();
   if (data) return <>{children}</>;
 
-  const body = error ? (
+  const placeholder = error ? (
+    <CatalogError
+      error={error}
+      isRetrying={isFetching}
+      onRetry={() => refetch()}
+    />
+  ) : (
+    <FilmLoader label="Carregando filmes e cinemas…" compact={compact} />
+  );
+
+  if (compact) return <div className="text-muted text-sm">{placeholder}</div>;
+  return (
+    <div className="page pt-[120px] pb-13 min-h-[65vh]">
+      <div className="w-[min(1220px,calc(100%-56px))] max-sm:w-[calc(100%-32px)] mx-auto border border-line rounded-app p-6 bg-surface text-muted">
+        {placeholder}
+      </div>
+    </div>
+  );
+}
+
+/** Load failure message with a retry button. */
+function CatalogError({
+  error,
+  isRetrying,
+  onRetry,
+}: {
+  error: unknown;
+  isRetrying: boolean;
+  onRetry: () => void;
+}) {
+  return (
     <div role="alert">
       <h1 className="text-app-text text-[23px] tracking-tight m-0 mb-2">
         Não foi possível carregar o catálogo
@@ -28,20 +58,9 @@ export function CatalogGate({
       <p className="mb-4">
         {error instanceof Error ? error.message : 'Tente novamente.'}
       </p>
-      <Button onClick={() => refetch()} disabled={isFetching}>
-        {isFetching ? 'Tentando…' : 'Tentar novamente'}
+      <Button onClick={onRetry} disabled={isRetrying}>
+        {isRetrying ? 'Tentando…' : 'Tentar novamente'}
       </Button>
-    </div>
-  ) : (
-    <FilmLoader label="Carregando filmes e cinemas…" compact={compact} />
-  );
-
-  if (compact) return <div className="text-muted text-sm">{body}</div>;
-  return (
-    <div className="page pt-[120px] pb-13 min-h-[65vh]">
-      <div className="w-[min(1220px,calc(100%-56px))] max-sm:w-[calc(100%-32px)] mx-auto border border-line rounded-app p-6 bg-surface text-muted">
-        {body}
-      </div>
     </div>
   );
 }

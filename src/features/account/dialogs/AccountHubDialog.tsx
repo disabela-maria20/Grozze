@@ -12,8 +12,8 @@ export function AccountHubDialog({ scope }: { scope: string }) {
   const closeDialog = useAppStore((s) => s.closeDialog);
   const logout = useAppStore((s) => s.logout);
 
-  const list = allMovies(content).filter(
-    (m) => m.dist === scope && movieSaved(m.id)
+  const savedHubMovies = allMovies(content).filter(
+    (hubMovie) => hubMovie.dist === scope && movieSaved(hubMovie.id)
   );
 
   return (
@@ -24,10 +24,10 @@ export function AccountHubDialog({ scope }: { scope: string }) {
       <p className="text-sm text-muted leading-relaxed mb-5">
         Seus filmes salvos neste hub.
       </p>
-      {list.length ? (
+      {savedHubMovies.length ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-          {list.map((m) => (
-            <MovieCard key={m.id} m={m} scope={scope} />
+          {savedHubMovies.map((hubMovie) => (
+            <MovieCard key={hubMovie.id} m={hubMovie} scope={scope} />
           ))}
         </div>
       ) : (

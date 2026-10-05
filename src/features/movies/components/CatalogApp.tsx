@@ -5,6 +5,8 @@ import { movieList, normalize, status } from '@/shared/lib/catalog';
 import { useAppStore } from '@/shared/store';
 import { MovieCard } from './MovieCard';
 import { Chip, EmptyState, Rail, TextLink, Icon } from '@/shared/ui';
+
+/** Status filter chips as [status value, label]. */
 const STATUS_OPTIONS: [string, string][] = [
   ['all', 'Todos'],
   ['now', 'Em cartaz'],
@@ -20,12 +22,14 @@ export function CatalogApp() {
   );
 
   const list = useMemo(() => {
-    const q = normalize(query);
-    return movieList(content).filter(
-      (m) =>
-        (!q || normalize(m.t + ' ' + m.genre).includes(q)) &&
-        (filmStatus === 'all' || status(m) === filmStatus)
-    );
+    const normalizedQuery = normalize(query);
+    return movieList(content).filter((film) => {
+      const matchesQuery =
+        !normalizedQuery ||
+        normalize(film.t + ' ' + film.genre).includes(normalizedQuery);
+      const matchesStatus = filmStatus === 'all' || status(film) === filmStatus;
+      return matchesQuery && matchesStatus;
+    });
   }, [query, filmStatus, content]);
 
   return (
@@ -48,13 +52,13 @@ export function CatalogApp() {
             />
           </label>
           <Rail className="flex-none w-auto max-sm:w-full">
-            {STATUS_OPTIONS.map(([v, l]) => (
+            {STATUS_OPTIONS.map(([value, label]) => (
               <Chip
-                key={v}
-                active={filmStatus === v}
-                onClick={() => setFilmStatus(v)}
+                key={value}
+                active={filmStatus === value}
+                onClick={() => setFilmStatus(value)}
               >
-                {l}
+                {label}
               </Chip>
             ))}
           </Rail>
@@ -64,8 +68,8 @@ export function CatalogApp() {
         </div>
         {list.length ? (
           <div className="grid grid-cols-6 max-lg:grid-cols-5 max-md:grid-cols-4 max-sm:grid-cols-2 gap-x-4 gap-y-6 max-sm:gap-x-3.5 max-sm:gap-y-5.5">
-            {list.map((m) => (
-              <MovieCard key={m.id} m={m} />
+            {list.map((film) => (
+              <MovieCard key={film.id} m={film} />
             ))}
           </div>
         ) : (

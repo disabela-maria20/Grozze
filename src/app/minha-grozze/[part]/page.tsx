@@ -16,6 +16,7 @@ export default async function Page({
   params: Promise<{ part: string }>;
 }) {
   const { part } = await params;
+  // `alertas` is a legacy alias of the preferences tab
   const normalized = part === 'alertas' ? 'preferencias' : part;
   return (
     <ClientOnly>

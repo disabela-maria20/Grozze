@@ -4,7 +4,7 @@ import { ArticleApp } from '@/features/news';
 import { NEWS } from '@/shared/lib/catalog';
 
 export function generateStaticParams() {
-  return NEWS.map((n) => ({ id: n.id }));
+  return NEWS.map((article) => ({ id: article.id }));
 }
 
 export async function generateMetadata({
@@ -13,8 +13,8 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  const n = NEWS.find((x) => x.id === id);
-  return { title: n?.t, description: n?.p };
+  const article = NEWS.find((candidate) => candidate.id === id);
+  return { title: article?.t, description: article?.p };
 }
 
 export default async function Page({

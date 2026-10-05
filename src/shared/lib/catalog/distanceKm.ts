@@ -1,15 +1,23 @@
 import type { Cinema } from '../types';
 
+const EARTH_RADIUS_KM = 6371;
+
+const toRadians = (degrees: number) => (degrees * Math.PI) / 180;
+
+/** Great-circle (haversine) distance; `null` without a position or cinema coordinates. */
 export function distanceKm(
-  c: Cinema,
-  pos?: { lat: number; lng: number } | null
+  cinema: Cinema,
+  position?: { lat: number; lng: number } | null
 ): number | null {
-  if (!pos || c.lat === null || c.lng === null) return null;
-  const rad = (d: number) => (d * Math.PI) / 180;
-  const a =
-    Math.sin(rad(c.lat - pos.lat) / 2) ** 2 +
-    Math.cos(rad(pos.lat)) *
-      Math.cos(rad(c.lat)) *
-      Math.sin(rad(c.lng - pos.lng) / 2) ** 2;
-  return 6371 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  if (!position || cinema.lat === null || cinema.lng === null) return null;
+  const haversine =
+    Math.sin(toRadians(cinema.lat - position.lat) / 2) ** 2 +
+    Math.cos(toRadians(position.lat)) *
+      Math.cos(toRadians(cinema.lat)) *
+      Math.sin(toRadians(cinema.lng - position.lng) / 2) ** 2;
+  return (
+    EARTH_RADIUS_KM *
+    2 *
+    Math.atan2(Math.sqrt(haversine), Math.sqrt(1 - haversine))
+  );
 }

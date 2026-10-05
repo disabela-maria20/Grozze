@@ -13,14 +13,17 @@ const ALIASES: Record<string, string> = {
  * itself when the distributor has no page.
  */
 export function distributorSlug(name: string | null | undefined): string {
-  const n = normalize(name).trim();
-  if (!n) return '';
-  if (ALIASES[n]) return ALIASES[n];
-  const d = DISTRIBUTORS.find(
-    (x) =>
-      n.startsWith(normalize(x.name)) ||
-      n === x.slug ||
-      n.startsWith(x.slug + ' ')
+  const normalized = normalize(name).trim();
+  if (!normalized) return '';
+  if (ALIASES[normalized]) return ALIASES[normalized];
+  const registered = DISTRIBUTORS.find(
+    (distributor) =>
+      normalized.startsWith(normalize(distributor.name)) ||
+      normalized === distributor.slug ||
+      normalized.startsWith(distributor.slug + ' ')
   );
-  return d?.slug ?? n.replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  return (
+    registered?.slug ??
+    normalized.replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+  );
 }

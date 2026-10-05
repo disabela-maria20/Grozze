@@ -27,8 +27,8 @@ export function NewsSection({
           </div>
         </div>
         <div className="grid grid-cols-3 max-sm:grid-cols-1 gap-4.5">
-          {items.slice(0, 3).map((n) => (
-            <NewsCard key={n.id} n={n} scope={scope} />
+          {items.slice(0, 3).map((item) => (
+            <NewsCard key={item.id} n={item} scope={scope} />
           ))}
         </div>
       </div>

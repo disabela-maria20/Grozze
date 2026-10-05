@@ -12,10 +12,10 @@ export function SessionDialog({ sessionId }: { sessionId: string }) {
   const movieId = String(sessionId || '').split('|')[0];
   const { data, isPending } = useMovieShowtimesQuery(movieId);
   if (isPending) return <FilmLoader label="Carregando sessão…" compact />;
-  const s = data?.find((x) => x.id === sessionId);
-  const m = s && movie(s.movie, content);
-  if (!s || !m) return <p>Essa sessão não está disponível.</p>;
-  const c = cinema(s.theater);
+  const session = data?.find((item) => item.id === sessionId);
+  const film = session && movie(session.movie, content);
+  if (!session || !film) return <p>Essa sessão não está disponível.</p>;
+  const theater = cinema(session.theater);
 
   return (
     <div>
@@ -26,37 +26,39 @@ export function SessionDialog({ sessionId }: { sessionId: string }) {
         Confira os detalhes
       </h2>
       <div className="flex items-center gap-4 mb-4">
-        <MoviePoster m={m} className="w-[62px] shrink-0 rounded-[9px]" />
+        <MoviePoster m={film} className="w-[62px] shrink-0 rounded-[9px]" />
         <div>
-          <h3 className="text-[22px] leading-[1.2] m-0 mb-1">{m.t}</h3>
-          <p className="text-muted m-0 text-[13px]">{c?.name}</p>
+          <h3 className="text-[22px] leading-[1.2] m-0 mb-1">{film.t}</h3>
+          <p className="text-muted m-0 text-[13px]">{theater?.name}</p>
         </div>
       </div>
       <dl className="grid grid-cols-2 gap-4 my-6">
         {[
-          ['Data', dateLabel(s.date, true)],
-          ['Horário', s.time],
-          ['Sala', s.room],
-          ['Experiência', s.tech],
-          ['Idioma', s.lang],
-          ['Cinema', c?.name || '—'],
-        ].map(([dt, dd]) => (
-          <div key={dt}>
+          ['Data', dateLabel(session.date, true)],
+          ['Horário', session.time],
+          ['Sala', session.room],
+          ['Experiência', session.tech],
+          ['Idioma', session.lang],
+          ['Cinema', theater?.name || '—'],
+        ].map(([term, description]) => (
+          <div key={term}>
             <dt className="text-[11px] uppercase text-faint tracking-wide">
-              {dt}
+              {term}
             </dt>
-            <dd className="mt-1 text-base font-semibold break-words">{dd}</dd>
+            <dd className="mt-1 text-base font-semibold break-words">
+              {description}
+            </dd>
           </div>
         ))}
       </dl>
-      {s.purchaseUrl && (
+      {session.purchaseUrl && (
         <LinkButton
           primary
-          href={s.purchaseUrl}
+          href={session.purchaseUrl}
           target="_blank"
           rel="noopener noreferrer"
         >
-          Comprar {s.seller ? `na ${s.seller}` : 'ingresso'}{' '}
+          Comprar {session.seller ? `na ${session.seller}` : 'ingresso'}{' '}
           <Icon name="arrow" className="w-4 h-4" />
         </LinkButton>
       )}

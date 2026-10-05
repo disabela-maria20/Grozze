@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { dateLabel, hasSessions, status } from '@/shared/lib/catalog';
 import { useAppStore } from '@/shared/store';
 import type { Movie } from '@/shared/lib/types';
@@ -8,11 +8,26 @@ import { MovieMeta } from './MovieMeta';
 import { Icon, TextLink } from '@/shared/ui';
 import { SaveButton } from './SaveButton';
 
+/** One label/value pair of the expanded movie details list. */
+function HeroDetail({ term, children }: { term: string; children: ReactNode }) {
+  return (
+    <div>
+      <dt className="text-[11px] uppercase tracking-wide text-faint mb-1.5">
+        {term}
+      </dt>
+      <dd className="m-0 text-sm text-[#dae3da]">{children}</dd>
+    </div>
+  );
+}
+
 export function MovieHero({ m, path }: { m: Movie; path: string }) {
   const [expanded, setExpanded] = useState(false);
   const setHasHero = useAppStore((s) => s.setHasHero);
   const openDialog = useAppStore((s) => s.openDialog);
-  const upcoming = status(m) === 'soon';
+  const movieStatus = status(m);
+  const upcoming = movieStatus === 'soon';
+  const statusEyebrow = movieStatus === 'presale' ? 'Pré-venda' : 'Em cartaz';
+  const releaseTerm = movieStatus === 'now' ? 'Estreia nos cinemas' : 'Estreia';
 
   useEffect(() => {
     setHasHero(true);
@@ -64,7 +79,7 @@ export function MovieHero({ m, path }: { m: Movie; path: string }) {
             </div>
           ) : (
             <div className="text-[11px] tracking-[0.17em] uppercase font-extrabold text-lime mb-2">
-              {status(m) === 'presale' ? 'Pré-venda' : 'Em cartaz'}
+              {statusEyebrow}
             </div>
           )}
           <h1 className="text-[62px] max-sm:text-[clamp(29px,8.5vw,39px)] font-extrabold leading-[1.04] -tracking-[0.052em] my-2.5 mb-4.5">
@@ -89,37 +104,17 @@ export function MovieHero({ m, path }: { m: Movie; path: string }) {
             {expanded && (
               <dl className="grid grid-cols-2 max-sm:grid-cols-1 gap-5.5 max-sm:gap-2.5 mt-4.5 max-sm:text-center">
                 {m.director && (
-                  <div>
-                    <dt className="text-[11px] uppercase tracking-wide text-faint mb-1.5">
-                      Direção
-                    </dt>
-                    <dd className="m-0 text-sm text-[#dae3da]">{m.director}</dd>
-                  </div>
+                  <HeroDetail term="Direção">{m.director}</HeroDetail>
                 )}
                 {!!m.cast?.length && (
-                  <div>
-                    <dt className="text-[11px] uppercase tracking-wide text-faint mb-1.5">
-                      Elenco principal
-                    </dt>
-                    <dd className="m-0 text-sm text-[#dae3da]">
-                      {m.cast.join(', ')}
-                    </dd>
-                  </div>
+                  <HeroDetail term="Elenco principal">
+                    {m.cast.join(', ')}
+                  </HeroDetail>
                 )}
-                <div>
-                  <dt className="text-[11px] uppercase tracking-wide text-faint mb-1.5">
-                    Distribuição
-                  </dt>
-                  <dd className="m-0 text-sm text-[#dae3da]">{m.distLabel}</dd>
-                </div>
-                <div>
-                  <dt className="text-[11px] uppercase tracking-wide text-faint mb-1.5">
-                    {status(m) === 'now' ? 'Estreia nos cinemas' : 'Estreia'}
-                  </dt>
-                  <dd className="m-0 text-sm text-[#dae3da]">
-                    {dateLabel(m.releaseDate, true)}
-                  </dd>
-                </div>
+                <HeroDetail term="Distribuição">{m.distLabel}</HeroDetail>
+                <HeroDetail term={releaseTerm}>
+                  {dateLabel(m.releaseDate, true)}
+                </HeroDetail>
               </dl>
             )}
           </div>

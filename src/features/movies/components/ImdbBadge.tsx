@@ -3,9 +3,10 @@
 import type { Movie } from '@/shared/lib/types';
 
 export function ImdbBadge({ m }: { m: Movie }) {
-  const i = m.imdb;
-  if (!i?.score) return null;
-  const url = String(i.url || '');
+  const imdb = m.imdb;
+  if (!imdb?.score) return null;
+  const url = String(imdb.url || '');
+  // Only link out when the URL really points to imdb.com
   const isImdbUrl = /^https:\/\/www\.imdb\.com\//.test(url);
   const Tag = isImdbUrl ? 'a' : 'span';
   return (
@@ -19,7 +20,7 @@ export function ImdbBadge({ m }: { m: Movie }) {
       <span className="bg-[#f5c518] text-[#080908] font-black text-[15px] px-1.5 py-0.5 rounded-[5px] -tracking-[0.05em]">
         IMDb
       </span>
-      <span>{i.score}/10</span>
+      <span>{imdb.score}/10</span>
     </Tag>
   );
 }

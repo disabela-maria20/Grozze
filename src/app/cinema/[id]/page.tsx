@@ -9,8 +9,8 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  const c = await getCinema(id).catch(() => null);
-  return { title: c?.name, description: c?.address };
+  const cinema = await getCinema(id).catch(() => null);
+  return { title: cinema?.name, description: cinema?.address };
 }
 
 export default async function Page({

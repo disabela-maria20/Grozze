@@ -1,8 +1,10 @@
 import type { Cinema } from '@/shared/lib/types';
 import type { ApiCinema } from './apiTypes';
 
-const text = (v: string | null | undefined) => String(v ?? '').trim();
+/** Trimmed string; '' for null/undefined. */
+const text = (value: string | null | undefined) => String(value ?? '').trim();
 
+/** Maps an API cinema to the app's `Cinema` ("S/N" street numbers are dropped). */
 export function toCinema(c: ApiCinema): Cinema {
   const number = text(c.number);
   const street = [text(c.address), /^s\/?n$/i.test(number) ? '' : number]

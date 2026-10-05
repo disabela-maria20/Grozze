@@ -22,6 +22,7 @@ import { cmsMovieSchema, type CmsMovieValues } from '../schema';
 import { Button, Field, inputClass } from '@/shared/ui';
 import type { Movie, MovieOverride } from '@/shared/lib/types';
 
+/** `[query-string value, label]` pairs for the CMS top-level tabs. */
 const TABS: [string, string][] = [
   ['filmes', 'Filmes'],
   ['leads', 'Leads'],
@@ -29,7 +30,10 @@ const TABS: [string, string][] = [
   ['dados', 'Dados e integrações'],
 ];
 
-const FIELDS: [Exclude<keyof CmsMovieValues, 'syn'>, string, string][] = [
+type CmsFieldKey = Exclude<keyof CmsMovieValues, 'syn'>;
+
+/** `[form field, label, input type]` for every single-line editor input. */
+const FIELDS: [CmsFieldKey, string, string][] = [
   ['t', 'Título', 'text'],
   ['releaseDate', 'Data de estreia', 'date'],
   ['director', 'Direção', 'text'],
@@ -42,27 +46,90 @@ const FIELDS: [Exclude<keyof CmsMovieValues, 'syn'>, string, string][] = [
   ['trailer', 'Trailer — ID ou URL do YouTube', 'text'],
 ];
 
-function overrideValues(o: MovieOverride = {}): CmsMovieValues {
+const IMAGE_FIELDS: CmsFieldKey[] = ['poster', 'backdrop'];
+
+const LEAD_COLUMNS = ['Data', 'Nome', 'E-mail', 'Origem', 'Marketing'];
+
+const LEAD_CELL_CLASS = 'p-3.5 border-b border-line whitespace-nowrap';
+
+const EMPTY_BOX_CLASS =
+  'border border-line rounded-app p-5 bg-surface text-muted';
+
+/** Converts a stored override into form values (missing fields become ''). */
+function overrideValues(override: MovieOverride = {}): CmsMovieValues {
   return {
-    t: o.t || '',
-    releaseDate: o.releaseDate || '',
-    director: o.director || '',
-    cast: (o.cast || []).join(', '),
-    genre: o.genre || '',
-    dur: o.dur || '',
-    rating: o.rating || '',
-    poster: o.poster || '',
-    backdrop: o.backdrop || '',
-    trailer: o.trailer || '',
-    syn: o.syn || '',
+    t: override.t || '',
+    releaseDate: override.releaseDate || '',
+    director: override.director || '',
+    cast: (override.cast || []).join(', '),
+    genre: override.genre || '',
+    dur: override.dur || '',
+    rating: override.rating || '',
+    poster: override.poster || '',
+    backdrop: override.backdrop || '',
+    trailer: override.trailer || '',
+    syn: override.syn || '',
   };
+}
+
+/** Placeholder hinting at the source value that an empty field falls back to. */
+function fieldPlaceholder(
+  key: CmsFieldKey,
+  baseData: Movie
+): string | undefined {
+  if (key === 'releaseDate') return undefined;
+  if (IMAGE_FIELDS.includes(key)) return 'Manter imagem de origem';
+  if (key === 'cast') return (baseData.cast || []).join(', ');
+  return (baseData[key as keyof Movie] as string | undefined) || 'Automático';
+}
+
+/** Updates the current URL's query string without reloading the page. */
+function pushQueryParams(params: Record<string, string>) {
+  const url = new URL(window.location.href);
+  for (const [name, value] of Object.entries(params)) {
+    url.searchParams.set(name, value);
+  }
+  window.history.pushState({}, '', url);
+}
+
+function readQueryParam(name: string): string | null {
+  return new URLSearchParams(window.location.search).get(name);
+}
+
+function SourceDataDetails({ baseData }: { baseData: Movie }) {
+  return (
+    <details className="text-xs text-faint mb-4.5">
+      <summary className="cursor-pointer text-muted">
+        Ver dado de origem e procedência
+      </summary>
+      <pre className="whitespace-pre-wrap break-words text-[11px] p-3.5 border border-line rounded-[10px] max-h-[250px] overflow-auto mt-2">
+        {JSON.stringify(
+          {
+            id: baseData.id,
+            title: baseData.t,
+            synopsis: baseData.syn,
+            director: baseData.director,
+            releaseDate: baseData.releaseDate,
+            cast: baseData.cast,
+            source: baseData.source,
+            asOf: baseData.sourceAsOf,
+            imdb: baseData.imdb
+              ? 'Nota herdada do arquivo; não verificada novamente'
+              : null,
+          },
+          null,
+          2
+        )}
+      </pre>
+    </details>
+  );
 }
 
 function CmsMovieEditor({ id }: { id: string }) {
   const content = useAppStore((s) => s.content);
   const publishOverride = usePublishOverrideMutation();
   const removeOverride = useRemoveOverrideMutation();
-  const b = baseMovie(id);
+  const baseData = baseMovie(id);
   // Initialised once per movie; the parent remounts this editor via `key={id}`
   const {
     register,
@@ -74,17 +141,18 @@ function CmsMovieEditor({ id }: { id: string }) {
     defaultValues: overrideValues(content.movies[id]),
   });
 
-  if (!b)
-    return (
-      <div className="border border-line rounded-app p-5 bg-surface text-muted">
-        Escolha um filme.
-      </div>
-    );
+  if (!baseData)
+    return <div className={EMPTY_BOX_CLASS}>Escolha um filme.</div>;
   const effective = movie(id, content)!;
 
   const submit = handleSubmit((values) =>
     publishOverride.mutate({ id, values })
   );
+
+  const restoreAutomatic = () =>
+    removeOverride.mutate(id, {
+      onSuccess: () => reset(overrideValues(undefined)),
+    });
 
   return (
     <div>
@@ -93,49 +161,17 @@ function CmsMovieEditor({ id }: { id: string }) {
         Campo vazio mantém o dado de origem. Publicar aplica o override a todas
         as telas.
       </p>
-      <details className="text-xs text-faint mb-4.5">
-        <summary className="cursor-pointer text-muted">
-          Ver dado de origem e procedência
-        </summary>
-        <pre className="whitespace-pre-wrap break-words text-[11px] p-3.5 border border-line rounded-[10px] max-h-[250px] overflow-auto mt-2">
-          {JSON.stringify(
-            {
-              id: b.id,
-              title: b.t,
-              synopsis: b.syn,
-              director: b.director,
-              releaseDate: b.releaseDate,
-              cast: b.cast,
-              source: b.source,
-              asOf: b.sourceAsOf,
-              imdb: b.imdb
-                ? 'Nota herdada do arquivo; não verificada novamente'
-                : null,
-            },
-            null,
-            2
-          )}
-        </pre>
-      </details>
+      <SourceDataDetails baseData={baseData} />
       <form noValidate onSubmit={submit}>
         <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-4.5">
-          {FIELDS.map(([k, l, type]) => (
-            <Field key={k} label={l} error={errors[k]?.message}>
+          {FIELDS.map(([key, label, type]) => (
+            <Field key={key} label={label} error={errors[key]?.message}>
               <input
                 className={inputClass}
                 type={type}
-                aria-invalid={!!errors[k]}
-                {...register(k)}
-                placeholder={
-                  k === 'releaseDate'
-                    ? undefined
-                    : ['poster', 'backdrop'].includes(k)
-                      ? 'Manter imagem de origem'
-                      : k === 'cast'
-                        ? (b.cast || []).join(', ')
-                        : (b[k as keyof Movie] as string | undefined) ||
-                          'Automático'
-                }
+                aria-invalid={!!errors[key]}
+                {...register(key)}
+                placeholder={fieldPlaceholder(key, baseData)}
               />
             </Field>
           ))}
@@ -145,7 +181,9 @@ function CmsMovieEditor({ id }: { id: string }) {
             className={`${inputClass} min-h-[130px] resize-y`}
             aria-invalid={!!errors.syn}
             {...register('syn')}
-            placeholder={b.syn || 'Sinopse ainda não fornecida pela origem'}
+            placeholder={
+              baseData.syn || 'Sinopse ainda não fornecida pela origem'
+            }
           />
         </Field>
         <div className="flex items-center gap-2.5 flex-wrap sticky bottom-3 p-3 border border-line rounded-2xl bg-[rgba(10,16,12,.96)]">
@@ -155,11 +193,7 @@ function CmsMovieEditor({ id }: { id: string }) {
           <Button
             type="button"
             disabled={removeOverride.isPending}
-            onClick={() =>
-              removeOverride.mutate(id, {
-                onSuccess: () => reset(overrideValues(undefined)),
-              })
-            }
+            onClick={restoreAutomatic}
           >
             Restaurar automático
           </Button>
@@ -174,6 +208,42 @@ function CmsMovieEditor({ id }: { id: string }) {
           <p className="text-xs text-faint mt-3">Override ativo.</p>
         )}
       </form>
+    </div>
+  );
+}
+
+function MoviesTab({
+  movies,
+  selectedId,
+  onSelectMovie,
+}: {
+  movies: Movie[];
+  selectedId: string;
+  onSelectMovie: (id: string) => void;
+}) {
+  const content = useAppStore((s) => s.content);
+  return (
+    <div className="grid grid-cols-[270px_1fr] max-md:grid-cols-1 gap-6.5 items-start">
+      <aside className="border border-line rounded-2xl bg-surface p-2 max-h-[72vh] max-md:max-h-none overflow-auto sticky top-[104px] max-md:static">
+        {movies.map((listedMovie) => (
+          <button
+            key={listedMovie.id}
+            onClick={() => onSelectMovie(listedMovie.id)}
+            className={`block w-full text-left rounded-[10px] p-3 text-[13px] leading-tight ${selectedId === listedMovie.id ? 'bg-lime-soft text-lime' : ''}`}
+          >
+            {listedMovie.t}
+            <small className="block text-[10px] text-faint mt-1">
+              {listedMovie.id} · {statusLabel(listedMovie)}
+              {Object.hasOwn(content.movies, listedMovie.id)
+                ? ' · Override'
+                : ''}
+            </small>
+          </button>
+        ))}
+      </aside>
+      <div>
+        <CmsMovieEditor key={selectedId} id={selectedId} />
+      </div>
     </div>
   );
 }
@@ -196,33 +266,27 @@ function LeadsTab() {
           <table className="w-full border-collapse text-[13px] text-left">
             <thead>
               <tr>
-                {['Data', 'Nome', 'E-mail', 'Origem', 'Marketing'].map((h) => (
+                {LEAD_COLUMNS.map((column) => (
                   <th
-                    key={h}
+                    key={column}
                     className="p-3.5 border-b border-line text-muted font-semibold bg-surface whitespace-nowrap"
                   >
-                    {h}
+                    {column}
                   </th>
                 ))}
               </tr>
             </thead>
             <tbody>
-              {leads.map((l) => (
-                <tr key={l.id}>
-                  <td className="p-3.5 border-b border-line whitespace-nowrap">
-                    {l.createdAt.slice(0, 10)}
+              {leads.map((lead) => (
+                <tr key={lead.id}>
+                  <td className={LEAD_CELL_CLASS}>
+                    {lead.createdAt.slice(0, 10)}
                   </td>
-                  <td className="p-3.5 border-b border-line whitespace-nowrap">
-                    {l.name}
-                  </td>
-                  <td className="p-3.5 border-b border-line whitespace-nowrap">
-                    {l.email}
-                  </td>
-                  <td className="p-3.5 border-b border-line whitespace-nowrap">
-                    {l.source}
-                  </td>
-                  <td className="p-3.5 border-b border-line whitespace-nowrap">
-                    {l.marketingConsent ? 'Autorizado' : 'Não autorizado'}
+                  <td className={LEAD_CELL_CLASS}>{lead.name}</td>
+                  <td className={LEAD_CELL_CLASS}>{lead.email}</td>
+                  <td className={LEAD_CELL_CLASS}>{lead.source}</td>
+                  <td className={LEAD_CELL_CLASS}>
+                    {lead.marketingConsent ? 'Autorizado' : 'Não autorizado'}
                   </td>
                 </tr>
               ))}
@@ -230,9 +294,7 @@ function LeadsTab() {
           </table>
         </div>
       ) : (
-        <div className="border border-line rounded-app p-5 bg-surface text-muted">
-          Nenhum formulário recebido.
-        </div>
+        <div className={EMPTY_BOX_CLASS}>Nenhum formulário recebido.</div>
       )}
       <p className="text-xs text-faint mt-4">
         Não há envio a CRM ou campanha de e-mail. Não confunda cadastro com
@@ -250,24 +312,22 @@ function AuditTab() {
       <h2 className="text-2xl mb-4">Histórico editorial</h2>
       <div className="grid gap-2.5">
         {audit.length ? (
-          audit.map((a, i) => (
+          audit.map((entry, index) => (
             <div
-              key={i}
+              key={index}
               className="border border-line rounded-[13px] p-3.5 text-sm"
             >
               <small className="block text-muted text-xs mb-1.5">
-                {a.date} · {a.actor}
+                {entry.date} · {entry.actor}
               </small>
               <strong>
-                {a.action} · {movie(a.id, content)?.t || a.id}
+                {entry.action} · {movie(entry.id, content)?.t || entry.id}
               </strong>
-              <div>{a.fields.join(', ')}</div>
+              <div>{entry.fields.join(', ')}</div>
             </div>
           ))
         ) : (
-          <div className="border border-line rounded-app p-5 bg-surface text-muted">
-            Nenhuma intervenção registrada.
-          </div>
+          <div className={EMPTY_BOX_CLASS}>Nenhuma intervenção registrada.</div>
         )}
       </div>
     </div>
@@ -286,9 +346,10 @@ function DataTab() {
     );
   };
 
-  const onImport = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    e.target.value = '';
+  const onImport = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    // Reset so picking the same file again still triggers `onChange`
+    event.target.value = '';
     if (file) importContent.mutate(file);
   };
 
@@ -328,30 +389,21 @@ function DataTab() {
 
 export function AdminApp() {
   // Rendered inside <ClientOnly>, so `window` is available here
-  const [tab, setTab] = useState(
-    () => new URLSearchParams(window.location.search).get('tab') ?? 'filmes'
-  );
+  const [tab, setTab] = useState(() => readQueryParam('tab') ?? 'filmes');
   const [selectedId, setSelectedId] = useState<string>(
-    () =>
-      new URLSearchParams(window.location.search).get('id') ??
-      allBaseMovieIds()[0]
+    () => readQueryParam('id') ?? allBaseMovieIds()[0]
   );
   const content = useAppStore((s) => s.content);
 
   const movies = useMemo(() => allMovies(content), [content]);
 
-  const selectTab = (t: string) => {
-    setTab(t);
-    const url = new URL(window.location.href);
-    url.searchParams.set('tab', t);
-    window.history.pushState({}, '', url);
+  const selectTab = (nextTab: string) => {
+    setTab(nextTab);
+    pushQueryParams({ tab: nextTab });
   };
   const selectMovie = (id: string) => {
     setSelectedId(id);
-    const url = new URL(window.location.href);
-    url.searchParams.set('tab', 'filmes');
-    url.searchParams.set('id', id);
-    window.history.pushState({}, '', url);
+    pushQueryParams({ tab: 'filmes', id });
   };
 
   return (
@@ -366,41 +418,26 @@ export function AdminApp() {
           </h1>
         </header>
         <nav className="flex gap-2 mb-6 overflow-auto no-scrollbar">
-          {TABS.map(([v, l]) => (
+          {TABS.map(([value, label]) => (
             <button
-              key={v}
-              onClick={() => selectTab(v)}
+              key={value}
+              onClick={() => selectTab(value)}
               className={`border border-line bg-surface2 text-[#cbd5cd] rounded-full px-3.5 py-2 min-h-10 text-[13px] whitespace-nowrap shrink-0 ${
-                tab === v
+                tab === value
                   ? 'bg-lime! text-[#081004]! border-lime! font-bold!'
                   : ''
               }`}
             >
-              {l}
+              {label}
             </button>
           ))}
         </nav>
         {tab === 'filmes' && (
-          <div className="grid grid-cols-[270px_1fr] max-md:grid-cols-1 gap-6.5 items-start">
-            <aside className="border border-line rounded-2xl bg-surface p-2 max-h-[72vh] max-md:max-h-none overflow-auto sticky top-[104px] max-md:static">
-              {movies.map((m) => (
-                <button
-                  key={m.id}
-                  onClick={() => selectMovie(m.id)}
-                  className={`block w-full text-left rounded-[10px] p-3 text-[13px] leading-tight ${selectedId === m.id ? 'bg-lime-soft text-lime' : ''}`}
-                >
-                  {m.t}
-                  <small className="block text-[10px] text-faint mt-1">
-                    {m.id} · {statusLabel(m)}
-                    {Object.hasOwn(content.movies, m.id) ? ' · Override' : ''}
-                  </small>
-                </button>
-              ))}
-            </aside>
-            <div>
-              <CmsMovieEditor key={selectedId} id={selectedId} />
-            </div>
-          </div>
+          <MoviesTab
+            movies={movies}
+            selectedId={selectedId}
+            onSelectMovie={selectMovie}
+          />
         )}
         {tab === 'leads' && <LeadsTab />}
         {tab === 'auditoria' && <AuditTab />}

@@ -4,6 +4,7 @@ export function nowInSaoPaulo(): {
   hour: string;
   minute: string;
 } {
+  // en-CA yields zero-padded, ISO-like parts ("2026-09-08")
   const parts = new Intl.DateTimeFormat('en-CA', {
     timeZone: 'America/Sao_Paulo',
     year: 'numeric',
@@ -13,10 +14,12 @@ export function nowInSaoPaulo(): {
     minute: '2-digit',
     hourCycle: 'h23',
   }).formatToParts(new Date());
-  const p = Object.fromEntries(parts.map((x) => [x.type, x.value]));
+  const byType = Object.fromEntries(
+    parts.map((part) => [part.type, part.value])
+  );
   return {
-    date: `${p.year}-${p.month}-${p.day}`,
-    hour: p.hour,
-    minute: p.minute,
+    date: `${byType.year}-${byType.month}-${byType.day}`,
+    hour: byType.hour,
+    minute: byType.minute,
   };
 }

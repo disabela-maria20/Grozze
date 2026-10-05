@@ -6,7 +6,13 @@ import { useAppStore } from '@/shared/store';
 import { scopeFromPath } from '@/shared/lib/route';
 import { DISTRIBUTORS } from '@/shared/lib/catalog';
 
-const GROUPS: [string, [string, string][]][] = [
+/** [path segment, label] */
+type FooterLink = [string, string];
+
+/** [group heading, links] */
+type FooterGroup = [string, FooterLink[]];
+
+const GROUPS: FooterGroup[] = [
   [
     'Descobrir',
     [
@@ -38,29 +44,67 @@ const GROUPS: [string, [string, string][]][] = [
   ],
 ];
 
+/** Minimal one-line footer shown inside a distributor hub. */
+function HubFooter({
+  distributorName,
+  onOpenConsent,
+}: {
+  distributorName?: string;
+  onOpenConsent: () => void;
+}) {
+  return (
+    <footer
+      id="site-footer"
+      className="py-5.5 text-center text-faint text-xs border-t border-line"
+    >
+      <div className="w-[min(1220px,calc(100%-56px))] mx-auto">
+        Grozze · {distributorName || ''}{' '}
+        <button
+          type="button"
+          className="text-faint hover:text-lime"
+          onClick={onOpenConsent}
+        >
+          Privacidade e cookies
+        </button>
+      </div>
+    </footer>
+  );
+}
+
+function FooterLinkGroup({ group: [heading, links] }: { group: FooterGroup }) {
+  return (
+    <div>
+      <strong className="block text-[11px] uppercase tracking-[0.12em] text-[#c9d5cb] mb-3.5">
+        {heading}
+      </strong>
+      {links.map(([path, label]) => (
+        <a
+          key={path}
+          href={`/${path}`}
+          className="block py-1 text-[13px] text-muted hover:text-lime transition-colors"
+        >
+          {label}
+        </a>
+      ))}
+    </div>
+  );
+}
+
 export function Footer() {
   const pathname = usePathname();
   const scope = scopeFromPath(pathname);
   const openDialog = useAppStore((s) => s.openDialog);
+  const openConsent = () => openDialog('consent');
 
   if (scope) {
-    const d = DISTRIBUTORS.find((x) => x.slug === scope);
+    const hubDistributor = DISTRIBUTORS.find(
+      (distributor) => distributor.slug === scope
+    );
     return (
-      <footer
-        id="site-footer"
-        className="py-5.5 text-center text-faint text-xs border-t border-line"
-      >
-        <div className="w-[min(1220px,calc(100%-56px))] mx-auto">
-          Grozze · {d?.name || ''}{' '}
-          <button
-            type="button"
-            className="text-faint hover:text-lime"
-            onClick={() => openDialog('consent')}
-          >
-            Privacidade e cookies
-          </button>
-        </div>
-      </footer>
+      <HubFooter
+        distributorName={hubDistributor?.name}
+        onOpenConsent={openConsent}
+      />
     );
   }
 
@@ -79,21 +123,8 @@ export function Footer() {
               Filmes, cinemas e sessões para decidir mais rápido.
             </p>
           </div>
-          {GROUPS.map(([label, links]) => (
-            <div key={label}>
-              <strong className="block text-[11px] uppercase tracking-[0.12em] text-[#c9d5cb] mb-3.5">
-                {label}
-              </strong>
-              {links.map(([p, l]) => (
-                <a
-                  key={p}
-                  href={`/${p}`}
-                  className="block py-1 text-[13px] text-muted hover:text-lime transition-colors"
-                >
-                  {l}
-                </a>
-              ))}
-            </div>
+          {GROUPS.map((group) => (
+            <FooterLinkGroup key={group[0]} group={group} />
           ))}
         </div>
         <div className="flex justify-between gap-4 border-t border-line pt-4.5 mt-7 text-faint text-[11px] max-sm:flex-col max-sm:gap-1.5">
@@ -101,7 +132,7 @@ export function Footer() {
           <button
             type="button"
             className="text-faint hover:text-lime"
-            onClick={() => openDialog('consent')}
+            onClick={openConsent}
           >
             Preferências de cookies
           </button>

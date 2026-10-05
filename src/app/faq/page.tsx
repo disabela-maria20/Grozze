@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = { title: 'Perguntas frequentes' };
 
+/** [question, answer] */
 const ITEMS: [string, string][] = [
   [
     'A Grozze vende ingressos?',
@@ -37,11 +38,11 @@ export default function Page() {
           Perguntas frequentes
         </h1>
         <div className="divide-y divide-line">
-          {ITEMS.map(([q, a]) => (
-            <details key={q} className="py-4.5">
-              <summary className="cursor-pointer text-xl">{q}</summary>
+          {ITEMS.map(([question, answer]) => (
+            <details key={question} className="py-4.5">
+              <summary className="cursor-pointer text-xl">{question}</summary>
               <p className="text-[15px] text-[#c0cbc2] leading-relaxed mt-3">
-                {a}
+                {answer}
               </p>
             </details>
           ))}

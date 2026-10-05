@@ -3,6 +3,11 @@
 import { useEffect, useState } from 'react';
 import { useAppStore } from '@/shared/store';
 
+/** Toast starts fading out at this point... */
+const FADE_OUT_AT_MS = 3200;
+/** ...and is removed from the store once the fade has finished. */
+const CLEAR_AT_MS = 3500;
+
 export function Toast() {
   const message = useAppStore((s) => s.toastMessage);
   const token = useAppStore((s) => s.toastToken);
@@ -11,13 +16,13 @@ export function Toast() {
 
   useEffect(() => {
     if (!message) return;
-    const raf = requestAnimationFrame(() => setVisible(true));
-    const t = setTimeout(() => setVisible(false), 3200);
-    const t2 = setTimeout(clearToast, 3500);
+    const showFrame = requestAnimationFrame(() => setVisible(true));
+    const hideTimer = setTimeout(() => setVisible(false), FADE_OUT_AT_MS);
+    const clearTimer = setTimeout(clearToast, CLEAR_AT_MS);
     return () => {
-      cancelAnimationFrame(raf);
-      clearTimeout(t);
-      clearTimeout(t2);
+      cancelAnimationFrame(showFrame);
+      clearTimeout(hideTimer);
+      clearTimeout(clearTimer);
     };
   }, [token, message, clearToast]);
 

@@ -14,6 +14,8 @@ import {
   NowDialog,
   SearchDialog,
 } from '../dialogs';
+
+/** Accessible name of each dialog, keyed by dialog id. */
 const LABELS: Record<string, string> = {
   auth: 'Entrar',
   session: 'Confirmação da sessão',
@@ -35,18 +37,18 @@ export function DialogRoot() {
   const closeDialog = useAppStore((s) => s.closeDialog);
 
   if (!dialog) return null;
-  const props = dialog.props || {};
+  const dialogProps = dialog.props || {};
 
   let content: ReactNode = null;
   switch (dialog.id) {
     case 'auth':
-      content = <AuthDialog signup={!!props.signup} />;
+      content = <AuthDialog signup={!!dialogProps.signup} />;
       break;
     case 'session':
-      content = <SessionDialog sessionId={props.sessionId as string} />;
+      content = <SessionDialog sessionId={dialogProps.sessionId as string} />;
       break;
     case 'trailer':
-      content = <TrailerDialog movieId={props.movieId as string} />;
+      content = <TrailerDialog movieId={dialogProps.movieId as string} />;
       break;
     case 'location':
       content = <LocationDialog />;
@@ -61,13 +63,15 @@ export function DialogRoot() {
       content = <NowDialog />;
       break;
     case 'search':
-      content = <SearchDialog scope={props.scope as string | undefined} />;
+      content = (
+        <SearchDialog scope={dialogProps.scope as string | undefined} />
+      );
       break;
     case 'prices':
-      content = <PricesDialog cinemaId={props.cinemaId as string} />;
+      content = <PricesDialog cinemaId={dialogProps.cinemaId as string} />;
       break;
     case 'account-hub':
-      content = <AccountHubDialog scope={props.scope as string} />;
+      content = <AccountHubDialog scope={dialogProps.scope as string} />;
       break;
     default:
       return null;

@@ -9,8 +9,9 @@ export async function generateMetadata({
   params: Promise<{ slug: string; id: string }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  const m = (await getMovies().catch(() => [])).find((x) => x.id === id);
-  return { title: m?.t, description: m?.syn };
+  const movies = await getMovies().catch(() => []);
+  const movie = movies.find((candidate) => candidate.id === id);
+  return { title: movie?.t, description: movie?.syn };
 }
 
 export default async function Page({

@@ -29,15 +29,20 @@ export function MovieCard({
   const href = movieHref(m.id, scope);
   const soon = status(m) === 'soon';
 
+  const heartButton = (
+    <HeartButton
+      kind="movie"
+      id={m.id}
+      path={href}
+      className="absolute right-2 top-2 z-[3]"
+    />
+  );
+
+  // Upcoming movies show "Quero ver" until saved; others show a heart when allowed
   let controls: ReactNode = null;
   if (soon) {
     controls = movieSaved ? (
-      <HeartButton
-        kind="movie"
-        id={m.id}
-        path={href}
-        className="absolute right-2 top-2 z-[3]"
-      />
+      heartButton
     ) : (
       <button
         type="button"
@@ -51,14 +56,7 @@ export function MovieCard({
       </button>
     );
   } else if (logged || alwaysSave) {
-    controls = (
-      <HeartButton
-        kind="movie"
-        id={m.id}
-        path={href}
-        className="absolute right-2 top-2 z-[3]"
-      />
-    );
+    controls = heartButton;
   }
 
   return (

@@ -1,12 +1,13 @@
 'use client';
 
+/** Triggers a browser download of `data` as a file called `name`. */
 export function downloadFile(name: string, data: string, type: string) {
   const blob = new Blob([data], { type });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = name;
-  document.body.append(a);
-  a.click();
-  a.remove();
-  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = name;
+  document.body.append(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(link.href), 1000);
 }

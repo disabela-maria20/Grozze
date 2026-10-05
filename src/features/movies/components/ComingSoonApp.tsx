@@ -22,12 +22,12 @@ export function ComingSoonApp() {
   const list = useMemo(
     () =>
       allMovies(content).filter(
-        (m) => status(m) !== 'now' && validDate(m.releaseDate)
+        (film) => status(film) !== 'now' && validDate(film.releaseDate)
       ),
     [content]
   );
   const years = useMemo(
-    () => unique(list.map((m) => m.releaseDate.slice(0, 4))).sort(),
+    () => unique(list.map((film) => film.releaseDate.slice(0, 4))).sort(),
     [list]
   );
   const [year, setYear] = useState(years[0] || '');
@@ -35,18 +35,20 @@ export function ComingSoonApp() {
     () =>
       unique(
         list
-          .filter((m) => m.releaseDate.startsWith(year))
-          .map((m) => m.releaseDate.slice(5, 7))
+          .filter((film) => film.releaseDate.startsWith(year))
+          .map((film) => film.releaseDate.slice(5, 7))
       ).sort(),
     [list, year]
   );
   const [month, setMonth] = useState(months[0] || '');
+  // Falls back to the first month when the picked one isn't in the year
   const effectiveMonth = months.includes(month) ? month : months[0] || '';
 
   const selected = list
-    .filter((m) => m.releaseDate.startsWith(year + '-' + effectiveMonth))
+    .filter((film) => film.releaseDate.startsWith(year + '-' + effectiveMonth))
     .sort((a, b) => a.releaseDate.localeCompare(b.releaseDate));
 
+  // Featured movie, falling back to the first upcoming release
   const lead = movie('22941', content) || list[0];
 
   return (
@@ -113,27 +115,31 @@ export function ComingSoonApp() {
         )}
         <div className="grid gap-3 my-6">
           <Rail aria-label="Ano">
-            {years.map((y) => (
-              <Chip key={y} active={year === y} onClick={() => setYear(y)}>
-                {y}
+            {years.map((yearOption) => (
+              <Chip
+                key={yearOption}
+                active={year === yearOption}
+                onClick={() => setYear(yearOption)}
+              >
+                {yearOption}
               </Chip>
             ))}
           </Rail>
           <Rail aria-label="Mês">
-            {months.map((mo) => (
+            {months.map((monthOption) => (
               <Chip
-                key={mo}
-                active={effectiveMonth === mo}
-                onClick={() => setMonth(mo)}
+                key={monthOption}
+                active={effectiveMonth === monthOption}
+                onClick={() => setMonth(monthOption)}
               >
-                {MONTH_NAMES[Number(mo) - 1]}
+                {MONTH_NAMES[Number(monthOption) - 1]}
               </Chip>
             ))}
           </Rail>
         </div>
         <div className="grid grid-cols-6 max-lg:grid-cols-5 max-md:grid-cols-4 max-sm:grid-cols-2 gap-x-4 gap-y-6">
-          {selected.map((m) => (
-            <MovieCard key={m.id} m={m} />
+          {selected.map((film) => (
+            <MovieCard key={film.id} m={film} />
           ))}
         </div>
       </div>

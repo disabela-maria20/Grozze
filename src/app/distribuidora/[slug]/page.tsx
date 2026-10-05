@@ -3,10 +3,15 @@ import { CatalogGate, ClientOnly } from '@/shared/ui';
 import { DistributorPage } from '@/features/distributors';
 import { DISTRIBUTORS } from '@/shared/lib/catalog';
 
+/** Hubs that are live and publicly listed get a pre-rendered page. */
+function isPublicDistributor(distributor: (typeof DISTRIBUTORS)[number]) {
+  return distributor.status === 'active' && distributor.public;
+}
+
 export function generateStaticParams() {
-  return DISTRIBUTORS.filter((d) => d.status === 'active' && d.public).map(
-    (d) => ({ slug: d.slug })
-  );
+  return DISTRIBUTORS.filter(isPublicDistributor).map((distributor) => ({
+    slug: distributor.slug,
+  }));
 }
 
 export async function generateMetadata({
@@ -15,8 +20,8 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const d = DISTRIBUTORS.find((x) => x.slug === slug);
-  return { title: d?.name };
+  const distributor = DISTRIBUTORS.find((candidate) => candidate.slug === slug);
+  return { title: distributor?.name };
 }
 
 export default async function Page({

@@ -9,9 +9,10 @@ const LANGUAGES: Record<string, string> = {
   original: 'Nacional',
 };
 
-function language(v: string | null): string {
-  const s = String(v || '').trim();
-  return LANGUAGES[s.toLowerCase()] || s || 'Não informado';
+/** API language → Portuguese label; unknown values pass through. */
+function language(value: string | null): string {
+  const text = String(value || '').trim();
+  return LANGUAGES[text.toLowerCase()] || text || 'Não informado';
 }
 
 /** "IMAX 2D", "3D"... */
@@ -40,22 +41,22 @@ export function toShowtimes(res: ApiShowtimesResponse): {
   rows: Showtime[];
   cinemas: Cinema[];
 } {
-  const movie = String(res.movie.id);
+  const movieId = String(res.movie.id);
   const rows: Showtime[] = [];
   const cinemas = new Map<string, Cinema>();
   for (const day of res.showtimes || []) {
-    for (const c of day.cinemas || []) {
-      const theater = String(c.id);
-      if (!cinemas.has(theater)) cinemas.set(theater, toCinema(c));
-      for (const room of c.rooms || []) {
-        for (const t of room.times || []) {
-          const time = t.time.slice(0, 5);
-          const purchaseUrl = /^https:\/\//.test(t.purchase_url || '')
-            ? t.purchase_url!
+    for (const apiCinema of day.cinemas || []) {
+      const theater = String(apiCinema.id);
+      if (!cinemas.has(theater)) cinemas.set(theater, toCinema(apiCinema));
+      for (const room of apiCinema.rooms || []) {
+        for (const slot of room.times || []) {
+          const time = slot.time.slice(0, 5);
+          const purchaseUrl = /^https:\/\//.test(slot.purchase_url || '')
+            ? slot.purchase_url!
             : '';
           rows.push({
-            id: [movie, theater, day.date, room.id, time].join('|'),
-            movie,
+            id: [movieId, theater, day.date, room.id, time].join('|'),
+            movie: movieId,
             theater,
             date: day.date,
             time,

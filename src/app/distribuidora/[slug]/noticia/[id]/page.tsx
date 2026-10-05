@@ -5,11 +5,15 @@ import { DISTRIBUTORS, NEWS } from '@/shared/lib/catalog';
 
 export function generateStaticParams() {
   const paths: { slug: string; id: string }[] = [];
-  for (const d of DISTRIBUTORS.filter(
-    (x) => x.status === 'active' && x.public
-  )) {
-    for (const n of NEWS.filter((n) => n.dist === d.slug)) {
-      paths.push({ slug: d.slug, id: n.id });
+  const publicDistributors = DISTRIBUTORS.filter(
+    (distributor) => distributor.status === 'active' && distributor.public
+  );
+  for (const distributor of publicDistributors) {
+    const distributorNews = NEWS.filter(
+      (article) => article.dist === distributor.slug
+    );
+    for (const article of distributorNews) {
+      paths.push({ slug: distributor.slug, id: article.id });
     }
   }
   return paths;
@@ -21,8 +25,8 @@ export async function generateMetadata({
   params: Promise<{ slug: string; id: string }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  const n = NEWS.find((x) => x.id === id);
-  return { title: n?.t, description: n?.p };
+  const article = NEWS.find((candidate) => candidate.id === id);
+  return { title: article?.t, description: article?.p };
 }
 
 export default async function Page({

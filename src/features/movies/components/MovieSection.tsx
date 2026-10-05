@@ -46,9 +46,13 @@ export function MovieSection({
           )}
         </div>
         <Rail>
-          {list.map((m, i) => (
-            <div key={m.id} className="shrink-0 w-[178px] max-sm:w-[148px]">
-              <MovieCard m={m} rank={rank ? i + 1 : null} scope={scope} />
+          {list.map((film, index) => (
+            <div key={film.id} className="shrink-0 w-[178px] max-sm:w-[148px]">
+              <MovieCard
+                m={film}
+                rank={rank ? index + 1 : null}
+                scope={scope}
+              />
             </div>
           ))}
         </Rail>

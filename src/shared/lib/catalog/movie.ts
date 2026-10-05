@@ -9,17 +9,20 @@ export function movie(
   id: string,
   overrides?: ContentState | null
 ): Movie | null {
-  const b = baseMovies.get(String(id));
-  if (!b) return null;
-  const o = overrides?.movies?.[String(id)] || {};
-  const m: Movie = { ...b };
-  for (const k of OVERRIDE_STRING_FIELDS) {
-    const v = o[k];
-    if (typeof v === 'string' && v.trim()) Object.assign(m, { [k]: v.trim() });
+  const base = baseMovies.get(String(id));
+  if (!base) return null;
+  const override = overrides?.movies?.[String(id)] || {};
+  const merged: Movie = { ...base };
+  for (const field of OVERRIDE_STRING_FIELDS) {
+    const value = override[field];
+    if (typeof value === 'string' && value.trim())
+      Object.assign(merged, { [field]: value.trim() });
   }
-  if (Array.isArray(o.cast) && o.cast.length) m.cast = o.cast.slice(0, 4);
-  m.poster = safeImage(m.poster);
-  m.backdrop = safeImage(m.backdrop) || m.poster;
-  m.trailer = videoId(m.trailer);
-  return m;
+  if (Array.isArray(override.cast) && override.cast.length)
+    merged.cast = override.cast.slice(0, 4);
+  // Re-sanitize media: overrides may hold unsafe URLs or full YouTube links
+  merged.poster = safeImage(merged.poster);
+  merged.backdrop = safeImage(merged.backdrop) || merged.poster;
+  merged.trailer = videoId(merged.trailer);
+  return merged;
 }

@@ -15,7 +15,7 @@ export function HeartButton({
   path: string;
   className?: string;
 }) {
-  const on = useAppStore((s) =>
+  const isSaved = useAppStore((s) =>
     kind === 'movie' ? s.movieSaved(id) : s.cinemaSaved(id)
   );
   const requestFavorite = useAppStore((s) => s.requestFavorite);
@@ -25,16 +25,16 @@ export function HeartButton({
     <button
       type="button"
       className={`heart-btn w-[42px] h-[42px] rounded-full p-0 border border-line bg-[#0c130f] inline-grid place-items-center shrink-0 text-[#dce4dd] hover:border-lime/60 transition-colors ${
-        on ? 'bg-lime! border-lime! text-[#081004]!' : ''
+        isSaved ? 'bg-lime! border-lime! text-[#081004]!' : ''
       } ${className}`}
-      aria-pressed={on}
-      aria-label={`${on ? 'Remover dos favoritos' : 'Favoritar'} ${label || ''}`}
-      onClick={(e) => {
-        e.preventDefault();
+      aria-pressed={isSaved}
+      aria-label={`${isSaved ? 'Remover dos favoritos' : 'Favoritar'} ${label || ''}`}
+      onClick={(event) => {
+        event.preventDefault();
         requestFavorite(kind, id, path);
       }}
     >
-      <Icon name="heart" className={on ? 'fill-current' : ''} />
+      <Icon name="heart" className={isSaved ? 'fill-current' : ''} />
     </button>
   );
 }

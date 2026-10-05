@@ -25,18 +25,19 @@ export function HomeHero({ list }: { list: Movie[] }) {
     };
   }, [setHasHero]);
 
+  // Auto-advance unless paused, hovered/focused or covered by a dialog
   useEffect(() => {
     if (paused || hovering || dialogOpen) return;
-    const t = setInterval(() => {
+    const timer = setInterval(() => {
       if (document.hidden) return;
-      setIndex((i) => (i + 1) % list.length);
+      setIndex((current) => (current + 1) % list.length);
     }, 7500);
-    return () => clearInterval(t);
+    return () => clearInterval(timer);
   }, [paused, hovering, dialogOpen, list.length]);
 
   if (!list.length) return null;
-  const m = list[index % list.length];
-  const href = movieHref(m.id);
+  const film = list[index % list.length];
+  const href = movieHref(film.id);
 
   return (
     <section
@@ -53,12 +54,12 @@ export function HomeHero({ list }: { list: Movie[] }) {
       <div
         className="absolute inset-0 -z-20 bg-cover bg-[center_28%] opacity-85"
         style={{
-          background: `radial-gradient(circle at 75% 20%, ${m.colors?.[0] || '#294630'}, #06110a)`,
+          background: `radial-gradient(circle at 75% 20%, ${film.colors?.[0] || '#294630'}, #06110a)`,
         }}
       >
-        {m.backdrop && (
+        {film.backdrop && (
           <img
-            src={m.backdrop}
+            src={film.backdrop}
             alt=""
             draggable={false}
             className="w-full h-full object-cover object-[center_28%]"
@@ -75,14 +76,14 @@ export function HomeHero({ list }: { list: Movie[] }) {
       <div className="w-[min(1220px,calc(100%-56px))] max-sm:w-[calc(100%-32px)] mx-auto min-h-[650px] max-sm:min-h-[590px] flex items-end pt-[174px] pb-[78px] max-sm:pt-[220px] max-sm:pb-[58px] max-sm:justify-center">
         <div className="w-[720px] max-w-full min-w-0 max-sm:text-center">
           <div className="text-[11px] tracking-[0.17em] uppercase font-extrabold text-lime mb-2 max-sm:text-[10px]">
-            {statusLabel(m)}
+            {statusLabel(film)}
           </div>
           <h1 className="text-[62px] max-sm:text-[clamp(29px,8.5vw,39px)] font-extrabold leading-[1.04] -tracking-[0.052em] my-2.5 mb-4.5 text-balance">
-            <a href={href}>{m.t}</a>
+            <a href={href}>{film.t}</a>
           </h1>
-          <MovieMeta m={m} />
+          <MovieMeta m={film} />
           <p className="text-[#cbd5cd] text-base max-sm:text-[13px] leading-relaxed max-w-[670px] mb-5 max-sm:mx-auto line-clamp-2">
-            {m.syn}
+            {film.syn}
           </p>
           <div className="flex items-center gap-2.5 flex-wrap mt-5.5 max-sm:justify-center">
             <a
@@ -94,7 +95,7 @@ export function HomeHero({ list }: { list: Movie[] }) {
             <button
               type="button"
               className="min-h-[46px] max-sm:min-h-[43px] px-5 py-2.5 rounded-full border border-line bg-white/[0.035] inline-flex items-center gap-2 text-sm font-semibold hover:bg-lime-soft hover:border-lime/40 transition-colors"
-              onClick={() => openDialog('trailer', { movieId: m.id })}
+              onClick={() => openDialog('trailer', { movieId: film.id })}
             >
               <Icon name="play" /> Trailer
             </button>
@@ -102,16 +103,16 @@ export function HomeHero({ list }: { list: Movie[] }) {
         </div>
       </div>
       <div className="absolute left-0 right-0 bottom-5.5 flex items-center justify-center gap-2.5">
-        {list.map((v, i) => (
+        {list.map((slide, slideIndex) => (
           <button
-            key={v.id}
+            key={slide.id}
             className="w-8 h-8 border-0 rounded-full bg-none p-0 inline-grid place-items-center"
-            aria-current={i === index}
-            aria-label={`Destacar ${v.t}`}
-            onClick={() => setIndex(i)}
+            aria-current={slideIndex === index}
+            aria-label={`Destacar ${slide.t}`}
+            onClick={() => setIndex(slideIndex)}
           >
             <span
-              className={`w-2.5 h-2.5 rounded-full transition-all ${i === index ? 'w-6 bg-lime' : 'bg-[#515b53]'}`}
+              className={`w-2.5 h-2.5 rounded-full transition-all ${slideIndex === index ? 'w-6 bg-lime' : 'bg-[#515b53]'}`}
             />
           </button>
         ))}
@@ -119,7 +120,7 @@ export function HomeHero({ list }: { list: Movie[] }) {
           type="button"
           className="bg-bg/55 border border-line rounded-full w-8 h-8 grid place-items-center ml-2.5"
           aria-label={`${paused ? 'Retomar' : 'Pausar'} carrossel`}
-          onClick={() => setPaused((p) => !p)}
+          onClick={() => setPaused((wasPaused) => !wasPaused)}
         >
           <Icon
             name={paused ? 'play' : 'pause'}

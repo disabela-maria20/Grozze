@@ -10,10 +10,10 @@ export function MovieMeta({ m }: { m: Movie }) {
     <div className="flex items-center gap-2.5 flex-wrap text-[#cbd4cc] text-sm mb-3.5 max-sm:justify-center max-sm:gap-1.5 max-sm:text-xs">
       <ImdbBadge m={m} />
       <RatingBadge rating={m.rating} />
-      {extras.map((v, i) => (
-        <span key={v} className="flex items-center gap-2.5 max-sm:gap-1.5">
-          {i > 0 && <span className="text-[#79877b]">·</span>}
-          {v}
+      {extras.map((detail, index) => (
+        <span key={detail} className="flex items-center gap-2.5 max-sm:gap-1.5">
+          {index > 0 && <span className="text-[#79877b]">·</span>}
+          {detail}
         </span>
       ))}
     </div>

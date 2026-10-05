@@ -7,16 +7,39 @@ import { useAppStore } from '@/shared/store';
 import { useCreateLeadMutation } from '../api';
 import { contactSchema, type ContactValues } from '../schema';
 import { Button, Field, FieldError, inputClass } from '@/shared/ui';
-const EMPTY: ContactValues = {
+
+const EMPTY_CONTACT_VALUES: ContactValues = {
   name: '',
   email: '',
   message: '',
   marketingConsent: false,
 };
 
+/** Copy that differs between the contact form and the newsletter sign-up. */
+const COPY = {
+  contact: {
+    leadSource: 'Contato',
+    successToast: 'Mensagem enviada.',
+    title: 'Fale com a Grozze',
+    subtitle: 'Deixe sua mensagem.',
+    consentLabel: 'Desejo receber novidades por e-mail (opcional).',
+    submitLabel: 'Enviar mensagem',
+  },
+  newsletter: {
+    leadSource: 'Newsletter',
+    successToast: 'Cadastro realizado.',
+    title: 'Fique por dentro',
+    subtitle: 'Estreias e novidades que você quer acompanhar.',
+    consentLabel: 'Autorizo o recebimento da newsletter.',
+    submitLabel: 'Cadastrar',
+  },
+} as const;
+
+/** Contact form; with `newsletter` it becomes the newsletter sign-up form. */
 export function ContactApp({ newsletter = false }: { newsletter?: boolean }) {
   const toast = useAppStore((s) => s.toast);
   const captureLead = useCreateLeadMutation();
+  const copy = newsletter ? COPY.newsletter : COPY.contact;
   const schema = useMemo(() => contactSchema(newsletter), [newsletter]);
   const {
     register,
@@ -25,16 +48,16 @@ export function ContactApp({ newsletter = false }: { newsletter?: boolean }) {
     formState: { errors },
   } = useForm<ContactValues>({
     resolver: zodResolver(schema),
-    defaultValues: EMPTY,
+    defaultValues: EMPTY_CONTACT_VALUES,
   });
 
   const submit = handleSubmit((values) =>
     captureLead.mutate(
-      { source: newsletter ? 'Newsletter' : 'Contato', ...values },
+      { source: copy.leadSource, ...values },
       {
         onSuccess: () => {
-          reset(EMPTY);
-          toast(newsletter ? 'Cadastro realizado.' : 'Mensagem enviada.');
+          reset(EMPTY_CONTACT_VALUES);
+          toast(copy.successToast);
         },
       }
     )
@@ -45,13 +68,9 @@ export function ContactApp({ newsletter = false }: { newsletter?: boolean }) {
       <div className="w-[min(1220px,calc(100%-56px))] max-sm:w-[calc(100%-32px)] mx-auto max-w-[860px]">
         <header className="mb-6.5">
           <h1 className="text-[48px] max-sm:text-[38px] -tracking-[0.05em] leading-[1.05] mb-3">
-            {newsletter ? 'Fique por dentro' : 'Fale com a Grozze'}
+            {copy.title}
           </h1>
-          <p className="text-muted text-[15px]">
-            {newsletter
-              ? 'Estreias e novidades que você quer acompanhar.'
-              : 'Deixe sua mensagem.'}
-          </p>
+          <p className="text-muted text-[15px]">{copy.subtitle}</p>
         </header>
         <form
           noValidate
@@ -95,9 +114,7 @@ export function ContactApp({ newsletter = false }: { newsletter?: boolean }) {
                 {...register('marketingConsent')}
               />
               <span>
-                {newsletter
-                  ? 'Autorizo o recebimento da newsletter.'
-                  : 'Desejo receber novidades por e-mail (opcional).'}{' '}
+                {copy.consentLabel}{' '}
                 <a className="underline hover:text-lime" href="/privacidade">
                   Política de Privacidade
                 </a>
@@ -107,11 +124,7 @@ export function ContactApp({ newsletter = false }: { newsletter?: boolean }) {
             <FieldError message={errors.marketingConsent?.message} />
           </div>
           <Button primary type="submit" disabled={captureLead.isPending}>
-            {captureLead.isPending
-              ? 'Enviando…'
-              : newsletter
-                ? 'Cadastrar'
-                : 'Enviar mensagem'}
+            {captureLead.isPending ? 'Enviando…' : copy.submitLabel}
           </Button>
         </form>
       </div>

@@ -19,6 +19,7 @@ export function LocationDialog() {
     defaultValues: { city: CITY_OPTIONS[0] },
   });
 
+  /** Asks the browser for the current position; failures fall back to a toast. */
   const geolocate = () => {
     if (!navigator.geolocation) {
       toast('Localização indisponível. Selecione a cidade manualmente.');
@@ -26,8 +27,11 @@ export function LocationDialog() {
     }
     toast('Aguardando permissão de localização…');
     navigator.geolocation.getCurrentPosition(
-      (pos) =>
-        setLocationGeo({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+      (position) =>
+        setLocationGeo({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        }),
       () =>
         toast(
           'Não foi possível obter a localização. Você pode selecionar São Paulo manualmente.'
@@ -58,8 +62,8 @@ export function LocationDialog() {
       >
         <Field label="Cidade" error={errors.city?.message}>
           <select className={inputClass} {...register('city')}>
-            {CITY_OPTIONS.map((c) => (
-              <option key={c}>{c}</option>
+            {CITY_OPTIONS.map((city) => (
+              <option key={city}>{city}</option>
             ))}
           </select>
         </Field>

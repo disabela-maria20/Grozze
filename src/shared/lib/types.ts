@@ -6,27 +6,36 @@ export interface ImdbInfo {
 
 export interface RawMovie {
   id: string;
+  /** Title. */
   t: string;
   /** Legacy snapshot field; use `status(m)` instead. */
   status?: string;
   genre: string;
+  /** Duration label ("1h39", "45 min"). */
   dur: string;
+  /** Age rating ("Livre", "16"). */
   rating?: string;
+  /** Synopsis. */
   syn: string;
   cast?: string[];
   director?: string;
+  /** Distributor name as shown to users. */
   distLabel: string;
+  /** Distributor slug (see `distributorSlug`). */
   dist: string;
+  /** Release date label ("8 set"). */
   release: string;
   rank?: number;
   colors?: string[];
   tag?: string;
   spSessions?: number;
+  /** Release date, "YYYY-MM-DD". */
   releaseDate: string;
   source?: string;
   sourceAsOf?: string;
   poster?: string;
   backdrop?: string;
+  /** YouTube video id. */
   trailer?: string;
   imdb?: ImdbInfo;
   presale?: boolean;
@@ -51,11 +60,15 @@ export interface Cinema {
 
 export interface Showtime {
   id: string;
+  /** Movie id. */
   movie: string;
+  /** Cinema id. */
   theater: string;
   date: string;
   time: string;
+  /** Projection format ("IMAX 2D", "3D", "Tradicional"). */
   tech: string;
+  /** Audio language ("Dublado", "Legendado"...). */
   lang: string;
   room: string;
   /** Sales channel label, derived from the purchase URL host. */
@@ -76,10 +89,15 @@ export interface Distributor {
 
 export interface NewsItem {
   id: string;
+  /** Kicker: category label ("Estreias"). */
   k: string;
+  /** Title. */
   t: string;
+  /** Display date ("8 set 2026"). */
   d: string;
+  /** Summary paragraph. */
   p: string;
+  /** Distributor slug; empty for general news. */
   dist: string;
   body: string;
   demo?: boolean;
@@ -104,11 +122,15 @@ export interface Profile {
   avatar: 'initial' | 'star' | 'moon' | 'sun';
 }
 
+/** CMS edits of a movie; same field names as `Movie`. */
 export interface MovieOverride {
+  /** Title. */
   t?: string;
+  /** Synopsis. */
   syn?: string;
   director?: string;
   genre?: string;
+  /** Duration label. */
   dur?: string;
   rating?: string;
   releaseDate?: string;
@@ -134,6 +156,7 @@ export interface AuditEntry {
 
 export interface Lead {
   id: string;
+  /** Dedup key: lowercased e-mail + "|" + source. */
   key: string;
   name: string;
   email: string;

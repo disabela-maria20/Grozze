@@ -14,13 +14,13 @@ export function Avatar({ size = '' }: { size?: '' | 'large' }) {
     .toUpperCase();
   if (profile.avatar && profile.avatar !== 'initial')
     char = AVATAR_CHARS[profile.avatar] || char;
-  const dim =
+  const sizeClass =
     size === 'large'
       ? 'w-[60px] h-[60px] text-[25px]'
       : 'w-[30px] h-[30px] text-sm';
   return (
     <span
-      className={`inline-grid place-items-center rounded-full font-extrabold bg-lime text-[#091006] shrink-0 ${dim}`}
+      className={`inline-grid place-items-center rounded-full font-extrabold bg-lime text-[#091006] shrink-0 ${sizeClass}`}
       aria-label={`Avatar de ${profile.name}`}
     >
       {char}
