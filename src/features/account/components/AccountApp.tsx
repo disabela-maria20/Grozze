@@ -5,10 +5,11 @@ import type { ReactNode } from 'react';
 import { allMovies, sortedCinemas } from '@/shared/lib/catalog';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useGrozzeListQuery } from '@/shared/api';
+import { AVATAR_KEY_BY_NAME, useGrozzeListQuery } from '@/shared/api';
 import type { Profile } from '@/shared/lib/types';
-import { useAppStore } from '@/shared/store';
+import { useAppStore, useIsSaved } from '@/shared/store';
 import {
+  useUpdateAvatarMutation,
   useUpdatePreferencesMutation,
   useUpdateProfileNameMutation,
 } from '../api';
@@ -20,8 +21,9 @@ import {
   profileNameSchema,
   type ProfileNameValues,
 } from '../schema';
-import { AuthDialog } from '@/features/auth';
+import { AuthGate } from '@/features/auth';
 import { Avatar } from './Avatar';
+import { SecuritySection } from './SecuritySection';
 import { CinemaCard } from '@/features/cinemas';
 import { MovieCard } from '@/features/movies';
 import {
@@ -51,14 +53,6 @@ const AVATAR_OPTIONS: [AvatarKey, string][] = [
   ['moon', 'Lua'],
   ['sun', 'Sol'],
 ];
-
-/** Grozze API avatar name → key saved in the profile. */
-const AVATAR_KEYS: Record<string, AvatarKey> = {
-  Inicial: 'initial',
-  Estrela: 'star',
-  Lua: 'moon',
-  Sol: 'sun',
-};
 const AVATAR_CHARS: Record<string, string> = { star: '★', moon: '☾', sun: '☀' };
 
 const PAGE_CLASS = 'page pt-[120px] max-sm:pt-[101px] pb-13 min-h-[65vh]';
@@ -331,15 +325,15 @@ function PreferencesTab() {
 
 function AvatarPicker() {
   const profile = useAppStore((s) => s.profile())!;
-  const setAvatar = useAppStore((s) => s.setAvatar);
+  const updateAvatar = useUpdateAvatarMutation();
   const currentAvatar = profile.avatar || 'initial';
   const initial = profile.name.charAt(0).toUpperCase();
   const { data: apiAvatars } = useGrozzeListQuery('avatars');
   // Names without a matching icon are skipped
   const avatarOptions: [AvatarKey, string][] =
     apiAvatars
-      ?.filter((avatar) => Object.hasOwn(AVATAR_KEYS, avatar.nome))
-      .map((avatar) => [AVATAR_KEYS[avatar.nome], avatar.nome]) ??
+      ?.filter((avatar) => Object.hasOwn(AVATAR_KEY_BY_NAME, avatar.nome))
+      .map((avatar) => [AVATAR_KEY_BY_NAME[avatar.nome], avatar.nome]) ??
     AVATAR_OPTIONS;
   return (
     <div
@@ -351,7 +345,8 @@ function AvatarPicker() {
         <button
           key={avatar}
           type="button"
-          onClick={() => setAvatar(avatar)}
+          onClick={() => updateAvatar.mutate(avatar)}
+          disabled={updateAvatar.isPending}
           aria-pressed={currentAvatar === avatar}
           aria-label={`Avatar ${name}`}
           className="p-1 bg-none border border-transparent rounded-full aria-[pressed=true]:border-lime"
@@ -405,6 +400,7 @@ function AccountTab() {
           Sair
         </TextLink>
       </form>
+      <SecuritySection />
       <div className="mt-4.5">
         <CookiePreferencesLink />
       </div>
@@ -478,23 +474,19 @@ function AccountSidebar({ part }: { part: string }) {
   );
 }
 
+/** Account area; the gate shows the login form (or a loader) when needed. */
 export function AccountApp({ part = '' }: { part?: string }) {
-  const content = useAppStore((s) => s.content);
-  const logged = useAppStore((s) => s.logged());
-  const cinemaSaved = useAppStore((s) => s.cinemaSaved);
-  const movieSaved = useAppStore((s) => s.movieSaved);
+  return (
+    <AuthGate>
+      <AccountContent part={part} />
+    </AuthGate>
+  );
+}
 
-  if (!logged) {
-    return (
-      <div className={PAGE_CLASS}>
-        <div className="w-[min(1220px,530px)] max-sm:w-[calc(100%-32px)] mx-auto">
-          <div className={CARD_CLASS}>
-            <AuthDialog signup={false} />
-          </div>
-        </div>
-      </div>
-    );
-  }
+function AccountContent({ part }: { part: string }) {
+  const content = useAppStore((s) => s.content);
+  const cinemaSaved = useIsSaved('cinema');
+  const movieSaved = useIsSaved('movie');
 
   const savedMovies = allMovies(content).filter((m) => movieSaved(m.id));
   const favoriteCinemas = sortedCinemas(cinemaSaved).filter((c) =>

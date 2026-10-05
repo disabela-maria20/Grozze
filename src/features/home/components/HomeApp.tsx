@@ -1,6 +1,6 @@
 'use client';
 
-import { useAppStore } from '@/shared/store';
+import { useAppStore, useIsSaved } from '@/shared/store';
 import {
   allCinemas,
   currentMovies,
@@ -17,7 +17,7 @@ import { HomeHero } from './HomeHero';
 export function HomeApp() {
   const content = useAppStore((s) => s.content);
   const logged = useAppStore((s) => s.logged());
-  const cinemaSaved = useAppStore((s) => s.cinemaSaved);
+  const cinemaSaved = useIsSaved('cinema');
   const openDialog = useAppStore((s) => s.openDialog);
   const accountAction = useAccountAction();
 

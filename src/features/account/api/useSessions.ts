@@ -1,12 +1,8 @@
 'use client';
 
-import { grozzeAuth } from '@/shared/api';
+import { grozzeAuth, SENSITIVE_MUTATION } from '@/shared/api';
 import { useAppStore } from '@/shared/store';
-import {
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 const sessionsQueryKey = ['grozze', 'sessions'] as const;
 
@@ -43,6 +39,7 @@ export function useRevokeSessionMutation() {
 export function useChangePasswordMutation() {
   const queryClient = useQueryClient();
   return useMutation({
+    ...SENSITIVE_MUTATION,
     mutationFn: ({
       currentPassword,
       newPassword,

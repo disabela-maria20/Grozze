@@ -9,7 +9,7 @@ import {
   sortedCinemas,
   statusLabel,
 } from '@/shared/lib/catalog';
-import { useAppStore } from '@/shared/store';
+import { useAppStore, useIsSaved } from '@/shared/store';
 import { Icon } from '@/shared/ui';
 
 const MAX_MOVIE_RESULTS = 7;
@@ -23,7 +23,7 @@ const MAX_CINEMA_RESULTS = 4;
 export function SearchDialog({ scope }: { scope?: string | null }) {
   const [query, setQuery] = useState('');
   const content = useAppStore((s) => s.content);
-  const cinemaSaved = useAppStore((s) => s.cinemaSaved);
+  const cinemaSaved = useIsSaved('cinema');
 
   const { movies, cinemas } = useMemo(() => {
     const normalizedQuery = normalize(query);

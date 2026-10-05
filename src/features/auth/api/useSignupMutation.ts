@@ -1,6 +1,11 @@
 'use client';
 
-import { ensureGrozzeList, grozzeAuth, optionIds } from '@/shared/api';
+import {
+  ensureGrozzeList,
+  grozzeAuth,
+  optionIds,
+  SENSITIVE_MUTATION,
+} from '@/shared/api';
 import { useAppStore } from '@/shared/store';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -16,6 +21,7 @@ export interface SignupInput {
 export function useSignupMutation() {
   const queryClient = useQueryClient();
   return useMutation({
+    ...SENSITIVE_MUTATION,
     mutationFn: async (input: SignupInput) => {
       const genres = input.favoriteGenres.length
         ? await ensureGrozzeList(queryClient, 'movieGenres')

@@ -2,12 +2,12 @@
 
 import { MovieCard } from '@/features/movies';
 import { allMovies } from '@/shared/lib/catalog';
-import { useAppStore } from '@/shared/store';
+import { useAppStore, useIsSaved } from '@/shared/store';
 import { Button, TextLink } from '@/shared/ui';
 
 export function AccountHubDialog({ scope }: { scope: string }) {
   const content = useAppStore((s) => s.content);
-  const movieSaved = useAppStore((s) => s.movieSaved);
+  const movieSaved = useIsSaved('movie');
   const profile = useAppStore((s) => s.profile());
   const closeDialog = useAppStore((s) => s.closeDialog);
   const logout = useAppStore((s) => s.logout);

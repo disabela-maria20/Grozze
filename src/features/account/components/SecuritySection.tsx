@@ -105,7 +105,10 @@ function ChangePasswordForm() {
           {...register('newPassword')}
         />
       </Field>
-      <Field label="Confirmar nova senha" error={errors.confirmPassword?.message}>
+      <Field
+        label="Confirmar nova senha"
+        error={errors.confirmPassword?.message}
+      >
         <input
           className={inputClass}
           type="password"
@@ -168,7 +171,9 @@ function SessionsList() {
       <p className="text-muted text-sm mb-3">
         Não reconhece algum? Desconecte e troque sua senha.
       </p>
-      {sessions.isPending && <FilmLoader label="Carregando dispositivos" compact />}
+      {sessions.isPending && (
+        <FilmLoader label="Carregando dispositivos" compact />
+      )}
       {sessions.isError && (
         <p className="text-sm text-muted">{sessions.error.message}</p>
       )}

@@ -15,7 +15,7 @@ import {
   type SessionFilterState,
 } from '@/shared/lib/catalog';
 import { useMovieShowtimesQuery } from '@/shared/api';
-import { useAppStore } from '@/shared/store';
+import { useAppStore, useIsSaved } from '@/shared/store';
 import type { Movie, Showtime } from '@/shared/lib/types';
 import { FilmLoader, HeartButton, Icon, Rail, TextLink } from '@/shared/ui';
 
@@ -257,7 +257,7 @@ function ProgramLists({
   scope?: string | null;
 }) {
   const logged = useAppStore((s) => s.logged());
-  const cinemaSaved = useAppStore((s) => s.cinemaSaved);
+  const cinemaSaved = useIsSaved('cinema');
   const profile = useAppStore((s) => s.profile());
 
   const rows = filterRows(allRows, filter);

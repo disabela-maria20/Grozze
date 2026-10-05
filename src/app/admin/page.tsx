@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: 'Grozze CMS' };
 export default function Page() {
   return (
     <ClientOnly>
-      <AuthGate role="admin">
+      <AuthGate requiredRole="admin">
         <CatalogGate>
           <AdminApp />
         </CatalogGate>

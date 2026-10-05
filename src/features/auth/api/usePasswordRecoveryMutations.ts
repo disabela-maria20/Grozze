@@ -1,6 +1,6 @@
 'use client';
 
-import { grozzeAuth } from '@/shared/api';
+import { grozzeAuth, SENSITIVE_MUTATION } from '@/shared/api';
 import { useMutation } from '@tanstack/react-query';
 
 /** Sends the reset link. Same answer whether the e-mail has an account or not. */
@@ -13,6 +13,7 @@ export function useForgotPasswordMutation() {
 /** Sets the new password with the e-mail's token; every session is logged out. */
 export function useResetPasswordMutation() {
   return useMutation({
+    ...SENSITIVE_MUTATION,
     mutationFn: ({ token, password }: { token: string; password: string }) =>
       grozzeAuth.resetPassword(token, password),
   });

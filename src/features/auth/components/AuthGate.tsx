@@ -7,15 +7,15 @@ import { AuthCardPage } from './AuthCardPage';
 import { AuthDialog } from './AuthDialog';
 
 /**
- * Shows `children` only to a logged-in user (with `role`, when given). While
+ * Shows `children` only to a logged-in user (with `requiredRole`, when given). While
  * the session is being restored it shows a loader instead of flashing the
  * login form; logged out, the login form; wrong role, a restricted notice.
  */
 export function AuthGate({
-  role,
+  requiredRole,
   children,
 }: {
-  role?: 'admin';
+  requiredRole?: 'admin';
   children: ReactNode;
 }) {
   const authStatus = useAppStore((s) => s.authStatus);
@@ -37,7 +37,7 @@ export function AuthGate({
     );
   }
 
-  if (role && userRole !== role) {
+  if (requiredRole && userRole !== requiredRole) {
     return (
       <div className="page pt-[120px] max-sm:pt-[101px] pb-13 min-h-[65vh]">
         <div className="w-[min(1220px,530px)] max-sm:w-[calc(100%-32px)] mx-auto">

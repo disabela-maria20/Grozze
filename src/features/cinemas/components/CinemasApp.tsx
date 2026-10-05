@@ -2,12 +2,13 @@
 
 import { useMemo, useState } from 'react';
 import { inLocation, normalize, sortedCinemas } from '@/shared/lib/catalog';
-import { useAppStore } from '@/shared/store';
+import { useAppStore, useIsSaved } from '@/shared/store';
 import { CinemaCard } from './CinemaCard';
 import { EmptyState, Icon } from '@/shared/ui';
 
 export function CinemasApp() {
-  const cinemaSaved = useAppStore((s) => s.cinemaSaved);
+  const cinemaSaved = useIsSaved('cinema');
+  const authStatus = useAppStore((s) => s.authStatus);
   const location = useAppStore((s) => s.location);
   const [query, setQuery] = useState('');
   const [mapOpen, setMapOpen] = useState(false);
@@ -26,8 +27,10 @@ export function CinemasApp() {
       }
       return cinemaSaved(candidate.id) || inLocation(candidate, location);
     });
+    // Hearting a cinema doesn't reorder the list under the cursor; logging in
+    // or restoring the session (favorites arriving) does
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query, location]);
+  }, [query, location, authStatus]);
 
   return (
     <div className="page pt-[120px] max-sm:pt-[101px] pb-13 min-h-[65vh]">
