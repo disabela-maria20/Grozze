@@ -29,6 +29,7 @@ export function MovieCard({
   const movieSaved = useAppStore((s) => s.movieSaved(m.id));
   const href = movieHref(m.id, scope);
   const soon = status(m) === 'soon';
+  const label = soon ? dateLabel(m.releaseDate) : statusLabel(m);
 
   const heartButton = (
     <HeartButton
@@ -73,11 +74,11 @@ export function MovieCard({
               {String(rank).padStart(2, '0')}
             </strong>
           </span>
-        ) : (
+        ) : label ? (
           <span className="poster-label absolute left-2 top-2 z-[2] text-[10px] font-extrabold text-lime border border-lime/30 rounded-full bg-bg/90 px-2 py-1 max-w-[calc(100%-60px)]">
-            {soon ? dateLabel(m.releaseDate) : statusLabel(m)}
+            {label}
           </span>
-        )}
+        ) : null}
         {controls}
       </div>
       <h3 className="text-[15px] leading-[1.27] mt-2.5 mb-1 break-words whitespace-normal">

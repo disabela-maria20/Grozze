@@ -237,7 +237,9 @@ function MoviesTab({
           >
             {listedMovie.t}
             <small className="block text-[10px] text-faint mt-1">
-              {listedMovie.id} · {statusLabel(listedMovie)}
+              {[listedMovie.id, statusLabel(listedMovie)]
+                .filter(Boolean)
+                .join(' · ')}
               {Object.hasOwn(content.movies, listedMovie.id)
                 ? ' · Override'
                 : ''}

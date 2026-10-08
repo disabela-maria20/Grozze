@@ -76,9 +76,11 @@ export function HomeHero({ list }: { list: Movie[] }) {
       />
       <div className="w-[min(1220px,calc(100%-56px))] max-sm:w-[calc(100%-32px)] mx-auto min-h-[650px] max-sm:min-h-[590px] flex items-end pt-[174px] pb-[78px] max-sm:pt-[220px] max-sm:pb-[58px] max-sm:justify-center">
         <div className="w-[720px] max-w-full min-w-0 max-sm:text-center">
-          <div className="text-[11px] tracking-[0.17em] uppercase font-extrabold text-lime mb-2 max-sm:text-[10px]">
-            {statusLabel(film)}
-          </div>
+          {statusLabel(film) && (
+            <div className="text-[11px] tracking-[0.17em] uppercase font-extrabold text-lime mb-2 max-sm:text-[10px]">
+              {statusLabel(film)}
+            </div>
+          )}
           <h1 className="text-[62px] max-sm:text-[clamp(29px,8.5vw,39px)] font-extrabold leading-[1.04] -tracking-[0.052em] my-2.5 mb-4.5 text-balance">
             <Link href={href}>{film.t}</Link>
           </h1>

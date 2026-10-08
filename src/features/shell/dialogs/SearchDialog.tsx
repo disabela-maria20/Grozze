@@ -79,7 +79,9 @@ export function SearchDialog({ scope }: { scope?: string | null }) {
           >
             <strong className="block">{movie.t}</strong>
             <small className="text-muted text-xs mt-1.5 block">
-              {statusLabel(movie)} · {dateLabel(movie.releaseDate)}
+              {[statusLabel(movie), dateLabel(movie.releaseDate)]
+                .filter(Boolean)
+                .join(' · ')}
             </small>
           </Link>
         ))}

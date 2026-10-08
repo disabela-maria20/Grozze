@@ -19,9 +19,11 @@ export function MoviePoster({
       }}
     >
       <div className="absolute inset-[15px] flex flex-col justify-end text-[23px] leading-[1.04] font-extrabold tracking-tight break-words opacity-80">
-        <small className="text-[8px] tracking-[0.16em] uppercase mb-2 font-semibold">
-          {statusLabel(m)}
-        </small>
+        {statusLabel(m) && (
+          <small className="text-[8px] tracking-[0.16em] uppercase mb-2 font-semibold">
+            {statusLabel(m)}
+          </small>
+        )}
         <span>{m?.t || 'Filme'}</span>
       </div>
       {m?.poster ? (

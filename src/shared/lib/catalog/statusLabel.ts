@@ -1,11 +1,20 @@
-import type { Movie, MovieStatus } from '../types';
-import { status } from './status';
+import type { Movie } from '../types';
+import { hasSessions } from './hasSessions';
+import { nowInSaoPaulo } from './nowInSaoPaulo';
+import { validDate } from './validDate';
 
-const STATUS_LABELS: Record<MovieStatus, string> = {
-  now: 'Em cartaz',
-  presale: 'Pré-venda',
-  soon: 'Em breve',
-};
-
-export const statusLabel = (movie: Movie | null | undefined): string =>
-  STATUS_LABELS[status(movie)];
+/**
+ * Tag shown on a movie: pre-sale when it has sessions before the release,
+ * in theaters when it has sessions, coming soon when it hasn't been released
+ * yet, and no tag for released movies without sessions.
+ */
+export function statusLabel(movie: Movie | null | undefined): string {
+  if (!movie) return '';
+  const sessions = hasSessions(movie.id);
+  const dated = validDate(movie.releaseDate);
+  const today = nowInSaoPaulo().date;
+  if (sessions && dated && movie.releaseDate > today) return 'Em pré-venda';
+  if (sessions) return 'Hoje nos cinemas';
+  if (dated && movie.releaseDate <= today) return '';
+  return 'Em breve nos cinemas';
+}
