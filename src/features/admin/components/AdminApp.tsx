@@ -23,10 +23,16 @@ import {
 import { cmsMovieSchema, type CmsMovieValues } from '../schema';
 import { Button, Field, inputClass } from '@/shared/ui';
 import type { Movie, MovieOverride } from '@/shared/lib/types';
+import { NewsAdminTab } from './NewsAdminTab';
+import { LookupsAdminTab } from './LookupsAdminTab';
+import { UsersAdminTab } from './UsersAdminTab';
 
 /** `[query-string value, label]` pairs for the CMS top-level tabs. */
 const TABS: [string, string][] = [
   ['filmes', 'Filmes'],
+  ['noticias', 'Notícias'],
+  ['listas', 'Listas'],
+  ['usuarios', 'Usuários'],
   ['leads', 'Leads'],
   ['auditoria', 'Auditoria'],
   ['dados', 'Dados e integrações'],
@@ -404,16 +410,23 @@ export function AdminApp() {
     pushQueryParams({ tab: 'filmes', id });
   };
 
+  const logout = useAppStore((s) => s.logout);
+
   return (
     <div className="page pt-[120px] max-sm:pt-[101px] pb-13 min-h-[65vh]">
       <div className="w-[min(1220px,calc(100%-56px))] max-sm:w-[calc(100%-32px)] mx-auto">
-        <header className="mb-4.5">
-          <p className="text-[11px] tracking-[0.17em] uppercase font-extrabold text-lime mb-2">
-            Conteúdo e operação
-          </p>
-          <h1 className="text-[48px] max-sm:text-[36px] -tracking-[0.05em] leading-[1.05]">
-            Grozze CMS
-          </h1>
+        <header className="mb-4.5 flex items-start justify-between gap-4">
+          <div>
+            <p className="text-[11px] tracking-[0.17em] uppercase font-extrabold text-lime mb-2">
+              Conteúdo e operação
+            </p>
+            <h1 className="text-[48px] max-sm:text-[36px] -tracking-[0.05em] leading-[1.05]">
+              Grozze CMS
+            </h1>
+          </div>
+          <Button type="button" onClick={logout} className="shrink-0">
+            Sair
+          </Button>
         </header>
         <nav className="flex gap-2 mb-6 overflow-auto no-scrollbar">
           {TABS.map(([value, label]) => (
@@ -437,6 +450,9 @@ export function AdminApp() {
             onSelectMovie={selectMovie}
           />
         )}
+        {tab === 'noticias' && <NewsAdminTab />}
+        {tab === 'listas' && <LookupsAdminTab />}
+        {tab === 'usuarios' && <UsersAdminTab />}
         {tab === 'leads' && <LeadsTab />}
         {tab === 'auditoria' && <AuditTab />}
         {tab === 'dados' && <DataTab />}

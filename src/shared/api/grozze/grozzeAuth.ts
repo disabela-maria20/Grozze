@@ -57,7 +57,7 @@ function refresh(): Promise<GrozzeUser> {
  * Request that needs login. An expired access token (401) is renewed once and
  * the request retried; if renewing fails, the session is over.
  */
-async function authorized<T>(
+export async function authorized<T>(
   path: string,
   options: Omit<GrozzeRequestOptions, 'accessToken'> = {}
 ): Promise<T> {

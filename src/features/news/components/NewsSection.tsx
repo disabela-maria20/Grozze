@@ -1,6 +1,6 @@
 'use client';
 
-import type { NewsItem } from '@/shared/lib/types';
+import type { GrozzeNewsSummary } from '@/shared/api';
 import { NewsCard } from './NewsCard';
 
 export function NewsSection({
@@ -8,7 +8,7 @@ export function NewsSection({
   title,
   scope,
 }: {
-  items: NewsItem[];
+  items: GrozzeNewsSummary[];
   title: string;
   scope?: string | null;
 }) {
@@ -28,7 +28,7 @@ export function NewsSection({
         </div>
         <div className="grid grid-cols-3 max-sm:grid-cols-1 gap-4.5">
           {items.slice(0, 3).map((item) => (
-            <NewsCard key={item.id} n={item} scope={scope} />
+            <NewsCard key={item.id} article={item} scope={scope} />
           ))}
         </div>
       </div>

@@ -1,22 +1,10 @@
 import type { Metadata } from 'next';
 import { CatalogGate, ClientOnly } from '@/shared/ui';
 import { ArticleApp } from '@/features/news';
-import { NEWS } from '@/shared/lib/catalog';
 
-export function generateStaticParams() {
-  return NEWS.map((article) => ({ id: article.id }));
-}
+export const metadata: Metadata = { title: 'Notícia' };
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}): Promise<Metadata> {
-  const { id } = await params;
-  const article = NEWS.find((candidate) => candidate.id === id);
-  return { title: article?.t, description: article?.p };
-}
-
+// The article is fetched from the API by its slug (the `[id]` segment).
 export default async function Page({
   params,
 }: {
@@ -26,7 +14,7 @@ export default async function Page({
   return (
     <ClientOnly>
       <CatalogGate>
-        <ArticleApp id={id} />
+        <ArticleApp slug={id} />
       </CatalogGate>
     </ClientOnly>
   );

@@ -5,19 +5,19 @@ import { useAppStore, useIsSaved } from '@/shared/store';
 import {
   allCinemas,
   currentMovies,
-  NEWS,
   preMovies,
   soonMovies,
 } from '@/shared/lib/catalog';
 import { useAccountAction } from '@/features/account';
 import { MovieSection } from '@/features/movies';
-import { NewsSection } from '@/features/news';
+import { NewsSection, useNewsListQuery } from '@/features/news';
 import { Button, Icon } from '@/shared/ui';
 import { HomeHero } from './HomeHero';
 
 export function HomeApp() {
   const content = useAppStore((s) => s.content);
   const logged = useAppStore((s) => s.logged());
+  const latestNews = useNewsListQuery(1, 3).data?.items ?? [];
   const cinemaSaved = useIsSaved('cinema');
   const openDialog = useAppStore((s) => s.openDialog);
   const accountAction = useAccountAction();
@@ -129,7 +129,7 @@ export function HomeApp() {
         morePath="/em-breve"
         id="future"
       />
-      <NewsSection items={NEWS.slice(0, 3)} title="Notícias" />
+      <NewsSection items={latestNews} title="Notícias" />
 
       <div className="w-[min(1220px,calc(100%-56px))] max-sm:w-[calc(100%-32px)] mx-auto">
         <section className="my-7 mb-10.5 max-sm:my-3.5 max-sm:mb-8 p-7 max-sm:p-5.5 border border-line rounded-[22px] bg-gradient-to-[120deg] from-lime-soft to-transparent flex items-center justify-between gap-6 max-sm:block">

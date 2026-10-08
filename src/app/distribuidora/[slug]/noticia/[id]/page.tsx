@@ -1,34 +1,11 @@
 import type { Metadata } from 'next';
 import { CatalogGate, ClientOnly } from '@/shared/ui';
 import { ArticleApp } from '@/features/news';
-import { DISTRIBUTORS, NEWS } from '@/shared/lib/catalog';
 
-export function generateStaticParams() {
-  const paths: { slug: string; id: string }[] = [];
-  const publicDistributors = DISTRIBUTORS.filter(
-    (distributor) => distributor.status === 'active' && distributor.public
-  );
-  for (const distributor of publicDistributors) {
-    const distributorNews = NEWS.filter(
-      (article) => article.dist === distributor.slug
-    );
-    for (const article of distributorNews) {
-      paths.push({ slug: distributor.slug, id: article.id });
-    }
-  }
-  return paths;
-}
+export const metadata: Metadata = { title: 'Notícia' };
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string; id: string }>;
-}): Promise<Metadata> {
-  const { id } = await params;
-  const article = NEWS.find((candidate) => candidate.id === id);
-  return { title: article?.t, description: article?.p };
-}
-
+// `[id]` is the article slug; `[slug]` keeps the distributor in the URL for the
+// related-movie links. The article data itself comes from the API by slug.
 export default async function Page({
   params,
 }: {
@@ -38,7 +15,7 @@ export default async function Page({
   return (
     <ClientOnly>
       <CatalogGate>
-        <ArticleApp id={id} scope={slug} />
+        <ArticleApp slug={id} scope={slug} />
       </CatalogGate>
     </ClientOnly>
   );

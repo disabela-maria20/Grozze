@@ -79,3 +79,65 @@ export interface GrozzeUpdateMeRequest {
   genreIds?: number[];
   receiveNews?: boolean;
 }
+
+/** One page of a paginated list (`/news`, `/admin/users`...). */
+export interface GrozzePaginated<T> {
+  items: T[];
+  /** Total across every page. */
+  total: number;
+  page: number;
+  pageSize: number;
+}
+
+export type GrozzeNewsStatus = 'draft' | 'published';
+
+/** News article in a list (without the full text). */
+export interface GrozzeNewsSummary {
+  id: string;
+  slug: string;
+  title: string;
+  summary: string | null;
+  coverImageUrl: string | null;
+  status: GrozzeNewsStatus;
+  /** `null` while a draft; a future date means scheduled. */
+  publishedAt: string | null;
+  author: { id: string; name: string } | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+/** Full news article. */
+export interface GrozzeNews extends GrozzeNewsSummary {
+  /** Plain text or Markdown — never render as raw HTML. */
+  content: string;
+  /** Catalog ids of related movies, in the admin's order. */
+  relatedMovies: string[];
+}
+
+/** Create/update a news article. Missing fields on update keep their value. */
+export interface GrozzeNewsInput {
+  title?: string;
+  slug?: string;
+  summary?: string | null;
+  content?: string;
+  coverImageUrl?: string | null;
+  movieIds?: string[];
+  status?: GrozzeNewsStatus;
+  /** ISO date; future = scheduled. */
+  publishedAt?: string | null;
+}
+
+/** A user in the admin list. */
+export interface GrozzeAdminUser {
+  id: string;
+  name: string;
+  email: string;
+  role: GrozzeRole;
+  receiveNews: boolean;
+  createdAt: string;
+}
+
+/** A user's full profile for the admin, with how many devices are connected. */
+export interface GrozzeAdminUserDetail extends GrozzeUser {
+  activeSessions: number;
+}

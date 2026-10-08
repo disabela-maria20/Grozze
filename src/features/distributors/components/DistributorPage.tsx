@@ -6,16 +6,17 @@ import {
   DISTRIBUTORS,
   hasSessions,
   movieHref,
-  NEWS,
   statusLabel,
 } from '@/shared/lib/catalog';
 import { useAppStore } from '@/shared/store';
 import { MovieMeta, MovieSection } from '@/features/movies';
-import { NewsSection } from '@/features/news';
+import { NewsSection, useNewsListQuery } from '@/features/news';
 import { NotFound, Icon } from '@/shared/ui';
 
 export function DistributorPage({ slug }: { slug: string }) {
   const content = useAppStore((s) => s.content);
+  // News is no longer distributor-scoped (the API doesn't model that): show the latest
+  const latestNews = useNewsListQuery(1, 3).data?.items ?? [];
   const distributor = DISTRIBUTORS.find(
     (candidate) =>
       candidate.slug === slug &&
@@ -86,11 +87,7 @@ export function DistributorPage({ slug }: { slug: string }) {
         list={distributorMovies.filter((m) => !hasSessions(m.id))}
         scope={slug}
       />
-      <NewsSection
-        items={NEWS.filter((newsItem) => newsItem.dist === slug)}
-        title="Notícias"
-        scope={slug}
-      />
+      <NewsSection items={latestNews} title="Notícias" scope={slug} />
     </div>
   );
 }

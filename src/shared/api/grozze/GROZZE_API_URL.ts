@@ -1,7 +1,7 @@
 /** Grozze API in production; the dev server talks to the local backend. */
 const DEFAULT_GROZZE_API_URL =
   process.env.NODE_ENV === 'production'
-    ? 'https://apigrozze.isabelamribeiro.com.br/api'
+    ? 'https://grozze-auth.vibezz.com/api'
     : 'http://localhost:3001/api';
 
 /**
