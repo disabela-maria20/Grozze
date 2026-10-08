@@ -19,6 +19,8 @@ import {
   inputClass,
 } from '@/shared/ui';
 import { newsSchema, type NewsFormValues } from '../schema';
+import { RichEditor } from './RichEditor';
+import { MoviePicker } from './MoviePicker';
 import {
   useAdminNewsListQuery,
   useAdminNewsQuery,
@@ -52,7 +54,7 @@ function emptyValues(): NewsFormValues {
     coverImageUrl: '',
     status: 'draft',
     publishedAt: '',
-    movieIds: '',
+    movieIds: [],
   };
 }
 
@@ -65,16 +67,12 @@ function articleToValues(article: GrozzeNews): NewsFormValues {
     coverImageUrl: article.coverImageUrl ?? '',
     status: article.status,
     publishedAt: isoToLocalInput(article.publishedAt),
-    movieIds: article.relatedMovies.join(', '),
+    movieIds: article.relatedMovies,
   };
 }
 
 /** Form values → API payload. Empty optional fields are cleared (`null`). */
 function toPayload(values: NewsFormValues): GrozzeNewsInput {
-  const movieIds = values.movieIds
-    .split(/[\s,]+/)
-    .map((id) => id.trim())
-    .filter(Boolean);
   return {
     title: values.title.trim(),
     slug: values.slug.trim() || undefined,
@@ -85,7 +83,7 @@ function toPayload(values: NewsFormValues): GrozzeNewsInput {
     publishedAt: values.publishedAt
       ? new Date(values.publishedAt).toISOString()
       : undefined,
-    movieIds,
+    movieIds: values.movieIds,
   };
 }
 
@@ -104,6 +102,8 @@ function NewsEditor({
   const {
     register,
     handleSubmit,
+    setValue,
+    watch,
     formState: { errors },
   } = useForm<NewsFormValues>({
     resolver: zodResolver(newsSchema),
@@ -181,23 +181,28 @@ function NewsEditor({
           />
         </Field>
       </div>
-      <Field
-        label="Texto (texto puro ou Markdown)"
-        error={errors.content?.message}
-      >
-        <textarea
-          className={`${inputClass} min-h-[220px] resize-y`}
-          {...register('content')}
+      <Field label="Texto" error={errors.content?.message}>
+        {/* Campo real registrado no RHF; o editor atualiza via setValue */}
+        <input type="hidden" {...register('content')} />
+        <RichEditor
+          initialHTML={article?.content ?? ''}
+          onChange={(html) =>
+            setValue('content', html, {
+              shouldValidate: true,
+              shouldDirty: true,
+            })
+          }
         />
       </Field>
-      <Field
-        label="Filmes relacionados — ids separados por vírgula ou espaço"
-        error={errors.movieIds?.message}
-      >
-        <textarea
-          className={`${inputClass} min-h-[70px] resize-y`}
-          placeholder="6531, duna-2"
-          {...register('movieIds')}
+      <Field label="Filmes relacionados" error={errors.movieIds?.message}>
+        <MoviePicker
+          value={watch('movieIds')}
+          onChange={(ids) =>
+            setValue('movieIds', ids, {
+              shouldValidate: true,
+              shouldDirty: true,
+            })
+          }
         />
       </Field>
 

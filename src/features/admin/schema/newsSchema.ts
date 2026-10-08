@@ -23,8 +23,8 @@ export const newsSchema = z.object({
   status: z.enum(['draft', 'published']),
   /** From an `<input type="datetime-local">`; empty = let the API decide. */
   publishedAt: z.string().trim(),
-  /** Ids separated by comma, space or line break. */
-  movieIds: z.string().trim(),
+  /** Catalog ids of the related movies, chosen in the picker. */
+  movieIds: z.array(z.string()),
 });
 
 export type NewsFormValues = z.input<typeof newsSchema>;

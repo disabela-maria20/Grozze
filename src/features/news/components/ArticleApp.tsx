@@ -1,5 +1,6 @@
 'use client';
 
+import DOMPurify from 'dompurify';
 import { dateLabel, movie } from '@/shared/lib/catalog';
 import { useAppStore } from '@/shared/store';
 import { MovieSection } from '@/features/movies';
@@ -43,6 +44,9 @@ export function ArticleApp({
   }
 
   const published = article.publishedAt ?? article.createdAt;
+  // Content is authored as HTML in the CMS; sanitize before interpreting it
+  // (strips <script>, on* handlers, javascript: URLs…) to block XSS.
+  const safeContent = DOMPurify.sanitize(article.content);
   // Resolve the related movie ids against the catalog; skip any no longer there
   const related = article.relatedMovies
     .map((id) => movie(id, content))
@@ -72,10 +76,12 @@ export function ArticleApp({
               : undefined
           }
         />
-        {/* Plain text / Markdown from the API — rendered as text, never as HTML */}
-        <p className="text-[#c0cbc2] text-base leading-[1.75] whitespace-pre-wrap">
-          {article.content}
-        </p>
+        {/* HTML do CMS, já sanitizado (DOMPurify) antes de interpretar */}
+        <div
+          className="article-body text-[#c0cbc2] text-base leading-[1.75] [&_h2]:text-app-text [&_h2]:text-[28px] [&_h2]:mt-7 [&_h2]:mb-3 [&_h3]:text-app-text [&_h3]:text-[22px] [&_h3]:mt-6 [&_h3]:mb-2 [&_p]:mb-4 [&_ul]:list-disc [&_ol]:list-decimal [&_ul]:pl-6 [&_ol]:pl-6 [&_li]:mb-1 [&_a]:text-lime [&_a]:underline [&_blockquote]:border-l-2 [&_blockquote]:border-lime/40 [&_blockquote]:pl-4 [&_blockquote]:italic [&_strong]:text-app-text"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: conteúdo sanitizado acima
+          dangerouslySetInnerHTML={{ __html: safeContent }}
+        />
       </article>
       {related.length > 0 && (
         <MovieSection
