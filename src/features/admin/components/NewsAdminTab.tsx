@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   type GrozzeNews,
@@ -103,12 +103,14 @@ function NewsEditor({
     register,
     handleSubmit,
     setValue,
-    watch,
+    control,
     formState: { errors },
   } = useForm<NewsFormValues>({
     resolver: zodResolver(newsSchema),
     defaultValues: article ? articleToValues(article) : emptyValues(),
   });
+  // Lista atual de filmes relacionados, para o picker refletir seleção/remoção
+  const movieIds = useWatch({ control, name: 'movieIds' });
 
   const submit = handleSubmit((values) => {
     const body = toPayload(values);
@@ -196,7 +198,7 @@ function NewsEditor({
       </Field>
       <Field label="Filmes relacionados" error={errors.movieIds?.message}>
         <MoviePicker
-          value={watch('movieIds')}
+          value={movieIds ?? []}
           onChange={(ids) =>
             setValue('movieIds', ids, {
               shouldValidate: true,
