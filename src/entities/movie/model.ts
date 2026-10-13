@@ -5,7 +5,7 @@ import { safeImage, videoId } from '@/shared/lib/media';
 import { nowInSaoPaulo, validDate } from '@/shared/lib/date';
 import { unique } from '@/shared/lib/text';
 
-/** Movies loaded from the catalog API. Filled by `setCatalog`. */
+/** Movies loaded from the catalog API. Filled by `setMovies`. */
 export const baseMovies = new Map<string, Movie>();
 
 /**

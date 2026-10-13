@@ -1,7 +1,7 @@
 import type { Cinema } from './types';
 import type { LocationState } from '@/shared/lib/types';
 
-/** Active cinemas loaded from the catalog API. Filled by `setCatalog`. */
+/** Active cinemas loaded from the catalog API. Filled by `setCinemas`. */
 export const baseCinemas = new Map<string, Cinema>();
 
 /**

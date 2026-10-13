@@ -19,17 +19,15 @@ import type {
 } from '@/shared/lib/types';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { type DialogState } from './DialogState';
-import { STORAGE_KEY } from './KEYS';
+import type { DialogState, PendingFavorite } from './types';
+import { persistStorage, STORAGE_KEY } from './storage';
 import { migrateLegacyStorage } from './migrateLegacyStorage';
-import { type PendingFavorite } from './PendingFavorite';
 import {
   defaultLocation,
   defaultPersistedState,
   type PersistedState,
   STORAGE_VERSION,
 } from './persistedState';
-import { persistStorage } from './storage';
 
 /** Maximum number of entries kept in the CMS audit log. */
 const AUDIT_LOG_LIMIT = 250;

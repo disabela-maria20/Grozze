@@ -6,7 +6,7 @@ import { Button, FilmLoader } from '@/shared/ui';
 
 /**
  * Renders children once the catalog (movies + cinemas) has loaded from the
- * API, so they can use the synchronous resolvers in `shared/lib/catalog`.
+ * API, so they can use the synchronous resolvers (`movie`, `cinema`...).
  * `compact` fits inside dialogs instead of filling a page.
  */
 export function CatalogGate({

@@ -1,11 +1,11 @@
-import { authorized } from '@/shared/api';
-import type {
-  GrozzeAdminUser,
-  GrozzeAdminUserDetail,
-  GrozzeItem,
-  GrozzeLanguage,
-  GrozzePaginated,
-  GrozzeRole,
+import {
+  authorized,
+  type GrozzeAdminUser,
+  type GrozzeAdminUserDetail,
+  type GrozzeItem,
+  type GrozzeLanguage,
+  type GrozzePaginated,
+  type GrozzeRole,
 } from '@/shared/api';
 
 /** Option lists the admin manages. The path matches `/api/admin/<lookup>`. */

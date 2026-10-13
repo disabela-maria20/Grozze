@@ -24,8 +24,6 @@ const importPatterns = [
     // Barrels: quem está fora da pasta importa pelo index
     group: [
       '@/shared/api/*',
-      '@/shared/lib/route/*',
-      '@/shared/lib/validation/*',
       '@/shared/store/*',
       '@/shared/ui/*',
       '../api/*',

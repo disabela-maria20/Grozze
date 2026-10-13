@@ -1,12 +1,11 @@
 import type { GrozzeFavorites } from '@/shared/api';
 import type { ContentState, MovieOverride, Profile } from '@/shared/lib/types';
-import { LEGACY_STORAGE_KEYS, STORAGE_KEY } from './KEYS';
+import { LEGACY_STORAGE_KEYS, STORAGE_KEY, storage } from './storage';
 import {
   defaultPersistedState,
   type PersistedState,
   STORAGE_VERSION,
 } from './persistedState';
-import { storage } from './storage';
 
 const KEYS = LEGACY_STORAGE_KEYS;
 
