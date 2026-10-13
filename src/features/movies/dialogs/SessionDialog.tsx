@@ -10,9 +10,15 @@ import { FilmLoader, Icon, LinkButton } from '@/shared/ui';
 
 export function SessionDialog({ sessionId }: { sessionId: string }) {
   const content = useAppStore((s) => s.content);
-  // Session ids start with the movie id (see `toShowtimes`)
-  const movieId = String(sessionId || '').split('|')[0];
-  const { data, isPending } = useMovieShowtimesQuery(movieId);
+  // Session ids are "movie|cinema|date|room|time" (see `toShowtimes`), so
+  // only that cinema's day is fetched
+  const [movieId = '', cinemaId = '', date = ''] = String(
+    sessionId || ''
+  ).split('|');
+  const { data, isPending } = useMovieShowtimesQuery(movieId, {
+    date,
+    cinemaId,
+  });
   if (isPending) return <FilmLoader label="Carregando sessão…" compact />;
   const session = data?.find((item) => item.id === sessionId);
   const film = session && movie(session.movie, content);

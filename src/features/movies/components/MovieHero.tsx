@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type ReactNode } from 'react';
 import { dateLabel } from '@/shared/lib/date';
-import { hasSessions, status, type Movie } from '@/entities/movie';
+import { hasSessions, isRerelease, status, type Movie } from '@/entities/movie';
 import { useAppStore } from '@/shared/store';
 import { MovieMeta } from './MovieMeta';
 import { Icon, TextLink } from '@/shared/ui';
@@ -26,7 +26,11 @@ export function MovieHero({ m, path }: { m: Movie; path: string }) {
   const openDialog = useAppStore((s) => s.openDialog);
   const movieStatus = status(m);
   const upcoming = movieStatus === 'soon';
-  const statusEyebrow = movieStatus === 'presale' ? 'Pré-venda' : 'Em cartaz';
+  const statusEyebrow = isRerelease(m)
+    ? 'Relançamento'
+    : movieStatus === 'presale'
+      ? 'Pré-venda'
+      : 'Em cartaz';
   const releaseTerm = movieStatus === 'now' ? 'Estreia nos cinemas' : 'Estreia';
 
   useEffect(() => {

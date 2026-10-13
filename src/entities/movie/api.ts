@@ -99,6 +99,7 @@ export function toMovie(m: ApiMovie): Movie {
     dist: distributorSlug(m.distributor),
     release: dateLabel(releaseDate),
     releaseDate,
+    originalRelease: released,
     firstShowtime,
     source: 'API do catálogo',
     poster,

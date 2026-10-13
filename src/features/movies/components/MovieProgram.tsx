@@ -521,6 +521,22 @@ export function MovieProgram({
   const filter = dates.includes(state.date)
     ? state
     : { ...state, date: dates[0] || '' };
+  // A picked cinema refetches just its day, so those sessions are fresh
+  const scopedCinema = filter.cinema !== ALL_OPTION ? filter.cinema : '';
+  const scopedDate = filter.date;
+  const cinemaDay = useMovieShowtimesQuery(
+    m.id,
+    scopedCinema && scopedDate
+      ? { date: scopedDate, cinemaId: scopedCinema }
+      : null
+  );
+  const programRows = useMemo(() => {
+    if (!scopedCinema || !cinemaDay.data) return rows;
+    const others = rows.filter(
+      (row) => row.theater !== scopedCinema || row.date !== scopedDate
+    );
+    return [...others, ...cinemaDay.data];
+  }, [rows, scopedCinema, scopedDate, cinemaDay.data]);
 
   const setFilterKey = (key: keyof SessionFilterState, value: string) =>
     setFilter({ ...filter, [key]: value });
@@ -577,7 +593,7 @@ export function MovieProgram({
             ))}
           </Rail>
           <div className="mt-4">
-            <ProgramLists rows={rows} filter={filter} scope={scope} />
+            <ProgramLists rows={programRows} filter={filter} scope={scope} />
           </div>
         </div>
       </div>

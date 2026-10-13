@@ -4,7 +4,13 @@ import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { useAppStore } from '@/shared/store';
 import { dateLabel } from '@/shared/lib/date';
-import { movieHref, status, statusLabel, type Movie } from '@/entities/movie';
+import {
+  isRerelease,
+  movieHref,
+  status,
+  statusLabel,
+  type Movie,
+} from '@/entities/movie';
 import { MoviePoster } from './MoviePoster';
 import { HeartButton } from '@/shared/ui';
 
@@ -23,7 +29,8 @@ export function MovieCard({
   const requestFavorite = useAppStore((s) => s.requestFavorite);
   const movieSaved = useAppStore((s) => s.movieSaved(m.id));
   const href = movieHref(m.id, scope);
-  const soon = status(m) === 'soon';
+  // Re-releases keep their tag instead of the date
+  const soon = status(m) === 'soon' && !isRerelease(m);
   const label = soon ? dateLabel(m.releaseDate) : statusLabel(m);
 
   const heartButton = (
