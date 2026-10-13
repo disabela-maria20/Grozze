@@ -2,14 +2,10 @@
 
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
-import {
-  allMovies,
-  dateLabel,
-  movieHref,
-  normalize,
-  sortedCinemas,
-  statusLabel,
-} from '@/shared/lib/catalog';
+import { allMovies, movieHref, statusLabel } from '@/entities/movie';
+import { dateLabel } from '@/shared/lib/date';
+import { normalize } from '@/shared/lib/text';
+import { sortedCinemas } from '@/entities/cinema';
 import { useAppStore, useIsSaved } from '@/shared/store';
 import { Icon } from '@/shared/ui';
 

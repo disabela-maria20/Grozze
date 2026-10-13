@@ -4,7 +4,7 @@ import {
   grozzeAdmin,
   type GrozzeLookup,
   type GrozzeLookupInput,
-} from '@/shared/api';
+} from './grozzeAdmin';
 import { useAppStore } from '@/shared/store';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 

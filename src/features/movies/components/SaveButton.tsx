@@ -1,7 +1,7 @@
 'use client';
 
 import { useAppStore } from '@/shared/store';
-import type { Movie } from '@/shared/lib/types';
+import type { Movie } from '@/entities/movie';
 import { Icon } from '@/shared/ui';
 
 export function SaveButton({ m, path }: { m: Movie; path: string }) {

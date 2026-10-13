@@ -1,7 +1,7 @@
 'use client';
 
 import { MovieCard } from '@/features/movies';
-import { allMovies } from '@/shared/lib/catalog';
+import { allMovies } from '@/entities/movie';
 import { useAppStore, useIsSaved } from '@/shared/store';
 import { Button, TextLink } from '@/shared/ui';
 

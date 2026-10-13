@@ -2,20 +2,14 @@
 
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
-import {
-  allMovies,
-  dateLabel,
-  movie,
-  movieHref,
-  MONTH_NAMES,
-  status,
-  unique,
-  validDate,
-} from '@/shared/lib/catalog';
+import { allMovies, movie, movieHref, status } from '@/entities/movie';
+import { dateLabel, MONTH_NAMES, validDate } from '@/shared/lib/date';
+import { unique } from '@/shared/lib/text';
 import { useAppStore } from '@/shared/store';
 import { MovieCard } from './MovieCard';
 import { MoviePoster } from './MoviePoster';
-import { Chip, Rail, Icon } from '@/shared/ui';
+import { Rail } from './Rail';
+import { Chip, Icon } from '@/shared/ui';
 import { SaveButton } from './SaveButton';
 
 export function ComingSoonApp() {

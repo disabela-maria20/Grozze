@@ -1,7 +1,8 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { inLocation, normalize, sortedCinemas } from '@/shared/lib/catalog';
+import { inLocation, sortedCinemas } from '@/entities/cinema';
+import { normalize } from '@/shared/lib/text';
 import { useAppStore, useIsSaved } from '@/shared/store';
 import { CinemaCard } from './CinemaCard';
 import { EmptyState, Icon } from '@/shared/ui';

@@ -12,7 +12,8 @@ import {
   type SignupValues,
 } from '../schema';
 import { useAppStore } from '@/shared/store';
-import { Button, Field, GenrePicker, TextLink, inputClass } from '@/shared/ui';
+import { GenrePicker } from '@/entities/movie';
+import { Button, Field, TextLink, inputClass } from '@/shared/ui';
 
 const SIGNUP_DEFAULT_VALUES: SignupValues = {
   name: '',

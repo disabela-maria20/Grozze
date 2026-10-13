@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useAppStore } from '@/shared/store';
 import { scopeFromPath } from '@/shared/lib/route';
-import { DISTRIBUTORS } from '@/shared/lib/catalog';
+import { DISTRIBUTORS } from '@/entities/distributor';
 
 /** [path segment, label] */
 type FooterLink = [string, string];

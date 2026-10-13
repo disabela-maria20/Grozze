@@ -3,13 +3,8 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { useAppStore } from '@/shared/store';
-import {
-  dateLabel,
-  movieHref,
-  status,
-  statusLabel,
-} from '@/shared/lib/catalog';
-import type { Movie } from '@/shared/lib/types';
+import { dateLabel } from '@/shared/lib/date';
+import { movieHref, status, statusLabel, type Movie } from '@/entities/movie';
 import { MoviePoster } from './MoviePoster';
 import { HeartButton } from '@/shared/ui';
 
@@ -35,6 +30,7 @@ export function MovieCard({
     <HeartButton
       kind="movie"
       id={m.id}
+      label={m.t}
       path={href}
       className="absolute right-2 top-2 z-[3]"
     />

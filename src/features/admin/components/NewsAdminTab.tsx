@@ -4,12 +4,12 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  type GrozzeNews,
-  type GrozzeNewsInput,
-  type GrozzeNewsStatus,
+import type {
+  GrozzeNews,
+  GrozzeNewsInput,
+  GrozzeNewsStatus,
 } from '@/shared/api';
-import { dateLabel } from '@/shared/lib/catalog';
+import { dateLabel } from '@/shared/lib/date';
 import {
   Button,
   Chip,

@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { allMovies } from '@/shared/lib/catalog';
+import { allMovies } from '@/entities/movie';
 import { useAppStore } from '@/shared/store';
 import { inputClass } from '@/shared/ui';
 

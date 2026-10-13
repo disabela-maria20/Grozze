@@ -4,6 +4,4 @@ export * from './QueryProvider';
 export * from './request';
 export * from './SENSITIVE_MUTATION';
 export * from './types';
-export * from './useCatalogQuery';
 export * from './useGrozzeListQuery';
-export * from './useMovieShowtimesQuery';

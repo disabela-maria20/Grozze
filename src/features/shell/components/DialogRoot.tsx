@@ -3,7 +3,8 @@
 import { useEffect, type ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
 import { useAppStore } from '@/shared/store';
-import { CatalogGate, DialogShell } from '@/shared/ui';
+import { CatalogGate } from '@/entities/catalog';
+import { DialogShell } from './DialogShell';
 import { AuthDialog } from '@/features/auth';
 import { SessionDialog, TrailerDialog } from '@/features/movies';
 import { PricesDialog } from '@/features/cinemas';

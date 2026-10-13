@@ -3,16 +3,10 @@
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import {
-  allBaseMovieIds,
-  allCinemas,
-  allMovies,
-  baseMovie,
-  movie,
-  statusLabel,
-} from '@/shared/lib/catalog';
+import { allCinemas } from '@/entities/cinema';
+import { allMovies, movie, statusLabel, type Movie } from '@/entities/movie';
 import { CATALOG_API_URL } from '@/shared/api';
-import { exportLeadsCsv, useAppStore, downloadFile } from '@/shared/store';
+import { useAppStore } from '@/shared/store';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -20,9 +14,15 @@ import {
   usePublishOverrideMutation,
   useRemoveOverrideMutation,
 } from '../api';
+import {
+  allBaseMovieIds,
+  baseMovie,
+  downloadFile,
+  exportLeadsCsv,
+} from '../lib';
 import { cmsMovieSchema, type CmsMovieValues } from '../schema';
 import { Button, Field, inputClass } from '@/shared/ui';
-import type { Movie, MovieOverride } from '@/shared/lib/types';
+import type { MovieOverride } from '@/shared/lib/types';
 import { NewsAdminTab } from './NewsAdminTab';
 import { LookupsAdminTab } from './LookupsAdminTab';
 import { UsersAdminTab } from './UsersAdminTab';

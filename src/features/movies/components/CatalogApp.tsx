@@ -2,10 +2,13 @@
 
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { movieList, normalize, status } from '@/shared/lib/catalog';
+import { normalize } from '@/shared/lib/text';
+import { status } from '@/entities/movie';
 import { useAppStore } from '@/shared/store';
+import { movieList } from '../lib';
 import { MovieCard } from './MovieCard';
-import { Chip, EmptyState, Rail, TextLink, Icon } from '@/shared/ui';
+import { Rail } from './Rail';
+import { Chip, EmptyState, TextLink, Icon } from '@/shared/ui';
 
 /** Status filter chips as [status value, label]. */
 const STATUS_OPTIONS: [string, string][] = [

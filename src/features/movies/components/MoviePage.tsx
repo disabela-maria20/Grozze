@@ -1,7 +1,7 @@
 'use client';
 
 import { useAppStore } from '@/shared/store';
-import { movie, movieHref } from '@/shared/lib/catalog';
+import { movie, movieHref } from '@/entities/movie';
 import { NewsSection, useNewsListQuery } from '@/features/news';
 import { NotFound } from '@/shared/ui';
 import { MovieHero } from './MovieHero';

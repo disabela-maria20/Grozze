@@ -2,18 +2,13 @@
 
 import Link from 'next/link';
 import { useAppStore, useIsSaved } from '@/shared/store';
-import {
-  allCinemas,
-  allMovies,
-  currentMovies,
-  hasSessions,
-  preMovies,
-  soonMovies,
-} from '@/shared/lib/catalog';
+import { allCinemas } from '@/entities/cinema';
+import { allMovies, hasSessions } from '@/entities/movie';
 import { useAccountAction } from '@/features/account';
 import { MovieSection } from '@/features/movies';
 import { NewsSection, useNewsListQuery } from '@/features/news';
 import { Button, Icon } from '@/shared/ui';
+import { currentMovies, preMovies, soonMovies } from '../lib';
 import { HomeHero } from './HomeHero';
 
 export function HomeApp() {

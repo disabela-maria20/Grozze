@@ -3,11 +3,11 @@
 import Link from 'next/link';
 import {
   allMovies,
-  DISTRIBUTORS,
   hasSessions,
   movieHref,
   statusLabel,
-} from '@/shared/lib/catalog';
+} from '@/entities/movie';
+import { DISTRIBUTORS } from '@/entities/distributor';
 import { useAppStore } from '@/shared/store';
 import { MovieMeta, MovieSection } from '@/features/movies';
 import { NewsSection, useNewsListQuery } from '@/features/news';

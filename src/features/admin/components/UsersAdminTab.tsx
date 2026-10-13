@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { type GrozzeRole } from '@/shared/api';
-import { dateLabel } from '@/shared/lib/catalog';
+import type { GrozzeRole } from '@/shared/api';
+import { dateLabel } from '@/shared/lib/date';
 import { useAppStore } from '@/shared/store';
 import { Button, Chip, EmptyState, FilmLoader, inputClass } from '@/shared/ui';
 import {

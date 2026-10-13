@@ -1,9 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import type { Movie } from '@/shared/lib/types';
+import type { Movie } from '@/entities/movie';
 import { MovieCard } from './MovieCard';
-import { Rail, Icon } from '@/shared/ui';
+import { Rail } from './Rail';
+import { Icon } from '@/shared/ui';
 
 export function MovieSection({
   title,

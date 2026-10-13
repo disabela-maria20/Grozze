@@ -1,6 +1,6 @@
 'use client';
 
-import type { Movie } from '@/shared/lib/types';
+import type { Movie } from '@/entities/movie';
 import { ImdbBadge } from './ImdbBadge';
 import { RatingBadge } from './RatingBadge';
 

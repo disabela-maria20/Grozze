@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
-import { CatalogGate, ClientOnly } from '@/shared/ui';
+import { CatalogGate } from '@/entities/catalog';
+import { ClientOnly } from '@/shared/ui';
 import { CatalogApp } from '@/features/movies';
 
 export const metadata: Metadata = { title: 'Filmes' };

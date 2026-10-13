@@ -2,9 +2,8 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { movieHref, statusLabel } from '@/shared/lib/catalog';
+import { movieHref, statusLabel, type Movie } from '@/entities/movie';
 import { useAppStore } from '@/shared/store';
-import type { Movie } from '@/shared/lib/types';
 import { MovieMeta } from '@/features/movies';
 import { Icon } from '@/shared/ui';
 

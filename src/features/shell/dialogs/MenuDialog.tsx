@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useAppStore } from '@/shared/store';
-import { NAV, SECONDARY_NAV, pathFor } from '../lib/nav';
+import { NAV, SECONDARY_NAV, pathFor } from '../lib';
 import { activeRootFromPath } from '@/shared/lib/route';
 import { useAccountAction, Avatar } from '@/features/account';
 import { TextLink, Icon } from '@/shared/ui';

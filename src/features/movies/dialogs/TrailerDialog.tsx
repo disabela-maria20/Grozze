@@ -1,6 +1,7 @@
 'use client';
 
-import { movie, videoId } from '@/shared/lib/catalog';
+import { movie } from '@/entities/movie';
+import { videoId } from '@/shared/lib/media';
 import { useAppStore } from '@/shared/store';
 import { Button } from '@/shared/ui';
 

@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
-import { CatalogGate, ClientOnly } from '@/shared/ui';
+import { CatalogGate } from '@/entities/catalog';
+import { ClientOnly } from '@/shared/ui';
 import { DistributorPage } from '@/features/distributors';
-import { DISTRIBUTORS } from '@/shared/lib/catalog';
+import { DISTRIBUTORS } from '@/entities/distributor';
 
 /** Hubs that are live and publicly listed get a pre-rendered page. */
 function isPublicDistributor(distributor: (typeof DISTRIBUTORS)[number]) {

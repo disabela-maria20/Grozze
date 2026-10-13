@@ -1,17 +1,19 @@
 'use client';
 
 import { useAppStore } from '@/shared/store';
-import { cinema, movie } from '@/shared/lib/catalog';
 import { Icon } from './Icon';
 
 export function HeartButton({
   kind,
   id,
+  label,
   path,
   className = '',
 }: {
   kind: 'movie' | 'cinema';
   id: string;
+  /** Movie title or cinema name, for the accessible label. */
+  label?: string;
   path: string;
   className?: string;
 }) {
@@ -19,7 +21,6 @@ export function HeartButton({
     kind === 'movie' ? s.movieSaved(id) : s.cinemaSaved(id)
   );
   const requestFavorite = useAppStore((s) => s.requestFavorite);
-  const label = kind === 'movie' ? movie(id)?.t : cinema(id)?.name;
 
   return (
     <button
@@ -28,7 +29,7 @@ export function HeartButton({
         isSaved ? 'bg-lime! border-lime! text-[#081004]!' : ''
       } ${className}`}
       aria-pressed={isSaved}
-      aria-label={`${isSaved ? 'Remover dos favoritos' : 'Favoritar'} ${label || ''}`}
+      aria-label={`${isSaved ? 'Remover dos favoritos' : 'Favoritar'} ${label ?? ''}`}
       onClick={(event) => {
         event.preventDefault();
         requestFavorite(kind, id, path);

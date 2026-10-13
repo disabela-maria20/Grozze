@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { dateLabel, newsHref } from '@/shared/lib/catalog';
+import { dateLabel } from '@/shared/lib/date';
+import { newsHref } from '../lib';
 import type { GrozzeNewsSummary } from '@/shared/api';
 
 /** Published date as "8 de setembro de 2026" (ISO datetime → date part). */

@@ -1,6 +1,6 @@
 'use client';
 
-import { dateLabel, nowInSaoPaulo } from '@/shared/lib/catalog';
+import { dateLabel, nowInSaoPaulo } from '@/shared/lib/date';
 import { useAppStore } from '@/shared/store';
 import { LinkButton } from '@/shared/ui';
 

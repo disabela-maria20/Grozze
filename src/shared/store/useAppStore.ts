@@ -8,13 +8,13 @@ import {
   type GrozzeUser,
   toProfile,
 } from '@/shared/api';
-import { validateOverride } from '@/shared/lib/catalog';
 import type {
   AuditEntry,
   ConsentState,
   ContentState,
   Lead,
   LocationState,
+  MovieOverride,
   Profile,
 } from '@/shared/lib/types';
 import { create } from 'zustand';
@@ -134,9 +134,9 @@ interface AppState extends PersistedState {
   setLocationManual: () => void;
   setLocationGeo: (coords: { lat: number; lng: number }) => void;
 
-  publishOverride: (id: string, values: Record<string, unknown>) => void;
+  publishOverride: (id: string, override: MovieOverride) => void;
   removeOverride: (id: string) => void;
-  importContent: (json: unknown) => void;
+  importContent: (content: ContentState) => void;
 
   captureLead: (input: {
     source: string;
@@ -366,8 +366,7 @@ export const useAppStore = create<AppState>()(
           );
         },
 
-        publishOverride: (id, values) => {
-          const override = validateOverride(values);
+        publishOverride: (id, override) => {
           const state = get();
           const movies = { ...state.content.movies };
           // An empty override means "back to the source data"
@@ -390,30 +389,13 @@ export const useAppStore = create<AppState>()(
           state.toast('Dados de origem restaurados.');
         },
 
-        /** Replaces every override with the ones of an exported JSON file. */
-        importContent: (json) => {
-          const data = json as {
-            schemaVersion?: unknown;
-            movies?: unknown;
-          } | null;
-          if (
-            data?.schemaVersion !== 1 ||
-            !data.movies ||
-            typeof data.movies !== 'object'
-          ) {
-            throw new Error('Formato de arquivo inválido.');
-          }
-          const imported: ContentState = { schemaVersion: 1, movies: {} };
-          for (const [id, values] of Object.entries(
-            data.movies as Record<string, Record<string, unknown>>
-          )) {
-            imported.movies[id] = validateOverride(values);
-          }
+        /** Replaces every override with the ones of an imported file. */
+        importContent: (content) => {
           saveContent(
-            imported,
+            content,
             'Overrides importados',
             '-',
-            Object.keys(imported.movies)
+            Object.keys(content.movies)
           );
           get().toast('Overrides importados.');
         },

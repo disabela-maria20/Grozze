@@ -1,6 +1,7 @@
 'use client';
 
-import { grozzeNews, GrozzeApiError } from '@/shared/api';
+import { grozzeNews } from '@/entities/news';
+import { GrozzeApiError } from '@/shared/api';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 
 /** 404 won't fix itself on retry. */

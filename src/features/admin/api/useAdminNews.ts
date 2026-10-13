@@ -1,10 +1,7 @@
 'use client';
 
-import {
-  grozzeNews,
-  type AdminNewsListParams,
-  type GrozzeNewsInput,
-} from '@/shared/api';
+import { grozzeNews, type AdminNewsListParams } from '@/entities/news';
+import type { GrozzeNewsInput } from '@/shared/api';
 import { useAppStore } from '@/shared/store';
 import {
   useMutation,

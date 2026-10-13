@@ -2,23 +2,21 @@
 
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
+import { cinema, inLocation } from '@/entities/cinema';
+import { dateLabel, dateParts, validDate } from '@/shared/lib/date';
+import { useMovieShowtimesQuery } from '../api';
 import {
-  cinema,
-  dateLabel,
-  dateParts,
   defaultFilmState,
   filterGroupOptions,
   filterRows,
   groupedRooms,
-  inLocation,
   movieDates,
-  validDate,
   type SessionFilterState,
-} from '@/shared/lib/catalog';
-import { useMovieShowtimesQuery } from '@/shared/api';
+} from '../lib';
 import { useAppStore, useIsSaved } from '@/shared/store';
-import type { Movie, Showtime } from '@/shared/lib/types';
-import { FilmLoader, HeartButton, Icon, Rail, TextLink } from '@/shared/ui';
+import type { Movie, Showtime } from '@/entities/movie';
+import { FilmLoader, HeartButton, Icon, TextLink } from '@/shared/ui';
+import { Rail } from './Rail';
 
 type FilterChangeHandler = (
   key: keyof SessionFilterState,
@@ -122,7 +120,7 @@ function CinemaSessionsBlock({
           </p>
         </div>
         <div className="flex items-center gap-2.5 shrink-0">
-          <HeartButton kind="cinema" id={cid} path="" />
+          <HeartButton kind="cinema" id={cid} label={theater?.name} path="" />
           {!scope && (
             <Link
               className="text-xs inline-flex items-center gap-1 text-[#dce3dc] hover:text-lime"

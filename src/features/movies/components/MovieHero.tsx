@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useState, type ReactNode } from 'react';
-import { dateLabel, hasSessions, status } from '@/shared/lib/catalog';
+import { dateLabel } from '@/shared/lib/date';
+import { hasSessions, status, type Movie } from '@/entities/movie';
 import { useAppStore } from '@/shared/store';
-import type { Movie } from '@/shared/lib/types';
 import { MovieMeta } from './MovieMeta';
 import { Icon, TextLink } from '@/shared/ui';
 import { SaveButton } from './SaveButton';

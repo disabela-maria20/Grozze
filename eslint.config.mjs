@@ -10,6 +10,54 @@ import prettierPlugin from 'eslint-plugin-prettier';
 import tsParser from '@typescript-eslint/parser';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 
+// Feature architecture: outras features e entidades só pelo index público
+const importPatterns = [
+  {
+    group: ['@/features/*/*'],
+    message: 'Importe outra feature pelo index público: @/features/<nome>',
+  },
+  {
+    group: ['@/entities/*/*'],
+    message: 'Importe a entidade pelo index público: @/entities/<nome>',
+  },
+  {
+    // Barrels: quem está fora da pasta importa pelo index
+    group: [
+      '@/shared/api/*',
+      '@/shared/lib/route/*',
+      '@/shared/lib/validation/*',
+      '@/shared/store/*',
+      '@/shared/ui/*',
+      '../api/*',
+      '../schema/*',
+      '../components/*',
+      '../dialogs/*',
+      '../hooks/*',
+      '../lib/*',
+    ],
+    message: 'Importe pelo barrel da pasta (ex.: @/shared/ui, ../api).',
+  },
+];
+
+/** Camadas: shared < entities < features. Uma camada não importa as de cima. */
+const layerRule = (forbidden) => ({
+  rules: {
+    'no-restricted-imports': [
+      'error',
+      {
+        patterns: [
+          ...importPatterns,
+          {
+            group: forbidden,
+            message:
+              'Camada de baixo não importa camada de cima (shared < entities < features).',
+          },
+        ],
+      },
+    ],
+  },
+});
+
 export default [
   globalIgnores(['.next/**', 'out/**', 'build/**', 'next-env.d.ts']),
   js.configs.recommended,
@@ -56,38 +104,21 @@ export default [
       '@next/next/no-img-element': 'off',
       // Labels com texto dentro de <span><strong>…</strong></span>
       'jsx-a11y/label-has-associated-control': ['error', { depth: 3 }],
-      // Feature architecture: outras features só pelo index público
       'no-restricted-imports': [
         'error',
         {
-          patterns: [
-            {
-              group: ['@/features/*/*'],
-              message:
-                'Importe outra feature pelo index público: @/features/<nome>',
-            },
-            {
-              // Barrels: quem está fora da pasta importa pelo index
-              group: [
-                '@/shared/api/*',
-                '@/shared/lib/catalog/*',
-                '@/shared/lib/route/*',
-                '@/shared/lib/validation/*',
-                '@/shared/store/*',
-                '@/shared/ui/*',
-                '../api/*',
-                '../schema/*',
-                '../components/*',
-                '../dialogs/*',
-                '../hooks/*',
-              ],
-              message:
-                'Importe pelo barrel da pasta (ex.: @/shared/ui, ../api).',
-            },
-          ],
+          patterns: importPatterns,
         },
       ],
     },
+  },
+  {
+    files: ['src/shared/**'],
+    ...layerRule(['@/entities', '@/entities/*', '@/features', '@/features/*']),
+  },
+  {
+    files: ['src/entities/**'],
+    ...layerRule(['@/features', '@/features/*']),
   },
   prettierConfig,
   {

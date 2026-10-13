@@ -1,4 +1,5 @@
-import { safeImage, validDate, videoId } from '@/shared/lib/catalog';
+import { safeImage, videoId } from '@/shared/lib/media';
+import { validDate } from '@/shared/lib/date';
 import { z } from 'zod';
 
 /** Client-side mirror of `validateOverride` so errors show next to each field. */

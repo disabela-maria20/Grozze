@@ -1,6 +1,6 @@
 'use client';
 
-import { cinema } from '@/shared/lib/catalog';
+import { cinema } from '@/entities/cinema';
 import { useAppStore } from '@/shared/store';
 import { Icon, LinkButton, NotFound } from '@/shared/ui';
 

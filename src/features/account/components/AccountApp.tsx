@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import type { ReactNode } from 'react';
-import { allMovies, sortedCinemas } from '@/shared/lib/catalog';
+import { allMovies, GenrePicker } from '@/entities/movie';
+import { sortedCinemas } from '@/entities/cinema';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AVATAR_KEY_BY_NAME, useGrozzeListQuery } from '@/shared/api';
@@ -26,14 +27,7 @@ import { Avatar } from './Avatar';
 import { SecuritySection } from './SecuritySection';
 import { CinemaCard } from '@/features/cinemas';
 import { MovieCard } from '@/features/movies';
-import {
-  Button,
-  EmptyState,
-  Field,
-  GenrePicker,
-  TextLink,
-  inputClass,
-} from '@/shared/ui';
+import { Button, EmptyState, Field, TextLink, inputClass } from '@/shared/ui';
 
 /** `[route segment under /minha-grozze, label]`; '' is the overview page. */
 const ACCOUNT_TABS: [string, string][] = [

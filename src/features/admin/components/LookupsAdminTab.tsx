@@ -1,12 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { useGrozzeListQuery, type GrozzeLookup } from '@/shared/api';
+import { useGrozzeListQuery } from '@/shared/api';
 import { Button, Chip, EmptyState, FilmLoader, inputClass } from '@/shared/ui';
 import {
   useCreateLookupMutation,
   useDeleteLookupMutation,
   useUpdateLookupMutation,
+  type GrozzeLookup,
 } from '../api';
 
 /** Each managed list: its label, admin path, public-list key and extra field. */

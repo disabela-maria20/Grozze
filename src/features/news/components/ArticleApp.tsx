@@ -1,12 +1,12 @@
 'use client';
 
 import DOMPurify from 'dompurify';
-import { dateLabel, movie } from '@/shared/lib/catalog';
+import { dateLabel } from '@/shared/lib/date';
+import { movie, type Movie } from '@/entities/movie';
 import { useAppStore } from '@/shared/store';
 import { MovieSection } from '@/features/movies';
 import { EmptyState, FilmLoader, NotFound } from '@/shared/ui';
 import { GrozzeApiError } from '@/shared/api';
-import type { Movie } from '@/shared/lib/types';
 import { useNewsArticleQuery } from '../api';
 
 export function ArticleApp({

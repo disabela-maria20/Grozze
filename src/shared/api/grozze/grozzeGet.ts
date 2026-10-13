@@ -1,5 +1,4 @@
-import { GROZZE_API_KEY } from './GROZZE_API_KEY';
-import { GROZZE_API_URL } from './GROZZE_API_URL';
+import { GROZZE_API_KEY, GROZZE_API_URL } from './config';
 import type { GrozzeErrorBody } from './grozzeTypes';
 
 export class GrozzeApiError extends Error {

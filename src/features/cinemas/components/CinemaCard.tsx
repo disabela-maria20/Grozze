@@ -2,8 +2,7 @@
 
 import Link from 'next/link';
 import { useAppStore } from '@/shared/store';
-import { distanceKm } from '@/shared/lib/catalog';
-import type { Cinema } from '@/shared/lib/types';
+import { distanceKm, type Cinema } from '@/entities/cinema';
 import { HeartButton } from '@/shared/ui';
 
 function roomCountLabel(roomCount: number) {
@@ -48,7 +47,12 @@ export function CinemaCard({ c }: { c: Cinema }) {
           {details}
         </small>
       </div>
-      <HeartButton kind="cinema" id={c.id} path={`/cinema/${c.id}`} />
+      <HeartButton
+        kind="cinema"
+        id={c.id}
+        label={c.name}
+        path={`/cinema/${c.id}`}
+      />
     </article>
   );
 }

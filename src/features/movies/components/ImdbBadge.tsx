@@ -1,6 +1,6 @@
 'use client';
 
-import type { Movie } from '@/shared/lib/types';
+import type { Movie } from '@/entities/movie';
 
 export function ImdbBadge({ m }: { m: Movie }) {
   const imdb = m.imdb;

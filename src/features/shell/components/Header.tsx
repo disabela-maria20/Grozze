@@ -4,10 +4,10 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { useAppStore } from '@/shared/store';
-import { NAV, pathFor } from '../lib/nav';
+import { NAV, pathFor } from '../lib';
 import { activeRootFromPath, scopeFromPath } from '@/shared/lib/route';
 import { useAccountAction, Avatar } from '@/features/account';
-import { DISTRIBUTORS } from '@/shared/lib/catalog';
+import { DISTRIBUTORS } from '@/entities/distributor';
 import { Icon } from '@/shared/ui';
 
 const SCROLLED_THRESHOLD_PX = 4;

@@ -1,6 +1,7 @@
 'use client';
 
-import { grozzeNews, GrozzeApiError } from '@/shared/api';
+import { grozzeNews } from '@/entities/news';
+import { GrozzeApiError } from '@/shared/api';
 import { useQuery } from '@tanstack/react-query';
 
 /** A missing article (404) stays missing; don't retry. */

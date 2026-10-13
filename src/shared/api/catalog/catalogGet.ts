@@ -1,5 +1,4 @@
-import { CATALOG_API_URL } from './CATALOG_API_URL';
-import { CATALOG_CACHE_SECONDS } from './CATALOG_CACHE_SECONDS';
+import { CATALOG_API_URL, CATALOG_CACHE_SECONDS } from './config';
 
 export class CatalogApiError extends Error {
   constructor(

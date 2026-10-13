@@ -1,10 +1,7 @@
 'use client';
 
-import {
-  grozzeAdmin,
-  type AdminUsersListParams,
-  type GrozzeRole,
-} from '@/shared/api';
+import type { GrozzeRole } from '@/shared/api';
+import { grozzeAdmin, type AdminUsersListParams } from './grozzeAdmin';
 import { useAppStore } from '@/shared/store';
 import {
   keepPreviousData,
