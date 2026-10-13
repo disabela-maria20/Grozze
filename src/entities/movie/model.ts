@@ -2,7 +2,7 @@ import type { Movie, MovieStatus } from './types';
 import type { ContentState } from '@/shared/lib/types';
 import { OVERRIDE_STRING_FIELDS } from './override';
 import { safeImage, videoId } from '@/shared/lib/media';
-import { nowInSaoPaulo, validDate } from '@/shared/lib/date';
+import { addDays, nowInSaoPaulo, validDate } from '@/shared/lib/date';
 import { unique } from '@/shared/lib/text';
 
 /** Movies loaded from the catalog API. Filled by `setMovies`. */
@@ -50,6 +50,9 @@ export function allMovies(overrides?: ContentState | null): Movie[] {
 /** The API only lists movies that have upcoming sessions. */
 export const hasSessions = (id: string): boolean => baseMovies.has(String(id));
 
+/** Pre-sale starts this many days before the release (sessions required). */
+const PRESALE_DAYS = 7;
+
 export function status(m: Movie | null | undefined): MovieStatus {
   if (!m) return 'soon';
   if (!validDate(m.releaseDate)) return 'now';
@@ -57,22 +60,27 @@ export function status(m: Movie | null | undefined): MovieStatus {
   const sessions = hasSessions(m.id);
   // Without sessions, a movie stays upcoming through its release day
   if (!sessions && m.releaseDate >= today) return 'soon';
+  if (m.releaseDate > addDays(today, PRESALE_DAYS)) return 'soon';
   if (m.releaseDate > today) return 'presale';
   return 'now';
 }
 
 /**
- * Tag shown on a movie: pre-sale when it has sessions before the release,
- * in theaters when it has sessions, coming soon when it has no sessions and
- * its release date hasn't passed, and no tag for released movies without
- * sessions.
+ * Tag shown on a movie: pre-sale when it has sessions and the release is at
+ * most a week away, in theaters when it has sessions and is released, coming
+ * soon when the release is further away or it has no sessions yet, and no
+ * tag for released movies without sessions.
  */
 export function statusLabel(movie: Movie | null | undefined): string {
   if (!movie) return '';
   const sessions = hasSessions(movie.id);
   const dated = validDate(movie.releaseDate);
   const today = nowInSaoPaulo().date;
-  if (sessions && dated && movie.releaseDate > today) return 'Em pré-venda';
+  if (sessions && dated && movie.releaseDate > today) {
+    return movie.releaseDate <= addDays(today, PRESALE_DAYS)
+      ? 'Em pré-venda'
+      : 'Em breve nos cinemas';
+  }
   if (sessions) return 'Hoje nos cinemas';
   if (dated && movie.releaseDate < today) return '';
   return 'Em breve nos cinemas';
