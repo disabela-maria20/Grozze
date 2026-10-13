@@ -31,6 +31,8 @@ export interface RawMovie {
   spSessions?: number;
   /** Release date, "YYYY-MM-DD". */
   releaseDate: string;
+  /** Date of the next session in the showtimes API, "YYYY-MM-DD". */
+  firstShowtime?: string;
   source?: string;
   sourceAsOf?: string;
   poster?: string;

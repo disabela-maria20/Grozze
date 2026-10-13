@@ -4,7 +4,9 @@ import Link from 'next/link';
 import { useAppStore, useIsSaved } from '@/shared/store';
 import {
   allCinemas,
+  allMovies,
   currentMovies,
+  hasSessions,
   preMovies,
   soonMovies,
 } from '@/shared/lib/catalog';
@@ -31,6 +33,14 @@ export function HomeApp() {
     .slice()
     .sort((a, b) => a.releaseDate.localeCompare(b.releaseDate))
     .slice(0, 5);
+  // Movies with sessions in the showtimes API, next sessions first
+  const showtimeMovies = allMovies(content)
+    .filter((m) => hasSessions(m.id) && m.firstShowtime)
+    .sort(
+      (a, b) =>
+        a.firstShowtime!.localeCompare(b.firstShowtime!) ||
+        Number(!!b.poster) - Number(!!a.poster)
+    );
 
   return (
     <>
@@ -106,6 +116,13 @@ export function HomeApp() {
         list={nowShowing}
         morePath="/filmes"
         id="nearby"
+      />
+      <MovieSection
+        title="Com sessões"
+        eyebrow="Programação"
+        list={showtimeMovies}
+        morePath="/filmes"
+        id="showtime"
       />
       <MovieSection
         title="Pré-venda"

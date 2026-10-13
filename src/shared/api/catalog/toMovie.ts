@@ -97,6 +97,7 @@ export function toMovie(m: ApiMovie): Movie {
     dist: distributorSlug(m.distributor),
     release: dateLabel(releaseDate),
     releaseDate,
+    firstShowtime,
     source: 'API do catálogo',
     poster,
     backdrop: catalogImage(asset('capa')?.image) || poster,
