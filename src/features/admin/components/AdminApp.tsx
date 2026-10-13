@@ -23,6 +23,7 @@ import {
 import { cmsMovieSchema, type CmsMovieValues } from '../schema';
 import { Button, Field, inputClass } from '@/shared/ui';
 import type { MovieOverride } from '@/shared/lib/types';
+import { BannersAdminTab } from './BannersAdminTab';
 import { NewsAdminTab } from './NewsAdminTab';
 import { LookupsAdminTab } from './LookupsAdminTab';
 import { UsersAdminTab } from './UsersAdminTab';
@@ -31,6 +32,7 @@ import { UsersAdminTab } from './UsersAdminTab';
 const TABS: [string, string][] = [
   ['filmes', 'Filmes'],
   ['noticias', 'Notícias'],
+  ['banners', 'Banners'],
   ['listas', 'Listas'],
   ['usuarios', 'Usuários'],
   ['leads', 'Leads'],
@@ -453,6 +455,7 @@ export function AdminApp() {
           />
         )}
         {tab === 'noticias' && <NewsAdminTab />}
+        {tab === 'banners' && <BannersAdminTab />}
         {tab === 'listas' && <LookupsAdminTab />}
         {tab === 'usuarios' && <UsersAdminTab />}
         {tab === 'leads' && <LeadsTab />}

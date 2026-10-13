@@ -3,7 +3,8 @@
 import Link from 'next/link';
 import { useAppStore, useIsSaved } from '@/shared/store';
 import { allCinemas } from '@/entities/cinema';
-import { allMovies, hasSessions } from '@/entities/movie';
+import { useHomeBannersQuery } from '@/entities/banner';
+import { allMovies, hasSessions, movie, type Movie } from '@/entities/movie';
 import { useAccountAction } from '@/features/account';
 import { MovieSection } from '@/features/movies';
 import { NewsSection, useNewsListQuery } from '@/features/news';
@@ -18,8 +19,18 @@ export function HomeApp() {
   const cinemaSaved = useIsSaved('cinema');
   const openDialog = useAppStore((s) => s.openDialog);
   const accountAction = useAccountAction();
+  const banners = useHomeBannersQuery();
 
   const nowShowing = currentMovies(content);
+  // Admin-picked slides (skipping movies no longer in the catalog); none = now showing
+  const pickedBanners = (banners.data?.movieIds ?? [])
+    .map((id) => movie(id, content))
+    .filter((m): m is Movie => !!m);
+  const heroList = banners.isPending
+    ? []
+    : pickedBanners.length
+      ? pickedBanners
+      : nowShowing.slice(0, 5);
   const favoriteCinemas = allCinemas().filter((theater) =>
     cinemaSaved(theater.id)
   );
@@ -39,7 +50,7 @@ export function HomeApp() {
 
   return (
     <>
-      <HomeHero list={nowShowing.slice(0, 5)} />
+      <HomeHero list={heroList} />
 
       <section className="py-8 max-sm:py-6">
         <div className="w-[min(1220px,calc(100%-56px))] max-sm:w-[calc(100%-32px)] mx-auto">
