@@ -51,7 +51,8 @@ export function MovieCard({
     ) : (
       <button
         type="button"
-        className="want-btn absolute bottom-2.5 left-2.5 w-[calc(100%-20px)] z-[3] min-h-[38px] rounded-[11px] bg-bg/90 border border-lime/40 text-xs font-extrabold flex justify-center items-center text-center px-2 hover:bg-lime hover:text-[#081004] transition-colors"
+        // With a mouse it slides in on hover (or keyboard focus); touch screens always show it
+        className="want-btn absolute bottom-2.5 left-2.5 w-[calc(100%-20px)] z-[3] min-h-[38px] rounded-[11px] bg-bg/90 border border-lime/40 text-xs font-extrabold flex justify-center items-center text-center px-2 hover:bg-lime hover:text-[#081004] transition-[opacity,translate,background-color,color] duration-200 ease-out motion-reduce:transition-none pointer-fine:opacity-0 pointer-fine:translate-y-2 pointer-fine:pointer-events-none group-hover/card:opacity-100 group-hover/card:translate-y-0 group-hover/card:pointer-events-auto group-focus-within/card:opacity-100 group-focus-within/card:translate-y-0 group-focus-within/card:pointer-events-auto"
         onClick={(e) => {
           e.preventDefault();
           requestFavorite('movie', m.id, href);
@@ -65,7 +66,7 @@ export function MovieCard({
   }
 
   return (
-    <article className="movie-card min-w-0 relative">
+    <article className="movie-card group/card min-w-0 relative">
       <div className="poster-box relative min-w-0 isolate">
         <Link className="block" href={href} aria-label={`Ver ${m.t}`}>
           <MoviePoster m={m} />
