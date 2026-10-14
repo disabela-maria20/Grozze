@@ -114,7 +114,7 @@ export function Header() {
             <span className="w-2 h-2 rounded-full bg-lime shadow-[0_0_0_4px_var(--color-lime-soft)] max-sm:hidden" />
             <Icon name="pin" className="max-sm:w-5 max-sm:h-5" />
             <span className="max-[1160px]:hidden max-sm:hidden">
-              {location.label || 'São Paulo, SP'}
+              {location.label || 'Escolher cidade'}
             </span>
           </button>
           {!scope && (

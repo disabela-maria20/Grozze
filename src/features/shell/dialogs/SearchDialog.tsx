@@ -2,7 +2,12 @@
 
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
-import { allMovies, movieHref, statusLabel } from '@/entities/movie';
+import {
+  allMovies,
+  movieHref,
+  type Movie,
+  useStatusLabel,
+} from '@/entities/movie';
 import { dateLabel } from '@/shared/lib/date';
 import { normalize } from '@/shared/lib/text';
 import { sortedCinemas } from '@/entities/cinema';
@@ -68,18 +73,7 @@ export function SearchDialog({ scope }: { scope?: string | null }) {
           <p className="text-muted">Nenhum resultado encontrado.</p>
         )}
         {movies.map((movie) => (
-          <Link
-            key={movie.id}
-            className="block mb-1.5 p-4 rounded-2xl border border-line bg-surface2"
-            href={movieHref(movie.id, scope)}
-          >
-            <strong className="block">{movie.t}</strong>
-            <small className="text-muted text-xs mt-1.5 block">
-              {[statusLabel(movie), dateLabel(movie.releaseDate)]
-                .filter(Boolean)
-                .join(' · ')}
-            </small>
-          </Link>
+          <MovieResult key={movie.id} movie={movie} scope={scope} />
         ))}
         {cinemas.map((cinema) => (
           <Link
@@ -93,5 +87,26 @@ export function SearchDialog({ scope }: { scope?: string | null }) {
         ))}
       </div>
     </div>
+  );
+}
+
+function MovieResult({
+  movie,
+  scope,
+}: {
+  movie: Movie;
+  scope?: string | null;
+}) {
+  const label = useStatusLabel(movie);
+  return (
+    <Link
+      className="block mb-1.5 p-4 rounded-2xl border border-line bg-surface2"
+      href={movieHref(movie.id, scope)}
+    >
+      <strong className="block">{movie.t}</strong>
+      <small className="text-muted text-xs mt-1.5 block">
+        {[label, dateLabel(movie.releaseDate)].filter(Boolean).join(' · ')}
+      </small>
+    </Link>
   );
 }

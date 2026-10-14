@@ -8,8 +8,8 @@ import {
   isRerelease,
   movieHref,
   status,
-  statusLabel,
   type Movie,
+  useStatusLabel,
 } from '@/entities/movie';
 import { MoviePoster } from './MoviePoster';
 import { HeartButton } from '@/shared/ui';
@@ -31,7 +31,8 @@ export function MovieCard({
   const href = movieHref(m.id, scope);
   // Re-releases keep their tag instead of the date
   const soon = status(m) === 'soon' && !isRerelease(m);
-  const label = soon ? dateLabel(m.releaseDate) : statusLabel(m);
+  const tag = useStatusLabel(m);
+  const label = soon ? dateLabel(m.releaseDate) : tag;
 
   const heartButton = (
     <HeartButton

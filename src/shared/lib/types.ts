@@ -71,7 +71,12 @@ export interface ConsentState {
 }
 
 export interface LocationState {
+  /** Shown to the user: the city name. */
   label: string;
   mode: 'manual' | 'geolocation';
+  /** Cinemas are matched by city + state (see `inLocation`). */
+  city?: string;
+  /** State abbreviation ("SP"), as the catalog stores it. Never shown. */
+  uf?: string;
   coords?: { lat: number; lng: number };
 }

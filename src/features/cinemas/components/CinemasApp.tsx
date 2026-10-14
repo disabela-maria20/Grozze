@@ -1,7 +1,12 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { inLocation, sortedCinemas } from '@/entities/cinema';
+import {
+  ChooseLocation,
+  hasLocation,
+  inLocation,
+  sortedCinemas,
+} from '@/entities/cinema';
 import { normalize } from '@/shared/lib/text';
 import { useAppStore, useIsSaved } from '@/shared/store';
 import { CinemaCard } from './CinemaCard';
@@ -57,8 +62,10 @@ export function CinemasApp() {
           <div className="sticky top-[104px] h-[440px] max-md:static max-md:h-[280px] border border-line rounded-[20px] overflow-hidden bg-[radial-gradient(circle_at_50%_40%,#26382b,#0c140e)] grid place-items-center text-center">
             {mapOpen ? (
               <iframe
-                title="Mapa de cinemas em São Paulo"
-                src="https://maps.google.com/maps?q=cinemas%20S%C3%A3o%20Paulo&z=12&output=embed"
+                title={`Mapa de cinemas em ${location.label || 'todo o Brasil'}`}
+                src={`https://maps.google.com/maps?q=${encodeURIComponent(
+                  `cinemas ${location.label || 'Brasil'}`
+                )}&z=${location.label ? 12 : 4}&output=embed`}
                 loading="lazy"
                 referrerPolicy="no-referrer"
                 className="w-full h-full border-0"
@@ -83,13 +90,19 @@ export function CinemasApp() {
             )}
           </div>
           <div className="grid gap-3">
-            {visibleCinemas.length ? (
-              visibleCinemas.map((cinema) => (
-                <CinemaCard key={cinema.id} c={cinema} />
-              ))
-            ) : (
-              <EmptyState>Nenhum cinema para esta busca.</EmptyState>
+            {!query && !hasLocation(location) && (
+              <ChooseLocation>
+                Escolha sua cidade para ver os cinemas perto de você. Você
+                também pode buscar qualquer cinema acima.
+              </ChooseLocation>
             )}
+            {visibleCinemas.length
+              ? visibleCinemas.map((cinema) => (
+                  <CinemaCard key={cinema.id} c={cinema} />
+                ))
+              : (query || hasLocation(location)) && (
+                  <EmptyState>Nenhum cinema para esta busca.</EmptyState>
+                )}
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, type ReactNode } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
 import { useAppStore } from '@/shared/store';
 import { CatalogGate } from '@/entities/catalog';
@@ -32,7 +32,7 @@ const LABELS: Record<string, string> = {
 };
 
 /** Dialogs that don't read the catalog open without waiting for the API. */
-const CATALOG_FREE = new Set(['location', 'consent', 'menu']);
+const CATALOG_FREE = new Set(['consent', 'menu']);
 
 export function DialogRoot() {
   const dialog = useAppStore((s) => s.dialog);
@@ -40,8 +40,13 @@ export function DialogRoot() {
   const pathname = usePathname();
 
   // Navigation no longer reloads the page, so a link inside a dialog (menu,
-  // search...) must close it; the login dialog keeps a pending favorite
+  // search...) must close it; the login dialog keeps a pending favorite.
+  // Only on an actual route change: not on mount, where it would close a
+  // dialog opened by another component (the first-visit location question)
+  const lastPathname = useRef(pathname);
   useEffect(() => {
+    if (lastPathname.current === pathname) return;
+    lastPathname.current = pathname;
     useAppStore.getState().closeDialog({ keepPending: true });
   }, [pathname]);
 

@@ -3,7 +3,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { registerCinemas } from '@/entities/cinema';
 import { CATALOG_CACHE_SECONDS } from '@/shared/api';
-import { getMovieShowtimes } from '@/entities/movie';
+import { getMovieShowtimes } from './api';
 
 /** One cinema on one day (`/api/movies/showtimes/{id}/date/{date}/cinema/{cinemaId}`). */
 export interface ShowtimesScope {

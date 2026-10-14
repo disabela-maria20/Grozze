@@ -19,6 +19,8 @@ export interface PersistedState {
   /** CMS overrides edited in /admin. */
   content: ContentState;
   location: LocationState;
+  /** The first-visit location question was already shown. */
+  locationAsked: boolean;
   audit: AuditEntry[];
   leads: Lead[];
   /**
@@ -28,16 +30,26 @@ export interface PersistedState {
   localFavorites: Record<string, GrozzeFavorites>;
 }
 
-/** The only selectable city; also what gets stored for geolocation. */
+/** No city yet: the site asks the user to pick one (or allow geolocation). */
 export const defaultLocation = (): LocationState => ({
-  label: 'São Paulo, SP',
+  label: '',
   mode: 'manual',
 });
+
+/** Locations saved before city/uf existed had only the label "City, UF". */
+export function upgradeLocation(location: LocationState): LocationState {
+  if (location.city) return location;
+  const match = location.label.match(/^(.+),\s*([A-Z]{2})$/);
+  return match
+    ? { ...location, label: match[1], city: match[1], uf: match[2] }
+    : defaultLocation();
+}
 
 export const defaultPersistedState = (): PersistedState => ({
   consent: null,
   content: { schemaVersion: 1, movies: {} },
   location: defaultLocation(),
+  locationAsked: false,
   audit: [],
   leads: [],
   localFavorites: {},

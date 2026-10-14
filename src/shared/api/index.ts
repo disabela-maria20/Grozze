@@ -1,5 +1,6 @@
 export * from './catalog';
 export * from './grozze';
+export * from './ipLocation';
 export * from './QueryProvider';
 export * from './request';
 export * from './SENSITIVE_MUTATION';

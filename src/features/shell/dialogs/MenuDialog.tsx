@@ -51,7 +51,8 @@ export function MenuDialog() {
           onClick={() => openDialog('location')}
           className="min-h-[46px] flex items-center gap-2 text-left border-0 bg-transparent text-[#cad5cc] px-3 rounded-[10px] text-[17px]"
         >
-          <Icon name="pin" className="w-[18px] h-[18px]" /> {location.label}
+          <Icon name="pin" className="w-[18px] h-[18px]" />{' '}
+          {location.label || 'Escolher cidade'}
         </button>
       </nav>
       <nav className="grid gap-1 border-t border-line mt-5 pt-3.5">

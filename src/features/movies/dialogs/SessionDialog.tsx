@@ -1,9 +1,8 @@
 'use client';
 
-import { useMovieShowtimesQuery } from '../api';
 import { cinema } from '@/entities/cinema';
 import { dateLabel } from '@/shared/lib/date';
-import { movie } from '@/entities/movie';
+import { movie, useMovieShowtimesQuery } from '@/entities/movie';
 import { useAppStore } from '@/shared/store';
 import { MoviePoster } from '../components';
 import { FilmLoader, Icon, LinkButton } from '@/shared/ui';

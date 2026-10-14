@@ -2,7 +2,13 @@
 
 import { useEffect, useState, type ReactNode } from 'react';
 import { dateLabel } from '@/shared/lib/date';
-import { hasSessions, isRerelease, status, type Movie } from '@/entities/movie';
+import {
+  hasSessions,
+  isRerelease,
+  status,
+  type Movie,
+  useStatusLabel,
+} from '@/entities/movie';
 import { useAppStore } from '@/shared/store';
 import { MovieMeta } from './MovieMeta';
 import { Icon, TextLink } from '@/shared/ui';
@@ -25,9 +31,12 @@ export function MovieHero({ m, path }: { m: Movie; path: string }) {
   const setHasHero = useAppStore((s) => s.setHasHero);
   const openDialog = useAppStore((s) => s.openDialog);
   const movieStatus = status(m);
-  const upcoming = movieStatus === 'soon';
-  const statusEyebrow = isRerelease(m)
-    ? 'Relançamento'
+  const rerelease = isRerelease(m);
+  // Re-releases show their tag (only with sessions nearby), never a premiere
+  const rereleaseTag = useStatusLabel(m);
+  const upcoming = movieStatus === 'soon' && !rerelease;
+  const statusEyebrow = rerelease
+    ? rereleaseTag
     : movieStatus === 'presale'
       ? 'Pré-venda'
       : 'Em cartaz';
@@ -82,9 +91,11 @@ export function MovieHero({ m, path }: { m: Movie; path: string }) {
               </strong>
             </div>
           ) : (
-            <div className="text-[11px] tracking-[0.17em] uppercase font-extrabold text-lime mb-2">
-              {statusEyebrow}
-            </div>
+            statusEyebrow && (
+              <div className="text-[11px] tracking-[0.17em] uppercase font-extrabold text-lime mb-2">
+                {statusEyebrow}
+              </div>
+            )
           )}
           <h1 className="text-[62px] max-sm:text-[clamp(29px,8.5vw,39px)] font-extrabold leading-[1.04] -tracking-[0.052em] my-2.5 mb-4.5">
             {m.t}

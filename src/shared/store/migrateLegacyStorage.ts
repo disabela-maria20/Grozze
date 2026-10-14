@@ -113,6 +113,7 @@ export function migrateLegacyStorage() {
       consent: storage.read(KEYS.consent, defaults.consent),
       content: legacyContent() ?? defaults.content,
       location: storage.read(KEYS.location, defaults.location),
+      locationAsked: defaults.locationAsked,
       audit: storage.read(KEYS.audit, defaults.audit),
       leads: storage.read(KEYS.leads, defaults.leads),
       localFavorites: legacyFavorites(),

@@ -7,6 +7,7 @@ import { Footer } from './Footer';
 import { BottomNav } from './BottomNav';
 import { CookieBanner } from './CookieBanner';
 import { DialogRoot } from './DialogRoot';
+import { LocationPrompt } from './LocationPrompt';
 import { SessionBootstrap } from './SessionBootstrap';
 import { Toast } from './Toast';
 
@@ -35,6 +36,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <div id="movie-sticky" />
         <CookieBanner />
         <DialogRoot />
+        <LocationPrompt />
         <Toast />
       </ClientOnly>
     </QueryProvider>

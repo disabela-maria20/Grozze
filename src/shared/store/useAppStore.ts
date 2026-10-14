@@ -27,10 +27,17 @@ import {
   defaultPersistedState,
   type PersistedState,
   STORAGE_VERSION,
+  upgradeLocation,
 } from './persistedState';
 
 /** Maximum number of entries kept in the CMS audit log. */
 const AUDIT_LOG_LIMIT = 250;
+
+/** A city with cinemas: name plus state abbreviation ("SP"). */
+export interface Place {
+  city: string;
+  uf: string;
+}
 
 /** Normalizes an unknown value into a de-duplicated list of string ids. */
 const arrayIds = (value: unknown): string[] =>
@@ -61,7 +68,7 @@ function withAuditEntry(
 
 /**
  * The part of the state written to localStorage. Geolocation coordinates
- * stay in memory only: the stored location is always the manual one.
+ * stay in memory only: a reload keeps the region's name, not the position.
  */
 function toPersisted(state: PersistedState): PersistedState {
   return {
@@ -69,8 +76,16 @@ function toPersisted(state: PersistedState): PersistedState {
     content: state.content,
     location:
       state.location.mode === 'geolocation'
-        ? defaultLocation()
+        ? state.location.city
+          ? {
+              label: state.location.label,
+              city: state.location.city,
+              uf: state.location.uf,
+              mode: 'manual',
+            }
+          : defaultLocation()
         : state.location,
+    locationAsked: state.locationAsked,
     audit: state.audit,
     leads: state.leads,
     localFavorites: state.localFavorites,
@@ -129,8 +144,13 @@ interface AppState extends PersistedState {
   sessionExpired: () => void;
 
   saveConsent: (optional: boolean) => void;
-  setLocationManual: () => void;
-  setLocationGeo: (coords: { lat: number; lng: number }) => void;
+  setLocationManual: (place: Place) => void;
+  /** `place` is the nearest cinema's city, or null when none is known. */
+  setLocationGeo: (
+    coords: { lat: number; lng: number },
+    place: Place | null
+  ) => void;
+  markLocationAsked: () => void;
 
   publishOverride: (id: string, override: MovieOverride) => void;
   removeOverride: (id: string) => void;
@@ -346,23 +366,30 @@ export const useAppStore = create<AppState>()(
           get().toast('Preferências de cookies salvas.');
         },
 
-        setLocationManual: () => {
-          set({ location: defaultLocation(), dialog: null });
+        setLocationManual: ({ city, uf }) => {
+          set({
+            location: { label: city, city, uf, mode: 'manual' },
+            dialog: null,
+          });
           get().toast('Localização selecionada.');
         },
 
-        setLocationGeo: (coords) => {
+        setLocationGeo: (coords, place) => {
           const location: LocationState = {
-            label: 'São Paulo, SP',
+            label: place?.city ?? 'Perto de você',
+            city: place?.city,
+            uf: place?.uf,
             mode: 'geolocation',
             coords,
           };
-          // Kept in memory only: `toPersisted` stores the manual location
+          // Coordinates stay in memory: `toPersisted` stores only the label
           set({ location, dialog: null });
           get().toast(
             'Localização usada para mostrar os cinemas perto de você.'
           );
         },
+
+        markLocationAsked: () => set({ locationAsked: true }),
 
         publishOverride: (id, override) => {
           const state = get();
@@ -440,6 +467,19 @@ export const useAppStore = create<AppState>()(
       version: STORAGE_VERSION,
       storage: persistStorage<PersistedState>(),
       partialize: toPersisted,
+      // Older saves lack newer fields (and had the "City, UF" label)
+      merge: (persisted, current) => {
+        const saved = (persisted ?? {}) as Partial<PersistedState>;
+        return {
+          ...current,
+          ...saved,
+          // Before the location question existed, everyone got São Paulo
+          // without choosing it: start them with no city too
+          location: saved.locationAsked
+            ? upgradeLocation(saved.location ?? current.location)
+            : current.location,
+        };
+      },
     }
   )
 );

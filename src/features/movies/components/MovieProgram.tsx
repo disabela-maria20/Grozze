@@ -1,10 +1,19 @@
 'use client';
 
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
-import { cinema, inLocation } from '@/entities/cinema';
+import { useMemo, useState, type ReactNode } from 'react';
+import {
+  allCinemas,
+  type Cinema,
+  cinema,
+  hasLocation,
+  inLocation,
+  LocationPicker,
+  locationOptions,
+  type PickedPlace,
+} from '@/entities/cinema';
+import { normalize } from '@/shared/lib/text';
 import { dateLabel, dateParts, validDate } from '@/shared/lib/date';
-import { useMovieShowtimesQuery } from '../api';
 import {
   defaultFilmState,
   filterGroupOptions,
@@ -14,7 +23,11 @@ import {
   type SessionFilterState,
 } from '../lib';
 import { useAppStore, useIsSaved } from '@/shared/store';
-import type { Movie, Showtime } from '@/entities/movie';
+import {
+  type Movie,
+  type Showtime,
+  useMovieShowtimesQuery,
+} from '@/entities/movie';
 import { FilmLoader, HeartButton, Icon, TextLink } from '@/shared/ui';
 import { Rail } from './Rail';
 
@@ -374,10 +387,12 @@ function EmptyProgram({
   movie,
   showtimes,
   locationLabel,
+  picker,
 }: {
   movie: Movie;
   showtimes: ShowtimesQuery;
   locationLabel: string;
+  picker: ReactNode;
 }) {
   const message = showtimes.isError
     ? 'Não foi possível carregar as sessões.'
@@ -387,6 +402,7 @@ function EmptyProgram({
     <section id="sessoes" className="py-8 scroll-mt-[170px]">
       <ProgramEyebrow />
       <h2 className="text-[32px] tracking-tight mb-5">Escolha sua sessão</h2>
+      {picker}
       <div className="border border-lime/20 rounded-app p-6 bg-lime-soft">
         {showtimes.isPending ? (
           <FilmLoader label={`Buscando sessões em ${locationLabel}…`} />
@@ -496,6 +512,72 @@ function DateButton({
   );
 }
 
+/**
+ * "Where to watch" state and city selects inside the program. Only places
+ * where the movie has sessions are listed (plus the current city, so it
+ * stays selected); picking a city switches the user's location.
+ */
+function ProgramLocation({
+  showtimes,
+  onPick,
+}: {
+  showtimes: Showtime[] | undefined;
+  onPick: () => void;
+}) {
+  const location = useAppStore((s) => s.location);
+  const setLocationManual = useAppStore((s) => s.setLocationManual);
+  const openDialog = useAppStore((s) => s.openDialog);
+  const [draft, setDraft] = useState<PickedPlace | null>(null);
+
+  const { uf: hereUf, city: hereCity } = location;
+  const options = useMemo(() => {
+    const theaters = new Map<string, Cinema>();
+    for (const row of showtimes ?? []) {
+      const theater = cinema(row.theater);
+      if (theater) theaters.set(theater.id, theater);
+    }
+    const here = allCinemas().find(
+      (c) => c.uf === hereUf && normalize(c.city) === normalize(hereCity)
+    );
+    if (here) theaters.set(here.id, here);
+    return locationOptions([...theaters.values()]);
+  }, [showtimes, hereUf, hereCity]);
+
+  const currentCity = options
+    .find((option) => option.uf === location.uf)
+    ?.cities.find((city) => normalize(city) === normalize(location.city));
+  const value = draft ?? {
+    uf: currentCity ? location.uf! : '',
+    city: currentCity ?? '',
+  };
+
+  return (
+    <div className="mb-5">
+      {options.length > 0 && (
+        <LocationPicker
+          options={options}
+          value={value}
+          className="grid grid-cols-2 max-sm:grid-cols-1 gap-x-3 max-w-[560px]"
+          onChange={(place) => {
+            if (!place.city) {
+              setDraft(place);
+              return;
+            }
+            setDraft(null);
+            onPick();
+            setLocationManual(place);
+          }}
+        />
+      )}
+      <TextLink onClick={() => openDialog('location')}>
+        {options.length
+          ? 'Usar minha localização ou outra cidade'
+          : 'Escolher cidade'}
+      </TextLink>
+    </div>
+  );
+}
+
 export function MovieProgram({
   m,
   scope,
@@ -549,12 +631,38 @@ export function MovieProgram({
       cinema: ALL_OPTION,
     });
 
+  // A new city has other cinemas: start its filters over
+  const picker = (
+    <ProgramLocation
+      showtimes={showtimes.data}
+      onPick={() => setFilter(defaultFilmState())}
+    />
+  );
+
+  if (!hasLocation(location)) {
+    return (
+      <section id="sessoes" className="py-8 scroll-mt-[170px]">
+        <ProgramEyebrow />
+        <h2 className="text-[32px] tracking-tight mb-2">Escolha sua sessão</h2>
+        <p className="text-muted m-0 mb-4">
+          Escolha o estado e a cidade para ver as sessões.
+        </p>
+        {showtimes.isPending ? (
+          <FilmLoader label="Buscando sessões…" />
+        ) : (
+          picker
+        )}
+      </section>
+    );
+  }
+
   if (!rows.length) {
     return (
       <EmptyProgram
         movie={m}
         showtimes={showtimes}
         locationLabel={location.label}
+        picker={picker}
       />
     );
   }
@@ -569,6 +677,7 @@ export function MovieProgram({
       <h2 className="text-[32px] max-sm:text-[27px] tracking-tight mb-5">
         Escolha sua sessão
       </h2>
+      {picker}
       <MobileFiltersToggle
         open={mobileOpen}
         onToggle={() => setMobileOpen((open) => !open)}

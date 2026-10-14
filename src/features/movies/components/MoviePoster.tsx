@@ -1,6 +1,6 @@
 'use client';
 
-import { type Movie, statusLabel } from '@/entities/movie';
+import { type Movie, useStatusLabel } from '@/entities/movie';
 
 export function MoviePoster({
   m,
@@ -10,6 +10,7 @@ export function MoviePoster({
   className?: string;
 }) {
   const tone = m?.colors?.[0] || '#355740';
+  const label = useStatusLabel(m);
   return (
     <div
       className={`art relative min-w-0 isolate aspect-2/3 rounded-2xl overflow-hidden ${className}`}
@@ -18,9 +19,9 @@ export function MoviePoster({
       }}
     >
       <div className="absolute inset-[15px] flex flex-col justify-end text-[23px] leading-[1.04] font-extrabold tracking-tight break-words opacity-80">
-        {statusLabel(m) && (
+        {label && (
           <small className="text-[8px] tracking-[0.16em] uppercase mb-2 font-semibold">
-            {statusLabel(m)}
+            {label}
           </small>
         )}
         <span>{m?.t || 'Filme'}</span>

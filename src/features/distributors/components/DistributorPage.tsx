@@ -1,12 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import {
-  allMovies,
-  hasSessions,
-  movieHref,
-  statusLabel,
-} from '@/entities/movie';
+import { allMovies, hasSessions, movieHref, StatusTag } from '@/entities/movie';
 import { DISTRIBUTORS } from '@/entities/distributor';
 import { useAppStore } from '@/shared/store';
 import { MovieMeta, MovieSection } from '@/features/movies';
@@ -57,11 +52,10 @@ export function DistributorPage({ slug }: { slug: string }) {
           </div>
           <div className="w-[min(1220px,calc(100%-56px))] max-sm:w-[calc(100%-32px)] mx-auto min-h-[450px] pt-[70px] flex items-end pb-10">
             <div className="w-[720px] max-w-full">
-              {statusLabel(featuredMovie) && (
-                <div className="text-[11px] tracking-[0.17em] uppercase font-extrabold text-lime mb-2">
-                  {statusLabel(featuredMovie)}
-                </div>
-              )}
+              <StatusTag
+                m={featuredMovie}
+                className="text-[11px] tracking-[0.17em] uppercase font-extrabold text-lime mb-2"
+              />
               <h1 className="text-[44px] max-sm:text-[32px] font-extrabold leading-[1.1] -tracking-[0.04em] mb-3">
                 {featuredMovie.t}
               </h1>
