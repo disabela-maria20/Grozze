@@ -473,11 +473,9 @@ export const useAppStore = create<AppState>()(
         return {
           ...current,
           ...saved,
-          // Before the location question existed, everyone got São Paulo
-          // without choosing it: start them with no city too
-          location: saved.locationAsked
-            ? upgradeLocation(saved.location ?? current.location)
-            : current.location,
+          // A city saved by an older version stays selected (the location
+          // question still opens once, starting on it)
+          location: upgradeLocation(saved.location ?? current.location),
         };
       },
     }
