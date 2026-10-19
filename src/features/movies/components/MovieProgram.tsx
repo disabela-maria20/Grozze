@@ -13,7 +13,13 @@ import {
   type PickedPlace,
 } from '@/entities/cinema';
 import { normalize } from '@/shared/lib/text';
-import { dateLabel, dateParts, validDate } from '@/shared/lib/date';
+import type { LocationState } from '@/shared/lib/types';
+import {
+  dateLabel,
+  dateParts,
+  nowInSaoPaulo,
+  validDate,
+} from '@/shared/lib/date';
 import {
   defaultFilmState,
   filterGroupOptions,
@@ -50,6 +56,17 @@ const FILTER_GROUPS: {
   { filterKey: 'lang', label: 'Idioma' },
   { filterKey: 'cinema', label: 'Cinema' },
 ];
+
+/** Sessions that haven't started yet (São Paulo time), the only bookable ones. */
+function openShowtimes(showtimes: Showtime[] | undefined): Showtime[] {
+  const now = nowInSaoPaulo();
+  const nowTime = `${now.hour}:${now.minute}`;
+  return (showtimes || []).filter(
+    (showtime) =>
+      showtime.date > now.date ||
+      (showtime.date === now.date && showtime.time >= nowTime)
+  );
+}
 
 /** Groups showtimes by theater id, preserving the order of first appearance. */
 function groupByTheater(showtimes: Showtime[]) {
@@ -263,10 +280,12 @@ function ProgramLists({
   rows: allRows,
   filter,
   scope,
+  onClearFilters,
 }: {
   rows: Showtime[];
   filter: SessionFilterState;
   scope?: string | null;
+  onClearFilters: () => void;
 }) {
   const logged = useAppStore((s) => s.logged());
   const cinemaSaved = useIsSaved('cinema');
@@ -280,7 +299,7 @@ function ProgramLists({
 
   const otherCinemasEmptyMessage = rows.length
     ? 'Todos os cinemas desta seleção estão nos seus favoritos.'
-    : 'Nenhuma sessão para os filtros selecionados.';
+    : 'Nenhuma sessão neste dia com os filtros escolhidos.';
 
   return (
     <div>
@@ -307,6 +326,11 @@ function ProgramLists({
         ) : (
           <div className="border border-line rounded-app p-5 bg-surface text-muted">
             <p className="m-0">{otherCinemasEmptyMessage}</p>
+            {!rows.length && (
+              <div className="mt-2">
+                <TextLink onClick={onClearFilters}>Limpar filtros</TextLink>
+              </div>
+            )}
           </div>
         )}
       </section>
@@ -382,21 +406,38 @@ function ReleaseDateBadge({ releaseDate }: { releaseDate: string }) {
   );
 }
 
+/**
+ * Where the user is looking, phrased without a preposition so it reads right
+ * for any city ("em Rio de Janeiro" would be wrong) and for geolocation.
+ */
+function nearbyPhrase(location: LocationState): string {
+  return location.mode === 'geolocation' ? 'perto de você' : 'na sua cidade';
+}
+
 /** Shown while sessions load, when loading fails, or when there are none. */
 function EmptyProgram({
   movie,
   showtimes,
-  locationLabel,
+  location,
+  playsElsewhere,
   picker,
 }: {
   movie: Movie;
   showtimes: ShowtimesQuery;
-  locationLabel: string;
+  location: LocationState;
+  playsElsewhere: boolean;
   picker: ReactNode;
 }) {
-  const message = showtimes.isError
-    ? 'Não foi possível carregar as sessões.'
-    : `Ainda não há sessões em ${locationLabel} para esse filme.`;
+  const nearby = nearbyPhrase(location);
+  const upcoming =
+    validDate(movie.releaseDate) && movie.releaseDate > nowInSaoPaulo().date;
+
+  let hint = '';
+  if (playsElsewhere) {
+    hint = 'Ele já tem sessões em outras cidades: escolha uma acima.';
+  } else if (upcoming) {
+    hint = 'As sessões costumam abrir alguns dias antes da estreia.';
+  }
 
   return (
     <section id="sessoes" className="py-8 scroll-mt-[170px]">
@@ -405,17 +446,35 @@ function EmptyProgram({
       {picker}
       <div className="border border-lime/20 rounded-app p-6 bg-lime-soft">
         {showtimes.isPending ? (
-          <FilmLoader label={`Buscando sessões em ${locationLabel}…`} />
+          <FilmLoader label={`Buscando sessões ${nearby}…`} />
+        ) : showtimes.isError ? (
+          <>
+            <p className="text-lg m-0 mb-1">
+              Não conseguimos carregar as sessões agora.
+            </p>
+            <p className="text-muted m-0 mb-3">
+              Verifique sua conexão e tente de novo.
+            </p>
+            <TextLink onClick={() => showtimes.refetch()}>
+              Tentar novamente
+            </TextLink>
+          </>
         ) : (
-          <p className="text-lg m-0 mb-3">{message}</p>
-        )}
-        {showtimes.isError && (
-          <TextLink onClick={() => showtimes.refetch()}>
-            Tentar novamente
-          </TextLink>
-        )}
-        {showtimes.isSuccess && validDate(movie.releaseDate) && (
-          <ReleaseDateBadge releaseDate={movie.releaseDate} />
+          <>
+            <p className="text-lg m-0 mb-1">
+              Ainda não há sessões deste filme {nearby}
+              {location.mode !== 'geolocation' && location.city
+                ? ` (${location.city})`
+                : ''}
+              .
+            </p>
+            {hint && <p className="text-muted m-0 mb-3">{hint}</p>}
+            {validDate(movie.releaseDate) && (
+              <div className={hint ? '' : 'mt-3'}>
+                <ReleaseDateBadge releaseDate={movie.releaseDate} />
+              </div>
+            )}
+          </>
         )}
       </div>
     </section>
@@ -589,10 +648,10 @@ export function MovieProgram({
   const showtimes = useMovieShowtimesQuery(m.id);
   const [state, setFilter] = useState<SessionFilterState>(defaultFilmState);
   const [mobileOpen, setMobileOpen] = useState(false);
-  // The API is nationwide: keep only the cinemas near the user
+  // The API is nationwide: keep only open sessions in cinemas near the user
   const rows = useMemo(
     () =>
-      (showtimes.data || []).filter((showtime) => {
+      openShowtimes(showtimes.data).filter((showtime) => {
         const theater = cinema(showtime.theater);
         return !!theater && inLocation(theater, location);
       }),
@@ -639,6 +698,15 @@ export function MovieProgram({
     />
   );
 
+  // Nothing to book anywhere and no premiere to announce: hide the program
+  if (
+    showtimes.isSuccess &&
+    !openShowtimes(showtimes.data).length &&
+    !validDate(m.releaseDate)
+  ) {
+    return null;
+  }
+
   if (!hasLocation(location)) {
     return (
       <section id="sessoes" className="py-8 scroll-mt-[170px]">
@@ -661,7 +729,8 @@ export function MovieProgram({
       <EmptyProgram
         movie={m}
         showtimes={showtimes}
-        locationLabel={location.label}
+        location={location}
+        playsElsewhere={openShowtimes(showtimes.data).length > 0}
         picker={picker}
       />
     );
@@ -702,7 +771,12 @@ export function MovieProgram({
             ))}
           </Rail>
           <div className="mt-4">
-            <ProgramLists rows={programRows} filter={filter} scope={scope} />
+            <ProgramLists
+              rows={programRows}
+              filter={filter}
+              scope={scope}
+              onClearFilters={clearFilters}
+            />
           </div>
         </div>
       </div>
