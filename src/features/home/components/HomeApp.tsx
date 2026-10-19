@@ -4,13 +4,7 @@ import Link from 'next/link';
 import { useAppStore, useIsSaved } from '@/shared/store';
 import { allCinemas } from '@/entities/cinema';
 import { useHomeBannersQuery } from '@/entities/banner';
-import {
-  allMovies,
-  hasSessions,
-  isRerelease,
-  movie,
-  type Movie,
-} from '@/entities/movie';
+import { allMovies, hasSessions, movie, type Movie } from '@/entities/movie';
 import { useAccountAction } from '@/features/account';
 import { MovieSection } from '@/features/movies';
 import { NewsSection, useNewsListQuery } from '@/features/news';
@@ -47,7 +41,7 @@ export function HomeApp() {
     .slice(0, 5);
   // Movies with sessions in the showtimes API, next sessions first
   const showtimeMovies = allMovies(content)
-    .filter((m) => hasSessions(m.id) && m.firstShowtime && !isRerelease(m))
+    .filter((m) => hasSessions(m.id) && m.firstShowtime)
     .sort(
       (a, b) =>
         a.firstShowtime!.localeCompare(b.firstShowtime!) ||

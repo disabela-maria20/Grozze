@@ -1,9 +1,9 @@
 'use client';
 
 import type { Movie } from './types';
-import { useStatusLabel } from './useStatusLabel';
+import { statusLabel } from './model';
 
-/** The movie's status tag (see `useStatusLabel`); nothing when it has none. */
+/** The movie's status tag (see `statusLabel`); nothing when it has none. */
 export function StatusTag({
   m,
   className,
@@ -11,6 +11,6 @@ export function StatusTag({
   m: Movie | null | undefined;
   className?: string;
 }) {
-  const label = useStatusLabel(m);
+  const label = statusLabel(m);
   return label ? <div className={className}>{label}</div> : null;
 }

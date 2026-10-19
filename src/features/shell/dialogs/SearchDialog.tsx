@@ -5,8 +5,8 @@ import { useMemo, useState } from 'react';
 import {
   allMovies,
   movieHref,
+  statusLabel,
   type Movie,
-  useStatusLabel,
 } from '@/entities/movie';
 import { dateLabel } from '@/shared/lib/date';
 import { normalize } from '@/shared/lib/text';
@@ -97,7 +97,7 @@ function MovieResult({
   movie: Movie;
   scope?: string | null;
 }) {
-  const label = useStatusLabel(movie);
+  const label = statusLabel(movie);
   return (
     <Link
       className="block mb-1.5 p-4 rounded-2xl border border-line bg-surface2"

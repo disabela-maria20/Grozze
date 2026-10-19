@@ -1,6 +1,6 @@
 'use client';
 
-import { type Movie, useStatusLabel } from '@/entities/movie';
+import { type Movie, statusLabel } from '@/entities/movie';
 
 export function MoviePoster({
   m,
@@ -10,7 +10,7 @@ export function MoviePoster({
   className?: string;
 }) {
   const tone = m?.colors?.[0] || '#355740';
-  const label = useStatusLabel(m);
+  const label = statusLabel(m);
   return (
     <div
       className={`art relative min-w-0 isolate aspect-2/3 rounded-2xl overflow-hidden ${className}`}

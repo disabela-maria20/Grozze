@@ -53,21 +53,6 @@ export const hasSessions = (id: string): boolean => baseMovies.has(String(id));
 /** Pre-sale starts this many days before the release (sessions required). */
 const PRESALE_DAYS = 7;
 
-/** A movie with sessions released longer ago than this is a re-release. */
-const RERELEASE_AFTER_DAYS = 365;
-
-/**
- * Old movie back in theaters (re-release or special screening): it has
- * sessions but came out over a year ago. A December release still showing
- * in January doesn't count.
- */
-export function isRerelease(m: Movie | null | undefined): boolean {
-  if (!m || !hasSessions(m.id)) return false;
-  const original = m.originalRelease || m.releaseDate;
-  if (!validDate(original)) return false;
-  return original < addDays(nowInSaoPaulo().date, -RERELEASE_AFTER_DAYS);
-}
-
 export function status(m: Movie | null | undefined): MovieStatus {
   if (!m) return 'soon';
   if (!validDate(m.releaseDate)) return 'now';
@@ -81,26 +66,15 @@ export function status(m: Movie | null | undefined): MovieStatus {
 }
 
 /**
- * Tag shown on a movie: pre-sale when it has sessions and the release is at
- * most a week away, in theaters when it has sessions and is released, coming
- * soon when the release is further away or it has no sessions yet, and no
- * tag for released movies without sessions. Old movies with sessions are
- * re-releases, whatever the session date.
+ * Tag shown on a movie, from its next session: in theaters when it has a
+ * session today, pre-sale when its sessions only start later, and coming
+ * soon when it has no session yet.
  */
 export function statusLabel(movie: Movie | null | undefined): string {
   if (!movie) return '';
-  if (isRerelease(movie)) return 'Relançamento';
-  const sessions = hasSessions(movie.id);
-  const dated = validDate(movie.releaseDate);
-  const today = nowInSaoPaulo().date;
-  if (sessions && dated && movie.releaseDate > today) {
-    return movie.releaseDate <= addDays(today, PRESALE_DAYS)
-      ? 'Em pré-venda'
-      : 'Em breve nos cinemas';
-  }
-  if (sessions) return 'Hoje nos cinemas';
-  if (dated && movie.releaseDate < today) return '';
-  return 'Em breve nos cinemas';
+  const next = movie.firstShowtime;
+  if (!next || !validDate(next)) return 'Em breve nos cinemas';
+  return next > nowInSaoPaulo().date ? 'Em pré-venda' : 'Hoje nos cinemas';
 }
 
 export function movieHref(id: string, scope?: string | null): string {

@@ -2,13 +2,7 @@
 
 import { useEffect, useState, type ReactNode } from 'react';
 import { dateLabel } from '@/shared/lib/date';
-import {
-  hasSessions,
-  isRerelease,
-  status,
-  type Movie,
-  useStatusLabel,
-} from '@/entities/movie';
+import { hasSessions, status, type Movie, statusLabel } from '@/entities/movie';
 import { useAppStore } from '@/shared/store';
 import { MovieMeta } from './MovieMeta';
 import { Icon, TextLink } from '@/shared/ui';
@@ -31,15 +25,8 @@ export function MovieHero({ m, path }: { m: Movie; path: string }) {
   const setHasHero = useAppStore((s) => s.setHasHero);
   const openDialog = useAppStore((s) => s.openDialog);
   const movieStatus = status(m);
-  const rerelease = isRerelease(m);
-  // Re-releases show their tag (only with sessions nearby), never a premiere
-  const rereleaseTag = useStatusLabel(m);
-  const upcoming = movieStatus === 'soon' && !rerelease;
-  const statusEyebrow = rerelease
-    ? rereleaseTag
-    : movieStatus === 'presale'
-      ? 'Pré-venda'
-      : 'Em cartaz';
+  const upcoming = movieStatus === 'soon';
+  const statusEyebrow = statusLabel(m);
   const releaseTerm = movieStatus === 'now' ? 'Estreia nos cinemas' : 'Estreia';
 
   useEffect(() => {
