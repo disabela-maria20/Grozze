@@ -7,12 +7,14 @@ import { allCinemas } from '@/entities/cinema';
 import { allMovies, movie, statusLabel, type Movie } from '@/entities/movie';
 import { CATALOG_API_URL } from '@/shared/api';
 import { useAppStore } from '@/shared/store';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
+  type OverrideImages,
   useImportContentMutation,
   usePublishOverrideMutation,
   useRemoveOverrideMutation,
+  useSendLocalContentMutation,
 } from '../api';
 import {
   allBaseMovieIds,
@@ -24,6 +26,7 @@ import { cmsMovieSchema, type CmsMovieValues } from '../schema';
 import { Button, Field, inputClass } from '@/shared/ui';
 import type { MovieOverride } from '@/shared/lib/types';
 import { BannersAdminTab } from './BannersAdminTab';
+import { ImageField } from './ImageField';
 import { NewsAdminTab } from './NewsAdminTab';
 import { LookupsAdminTab } from './LookupsAdminTab';
 import { UsersAdminTab } from './UsersAdminTab';
@@ -51,12 +54,30 @@ const FIELDS: [CmsFieldKey, string, string][] = [
   ['genre', 'Gênero', 'text'],
   ['dur', 'Duração', 'text'],
   ['rating', 'Classificação', 'text'],
-  ['poster', 'Pôster — URL HTTPS', 'url'],
-  ['backdrop', 'Banner — URL HTTPS', 'url'],
   ['trailer', 'Trailer — ID ou URL do YouTube', 'text'],
 ];
 
-const IMAGE_FIELDS: CmsFieldKey[] = ['poster', 'backdrop'];
+/** Names of the edited fields, as the summary on top of the editor lists them. */
+const OVERRIDE_LABELS: Record<keyof MovieOverride, string> = {
+  t: 'Título',
+  releaseDate: 'Data de estreia',
+  director: 'Direção',
+  cast: 'Elenco',
+  genre: 'Gênero',
+  dur: 'Duração',
+  rating: 'Classificação',
+  trailer: 'Trailer',
+  trailerTitle: 'Título do trailer',
+  poster: 'Pôster',
+  backdrop: 'Banner',
+  syn: 'Sinopse',
+};
+
+/** `[form field, label, preview shape]` of the images, picked as files. */
+const IMAGE_INPUTS: ['poster' | 'backdrop', string, 'poster' | 'banner'][] = [
+  ['poster', 'Pôster', 'poster'],
+  ['backdrop', 'Banner', 'banner'],
+];
 
 const LEAD_COLUMNS = ['Data', 'Nome', 'E-mail', 'Origem', 'Marketing'];
 
@@ -88,7 +109,6 @@ function fieldPlaceholder(
   baseData: Movie
 ): string | undefined {
   if (key === 'releaseDate') return undefined;
-  if (IMAGE_FIELDS.includes(key)) return 'Manter imagem de origem';
   if (key === 'cast') return (baseData.cast || []).join(', ');
   return (baseData[key as keyof Movie] as string | undefined) || 'Automático';
 }
@@ -131,6 +151,19 @@ function SourceDataDetails({ baseData }: { baseData: Movie }) {
   );
 }
 
+/** Clears an edited field so the catalog's value is used (on publish). */
+function UseOriginalButton({ onClick }: { onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      className="mt-1.5 text-[11px] text-muted underline hover:text-lime"
+      onClick={onClick}
+    >
+      Usar original
+    </button>
+  );
+}
+
 function CmsMovieEditor({ id }: { id: string }) {
   const content = useAppStore((s) => s.content);
   const publishOverride = usePublishOverrideMutation();
@@ -141,31 +174,103 @@ function CmsMovieEditor({ id }: { id: string }) {
     register,
     handleSubmit,
     reset,
+    setValue,
+    control,
     formState: { errors },
   } = useForm<CmsMovieValues>({
     resolver: zodResolver(cmsMovieSchema),
     defaultValues: overrideValues(content.movies[id]),
   });
+  const [images, setImages] = useState<OverrideImages>({});
+  // Published image URLs ('' = the catalog's); files replace them on publish
+  const [posterUrl, backdropUrl] = useWatch({
+    control,
+    name: ['poster', 'backdrop'],
+  });
+  const publishedImage = {
+    poster: posterUrl ?? '',
+    backdrop: backdropUrl ?? '',
+  };
+  const formValues = useWatch({ control });
 
   if (!baseData)
     return <div className={EMPTY_BOX_CLASS}>Escolha um filme.</div>;
   const effective = movie(id, content)!;
 
+  // One request: the fields plus the picked image files (stored in S3)
   const submit = handleSubmit((values) =>
-    publishOverride.mutate({ id, values })
+    publishOverride.mutate(
+      {
+        id,
+        // Not in the form; sent back so publishing doesn't drop it
+        values: {
+          ...values,
+          trailerTitle: content.movies[id]?.trailerTitle ?? '',
+        },
+        images,
+      },
+      {
+        onSuccess: ({ override }) => {
+          setImages({});
+          reset(overrideValues(override ?? undefined));
+        },
+      }
+    )
   );
 
-  const restoreAutomatic = () =>
+  const published = content.movies[id];
+  const editedFields = published
+    ? (Object.keys(published) as (keyof MovieOverride)[]).map(
+        (field) => OVERRIDE_LABELS[field] ?? field
+      )
+    : [];
+
+  /** Drops the whole edit right away (the API also deletes its S3 images). */
+  const restoreOriginal = () => {
+    if (
+      !window.confirm(
+        'Voltar ao original apaga todas as edições deste filme, inclusive as imagens enviadas. O site volta a mostrar os dados do catálogo. Continuar?'
+      )
+    )
+      return;
     removeOverride.mutate(id, {
-      onSuccess: () => reset(overrideValues(undefined)),
+      onSuccess: () => {
+        setImages({});
+        reset(overrideValues(undefined));
+      },
     });
+  };
+
+  /** Clears one field; the source data comes back when the edit is published. */
+  const resetToSource = (field: keyof CmsMovieValues) =>
+    setValue(field, '', { shouldDirty: true });
 
   return (
     <div>
       <h2 className="text-[28px] leading-tight mb-2">{effective.t}</h2>
+      {editedFields.length ? (
+        <div className="mb-4 p-4 border border-lime/30 bg-lime-soft rounded-2xl flex items-center justify-between gap-4 flex-wrap">
+          <p className="m-0 text-sm text-[#cbd5cd]">
+            O site está mostrando as suas edições em:{' '}
+            <strong className="text-app-text">{editedFields.join(', ')}</strong>
+            .
+          </p>
+          <Button
+            type="button"
+            disabled={removeOverride.isPending}
+            onClick={restoreOriginal}
+          >
+            {removeOverride.isPending ? 'Voltando…' : 'Voltar ao original'}
+          </Button>
+        </div>
+      ) : (
+        <p className="mb-4 text-sm text-muted">
+          O site mostra os dados originais do catálogo.
+        </p>
+      )}
       <p className="text-xs text-faint mb-4">
-        Campo vazio mantém o dado de origem. Publicar aplica o override a todas
-        as telas.
+        Campo vazio mantém o dado do catálogo. Publicar aplica as edições em
+        todas as telas.
       </p>
       <SourceDataDetails baseData={baseData} />
       <form noValidate onSubmit={submit}>
@@ -179,7 +284,32 @@ function CmsMovieEditor({ id }: { id: string }) {
                 {...register(key)}
                 placeholder={fieldPlaceholder(key, baseData)}
               />
+              {formValues[key] ? (
+                <UseOriginalButton onClick={() => resetToSource(key)} />
+              ) : null}
             </Field>
+          ))}
+        </div>
+        <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-4.5">
+          {IMAGE_INPUTS.map(([key, label, shape]) => (
+            <div key={key}>
+              <input type="hidden" {...register(key)} />
+              <ImageField
+                label={label}
+                shape={shape}
+                publishedUrl={publishedImage[key]}
+                sourceUrl={baseData[key]}
+                file={images[key] ?? null}
+                error={errors[key]?.message}
+                onFileChange={(file) =>
+                  setImages((current) => ({ ...current, [key]: file }))
+                }
+                onRestoreSource={() => {
+                  setImages((current) => ({ ...current, [key]: null }));
+                  setValue(key, '', { shouldDirty: true });
+                }}
+              />
+            </div>
           ))}
         </div>
         <Field label="Sinopse editorial" error={errors.syn?.message}>
@@ -191,17 +321,13 @@ function CmsMovieEditor({ id }: { id: string }) {
               baseData.syn || 'Sinopse ainda não fornecida pela origem'
             }
           />
+          {formValues.syn ? (
+            <UseOriginalButton onClick={() => resetToSource('syn')} />
+          ) : null}
         </Field>
         <div className="flex items-center gap-2.5 flex-wrap sticky bottom-3 p-3 border border-line rounded-2xl bg-[rgba(10,16,12,.96)]">
           <Button primary type="submit" disabled={publishOverride.isPending}>
             {publishOverride.isPending ? 'Publicando…' : 'Publicar'}
-          </Button>
-          <Button
-            type="button"
-            disabled={removeOverride.isPending}
-            onClick={restoreAutomatic}
-          >
-            Restaurar automático
           </Button>
           <Link
             className="min-h-[46px] px-5 py-2.5 rounded-full border border-line inline-flex items-center gap-2 text-sm font-semibold"
@@ -210,9 +336,6 @@ function CmsMovieEditor({ id }: { id: string }) {
             Ver ficha
           </Link>
         </div>
-        {Object.hasOwn(content.movies, id) && (
-          <p className="text-xs text-faint mt-3">Override ativo.</p>
-        )}
       </form>
     </div>
   );
@@ -242,9 +365,9 @@ function MoviesTab({
               {[listedMovie.id, statusLabel(listedMovie)]
                 .filter(Boolean)
                 .join(' · ')}
-              {Object.hasOwn(content.movies, listedMovie.id)
-                ? ' · Override'
-                : ''}
+              {Object.hasOwn(content.movies, listedMovie.id) && (
+                <span className="text-lime font-semibold"> · Editado</span>
+              )}
             </small>
           </button>
         ))}
@@ -344,7 +467,11 @@ function AuditTab() {
 
 function DataTab() {
   const importContent = useImportContentMutation();
+  const sendLocal = useSendLocalContentMutation();
   const content = useAppStore((s) => s.content);
+  const localCount = useAppStore(
+    (s) => Object.keys(s.localContent?.movies ?? {}).length
+  );
 
   const exportContentJson = () => {
     downloadFile(
@@ -375,9 +502,26 @@ function DataTab() {
           minutos). As sessões são carregadas por filme.
         </p>
         <p className="text-xs text-faint mt-2.5">
-          Os overrides publicados aqui se aplicam por cima dos dados da API, em
-          todas as telas, incluindo a Home.
+          Os overrides ficam salvos na API da Grozze (as imagens enviadas, no
+          S3) e se aplicam por cima dos dados do catálogo, em todas as telas e
+          para todos os visitantes. Importar substitui todos os overrides.
         </p>
+        {localCount > 0 && (
+          <div className="mt-4 p-4 border border-lime/30 bg-lime-soft rounded-2xl text-sm">
+            <p className="m-0 mb-3">
+              Este navegador tem <strong>{localCount}</strong> override(s)
+              publicados antes de eles serem salvos no servidor. Eles não
+              aparecem no site até serem enviados.
+            </p>
+            <Button
+              primary
+              disabled={sendLocal.isPending}
+              onClick={() => sendLocal.mutate()}
+            >
+              {sendLocal.isPending ? 'Enviando…' : 'Enviar para o servidor'}
+            </Button>
+          </div>
+        )}
         <div className="flex items-center gap-2.5 flex-wrap mt-4.5">
           <Button onClick={exportContentJson}>Exportar overrides JSON</Button>
           <label className="min-h-[46px] px-5 py-2.5 rounded-full border border-line bg-white/[0.035] inline-flex items-center justify-center gap-2 text-sm font-semibold cursor-pointer hover:bg-lime-soft hover:border-lime/40 transition-colors">

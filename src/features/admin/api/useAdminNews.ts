@@ -44,7 +44,13 @@ function useInvalidateNews() {
 export function useCreateNewsMutation() {
   const invalidate = useInvalidateNews();
   return useMutation({
-    mutationFn: (body: GrozzeNewsInput) => grozzeNews.create(body),
+    mutationFn: ({
+      body,
+      cover,
+    }: {
+      body: GrozzeNewsInput;
+      cover?: File | null;
+    }) => grozzeNews.create(body, cover),
     onSuccess: (article) => {
       useAppStore.getState().toast(`Notícia "${article.title}" criada.`);
       return invalidate();
@@ -55,8 +61,15 @@ export function useCreateNewsMutation() {
 export function useUpdateNewsMutation() {
   const invalidate = useInvalidateNews();
   return useMutation({
-    mutationFn: ({ id, body }: { id: string; body: GrozzeNewsInput }) =>
-      grozzeNews.update(id, body),
+    mutationFn: ({
+      id,
+      body,
+      cover,
+    }: {
+      id: string;
+      body: GrozzeNewsInput;
+      cover?: File | null;
+    }) => grozzeNews.update(id, body, cover),
     onSuccess: (article) => {
       useAppStore.getState().toast(`Notícia "${article.title}" salva.`);
       return invalidate();

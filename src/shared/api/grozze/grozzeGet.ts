@@ -25,6 +25,7 @@ function errorMessage(body: GrozzeErrorBody | null, status: number): string {
 
 export interface GrozzeRequestOptions {
   method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+  /** Sent as JSON, or as multipart/form-data when it's a `FormData` (file uploads). */
   body?: unknown;
   /** Access token sent as `Authorization: Bearer`. */
   accessToken?: string | null;
@@ -40,6 +41,8 @@ export async function grozzeRequest<T>(
   path: string,
   { method = 'GET', body, accessToken }: GrozzeRequestOptions = {}
 ): Promise<T> {
+  // The browser sets the multipart boundary itself
+  const multipart = body instanceof FormData;
   let res: Response;
   try {
     res = await fetch(GROZZE_API_URL + path, {
@@ -48,10 +51,16 @@ export async function grozzeRequest<T>(
       headers: {
         Accept: 'application/json',
         'x-api-key': GROZZE_API_KEY,
-        ...(body !== undefined && { 'Content-Type': 'application/json' }),
+        ...(body !== undefined &&
+          !multipart && { 'Content-Type': 'application/json' }),
         ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
       },
-      body: body === undefined ? undefined : JSON.stringify(body),
+      body:
+        body === undefined
+          ? undefined
+          : multipart
+            ? body
+            : JSON.stringify(body),
     });
   } catch {
     throw new GrozzeApiError(

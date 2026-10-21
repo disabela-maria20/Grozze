@@ -111,7 +111,7 @@ export function migrateLegacyStorage() {
     const defaults = defaultPersistedState();
     const state: PersistedState = {
       consent: storage.read(KEYS.consent, defaults.consent),
-      content: legacyContent() ?? defaults.content,
+      localContent: legacyContent() ?? defaults.localContent,
       location: storage.read(KEYS.location, defaults.location),
       locationAsked: defaults.locationAsked,
       audit: storage.read(KEYS.audit, defaults.audit),

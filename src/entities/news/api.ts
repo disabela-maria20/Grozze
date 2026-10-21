@@ -8,6 +8,18 @@ import {
   type GrozzePaginated,
 } from '@/shared/api';
 
+/**
+ * News body for the API: JSON, or multipart with the same JSON in "payload"
+ * plus the cover image file (the API stores it in S3).
+ */
+function newsBody(body: GrozzeNewsInput, cover?: File | null) {
+  if (!cover) return body;
+  const form = new FormData();
+  form.append('payload', JSON.stringify(body));
+  form.append('cover', cover);
+  return form;
+}
+
 /** Drops empty params so `?page=1` stays clean. */
 function query(params: Record<string, string | number | undefined>): string {
   const search = new URLSearchParams();
@@ -55,13 +67,16 @@ export const grozzeNews = {
   get: (id: string) =>
     authorized<GrozzeNews>(`/admin/news/${encodeURIComponent(id)}`),
 
-  create: (body: GrozzeNewsInput) =>
-    authorized<GrozzeNews>('/admin/news', { method: 'POST', body }),
+  create: (body: GrozzeNewsInput, cover?: File | null) =>
+    authorized<GrozzeNews>('/admin/news', {
+      method: 'POST',
+      body: newsBody(body, cover),
+    }),
 
-  update: (id: string, body: GrozzeNewsInput) =>
+  update: (id: string, body: GrozzeNewsInput, cover?: File | null) =>
     authorized<GrozzeNews>(`/admin/news/${encodeURIComponent(id)}`, {
       method: 'PATCH',
-      body,
+      body: newsBody(body, cover),
     }),
 
   remove: (id: string) =>

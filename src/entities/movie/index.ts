@@ -2,6 +2,8 @@ export * from './api';
 export * from './GenrePicker';
 export * from './model';
 export * from './override';
+export * from './overrides';
 export * from './StatusTag';
 export * from './types';
+export * from './useMovieOverridesQuery';
 export * from './useMovieShowtimesQuery';

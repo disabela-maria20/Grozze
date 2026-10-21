@@ -20,6 +20,7 @@ import {
 } from '@/shared/ui';
 import { newsSchema, type NewsFormValues } from '../schema';
 import { RichEditor } from './RichEditor';
+import { ImageField } from './ImageField';
 import { MoviePicker } from './MoviePicker';
 import {
   useAdminNewsListQuery,
@@ -111,11 +112,24 @@ function NewsEditor({
   });
   // Lista atual de filmes relacionados, para o picker refletir seleção/remoção
   const movieIds = useWatch({ control, name: 'movieIds' });
+  // Published cover ('' = none); a picked file replaces it on save
+  const coverUrl = useWatch({ control, name: 'coverImageUrl' });
+  const [coverFile, setCoverFile] = useState<File | null>(null);
 
+  // The cover travels as a file with the article; the API stores it in S3
   const submit = handleSubmit((values) => {
     const body = toPayload(values);
-    if (article) update.mutate({ id: article.id, body });
-    else create.mutate(body, { onSuccess: onDone });
+    if (article)
+      update.mutate(
+        { id: article.id, body, cover: coverFile },
+        {
+          onSuccess: (saved) => {
+            setCoverFile(null);
+            setValue('coverImageUrl', saved.coverImageUrl ?? '');
+          },
+        }
+      );
+    else create.mutate({ body, cover: coverFile }, { onSuccess: onDone });
   });
 
   const onDelete = () => {
@@ -155,16 +169,25 @@ function NewsEditor({
       <Field label="Resumo" error={errors.summary?.message}>
         <input className={inputClass} {...register('summary')} />
       </Field>
-      <Field
-        label="Imagem de capa — URL http(s)"
+      <input type="hidden" {...register('coverImageUrl')} />
+      <ImageField
+        label="Imagem de capa"
+        shape="banner"
+        publishedUrl={coverUrl ?? ''}
+        file={coverFile}
         error={errors.coverImageUrl?.message}
-      >
-        <input
-          className={inputClass}
-          type="url"
-          {...register('coverImageUrl')}
-        />
-      </Field>
+        onFileChange={setCoverFile}
+        onRestoreSource={() => {
+          setCoverFile(null);
+          setValue('coverImageUrl', '', { shouldDirty: true });
+        }}
+        texts={{
+          published: 'Capa atual.',
+          restore: 'Remover capa',
+          source: '',
+          none: 'Sem imagem de capa.',
+        }}
+      />
       <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-4.5">
         <Field label="Status" error={errors.status?.message}>
           <select className={inputClass} {...register('status')}>

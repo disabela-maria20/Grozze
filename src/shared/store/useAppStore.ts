@@ -14,7 +14,6 @@ import type {
   ContentState,
   Lead,
   LocationState,
-  MovieOverride,
   Profile,
 } from '@/shared/lib/types';
 import { create } from 'zustand';
@@ -73,7 +72,7 @@ function withAuditEntry(
 function toPersisted(state: PersistedState): PersistedState {
   return {
     consent: state.consent,
-    content: state.content,
+    localContent: state.localContent,
     location:
       state.location.mode === 'geolocation'
         ? state.location.city
@@ -103,6 +102,8 @@ migrateLegacyStorage();
 export type AuthStatus = 'loading' | 'guest' | 'authenticated';
 
 interface AppState extends PersistedState {
+  /** CMS overrides from the API, applied over the catalog (memory only). */
+  content: ContentState;
   /** Logged-in user (from the Grozze API), in the shape the screens use. */
   account: Profile | null;
   authStatus: AuthStatus;
@@ -152,9 +153,16 @@ interface AppState extends PersistedState {
   ) => void;
   markLocationAsked: () => void;
 
-  publishOverride: (id: string, override: MovieOverride) => void;
-  removeOverride: (id: string) => void;
-  importContent: (content: ContentState) => void;
+  /** Overrides loaded from the API (see `useMovieOverridesQuery`). */
+  setContent: (content: ContentState) => void;
+  /** An admin saved overrides in the API: apply them and log it here. */
+  recordContentChange: (
+    content: ContentState,
+    action: string,
+    id: string,
+    fields?: string[]
+  ) => void;
+  clearLocalContent: () => void;
 
   captureLead: (input: {
     source: string;
@@ -182,18 +190,6 @@ export const useAppStore = create<AppState>()(
         });
       };
 
-      /** Publishes new CMS content and records the change in the audit log. */
-      const saveContent = (
-        content: ContentState,
-        auditAction: string,
-        auditId: string,
-        auditFields?: string[]
-      ) =>
-        set((state) => ({
-          content,
-          audit: withAuditEntry(state.audit, auditAction, auditId, auditFields),
-        }));
-
       /** This browser's favorites of `email`, forgotten here once taken. */
       const takeLocalFavorites = (email: string) => {
         const { [email]: favorites, ...others } = get().localFavorites;
@@ -203,6 +199,7 @@ export const useAppStore = create<AppState>()(
 
       return {
         ...defaultPersistedState(),
+        content: { schemaVersion: 1, movies: {} },
         account: null,
         authStatus: 'loading',
         pending: null,
@@ -391,39 +388,15 @@ export const useAppStore = create<AppState>()(
 
         markLocationAsked: () => set({ locationAsked: true }),
 
-        publishOverride: (id, override) => {
-          const state = get();
-          const movies = { ...state.content.movies };
-          // An empty override means "back to the source data"
-          if (Object.keys(override).length) movies[id] = override;
-          else delete movies[id];
-          saveContent(
-            { schemaVersion: 1, movies },
-            'Override publicado',
-            id,
-            Object.keys(override)
-          );
-          state.toast('Conteúdo publicado.');
-        },
+        setContent: (content) => set({ content }),
 
-        removeOverride: (id) => {
-          const state = get();
-          const movies = { ...state.content.movies };
-          delete movies[id];
-          saveContent({ schemaVersion: 1, movies }, 'Override removido', id);
-          state.toast('Dados de origem restaurados.');
-        },
-
-        /** Replaces every override with the ones of an imported file. */
-        importContent: (content) => {
-          saveContent(
+        recordContentChange: (content, action, id, fields) =>
+          set((state) => ({
             content,
-            'Overrides importados',
-            '-',
-            Object.keys(content.movies)
-          );
-          get().toast('Overrides importados.');
-        },
+            audit: withAuditEntry(state.audit, action, id, fields),
+          })),
+
+        clearLocalContent: () => set({ localContent: null }),
 
         /** Upserts a lead; the same e-mail + source updates the existing one. */
         captureLead: ({
@@ -469,10 +442,19 @@ export const useAppStore = create<AppState>()(
       partialize: toPersisted,
       // Older saves lack newer fields (and had the "City, UF" label)
       merge: (persisted, current) => {
-        const saved = (persisted ?? {}) as Partial<PersistedState>;
+        const saved = (persisted ?? {}) as Partial<PersistedState> & {
+          /** Overrides lived in the browser before the API */
+          content?: ContentState;
+        };
+        const { content: legacyContent, ...rest } = saved;
         return {
           ...current,
-          ...saved,
+          ...rest,
+          localContent:
+            rest.localContent ??
+            (legacyContent && Object.keys(legacyContent.movies ?? {}).length
+              ? legacyContent
+              : null),
           // A city saved by an older version stays selected (the location
           // question still opens once, starting on it)
           location: upgradeLocation(saved.location ?? current.location),

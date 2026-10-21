@@ -16,8 +16,11 @@ export const STORAGE_VERSION = 1;
  */
 export interface PersistedState {
   consent: ConsentState | null;
-  /** CMS overrides edited in /admin. */
-  content: ContentState;
+  /**
+   * CMS overrides saved in this browser before they lived in the API. Kept
+   * until an admin sends them (see the CMS "Dados" tab); never applied.
+   */
+  localContent: ContentState | null;
   location: LocationState;
   /** The first-visit location question was already shown. */
   locationAsked: boolean;
@@ -47,7 +50,7 @@ export function upgradeLocation(location: LocationState): LocationState {
 
 export const defaultPersistedState = (): PersistedState => ({
   consent: null,
-  content: { schemaVersion: 1, movies: {} },
+  localContent: null,
   location: defaultLocation(),
   locationAsked: false,
   audit: [],

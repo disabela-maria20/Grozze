@@ -58,12 +58,3 @@ export interface SendMailRequest {
 /* ---------- Consentimento ---------- */
 
 export type CreateConsentRequest = ConsentState;
-
-/* ---------- CMS ---------- */
-
-/** Campos aceitos pelo editor do CMS. `cast` pode vir como lista ou texto separado por vírgulas. */
-export type MovieOverrideInput = Partial<
-  Record<Exclude<keyof MovieOverride, 'cast'>, string>
-> & {
-  cast?: string[] | string;
-};

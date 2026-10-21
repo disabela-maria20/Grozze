@@ -6,3 +6,4 @@ export * from './useAdminNews';
 export * from './useAdminLookups';
 export * from './useAdminUsers';
 export * from './useHomeBannersMutation';
+export * from './useSendLocalContentMutation';

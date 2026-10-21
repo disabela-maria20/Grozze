@@ -12,6 +12,12 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["serve", "out", "-l", "4173"],
       "port": 4173
+    },
+    {
+      "name": "grozze-api",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "../node-grozze-auth-api", "run", "dev"],
+      "port": 3001
     }
   ]
 }

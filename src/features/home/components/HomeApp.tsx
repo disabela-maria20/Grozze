@@ -4,12 +4,12 @@ import Link from 'next/link';
 import { useAppStore, useIsSaved } from '@/shared/store';
 import { allCinemas } from '@/entities/cinema';
 import { useHomeBannersQuery } from '@/entities/banner';
-import { allMovies, hasSessions, movie, type Movie } from '@/entities/movie';
+import { movie, type Movie } from '@/entities/movie';
 import { useAccountAction } from '@/features/account';
 import { MovieSection } from '@/features/movies';
 import { NewsSection, useNewsListQuery } from '@/features/news';
 import { Button, Icon } from '@/shared/ui';
-import { currentMovies, preMovies, soonMovies } from '../lib';
+import { homeSections } from '../lib';
 import { HomeHero } from './HomeHero';
 
 export function HomeApp() {
@@ -21,8 +21,9 @@ export function HomeApp() {
   const accountAction = useAccountAction();
   const banners = useHomeBannersQuery();
 
-  const nowShowing = currentMovies(content);
-  // Admin-picked slides (skipping movies no longer in the catalog); none = now showing
+  // One movie per section (see `homeSections` for the rules)
+  const sections = homeSections(content);
+  // Admin-picked slides (skipping movies no longer in the catalog); none = the rules' pick
   const pickedBanners = (banners.data?.movieIds ?? [])
     .map((id) => movie(id, content))
     .filter((m): m is Movie => !!m);
@@ -30,24 +31,10 @@ export function HomeApp() {
     ? []
     : pickedBanners.length
       ? pickedBanners
-      : nowShowing.slice(0, 5);
+      : sections.hero;
   const favoriteCinemas = allCinemas().filter((theater) =>
     cinemaSaved(theater.id)
   );
-  // Oldest releases first: the ones closest to leaving theaters
-  const lastChance = nowShowing
-    .slice()
-    .sort((a, b) => a.releaseDate.localeCompare(b.releaseDate))
-    .slice(0, 5);
-  // Movies with sessions in the showtimes API, next sessions first
-  const showtimeMovies = allMovies(content)
-    .filter((m) => hasSessions(m.id) && m.firstShowtime)
-    .sort(
-      (a, b) =>
-        a.firstShowtime!.localeCompare(b.firstShowtime!) ||
-        Number(!!b.poster) - Number(!!a.poster)
-    );
-
   return (
     <>
       <HomeHero list={heroList} />
@@ -119,36 +106,33 @@ export function HomeApp() {
       <MovieSection
         title="Perto de você"
         eyebrow="Nos cinemas"
-        list={nowShowing}
+        list={sections.nearby}
         morePath="/filmes"
         id="nearby"
       />
       <MovieSection
-        title="Com sessões"
-        eyebrow="Programação"
-        list={showtimeMovies}
-        morePath="/filmes"
-        id="showtime"
-      />
-      <MovieSection
         title="Pré-venda"
         eyebrow="Venda antecipada"
-        list={preMovies(content)}
+        list={sections.presale}
         morePath="/filmes?status=presale"
         id="presale"
       />
       <MovieSection
         title="Top 10"
         eyebrow="Na sua cidade"
-        list={nowShowing}
+        list={sections.top10}
         rank
         id="top10"
       />
-      <MovieSection title="Ainda dá tempo" list={lastChance} id="lastchance" />
+      <MovieSection
+        title="Ainda dá tempo"
+        list={sections.lastChance}
+        id="lastchance"
+      />
       <MovieSection
         title="O que vem aí"
         eyebrow="Próximas estreias"
-        list={soonMovies(content)}
+        list={sections.comingSoon}
         morePath="/em-breve"
         id="future"
       />

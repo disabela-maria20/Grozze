@@ -1,12 +1,15 @@
 'use client';
 
 import type { ReactNode } from 'react';
+import { useMovieOverridesQuery } from '@/entities/movie';
 import { useCatalogQuery } from './useCatalogQuery';
 import { Button, FilmLoader } from '@/shared/ui';
 
 /**
  * Renders children once the catalog (movies + cinemas) has loaded from the
  * API, so they can use the synchronous resolvers (`movie`, `cinema`...).
+ * Also waits for the CMS overrides, so edited movies never flash their
+ * source data; if those fail, the catalog shows unedited.
  * `compact` fits inside dialogs instead of filling a page.
  */
 export function CatalogGate({
@@ -17,7 +20,8 @@ export function CatalogGate({
   compact?: boolean;
 }) {
   const { data, error, refetch, isFetching } = useCatalogQuery();
-  if (data) return <>{children}</>;
+  const overrides = useMovieOverridesQuery();
+  if (data && !overrides.isPending) return <>{children}</>;
 
   const placeholder = error ? (
     <CatalogError
