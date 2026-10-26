@@ -14,17 +14,11 @@ import {
 } from '@/entities/cinema';
 import { normalize } from '@/shared/lib/text';
 import type { LocationState } from '@/shared/lib/types';
-import {
-  dateLabel,
-  dateParts,
-  nowInSaoPaulo,
-  validDate,
-} from '@/shared/lib/date';
+import { dateLabel, nowInSaoPaulo, validDate } from '@/shared/lib/date';
 import {
   defaultFilmState,
   filterGroupOptions,
   filterRows,
-  groupedRooms,
   movieDates,
   type SessionFilterState,
 } from '../lib';
@@ -36,6 +30,7 @@ import {
 } from '@/entities/movie';
 import { FilmLoader, HeartButton, Icon, TextLink } from '@/shared/ui';
 import { Rail } from './Rail';
+import { DateButton, openShowtimes, RoomBlocks } from './SessionTimes';
 
 type FilterChangeHandler = (
   key: keyof SessionFilterState,
@@ -57,17 +52,6 @@ const FILTER_GROUPS: {
   { filterKey: 'cinema', label: 'Cinema' },
 ];
 
-/** Sessions that haven't started yet (São Paulo time), the only bookable ones. */
-function openShowtimes(showtimes: Showtime[] | undefined): Showtime[] {
-  const now = nowInSaoPaulo();
-  const nowTime = `${now.hour}:${now.minute}`;
-  return (showtimes || []).filter(
-    (showtime) =>
-      showtime.date > now.date ||
-      (showtime.date === now.date && showtime.time >= nowTime)
-  );
-}
-
 /** Groups showtimes by theater id, preserving the order of first appearance. */
 function groupByTheater(showtimes: Showtime[]) {
   const groups = new Map<string, Showtime[]>();
@@ -76,55 +60,6 @@ function groupByTheater(showtimes: Showtime[]) {
     groups.get(showtime.theater)!.push(showtime);
   });
   return groups;
-}
-
-function HourButtons({ rows }: { rows: Showtime[] }) {
-  const openDialog = useAppStore((s) => s.openDialog);
-  return (
-    <div className="flex flex-wrap gap-2">
-      {rows.map((showtime) => (
-        <button
-          key={showtime.id}
-          type="button"
-          className="min-w-[78px] h-[47px] inline-flex items-center justify-center border border-lime/25 rounded-xl bg-[#0c140d] text-white text-[15px] font-bold hover:bg-lime hover:text-[#081004] transition-colors"
-          aria-label={`${showtime.time} · ${dateLabel(showtime.date)} · ${showtime.room} · ${showtime.tech} · ${showtime.lang}`}
-          onClick={() => openDialog('session', { sessionId: showtime.id })}
-        >
-          {showtime.time}
-        </button>
-      ))}
-    </div>
-  );
-}
-
-function RoomBlocks({
-  rows,
-  preferences,
-}: {
-  rows: Showtime[];
-  preferences?: { language?: string; format?: string };
-}) {
-  return (
-    <>
-      {groupedRooms(rows, preferences).map((roomRows) => {
-        // Every showtime in a group shares room, tech and language
-        const { room, tech, lang } = roomRows[0];
-        return (
-          <div key={room + tech + lang} className="mt-4.5 first:mt-0">
-            <div className="flex items-baseline gap-2.5 flex-wrap mb-2.5 leading-tight">
-              <strong className="text-xs tracking-wide text-lime">
-                {room}
-              </strong>
-              <span className="text-[13px] text-muted">
-                {tech} · {lang}
-              </span>
-            </div>
-            <HourButtons rows={roomRows} />
-          </div>
-        );
-      })}
-    </>
-  );
 }
 
 function CinemaSessionsBlock({
@@ -536,38 +471,6 @@ function FiltersSidebar({
       ))}
       <TextLink onClick={onClear}>Limpar filtros</TextLink>
     </aside>
-  );
-}
-
-function DateButton({
-  date,
-  selected,
-  onSelect,
-}: {
-  date: string;
-  selected: boolean;
-  onSelect: () => void;
-}) {
-  const { day, month, weekday } = dateParts(date);
-  return (
-    <button
-      type="button"
-      onClick={onSelect}
-      aria-pressed={selected}
-      aria-label={dateLabel(date, true)}
-      className={`shrink-0 flex-none w-[100px] min-h-[74px] border border-line rounded-2xl bg-[#0b100d] text-app-text text-left px-3.5 py-3 ${
-        selected ? 'bg-lime! text-[#081004]! border-lime!' : ''
-      }`}
-    >
-      <b className="text-[17px] block">
-        {day} {month}
-      </b>
-      <span
-        className={`text-[11px] mt-0.5 block ${selected ? 'text-[#40502c]' : 'text-muted'}`}
-      >
-        {weekday}
-      </span>
-    </button>
   );
 }
 

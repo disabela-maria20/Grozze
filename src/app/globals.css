@@ -130,6 +130,38 @@ body::before {
   animation: drawer-in 0.23s ease;
 }
 
+/* Lists that load in: each item fades up (stagger with animation-delay) */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-fade-up {
+  animation: fade-up 0.35s ease both;
+}
+
+/* Skeleton placeholders: a soft light sweeping across */
+@keyframes skeleton-sweep {
+  to {
+    background-position-x: -200%;
+  }
+}
+.skeleton {
+  background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.03) 25%,
+      rgba(255, 255, 255, 0.08) 50%,
+      rgba(255, 255, 255, 0.03) 75%
+    )
+    0 0 / 200% 100%;
+  animation: skeleton-sweep 1.4s ease-in-out infinite;
+}
+
 /* FilmLoader: a spinning reel feeding a running film strip */
 @keyframes reel-spin {
   to {

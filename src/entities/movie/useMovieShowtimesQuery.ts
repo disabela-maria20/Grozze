@@ -12,6 +12,23 @@ export interface ShowtimesScope {
 }
 
 /**
+ * Query options for a movie's sessions, shared by every screen that asks
+ * for them (movie program, session dialog, cinema page), so one cache
+ * serves all. Nationwide by default, or one cinema on one day with `only`.
+ */
+export function movieShowtimesQuery(movieId: string, only?: ShowtimesScope) {
+  return {
+    queryKey: ['catalog', 'showtimes', movieId, only?.date, only?.cinemaId],
+    queryFn: async () => {
+      const { rows, cinemas } = await getMovieShowtimes(movieId, only);
+      registerCinemas(cinemas);
+      return rows;
+    },
+    staleTime: CATALOG_CACHE_SECONDS * 1000,
+  };
+}
+
+/**
  * Upcoming sessions of one movie: nationwide by default (filter them by
  * location), or just one cinema on one day when `only` is given. `only:
  * null` keeps the query idle.
@@ -21,16 +38,7 @@ export function useMovieShowtimesQuery(
   only?: ShowtimesScope | null
 ) {
   return useQuery({
-    queryKey: ['catalog', 'showtimes', movieId, only?.date, only?.cinemaId],
-    queryFn: async () => {
-      const { rows, cinemas } = await getMovieShowtimes(
-        movieId,
-        only ?? undefined
-      );
-      registerCinemas(cinemas);
-      return rows;
-    },
+    ...movieShowtimesQuery(movieId, only ?? undefined),
     enabled: only !== null,
-    staleTime: CATALOG_CACHE_SECONDS * 1000,
   });
 }

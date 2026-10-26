@@ -7,6 +7,7 @@ import {
   type ApiMovie,
   type ApiMoviesResponse,
   catalogGet,
+  type ApiCinemaResponse,
   type ApiShowtimeRoom,
   type ApiShowtimesResponse,
 } from '@/shared/api';
@@ -160,29 +161,75 @@ export function toShowtimes(res: ApiShowtimesResponse): {
     for (const apiCinema of day.cinemas || []) {
       const theater = String(apiCinema.id);
       if (!cinemas.has(theater)) cinemas.set(theater, toCinema(apiCinema));
-      for (const room of apiCinema.rooms || []) {
-        for (const slot of room.times || []) {
-          const time = slot.time.slice(0, 5);
-          const purchaseUrl = /^https:\/\//.test(slot.purchase_url || '')
-            ? slot.purchase_url!
-            : '';
-          rows.push({
-            id: [movieId, theater, day.date, room.id, time].join('|'),
-            movie: movieId,
-            theater,
-            date: day.date,
-            time,
-            tech: tech(room),
-            lang: language(room.language),
-            room: room.name,
-            seller: purchaseUrl ? seller(purchaseUrl) : '',
-            purchaseUrl,
-          });
-        }
-      }
+      rows.push(
+        ...sessionRows(movieId, theater, day.date, apiCinema.rooms || [])
+      );
     }
   }
   return { rows, cinemas: [...cinemas.values()] };
+}
+
+/**
+ * One row per session of a movie's rooms in one cinema on one day. The id
+ * is the same whichever endpoint the session came from, so the session
+ * dialog finds it again (`movie|cinema|date|room|time`).
+ */
+function sessionRows(
+  movieId: string,
+  theater: string,
+  date: string,
+  rooms: ApiShowtimeRoom[]
+): Showtime[] {
+  const rows: Showtime[] = [];
+  for (const room of rooms) {
+    for (const slot of room.times || []) {
+      const time = slot.time.slice(0, 5);
+      const purchaseUrl = /^https:\/\//.test(slot.purchase_url || '')
+        ? slot.purchase_url!
+        : '';
+      rows.push({
+        id: [movieId, theater, date, room.id, time].join('|'),
+        movie: movieId,
+        theater,
+        date,
+        time,
+        tech: tech(room),
+        lang: language(room.language),
+        room: room.name,
+        seller: purchaseUrl ? seller(purchaseUrl) : '',
+        purchaseUrl,
+      });
+    }
+  }
+  return rows;
+}
+
+/**
+ * `GET /api/cinemas/{id}`: the cinema and its whole program in one call.
+ * Movies come with their data, so the ones missing from the catalog list
+ * (festival screenings, for instance) can still be shown.
+ */
+export async function getCinemaShowtimes(id: string): Promise<{
+  cinema: Cinema | null;
+  movies: Movie[];
+  rows: Showtime[];
+}> {
+  if (!/^\d+$/.test(id)) return { cinema: null, movies: [], rows: [] };
+  const res = await catalogGet<ApiCinemaResponse>(`/api/cinemas/${id}`);
+  if (!res?.cinema) return { cinema: null, movies: [], rows: [] };
+  const theater = String(res.cinema.id);
+  const movies = new Map<string, Movie>();
+  const rows: Showtime[] = [];
+  for (const day of res.showtimes || []) {
+    for (const apiMovie of day.movies || []) {
+      const movieId = String(apiMovie.id);
+      if (!movies.has(movieId)) movies.set(movieId, toMovie(apiMovie));
+      rows.push(
+        ...sessionRows(movieId, theater, day.date, apiMovie.rooms || [])
+      );
+    }
+  }
+  return { cinema: toCinema(res.cinema), movies: [...movies.values()], rows };
 }
 
 /**

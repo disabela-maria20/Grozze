@@ -94,8 +94,20 @@ export interface ApiCinemasResponse {
   cinemas: ApiCinema[];
 }
 
+/** A movie in a cinema's program, with that cinema's rooms and times. */
+export interface ApiCinemaShowtimeMovie extends ApiMovie {
+  rooms: ApiShowtimeRoom[];
+}
+
+export interface ApiCinemaShowtimeDay {
+  date: string;
+  movies: ApiCinemaShowtimeMovie[];
+}
+
 export interface ApiCinemaResponse {
   cinema: ApiCinema;
+  /** The cinema's program: days → movies → rooms → times. */
+  showtimes?: ApiCinemaShowtimeDay[];
 }
 
 export interface ApiShowtimesResponse {

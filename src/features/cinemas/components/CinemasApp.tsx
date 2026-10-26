@@ -1,7 +1,8 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
+  type Cinema,
   ChooseLocation,
   hasLocation,
   inLocation,
@@ -11,6 +12,60 @@ import { normalize } from '@/shared/lib/text';
 import { useAppStore, useIsSaved } from '@/shared/store';
 import { CinemaCard } from './CinemaCard';
 import { EmptyState, Icon } from '@/shared/ui';
+
+/** Cards drawn at a time; more come in as the list scrolls into view. */
+const PAGE_SIZE = 24;
+
+/**
+ * The cinema cards, drawn in pages of `PAGE_SIZE` (a nationwide search can
+ * match hundreds) as the end of the list nears the viewport. With `animate`
+ * each new card fades up, in a short cascade.
+ */
+function CinemaList({
+  cinemas,
+  animate,
+}: {
+  cinemas: Cinema[];
+  animate: boolean;
+}) {
+  const [limit, setLimit] = useState(PAGE_SIZE);
+  const sentinel = useRef<HTMLDivElement>(null);
+  const hasMore = limit < cinemas.length;
+
+  useEffect(() => {
+    const end = sentinel.current;
+    if (!hasMore || !end) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setLimit((shown) => shown + PAGE_SIZE);
+      },
+      { rootMargin: '400px' }
+    );
+    observer.observe(end);
+    return () => observer.disconnect();
+  }, [hasMore, limit]);
+
+  return (
+    <>
+      {cinemas.slice(0, limit).map((cinema, index) => (
+        <div
+          key={cinema.id}
+          className={animate ? 'animate-fade-up' : undefined}
+          style={
+            animate
+              ? {
+                  animationDelay: `${Math.min(index % PAGE_SIZE, 10) * 35}ms`,
+                }
+              : undefined
+          }
+        >
+          <CinemaCard c={cinema} />
+        </div>
+      ))}
+      {hasMore && <div ref={sentinel} aria-hidden className="h-px" />}
+    </>
+  );
+}
 
 export function CinemasApp() {
   const cinemaSaved = useIsSaved('cinema');
@@ -96,13 +151,19 @@ export function CinemasApp() {
                 também pode buscar qualquer cinema acima.
               </ChooseLocation>
             )}
-            {visibleCinemas.length
-              ? visibleCinemas.map((cinema) => (
-                  <CinemaCard key={cinema.id} c={cinema} />
-                ))
-              : (query || hasLocation(location)) && (
-                  <EmptyState>Nenhum cinema para esta busca.</EmptyState>
-                )}
+            {visibleCinemas.length ? (
+              // A new search or city starts the paging over; typing a search
+              // shows results right away, without the cascade
+              <CinemaList
+                key={`${query}|${location.label}`}
+                cinemas={visibleCinemas}
+                animate={!query}
+              />
+            ) : (
+              (query || hasLocation(location)) && (
+                <EmptyState>Nenhum cinema para esta busca.</EmptyState>
+              )
+            )}
           </div>
         </div>
       </div>

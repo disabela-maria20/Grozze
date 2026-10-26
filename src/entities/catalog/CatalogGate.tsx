@@ -15,13 +15,21 @@ import { Button, FilmLoader } from '@/shared/ui';
 export function CatalogGate({
   children,
   compact = false,
+  fallback,
 }: {
   children: ReactNode;
   compact?: boolean;
+  /** Shown while loading instead of the generic loader (e.g. a page skeleton). */
+  fallback?: ReactNode;
 }) {
   const { data, error, refetch, isFetching } = useCatalogQuery();
   const overrides = useMovieOverridesQuery();
-  if (data && !overrides.isPending) return <>{children}</>;
+  // Overrides answered once (or failed once): later gates (dialogs) don't
+  // wait for a refetch, so a down API never stalls every screen
+  const overridesSettled =
+    overrides.data !== undefined || overrides.errorUpdateCount > 0;
+  if (data && overridesSettled) return <>{children}</>;
+  if (fallback && !error) return <>{fallback}</>;
 
   const placeholder = error ? (
     <CatalogError

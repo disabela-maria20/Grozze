@@ -18,6 +18,16 @@ export function setMovies(movies: Movie[]) {
   for (const m of movies) baseMovies.set(m.id, Object.freeze(m));
 }
 
+/**
+ * Adds movies seen elsewhere (a cinema's program) that the catalog list
+ * doesn't have, so links to them resolve. Catalog entries win.
+ */
+export function registerMovies(movies: Movie[]) {
+  for (const m of movies) {
+    if (!baseMovies.has(m.id)) baseMovies.set(m.id, Object.freeze(m));
+  }
+}
+
 /** Merges CMS overrides onto the base SEED movie, mirroring the original `movie()` resolver. */
 export function movie(
   id: string,

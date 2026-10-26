@@ -24,7 +24,7 @@ export function MoviePoster({
             {label}
           </small>
         )}
-        <span>{m?.t || 'Filme'}</span>
+        <span className="text-sm leading-4">{m?.t || 'Filme'}</span>
       </div>
       {m?.poster ? (
         <img
