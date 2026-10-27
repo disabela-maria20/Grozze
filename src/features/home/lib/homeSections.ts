@@ -73,10 +73,20 @@ const atLeast = (list: Movie[], min: number) =>
  * - O que vem aí: release after the pre-sale window, up to 90 days ahead.
  *
  * A movie appears in one section only (the order above decides).
+ *
+ * With `cityMovieIds` (the movies playing in the user's city), movies with
+ * sessions only elsewhere are left out, and "Perto de você" takes whatever
+ * is left even when it's a few, so a small city still shows all it has.
+ * "O que vem aí" stays national: those movies have no sessions yet.
  */
-export function homeSections(overrides?: ContentState | null): HomeSections {
+export function homeSections(
+  overrides?: ContentState | null,
+  cityMovieIds?: Set<string> | null
+): HomeSections {
   const today = nowInSaoPaulo().date;
-  const movies = allMovies(overrides);
+  const movies = allMovies(overrides).filter(
+    (m) => !cityMovieIds || status(m) === 'soon' || cityMovieIds.has(m.id)
+  );
   const used = new Set<string>();
   const take = (list: Movie[], limit: number) => {
     const picked = list.filter((m) => !used.has(m.id)).slice(0, limit);
@@ -126,7 +136,7 @@ export function homeSections(overrides?: ContentState | null): HomeSections {
       inTheaters.sort((a, b) => posterFirst(a, b) || newestFirst(a, b)),
       LIMITS.nearby
     ),
-    MIN_MOVIES
+    cityMovieIds ? 1 : MIN_MOVIES
   );
 
   const comingSoonUntil = addDays(today, COMING_SOON_WITHIN_DAYS);

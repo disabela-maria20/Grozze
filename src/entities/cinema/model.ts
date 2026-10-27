@@ -121,6 +121,9 @@ const STATE_NAMES: Record<string, string> = {
   TO: 'Tocantins',
 };
 
+/** "SP" → "São Paulo" (the abbreviation itself when unknown). */
+export const stateName = (uf: string): string => STATE_NAMES[uf] ?? uf;
+
 /** A state (full name, plus the abbreviation used to match) and its cities. */
 export interface LocationOption {
   uf: string;
@@ -167,4 +170,59 @@ export function nearestCinema(coords: {
     }
   }
   return nearest;
+}
+
+/** Another city with cinemas, as offered by "Explorar cidades próximas". */
+export interface NearbyCity {
+  uf: string;
+  city: string;
+  /** From the user's city to that city's closest cinema. */
+  km: number;
+  cinemas: number;
+}
+
+const NEARBY_CITIES_LIMIT = 8;
+const NEARBY_CITIES_MAX_KM = 200;
+
+/**
+ * The cities with cinemas closest to `location`, nearest first, without the
+ * city itself. Distances start at the middle of the city's cinemas (or the
+ * browser position when none of them has coordinates).
+ */
+export function nearbyCities(location: LocationState): NearbyCity[] {
+  const key = (place: { uf?: string; city?: string }) =>
+    `${normalize(place.uf)}|${normalize(place.city)}`;
+  const here = key(location);
+  const cinemas = allCinemas().filter((c) => c.uf && c.city);
+  const locatedHere = cinemas.filter(
+    (c) => key(c) === here && c.lat !== null && c.lng !== null
+  );
+  const average = (values: number[]) =>
+    values.reduce((sum, value) => sum + value, 0) / values.length;
+  const origin = locatedHere.length
+    ? {
+        lat: average(locatedHere.map((c) => c.lat!)),
+        lng: average(locatedHere.map((c) => c.lng!)),
+      }
+    : location.coords;
+  if (!origin) return [];
+
+  const cities = new Map<string, NearbyCity>();
+  for (const c of cinemas) {
+    if (key(c) === here) continue;
+    const city = cities.get(key(c)) ?? {
+      uf: c.uf,
+      city: c.city,
+      km: Infinity,
+      cinemas: 0,
+    };
+    city.cinemas += 1;
+    // Cinemas without coordinates count, but don't give the distance
+    city.km = Math.min(city.km, distanceKm(c, origin) ?? Infinity);
+    cities.set(key(c), city);
+  }
+  return [...cities.values()]
+    .filter((city) => city.km <= NEARBY_CITIES_MAX_KM)
+    .sort((a, b) => a.km - b.km)
+    .slice(0, NEARBY_CITIES_LIMIT);
 }

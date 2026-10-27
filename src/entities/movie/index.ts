@@ -8,3 +8,4 @@ export * from './types';
 export * from './useMovieOverridesQuery';
 export * from './useMovieShowtimesQuery';
 export * from './seo';
+export * from './useCityProgramQuery';

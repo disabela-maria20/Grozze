@@ -7,6 +7,7 @@ export * from './components/MovieMeta';
 export * from './components/MoviePage';
 export * from './components/MoviePoster';
 export * from './components/MovieSection';
+export * from './components/NearbyCitiesCta';
 export * from './components/Rail';
 export * from './components/SessionTimes';
 export * from './dialogs/SessionDialog';

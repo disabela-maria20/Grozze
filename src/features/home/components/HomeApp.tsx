@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { useAppStore, useIsSaved } from '@/shared/store';
 import { allCinemas } from '@/entities/cinema';
 import { useHomeBannersQuery } from '@/entities/banner';
-import { movie, type Movie } from '@/entities/movie';
+import { movie, type Movie, useCityProgram } from '@/entities/movie';
 import { useAccountAction } from '@/features/account';
-import { MovieSection } from '@/features/movies';
+import { MovieSection, NearbyCitiesCta } from '@/features/movies';
 import { NewsSection, useNewsListQuery } from '@/features/news';
 import { Button, Icon } from '@/shared/ui';
 import { homeSections } from '../lib';
@@ -20,18 +20,21 @@ export function HomeApp() {
   const openDialog = useAppStore((s) => s.openDialog);
   const accountAction = useAccountAction();
   const banners = useHomeBannersQuery();
+  const cityProgram = useCityProgram();
 
-  // One movie per section (see `homeSections` for the rules)
-  const sections = homeSections(content);
+  // One movie per section (see `homeSections` for the rules), only the
+  // ones playing in the user's city once its program is in
+  const sections = homeSections(content, cityProgram.movieIds);
   // Admin-picked slides (skipping movies no longer in the catalog); none = the rules' pick
   const pickedBanners = (banners.data?.movieIds ?? [])
     .map((id) => movie(id, content))
     .filter((m): m is Movie => !!m);
-  const heroList = banners.isPending
-    ? []
-    : pickedBanners.length
-      ? pickedBanners
-      : sections.hero;
+  const heroList =
+    banners.isPending || (!pickedBanners.length && cityProgram.loading)
+      ? []
+      : pickedBanners.length
+        ? pickedBanners
+        : sections.hero;
   const favoriteCinemas = allCinemas().filter((theater) =>
     cinemaSaved(theater.id)
   );
@@ -109,6 +112,7 @@ export function HomeApp() {
         list={sections.nearby}
         morePath="/filmes"
         id="nearby"
+        loading={cityProgram.loading}
       />
       <MovieSection
         title="Pré-venda"
@@ -123,12 +127,23 @@ export function HomeApp() {
         list={sections.top10}
         rank
         id="top10"
+        loading={cityProgram.loading}
       />
       <MovieSection
         title="Ainda dá tempo"
         list={sections.lastChance}
         id="lastchance"
       />
+      {cityProgram.few && (
+        <section className="py-8 max-sm:py-6">
+          <div className="w-[min(1220px,calc(100%-56px))] max-sm:w-[calc(100%-32px)] mx-auto">
+            <NearbyCitiesCta
+              city={cityProgram.city}
+              count={cityProgram.count}
+            />
+          </div>
+        </section>
+      )}
       <MovieSection
         title="O que vem aí"
         eyebrow="Próximas estreias"

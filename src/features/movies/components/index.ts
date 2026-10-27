@@ -10,3 +10,4 @@ export * from './MovieProgram';
 export * from './MovieSection';
 export * from './RatingBadge';
 export * from './SaveButton';
+export * from './NearbyCitiesCta';

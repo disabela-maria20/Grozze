@@ -13,6 +13,7 @@ import {
   LocationDialog,
   ConsentDialog,
   MenuDialog,
+  NearbyCitiesDialog,
   NowDialog,
   SearchDialog,
 } from '../dialogs';
@@ -23,6 +24,7 @@ const LABELS: Record<string, string> = {
   session: 'Confirmação da sessão',
   trailer: 'Trailer',
   location: 'Localização',
+  'nearby-cities': 'Cidades próximas',
   consent: 'Preferências de cookies',
   menu: 'Menu principal',
   now: 'Começando agora',
@@ -66,6 +68,9 @@ export function DialogRoot() {
       break;
     case 'location':
       content = <LocationDialog />;
+      break;
+    case 'nearby-cities':
+      content = <NearbyCitiesDialog />;
       break;
     case 'consent':
       content = <ConsentDialog />;

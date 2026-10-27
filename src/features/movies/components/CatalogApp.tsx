@@ -3,10 +3,12 @@
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { normalize } from '@/shared/lib/text';
-import { status } from '@/entities/movie';
+import { status, useCityProgram } from '@/entities/movie';
 import { useAppStore } from '@/shared/store';
 import { movieList } from '../lib';
 import { MovieCard } from './MovieCard';
+import { MovieCardSkeleton } from './MovieCardSkeleton';
+import { NearbyCitiesCta } from './NearbyCitiesCta';
 import { Rail } from './Rail';
 import { Chip, EmptyState, TextLink, Icon } from '@/shared/ui';
 
@@ -28,19 +30,24 @@ export function CatalogApp() {
 
 function Catalog({ initialStatus }: { initialStatus: string }) {
   const content = useAppStore((s) => s.content);
+  const openDialog = useAppStore((s) => s.openDialog);
+  const cityProgram = useCityProgram();
+  const cityMovieIds = cityProgram.movieIds;
   const [query, setQuery] = useState('');
   const [filmStatus, setFilmStatus] = useState(initialStatus);
 
   const list = useMemo(() => {
     const normalizedQuery = normalize(query);
     return movieList(content).filter((film) => {
+      // Only movies with sessions in the user's city (once its program is in)
+      if (cityMovieIds && !cityMovieIds.has(film.id)) return false;
       const matchesQuery =
         !normalizedQuery ||
         normalize(film.t + ' ' + film.genre).includes(normalizedQuery);
       const matchesStatus = filmStatus === 'all' || status(film) === filmStatus;
       return matchesQuery && matchesStatus;
     });
-  }, [query, filmStatus, content]);
+  }, [query, filmStatus, content, cityMovieIds]);
 
   return (
     <div className="page pt-[120px] max-sm:pt-[101px] pb-13 min-h-[65vh]">
@@ -49,6 +56,17 @@ function Catalog({ initialStatus }: { initialStatus: string }) {
           <h1 className="text-[48px] max-sm:text-[38px] -tracking-[0.05em] leading-[1.05] mb-3">
             Filmes
           </h1>
+          {cityProgram.city && (
+            <p className="text-muted text-sm m-0 flex items-center gap-1.5 flex-wrap">
+              <Icon name="pin" className="w-4 h-4 text-lime" />
+              Com sessões em{' '}
+              <strong className="text-app-text">{cityProgram.city}</strong>
+              <span aria-hidden>·</span>
+              <TextLink onClick={() => openDialog('location')}>
+                Trocar cidade
+              </TextLink>
+            </p>
+          )}
         </header>
         <div className="flex gap-4 items-center flex-wrap mb-5 max-sm:block">
           <label className="flex items-center gap-2.5 flex-1 min-w-[260px] min-h-[52px] rounded-2xl border border-line bg-surface px-4 max-sm:min-h-12 max-sm:mb-2.5">
@@ -73,10 +91,28 @@ function Catalog({ initialStatus }: { initialStatus: string }) {
             ))}
           </Rail>
         </div>
+        {cityProgram.few && (
+          <NearbyCitiesCta
+            city={cityProgram.city}
+            count={cityProgram.count}
+            className="mb-5"
+          />
+        )}
         <div className="text-[13px] text-muted mb-4">
-          {list.length} {list.length === 1 ? 'filme' : 'filmes'}
+          {cityProgram.loading
+            ? 'Buscando filmes na sua cidade…'
+            : `${list.length} ${list.length === 1 ? 'filme' : 'filmes'}`}
         </div>
-        {list.length ? (
+        {cityProgram.loading ? (
+          <div
+            aria-hidden
+            className="grid grid-cols-6 max-lg:grid-cols-5 max-md:grid-cols-4 max-sm:grid-cols-2 gap-x-4 gap-y-6 max-sm:gap-x-3.5 max-sm:gap-y-5.5"
+          >
+            {Array.from({ length: 12 }, (_, index) => (
+              <MovieCardSkeleton key={index} />
+            ))}
+          </div>
+        ) : cityMovieIds?.size === 0 ? null : list.length ? (
           <div className="grid grid-cols-6 max-lg:grid-cols-5 max-md:grid-cols-4 max-sm:grid-cols-2 gap-x-4 gap-y-6 max-sm:gap-x-3.5 max-sm:gap-y-5.5">
             {list.map((film) => (
               <MovieCard key={film.id} m={film} />

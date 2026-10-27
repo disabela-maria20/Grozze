@@ -11,7 +11,12 @@ import {
   type ApiShowtimeRoom,
   type ApiShowtimesResponse,
 } from '@/shared/api';
-import { type Cinema, toCinema } from '@/entities/cinema';
+import {
+  type Cinema,
+  getCinemas,
+  inLocation,
+  toCinema,
+} from '@/entities/cinema';
 
 /** File names are relative to the image host; full URLs pass through. */
 export function catalogImage(file: string | null | undefined): string {
@@ -247,4 +252,55 @@ export async function getMovieShowtimes(
     : `/api/movies/showtimes/${id}`;
   const res = await catalogGet<ApiShowtimesResponse>(path);
   return res ? toShowtimes(res) : { rows: [], cinemas: [] };
+}
+
+/** Movies with upcoming sessions in one city (see `getCityProgram`). */
+export interface CityProgram {
+  /** Movie id → number of upcoming sessions in the city. */
+  movies: Record<string, number>;
+  /** Cinemas of the catalog in the city. */
+  cinemas: number;
+}
+
+/** Cinema programs fetched at once (SP has ~70 cinemas). */
+const CITY_PROGRAM_CONCURRENCY = 24;
+
+/**
+ * Which movies play in a city. The catalog has no city filter (the movie
+ * list is nationwide and each movie's showtimes are several MB), so this
+ * reads the program of every cinema in the city: small responses, cached
+ * for five minutes like the rest of the catalog. Server only.
+ */
+export async function getCityProgram(
+  uf: string,
+  city: string
+): Promise<CityProgram> {
+  const place = { label: city, mode: 'manual' as const, city, uf };
+  const cinemas = (await getCinemas()).filter((c) => inLocation(c, place));
+  const { date: today, hour, minute } = nowInSaoPaulo();
+  const now = `${hour}:${minute}`;
+  const movies: Record<string, number> = {};
+  // A pool: each worker takes the next cinema as soon as it's done, so one
+  // slow response doesn't hold a whole batch
+  let next = 0;
+  const worker = async () => {
+    while (next < cinemas.length) {
+      const c = cinemas[next++];
+      // One cinema failing doesn't hide the rest of the city
+      const program = await getCinemaShowtimes(c.id).catch(() => null);
+      for (const row of program?.rows ?? []) {
+        if (row.date < today || (row.date === today && row.time < now)) {
+          continue;
+        }
+        movies[row.movie] = (movies[row.movie] ?? 0) + 1;
+      }
+    }
+  };
+  await Promise.all(
+    Array.from(
+      { length: Math.min(CITY_PROGRAM_CONCURRENCY, cinemas.length) },
+      worker
+    )
+  );
+  return { movies, cinemas: cinemas.length };
 }

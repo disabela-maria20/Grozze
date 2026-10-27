@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import type { Movie } from '@/entities/movie';
 import { MovieCard } from './MovieCard';
+import { MovieCardSkeleton } from './MovieCardSkeleton';
 import { Rail } from './Rail';
 import { Icon } from '@/shared/ui';
 
@@ -14,6 +15,7 @@ export function MovieSection({
   rank = false,
   id,
   scope,
+  loading = false,
 }: {
   title: string;
   eyebrow?: string;
@@ -22,8 +24,10 @@ export function MovieSection({
   rank?: boolean;
   id?: string;
   scope?: string | null;
+  /** Placeholder cards while the user's city program loads. */
+  loading?: boolean;
 }) {
-  if (!list.length) return null;
+  if (!list.length && !loading) return null;
   return (
     <section className="py-8 max-sm:py-6" id={id}>
       <div className="w-[min(1220px,calc(100%-56px))] max-sm:w-[calc(100%-32px)] mx-auto">
@@ -38,7 +42,7 @@ export function MovieSection({
               {title}
             </h2>
           </div>
-          {morePath && list.length > 7 && (
+          {morePath && !loading && list.length > 7 && (
             <Link
               className="text-[13px] max-sm:text-xs shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[#dce3dc] hover:text-lime transition-colors"
               href={morePath}
@@ -48,15 +52,26 @@ export function MovieSection({
           )}
         </div>
         <Rail>
-          {list.map((film, index) => (
-            <div key={film.id} className="shrink-0 w-[178px] max-sm:w-[148px]">
-              <MovieCard
-                m={film}
-                rank={rank ? index + 1 : null}
-                scope={scope}
+          {loading &&
+            Array.from({ length: 7 }, (_, index) => (
+              <MovieCardSkeleton
+                key={index}
+                className="shrink-0 w-[178px] max-sm:w-[148px]"
               />
-            </div>
-          ))}
+            ))}
+          {!loading &&
+            list.map((film, index) => (
+              <div
+                key={film.id}
+                className="shrink-0 w-[178px] max-sm:w-[148px]"
+              >
+                <MovieCard
+                  m={film}
+                  rank={rank ? index + 1 : null}
+                  scope={scope}
+                />
+              </div>
+            ))}
         </Rail>
       </div>
     </section>
