@@ -9,6 +9,7 @@ import { activeRootFromPath, scopeFromPath } from '@/shared/lib/route';
 import { useAccountAction, Avatar } from '@/features/account';
 import { DISTRIBUTORS } from '@/entities/distributor';
 import { Icon } from '@/shared/ui';
+import Image from 'next/image';
 
 const SCROLLED_THRESHOLD_PX = 4;
 
@@ -20,7 +21,8 @@ function HubBrand({ distributorName }: { distributorName?: string }) {
         {distributorName || 'Distribuidora'}
       </span>
       <span className="text-[10px] text-muted flex items-center gap-2">
-        Com tecnologia <img src="/logo.png" alt="Grozze" className="w-[63px]" />
+        Com tecnologia{' '}
+        <Image src="/logo.png" alt="Grozze" width={63} height={18} />
       </span>
     </>
   );
@@ -35,9 +37,12 @@ function SiteBrandAndNav({ activeRoot }: { activeRoot: string }) {
         href="/"
         aria-label="Grozze, início"
       >
-        <img
+        <Image
           src="/logo.png"
           alt="grozze."
+          width={156}
+          height={43}
+          preload
           className="w-[156px] max-sm:w-[130px] h-auto"
         />
       </Link>

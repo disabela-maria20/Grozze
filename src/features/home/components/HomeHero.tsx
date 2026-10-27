@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { movieHref, StatusTag, type Movie } from '@/entities/movie';
 import { useAppStore } from '@/shared/store';
 import { MovieMeta } from '@/features/movies';
-import { Icon } from '@/shared/ui';
+import { Icon, RemoteImage } from '@/shared/ui';
 
 export function HomeHero({ list }: { list: Movie[] }) {
   const [index, setIndex] = useState(0);
@@ -35,7 +35,16 @@ export function HomeHero({ list }: { list: Movie[] }) {
     return () => clearInterval(timer);
   }, [paused, hovering, dialogOpen, list.length]);
 
-  if (!list.length) return null;
+  // Keeps the hero's space while the banners load, so the sections below
+  // don't jump down when it arrives (layout shift)
+  if (!list.length)
+    return (
+      <section
+        id="homeHero"
+        aria-hidden
+        className="hero home-hero relative bg-[#09110d] min-h-[650px] max-sm:min-h-[590px]"
+      />
+    );
   const film = list[index % list.length];
   const href = movieHref(film.id);
 
@@ -58,11 +67,16 @@ export function HomeHero({ list }: { list: Movie[] }) {
         }}
       >
         {film.backdrop && (
-          <img
+          <RemoteImage
+            key={film.backdrop}
             src={film.backdrop}
             alt=""
+            fill
+            sizes="100vw"
+            preload={index === 0}
+            fetchPriority={index === 0 ? 'high' : 'auto'}
             draggable={false}
-            className="w-full h-full object-cover object-[center_28%]"
+            className="object-cover object-[center_28%]"
           />
         )}
       </div>

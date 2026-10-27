@@ -6,6 +6,7 @@ import { useAppStore } from '@/shared/store';
 import { scopeFromPath } from '@/shared/lib/route';
 import { useAccountAction } from '@/features/account';
 import { Icon } from '@/shared/ui';
+import Image from 'next/image';
 
 export function BottomNav() {
   const pathname = usePathname();
@@ -31,9 +32,11 @@ export function BottomNav() {
         aria-current={root === 'inicio' ? 'page' : undefined}
         className="flex flex-col items-center gap-0.5 flex-1 text-[#aab6ab] text-[10px] min-h-11 justify-center aria-[current=page]:text-lime"
       >
-        <img
+        <Image
           src="/g.png"
           alt=""
+          width={24}
+          height={29}
           className={`w-6 h-[29px] object-contain ${root === 'inicio' ? '' : 'grayscale opacity-75'}`}
         />
         <span>Início</span>

@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useAppStore } from '@/shared/store';
 import { scopeFromPath } from '@/shared/lib/route';
 import { DISTRIBUTORS } from '@/entities/distributor';
+import Image from 'next/image';
 
 /** [path segment, label] */
 type FooterLink = [string, string];
@@ -117,7 +118,7 @@ export function Footer() {
         <div className="grid grid-cols-[1.3fr_1fr_1fr_1fr] max-md:grid-cols-[1.1fr_1fr_1fr] max-sm:grid-cols-2 gap-9 max-md:gap-6 max-sm:gap-5">
           <div className="max-sm:hidden">
             <Link href="/">
-              <img src="/logo.png" alt="grozze." className="w-[140px]" />
+              <Image src="/logo.png" alt="grozze." width={140} height={39} />
             </Link>
             <p className="text-[13px] leading-relaxed text-muted max-w-[230px] mt-3">
               Filmes, cinemas e sessões para decidir mais rápido.

@@ -1,6 +1,7 @@
 'use client';
 
 import { type Movie, statusLabel } from '@/entities/movie';
+import { RemoteImage } from '@/shared/ui';
 
 export function MoviePoster({
   m,
@@ -27,13 +28,13 @@ export function MoviePoster({
         <span className="text-sm leading-4">{m?.t || 'Filme'}</span>
       </div>
       {m?.poster ? (
-        <img
+        <RemoteImage
           src={m.poster}
           alt={`Pôster de ${m.t}`}
-          loading="lazy"
-          decoding="async"
+          fill
+          sizes="(max-width: 640px) 45vw, 220px"
           draggable={false}
-          className="w-full h-full object-cover absolute inset-0 z-[1]"
+          className="object-cover z-[1]"
         />
       ) : null}
     </div>

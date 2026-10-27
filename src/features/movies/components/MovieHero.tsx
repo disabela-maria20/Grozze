@@ -7,6 +7,7 @@ import { useAppStore } from '@/shared/store';
 import { MovieMeta } from './MovieMeta';
 import { Icon, TextLink } from '@/shared/ui';
 import { SaveButton } from './SaveButton';
+import { RemoteImage } from '@/shared/ui';
 
 /** One label/value pair of the expanded movie details list. */
 function HeroDetail({ term, children }: { term: string; children: ReactNode }) {
@@ -51,11 +52,15 @@ export function MovieHero({ m, path }: { m: Movie; path: string }) {
         }}
       >
         {m.backdrop && (
-          <img
+          <RemoteImage
             src={m.backdrop}
             alt=""
+            fill
+            sizes="100vw"
+            preload
+            fetchPriority="high"
             draggable={false}
-            className="w-full h-full object-cover object-[center_28%]"
+            className="object-cover object-[center_28%]"
           />
         )}
       </div>

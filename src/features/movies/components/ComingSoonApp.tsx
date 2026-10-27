@@ -9,7 +9,7 @@ import { useAppStore } from '@/shared/store';
 import { MovieCard } from './MovieCard';
 import { MoviePoster } from './MoviePoster';
 import { Rail } from './Rail';
-import { Chip, Icon } from '@/shared/ui';
+import { Chip, Icon, RemoteImage } from '@/shared/ui';
 import { SaveButton } from './SaveButton';
 
 export function ComingSoonApp() {
@@ -60,10 +60,12 @@ export function ComingSoonApp() {
             style={{ backgroundColor: lead.colors?.[0] || '#15331c' }}
           >
             {lead.backdrop && (
-              <img
+              <RemoteImage
                 src={lead.backdrop}
                 alt=""
-                className="absolute inset-0 w-full h-full object-cover -z-20"
+                fill
+                sizes="(max-width: 1280px) 100vw, 1220px"
+                className="object-cover -z-20"
               />
             )}
             <div

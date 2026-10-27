@@ -14,3 +14,4 @@ export * from './LinkButton';
 export * from './NotFound';
 export * from './TextLink';
 export * from './JsonLd';
+export * from './RemoteImage';

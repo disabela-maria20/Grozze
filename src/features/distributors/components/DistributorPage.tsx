@@ -6,7 +6,7 @@ import { DISTRIBUTORS } from '@/entities/distributor';
 import { useAppStore } from '@/shared/store';
 import { MovieMeta, MovieSection } from '@/features/movies';
 import { NewsSection, useNewsListQuery } from '@/features/news';
-import { NotFound, Icon } from '@/shared/ui';
+import { NotFound, Icon, RemoteImage } from '@/shared/ui';
 
 export function DistributorPage({ slug }: { slug: string }) {
   const content = useAppStore((s) => s.content);
@@ -43,10 +43,12 @@ export function DistributorPage({ slug }: { slug: string }) {
         <section className="hero relative isolate bg-[#09110d] overflow-hidden">
           <div className="absolute inset-0 -z-10">
             {featuredMovie.backdrop && (
-              <img
+              <RemoteImage
                 src={featuredMovie.backdrop}
                 alt=""
-                className="w-full h-full object-cover"
+                fill
+                sizes="100vw"
+                className="object-cover"
               />
             )}
           </div>
