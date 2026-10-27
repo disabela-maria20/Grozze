@@ -1,8 +1,12 @@
 import type { Metadata } from 'next';
 import { CatalogGate } from '@/entities/catalog';
-import { ClientOnly } from '@/shared/ui';
+import { ClientOnly, JsonLd } from '@/shared/ui';
 import { MoviePage } from '@/features/movies';
-import { getMovies } from '@/entities/movie';
+import {
+  getMovieForSeo,
+  movieJsonLd,
+  moviePageMetadata,
+} from '@/entities/movie';
 
 export async function generateMetadata({
   params,
@@ -10,9 +14,7 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  const movies = await getMovies().catch(() => []);
-  const movie = movies.find((candidate) => candidate.id === id);
-  return { title: movie?.t, description: movie?.syn };
+  return moviePageMetadata(await getMovieForSeo(id), id);
 }
 
 export default async function Page({
@@ -21,11 +23,15 @@ export default async function Page({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+  const movie = await getMovieForSeo(id);
   return (
-    <ClientOnly>
-      <CatalogGate>
-        <MoviePage id={id} />
-      </CatalogGate>
-    </ClientOnly>
+    <>
+      {movie && <JsonLd data={movieJsonLd(movie, `/filme/${id}`)} />}
+      <ClientOnly>
+        <CatalogGate>
+          <MoviePage id={id} />
+        </CatalogGate>
+      </ClientOnly>
+    </>
   );
 }

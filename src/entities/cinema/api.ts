@@ -1,4 +1,5 @@
 import type { Cinema } from './types';
+import { safeImage } from '@/shared/lib/media';
 import {
   type ApiCinema,
   type ApiCinemaResponse,
@@ -29,6 +30,8 @@ export function toCinema(c: ApiCinema): Cinema {
     roomCount: c.total_rooms || 0,
     phones: (c.telephones || []).filter(Boolean),
     siteUrl: /^https:\/\//.test(text(c.site_url)) ? text(c.site_url) : '',
+    postalCode: text(c.postal_code),
+    image: safeImage(c.images?.find((image) => image.url)?.url),
   };
 }
 

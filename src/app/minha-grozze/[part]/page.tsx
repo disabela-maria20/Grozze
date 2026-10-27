@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { privatePage } from '@/shared/lib/seo';
 import { CatalogGate } from '@/entities/catalog';
 import { ClientOnly } from '@/shared/ui';
 import { AccountApp } from '@/features/account';
@@ -9,7 +10,7 @@ export function generateStaticParams() {
   );
 }
 
-export const metadata: Metadata = { title: 'Minha Grozze' };
+export const metadata: Metadata = privatePage('Minha Grozze', '/minha-grozze');
 
 export default async function Page({
   params,

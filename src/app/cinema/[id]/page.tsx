@@ -1,8 +1,12 @@
 import type { Metadata } from 'next';
 import { CatalogGate } from '@/entities/catalog';
-import { ClientOnly } from '@/shared/ui';
+import { ClientOnly, JsonLd } from '@/shared/ui';
 import { CinemaPage } from '@/features/cinemas';
-import { getCinema } from '@/entities/cinema';
+import {
+  cinemaJsonLd,
+  cinemaPageMetadata,
+  getCinemaForSeo,
+} from '@/entities/cinema';
 
 export async function generateMetadata({
   params,
@@ -10,8 +14,7 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  const cinema = await getCinema(id).catch(() => null);
-  return { title: cinema?.name, description: cinema?.address };
+  return cinemaPageMetadata(await getCinemaForSeo(id), id);
 }
 
 export default async function Page({
@@ -20,11 +23,15 @@ export default async function Page({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+  const cinema = await getCinemaForSeo(id);
   return (
-    <ClientOnly>
-      <CatalogGate>
-        <CinemaPage id={id} />
-      </CatalogGate>
-    </ClientOnly>
+    <>
+      {cinema && <JsonLd data={cinemaJsonLd(cinema, `/cinema/${id}`)} />}
+      <ClientOnly>
+        <CatalogGate>
+          <CinemaPage id={id} />
+        </CatalogGate>
+      </ClientOnly>
+    </>
   );
 }

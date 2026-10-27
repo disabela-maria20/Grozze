@@ -1,7 +1,12 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/shared/lib/seo';
 import { CookiePreferencesButton } from '@/features/shell';
 
-export const metadata: Metadata = { title: 'Privacidade' };
+export const metadata: Metadata = pageMetadata({
+  title: 'Política de Privacidade',
+  path: '/privacidade',
+  description: 'Como a Grozze coleta, usa e protege seus dados pessoais.',
+});
 
 export default function Page() {
   return (

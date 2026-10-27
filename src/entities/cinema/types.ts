@@ -11,4 +11,8 @@ export interface Cinema {
   roomCount: number;
   phones: string[];
   siteUrl: string;
+  /** "00000-000", or empty */
+  postalCode: string;
+  /** Image from the catalog (usually the network logo), or empty */
+  image: string;
 }

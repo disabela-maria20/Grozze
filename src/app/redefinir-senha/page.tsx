@@ -5,6 +5,7 @@ import { ResetPasswordApp } from '@/features/auth';
 
 export const metadata: Metadata = {
   title: 'Criar nova senha',
+  alternates: { canonical: '/redefinir-senha/' },
   // The URL carries a one-time token: keep it out of search engines and referrers
   robots: { index: false, follow: false },
   referrer: 'no-referrer',

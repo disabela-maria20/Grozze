@@ -1,7 +1,12 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/shared/lib/seo';
 
-export const metadata: Metadata = { title: 'Termos de uso' };
+export const metadata: Metadata = pageMetadata({
+  title: 'Termos de uso',
+  path: '/termos',
+  description: 'Condições de uso do site e dos serviços da Grozze.',
+});
 
 export default function Page() {
   return (

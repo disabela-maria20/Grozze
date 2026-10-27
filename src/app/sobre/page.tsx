@@ -1,7 +1,13 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/shared/lib/seo';
 
-export const metadata: Metadata = { title: 'Sobre' };
+export const metadata: Metadata = pageMetadata({
+  title: 'Sobre',
+  path: '/sobre',
+  description:
+    'A Grozze reúne filmes, cinemas e sessões em um só lugar para você decidir mais rápido onde e quando ir ao cinema.',
+});
 
 export default function Page() {
   return (

@@ -1,6 +1,12 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/shared/lib/seo';
 
-export const metadata: Metadata = { title: 'Perguntas frequentes' };
+export const metadata: Metadata = pageMetadata({
+  title: 'Perguntas frequentes',
+  path: '/faq',
+  description:
+    'Tire suas dúvidas sobre a Grozze: como encontrar sessões, comprar ingressos e salvar filmes e cinemas favoritos.',
+});
 
 /** [question, answer] */
 const ITEMS: [string, string][] = [

@@ -1,5 +1,5 @@
 import type { Movie, MovieStatus } from './types';
-import type { ContentState } from '@/shared/lib/types';
+import type { ContentState, MovieOverride } from '@/shared/lib/types';
 import { OVERRIDE_STRING_FIELDS } from './override';
 import { safeImage, videoId } from '@/shared/lib/media';
 import { addDays, nowInSaoPaulo, validDate } from '@/shared/lib/date';
@@ -35,7 +35,14 @@ export function movie(
 ): Movie | null {
   const base = baseMovies.get(String(id));
   if (!base) return null;
-  const override = overrides?.movies?.[String(id)] || {};
+  return withOverride(base, overrides?.movies?.[String(id)]);
+}
+
+/**
+ * A catalog movie with its CMS edits applied (pure: also used on the
+ * server, for page metadata).
+ */
+export function withOverride(base: Movie, override: MovieOverride = {}): Movie {
   const merged: Movie = { ...base };
   for (const field of OVERRIDE_STRING_FIELDS) {
     const value = override[field];
