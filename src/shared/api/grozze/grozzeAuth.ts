@@ -27,13 +27,43 @@ export function setSessionLostHandler(handler: () => void) {
   onSessionLost = handler;
 }
 
+/**
+ * Set once this browser is known to have no session (refresh refused or
+ * logout), so page loads skip `/auth/refresh` until the next login. Unset
+ * means unknown: the first visit still asks once. Not a credential, so it
+ * can live in localStorage.
+ */
+const NO_SESSION_KEY = 'grozze.no-session';
+
+function rememberNoSession(none: boolean) {
+  try {
+    if (none) localStorage.setItem(NO_SESSION_KEY, '1');
+    else localStorage.removeItem(NO_SESSION_KEY);
+  } catch {
+    /* SSR or storage disabled: every load just asks the API */
+  }
+}
+
+function knownLoggedOut(): boolean {
+  try {
+    return localStorage.getItem(NO_SESSION_KEY) === '1';
+  } catch {
+    return false;
+  }
+}
+
 async function withNewToken(
   request: Promise<GrozzeAuthResponse>
 ): Promise<GrozzeUser> {
   const { accessToken: token, user } = await request;
   accessToken = token;
+  rememberNoSession(false);
   return user;
 }
+
+const RESTORE_RETRY_DELAY_MS = 1000;
+
+const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 /** In-flight refresh, shared so parallel 401s renew the session only once. */
 let refreshing: Promise<GrozzeUser> | null = null;
@@ -92,12 +122,33 @@ export const grozzeAuth = {
       })
     ),
 
-  /** Restores the session on page load (rejects if not logged in). */
-  restore: refresh,
+  /**
+   * Restores the session on page load: the user, or `null` when there is no
+   * session (without calling the API once this browser is known to be
+   * logged out). Rejects when the API can't be reached.
+   */
+  async restore(): Promise<GrozzeUser | null> {
+    if (knownLoggedOut()) return null;
+    for (let attempt = 1; ; attempt++) {
+      try {
+        return await refresh();
+      } catch (err) {
+        if (!(err instanceof GrozzeApiError) || err.status !== 401) throw err;
+        // A 401 may be another tab renewing the same session; its new
+        // cookie lands by the second try. Two refusals: really logged out.
+        if (attempt === 2) {
+          rememberNoSession(true);
+          return null;
+        }
+      }
+      await wait(RESTORE_RETRY_DELAY_MS);
+    }
+  },
 
   /** Ends this session. Never fails: locally the user is out either way. */
   async logout() {
     accessToken = null;
+    rememberNoSession(true);
     await grozzeRequest<null>('/auth/logout', { method: 'POST' }).catch(
       () => null
     );

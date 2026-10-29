@@ -19,5 +19,11 @@ export const GROZZE_API_URL = (
  */
 export const GROZZE_API_KEY = process.env.NEXT_PUBLIC_GROZZE_API_KEY || '';
 
+/**
+ * How long CMS content (movie edits, home carousel, news) is reused before a
+ * screen fetches it again. Admin saves update the cache right away.
+ */
+export const GROZZE_CONTENT_STALE_MS = 5 * 60_000;
+
 /** The API caches its lists for 24 hours; refetching sooner is useless. */
 export const GROZZE_CACHE_SECONDS = 24 * 60 * 60;

@@ -1,6 +1,7 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
+import { GROZZE_CONTENT_STALE_MS } from '@/shared/api';
 import { useAppStore } from '@/shared/store';
 import { grozzeMovieOverrides, movieOverridesQueryKey } from './overrides';
 
@@ -16,5 +17,6 @@ export function useMovieOverridesQuery() {
       useAppStore.getState().setContent(content);
       return content;
     },
+    staleTime: GROZZE_CONTENT_STALE_MS,
   });
 }

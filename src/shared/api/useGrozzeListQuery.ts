@@ -1,29 +1,18 @@
 'use client';
 
 import { useQuery, type QueryClient } from '@tanstack/react-query';
-import {
-  GROZZE_API_KEY,
-  GROZZE_CACHE_SECONDS,
-  GrozzeApiError,
-  grozzeApi,
-} from './grozze';
+import { GROZZE_API_KEY, GROZZE_CACHE_SECONDS, grozzeApi } from './grozze';
 
 type GrozzeList = keyof typeof grozzeApi;
 type GrozzeListData<K extends GrozzeList> = Awaited<
   ReturnType<(typeof grozzeApi)[K]>
 >;
 
-/** Missing key (401) or wrong URL (404) won't fix themselves on retry. */
-const PERMANENT_ERRORS = [401, 404];
-
 const listQueryOptions = <K extends GrozzeList>(list: K) => ({
   queryKey: ['grozze', list],
   queryFn: grozzeApi[list] as () => Promise<GrozzeListData<K>>,
   staleTime: GROZZE_CACHE_SECONDS * 1000,
   gcTime: GROZZE_CACHE_SECONDS * 1000,
-  retry: (failureCount: number, err: unknown) =>
-    !(err instanceof GrozzeApiError && PERMANENT_ERRORS.includes(err.status)) &&
-    failureCount < 1,
 });
 
 /**

@@ -7,6 +7,7 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query';
 import { useAppStore } from '@/shared/store';
+import { retryGrozzeQuery } from './grozze';
 
 function createQueryClient() {
   return new QueryClient({
@@ -18,7 +19,13 @@ function createQueryClient() {
           .toast(err instanceof Error ? err.message : 'Algo deu errado.'),
     }),
     defaultOptions: {
-      queries: { staleTime: 60_000, retry: 1 },
+      queries: {
+        staleTime: 60_000,
+        retry: retryGrozzeQuery,
+        // Coming back to the tab doesn't refetch: stale data waits for the
+        // next screen that needs it
+        refetchOnWindowFocus: false,
+      },
       mutations: { retry: 0 },
     },
   });

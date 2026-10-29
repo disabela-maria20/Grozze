@@ -23,6 +23,27 @@ function errorMessage(body: GrozzeErrorBody | null, status: number): string {
   );
 }
 
+/**
+ * After a failed connection (API down, or the browser blocking it by CORS)
+ * the browser stops calling for a while: every request would fail the same
+ * way, and a page fires several at once.
+ */
+const UNREACHABLE_COOLDOWN_MS = 30_000;
+let unreachableUntil = 0;
+
+const unreachable = () =>
+  new GrozzeApiError(
+    'A API da Grozze está indisponível no momento. Tente novamente em instantes.',
+    0
+  );
+
+/**
+ * Retry policy for Grozze queries: once, and only for server errors (5xx).
+ * Client errors (4xx) and an unreachable API (0) won't change on retry.
+ */
+export const retryGrozzeQuery = (failureCount: number, err: unknown) =>
+  failureCount < 1 && (!(err instanceof GrozzeApiError) || err.status >= 500);
+
 export interface GrozzeRequestOptions {
   method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
   /** Sent as JSON, or as multipart/form-data when it's a `FormData` (file uploads). */
@@ -41,6 +62,10 @@ export async function grozzeRequest<T>(
   path: string,
   { method = 'GET', body, accessToken }: GrozzeRequestOptions = {}
 ): Promise<T> {
+  // Only the browser: on the server one failure would hide the API for
+  // every visitor's render
+  const inBrowser = typeof window !== 'undefined';
+  if (inBrowser && Date.now() < unreachableUntil) throw unreachable();
   // The browser sets the multipart boundary itself
   const multipart = body instanceof FormData;
   let res: Response;
@@ -63,10 +88,9 @@ export async function grozzeRequest<T>(
             : JSON.stringify(body),
     });
   } catch {
-    throw new GrozzeApiError(
-      'Não foi possível conectar à API da Grozze. Verifique sua conexão.',
-      0
-    );
+    // fetch can't tell a CORS block from a network failure: both land here
+    if (inBrowser) unreachableUntil = Date.now() + UNREACHABLE_COOLDOWN_MS;
+    throw unreachable();
   }
   // 204 No Content (logout, password changes...) has no body
   const data: unknown =
