@@ -25,12 +25,13 @@ export function HomeHero({ list }: { list: Movie[] }) {
     };
   }, [setHasHero]);
 
-  // Auto-advance unless paused, hovered/focused or covered by a dialog
+  // Auto-advance unless paused, hovered/focused or covered by a dialog. Not
+  // while the list is empty (still loading): `% 0` would make the index NaN
   useEffect(() => {
-    if (paused || hovering || dialogOpen) return;
+    if (paused || hovering || dialogOpen || list.length < 2) return;
     const timer = setInterval(() => {
       if (document.hidden) return;
-      setIndex((current) => (current + 1) % list.length);
+      setIndex((i) => (i + 1) % list.length);
     }, 7500);
     return () => clearInterval(timer);
   }, [paused, hovering, dialogOpen, list.length]);
@@ -45,7 +46,9 @@ export function HomeHero({ list }: { list: Movie[] }) {
         className="hero home-hero relative bg-[#09110d] min-h-[650px] max-sm:min-h-[590px]"
       />
     );
-  const film = list[index % list.length];
+  // The list can shrink under the index (banners replacing the default pick)
+  const current = index % list.length;
+  const film = list[current];
   const href = movieHref(film.id);
 
   return (
@@ -73,8 +76,8 @@ export function HomeHero({ list }: { list: Movie[] }) {
             alt=""
             fill
             sizes="100vw"
-            preload={index === 0}
-            fetchPriority={index === 0 ? 'high' : 'auto'}
+            preload={current === 0}
+            fetchPriority={current === 0 ? 'high' : 'auto'}
             draggable={false}
             className="object-cover object-[center_28%]"
           />
@@ -122,12 +125,12 @@ export function HomeHero({ list }: { list: Movie[] }) {
           <button
             key={slide.id}
             className="w-8 h-8 border-0 rounded-full bg-none p-0 inline-grid place-items-center"
-            aria-current={slideIndex === index}
+            aria-current={slideIndex === current}
             aria-label={`Destacar ${slide.t}`}
             onClick={() => setIndex(slideIndex)}
           >
             <span
-              className={`w-2.5 h-2.5 rounded-full transition-all ${slideIndex === index ? 'w-6 bg-lime' : 'bg-[#515b53]'}`}
+              className={`w-2.5 h-2.5 rounded-full transition-all ${slideIndex === current ? 'w-6 bg-lime' : 'bg-[#515b53]'}`}
             />
           </button>
         ))}
