@@ -8,6 +8,16 @@ import {
   getCinemaForSeo,
 } from '@/entities/cinema';
 
+/**
+ * Rendered on the first visit and then served from cache, refreshed at most
+ * every 5 minutes (the catalog API's own cache), instead of on every request.
+ */
+export const revalidate = 300;
+
+export function generateStaticParams() {
+  return [];
+}
+
 export async function generateMetadata({
   params,
 }: {

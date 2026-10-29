@@ -159,7 +159,11 @@ export async function GET(request: Request) {
   return new Response(new Uint8Array(jpeg ?? png), {
     headers: {
       'Content-Type': jpeg ? 'image/jpeg' : 'image/png',
-      'Cache-Control': 'public, max-age=86400',
+      // The URL carries everything the card shows, so the CDN may keep it
+      // for a week: each card is drawn (logo, photo, sharp) once, not per
+      // crawler visit
+      'Cache-Control':
+        'public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400',
     },
   });
 }

@@ -4,6 +4,16 @@ import { ClientOnly } from '@/shared/ui';
 import { ArticleApp } from '@/features/news';
 import { getNewsForSeo, newsPageMetadata } from '@/entities/news';
 
+/**
+ * Rendered on the first visit and then served from cache, refreshed at most
+ * every 5 minutes (the catalog API's own cache), instead of on every request.
+ */
+export const revalidate = 300;
+
+export function generateStaticParams() {
+  return [];
+}
+
 // Same article as /noticia/{slug}: the metadata points there (canonical)
 export async function generateMetadata({
   params,
