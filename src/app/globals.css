@@ -23,6 +23,16 @@
   --color-danger: #ff8f80;
 
   --radius-app: 18px;
+
+  /* Motion: one curve for everything that settles (fast start, soft
+     landing, like a real object) and short durations. Overriding Tailwind's
+     `ease-out` and the transition defaults applies them to every
+     `transition-*` class too. */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in: cubic-bezier(0.55, 0, 1, 0.45);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --default-transition-duration: 220ms;
+  --default-transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Tailwind's preflight resets buttons to `cursor: default`; every clickable
@@ -118,23 +128,75 @@ body::before {
   display: none;
 }
 
+/* Dialogs: things come in settling (ease-out) and leave quicker
+   (ease-in), so closing never feels slower than the click. Exits run while
+   DialogRoot keeps the closed dialog for DIALOG_EXIT_MS. */
+@keyframes overlay-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes overlay-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+}
+@keyframes dialog-out {
+  to {
+    opacity: 0;
+    transform: translateY(8px) scale(0.985);
+  }
+}
 @keyframes drawer-in {
   from {
     transform: translateX(100%);
   }
+}
+@keyframes drawer-out {
   to {
-    transform: translateX(0);
+    transform: translateX(100%);
   }
 }
+.animate-overlay-in {
+  animation: overlay-in 0.28s var(--ease-out);
+}
+.animate-overlay-out {
+  animation: overlay-out 0.2s var(--ease-in) forwards;
+}
+.animate-dialog-in {
+  animation: dialog-in 0.36s var(--ease-out);
+}
+.animate-dialog-out {
+  animation: dialog-out 0.2s var(--ease-in) forwards;
+}
 .animate-drawer-in {
-  animation: drawer-in 0.23s ease;
+  animation: drawer-in 0.42s var(--ease-out);
+}
+.animate-drawer-out {
+  animation: drawer-out 0.2s var(--ease-in) forwards;
+}
+
+/* Home carousel: the new slide's picture cross-fades in */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+.animate-fade-in {
+  animation: fade-in 0.8s var(--ease-out);
 }
 
 /* Lists that load in: each item fades up (stagger with animation-delay) */
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -142,7 +204,7 @@ body::before {
   }
 }
 .animate-fade-up {
-  animation: fade-up 0.35s ease both;
+  animation: fade-up 0.5s var(--ease-out) both;
 }
 
 /* Skeleton placeholders: a soft light sweeping across */

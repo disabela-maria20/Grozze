@@ -34,7 +34,8 @@ export function MoviePoster({
           fill
           sizes="(max-width: 640px) 45vw, 220px"
           draggable={false}
-          className="object-cover z-[1]"
+          // Inside a movie card, a slow, slight zoom on hover
+          className="object-cover z-[1] transition-transform duration-700 group-hover/card:scale-[1.04] motion-reduce:transition-none"
         />
       ) : null}
     </div>

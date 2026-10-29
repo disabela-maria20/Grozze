@@ -79,7 +79,7 @@ export function HomeHero({ list }: { list: Movie[] }) {
             preload={current === 0}
             fetchPriority={current === 0 ? 'high' : 'auto'}
             draggable={false}
-            className="object-cover object-[center_28%]"
+            className="object-cover object-[center_28%] animate-fade-in"
           />
         )}
       </div>
@@ -91,7 +91,10 @@ export function HomeHero({ list }: { list: Movie[] }) {
         }}
       />
       <div className="w-[min(1220px,calc(100%-56px))] max-sm:w-[calc(100%-32px)] mx-auto min-h-[650px] max-sm:min-h-[590px] flex items-end pt-[174px] pb-[78px] max-sm:pt-[220px] max-sm:pb-[58px] max-sm:justify-center">
-        <div className="w-[720px] max-w-full min-w-0 max-sm:text-center">
+        <div
+          key={film.id}
+          className="w-[720px] max-w-full min-w-0 max-sm:text-center animate-fade-up"
+        >
           <StatusTag
             m={film}
             className="text-[11px] tracking-[0.17em] uppercase font-extrabold text-lime mb-2 max-sm:text-[10px]"
@@ -130,7 +133,7 @@ export function HomeHero({ list }: { list: Movie[] }) {
             onClick={() => setIndex(slideIndex)}
           >
             <span
-              className={`w-2.5 h-2.5 rounded-full transition-all ${slideIndex === current ? 'w-6 bg-lime' : 'bg-[#515b53]'}`}
+              className={`w-2.5 h-2.5 rounded-full transition-[width,background-color] duration-500 ${slideIndex === current ? 'w-6 bg-lime' : 'bg-[#515b53]'}`}
             />
           </button>
         ))}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 import type { ReactNode } from 'react';
 import { Icon } from '@/shared/ui';
 
@@ -17,13 +17,22 @@ const FOCUS_TRAP_SELECTOR =
   "button:not(:disabled), a[href], input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [tabindex]:not([tabindex='-1'])";
 
 const MENU_PANEL_CLASS =
-  'w-[min(350px,88vw)] h-dvh max-h-none overflow-auto rounded-l-[24px] border-l border-line p-7 pt-0 bg-surface animate-drawer-in max-sm:w-[min(330px,89vw)] max-sm:rounded-l-[20px] max-sm:p-5.5';
+  'w-[min(350px,88vw)] h-dvh max-h-none overflow-auto rounded-l-[24px] border-l border-line p-7 pt-0 bg-surface max-sm:w-[min(330px,89vw)] max-sm:rounded-l-[20px] max-sm:p-5.5';
 
-function overlayClass(menu: boolean) {
+function overlayClass(menu: boolean, closing: boolean) {
   const backdrop = menu
     ? 'justify-end p-0 bg-[rgba(2,5,3,.6)] max-sm:items-stretch'
     : 'bg-[rgba(2,5,3,.78)] max-sm:items-center';
-  return `overlay fixed inset-0 z-[200] flex items-center justify-center p-6 backdrop-blur-md max-sm:p-3.5 ${backdrop}`;
+  // A closing dialog lets clicks through to the page right away
+  const motion = closing
+    ? 'animate-overlay-out pointer-events-none'
+    : 'animate-overlay-in';
+  return `overlay fixed inset-0 z-[200] flex items-center justify-center p-6 backdrop-blur-md max-sm:p-3.5 ${backdrop} ${motion}`;
+}
+
+function panelMotionClass(menu: boolean, closing: boolean) {
+  if (menu) return closing ? 'animate-drawer-out' : 'animate-drawer-in';
+  return closing ? 'animate-dialog-out' : 'animate-dialog-in';
 }
 
 function modalMaxWidthClass(wide: boolean, video: boolean) {
@@ -42,6 +51,8 @@ function modalPanelClass(wide: boolean, video: boolean) {
  * Modal container: locks the rest of the page (inert + `has-overlay`),
  * focuses the first control, traps Tab inside and closes on Escape or a
  * backdrop click. `menu` renders a side drawer instead of a centered modal.
+ * `closing` plays the exit animation (see DialogRoot); the page is unlocked
+ * as soon as it starts, so a link's navigation never meets an inert page.
  */
 export function DialogShell({
   onClose,
@@ -49,6 +60,7 @@ export function DialogShell({
   wide = false,
   video = false,
   menu = false,
+  closing = false,
   children,
 }: {
   onClose: () => void;
@@ -56,11 +68,15 @@ export function DialogShell({
   wide?: boolean;
   video?: boolean;
   menu?: boolean;
+  closing?: boolean;
   children: ReactNode;
 }) {
   const dialogRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  // Layout effect: the lock is lifted before the browser paints the closing
+  // frame (and before a link's navigation restores the scroll)
+  useLayoutEffect(() => {
+    if (closing) return;
     document.body.classList.add('has-overlay');
     const inertTargets = document.querySelectorAll<HTMLElement>(INERT_SELECTOR);
     inertTargets.forEach((element) => element.setAttribute('inert', ''));
@@ -98,11 +114,11 @@ export function DialogShell({
       document.removeEventListener('keydown', onKeyDown);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [closing]);
 
   return (
     <div
-      className={overlayClass(menu)}
+      className={overlayClass(menu, closing)}
       // Backdrop only; keyboard users close with Escape (see onKeyDown above)
       role="presentation"
       onClick={(event) => {
@@ -114,7 +130,7 @@ export function DialogShell({
         role="dialog"
         aria-modal="true"
         aria-label={label}
-        className={menu ? MENU_PANEL_CLASS : modalPanelClass(wide, video)}
+        className={`${menu ? MENU_PANEL_CLASS : modalPanelClass(wide, video)} ${panelMotionClass(menu, closing)}`}
         // A link to another page closes the dialog before the navigation
         // starts: while open, the page is `inert`, and Next.js would skip it
         // when restoring scroll, landing the new page at its bottom

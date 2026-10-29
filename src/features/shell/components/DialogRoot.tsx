@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
 import { useAppStore } from '@/shared/store';
 import { CatalogGate } from '@/entities/catalog';
@@ -33,6 +33,9 @@ const LABELS: Record<string, string> = {
   'account-hub': 'Conta neste hub',
 };
 
+/** Length of the exit animations (`animate-*-out` in globals.css). */
+const DIALOG_EXIT_MS = 200;
+
 /** Dialogs that don't read the catalog open without waiting for the API. */
 const CATALOG_FREE = new Set(['consent', 'menu']);
 
@@ -40,6 +43,18 @@ export function DialogRoot() {
   const dialog = useAppStore((s) => s.dialog);
   const closeDialog = useAppStore((s) => s.closeDialog);
   const pathname = usePathname();
+
+  // The dialog on screen: the open one, or the one just closed while its
+  // exit animation plays (however it was closed: button, Escape, a store
+  // action). Updated during render, React's way of deriving from a prop.
+  const [shown, setShown] = useState(dialog);
+  if (dialog && dialog !== shown) setShown(dialog);
+  const closing = !dialog && !!shown;
+  useEffect(() => {
+    if (!closing) return;
+    const timer = setTimeout(() => setShown(null), DIALOG_EXIT_MS);
+    return () => clearTimeout(timer);
+  }, [closing]);
 
   // Navigation no longer reloads the page, so a link inside a dialog (menu,
   // search...) must close it; the login dialog keeps a pending favorite.
@@ -52,11 +67,11 @@ export function DialogRoot() {
     useAppStore.getState().closeDialog({ keepPending: true });
   }, [pathname]);
 
-  if (!dialog) return null;
-  const dialogProps = dialog.props || {};
+  if (!shown) return null;
+  const dialogProps = shown.props || {};
 
   let content: ReactNode = null;
-  switch (dialog.id) {
+  switch (shown.id) {
     case 'auth':
       content = <AuthDialog signup={!!dialogProps.signup} />;
       break;
@@ -99,12 +114,13 @@ export function DialogRoot() {
   return (
     <DialogShell
       onClose={() => closeDialog()}
-      label={LABELS[dialog.id] || 'Diálogo'}
-      wide={dialog.id === 'now'}
-      video={dialog.id === 'trailer'}
-      menu={dialog.id === 'menu'}
+      label={LABELS[shown.id] || 'Diálogo'}
+      wide={shown.id === 'now'}
+      video={shown.id === 'trailer'}
+      menu={shown.id === 'menu'}
+      closing={closing}
     >
-      {CATALOG_FREE.has(dialog.id) ? (
+      {CATALOG_FREE.has(shown.id) ? (
         content
       ) : (
         <CatalogGate compact>{content}</CatalogGate>
