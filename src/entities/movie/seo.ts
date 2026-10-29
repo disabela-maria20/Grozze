@@ -76,6 +76,6 @@ export function moviePageMetadata(m: Movie | null, id: string): Metadata {
     description:
       m.syn ||
       `Sessões, horários e trailer de ${m.t} nos cinemas perto de você.`,
-    images: [m.backdrop, m.poster],
+    shareImage: m.backdrop || m.poster,
   });
 }

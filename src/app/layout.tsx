@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { AppShell } from '@/features/shell';
 import {
-  ogCard,
+  ogImage,
   SITE_DESCRIPTION,
   SITE_NAME,
   SITE_URL,
@@ -21,9 +21,9 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     locale: 'pt_BR',
     type: 'website',
-    images: [ogCard()],
+    images: [ogImage()],
   },
-  twitter: { card: 'summary_large_image', images: [ogCard()] },
+  twitter: { card: 'summary_large_image', images: [ogImage()] },
   formatDetection: { telephone: false, address: false, email: false },
 };
 

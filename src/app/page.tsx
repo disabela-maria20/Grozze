@@ -10,9 +10,16 @@ import {
   SITE_URL,
 } from '@/shared/lib/seo';
 
+const HOME_TITLE = `${SITE_NAME} · Filmes em cartaz, cinemas e sessões`;
+const homeSeo = pageMetadata({ path: '/', description: SITE_DESCRIPTION });
+
+// The shared preview gets the full title too, not just "Grozze"; the card
+// itself stays the plain brand one
 export const metadata: Metadata = {
-  ...pageMetadata({ path: '/', description: SITE_DESCRIPTION }),
-  title: { absolute: `${SITE_NAME} · Filmes em cartaz, cinemas e sessões` },
+  ...homeSeo,
+  title: { absolute: HOME_TITLE },
+  openGraph: { ...homeSeo.openGraph, title: HOME_TITLE },
+  twitter: { ...homeSeo.twitter, title: HOME_TITLE },
 };
 
 /** Who publishes the site and what it is (schema.org). */

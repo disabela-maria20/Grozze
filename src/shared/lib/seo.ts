@@ -34,22 +34,49 @@ export function metaText(text: string | null | undefined, max = 160): string {
   return `${(space > max * 0.6 ? cut.slice(0, space) : cut).trimEnd()}…`;
 }
 
-/** Brand card for sharing (see `app/og/route.tsx`), optionally with a title. */
-export function ogCard(title?: string, subtitle?: string): string {
+/** Size of the sharing card; declared in the tags so previews show on the first share. */
+export const OG_CARD_SIZE = { width: 1200, height: 630 } as const;
+
+/**
+ * Brand card for sharing (see `app/og/route.tsx`), optionally with a title,
+ * a subtitle and a photo behind them. Every preview goes through it: the
+ * catalog's own images are ~1 MB and served as `binary/octet-stream`,
+ * which WhatsApp and Facebook drop.
+ */
+export function ogCard(
+  title?: string,
+  subtitle?: string | null,
+  image?: string | null
+): string {
   const params = new URLSearchParams();
   if (title) params.set('title', title.slice(0, 120));
   if (subtitle) params.set('subtitle', subtitle.slice(0, 160));
+  if (image) params.set('image', image);
   const query = params.toString();
   return `/og/${query ? `?${query}` : ''}`;
 }
+
+/** `ogCard` as an Open Graph image, with its size, type and alt text. */
+export const ogImage = (
+  title?: string,
+  subtitle?: string | null,
+  image?: string | null
+) => ({
+  url: ogCard(title, subtitle, image),
+  ...OG_CARD_SIZE,
+  type: 'image/jpeg',
+  alt: title ? `${title} · ${SITE_NAME}` : SITE_NAME,
+});
 
 export interface PageSeo {
   title?: string;
   description?: string | null;
   /** Site path of the page, e.g. `/filme/123` (becomes the canonical). */
   path: string;
-  /** Sharing images, best first; the brand card when none is given. */
-  images?: (string | null | undefined)[];
+  /** Line under the title on the sharing card. */
+  shareSubtitle?: string | null;
+  /** Photo behind the sharing card (backdrop, cover...). */
+  shareImage?: string | null;
   type?: 'website' | 'article' | 'video.movie';
   /** Article dates and author (type `article`). */
   publishedTime?: string | null;
@@ -67,8 +94,7 @@ export interface PageSeo {
 export function pageMetadata(seo: PageSeo): Metadata {
   const description = metaText(seo.description || SITE_DESCRIPTION);
   const title = seo.title ?? SITE_NAME;
-  const images = (seo.images ?? []).filter((url): url is string => !!url);
-  const sharedImages = images.length ? images : [ogCard(seo.title)];
+  const sharedImages = [ogImage(seo.title, seo.shareSubtitle, seo.shareImage)];
   const url = sitePath(seo.path);
   const base = {
     title,

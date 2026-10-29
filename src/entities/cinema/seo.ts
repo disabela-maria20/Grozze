@@ -1,6 +1,6 @@
 import { cache } from 'react';
 import type { Metadata } from 'next';
-import { absoluteUrl, ogCard, pageMetadata } from '@/shared/lib/seo';
+import { absoluteUrl, pageMetadata } from '@/shared/lib/seo';
 import { getCinema } from './api';
 import type { Cinema } from './types';
 
@@ -44,6 +44,6 @@ export function cinemaPageMetadata(c: Cinema | null, id: string): Metadata {
     title: place ? `${c.name} · ${place}` : c.name,
     path,
     description: `Programação e horários das sessões do ${c.name}${place ? ` em ${place}` : ''}. ${c.address}.`,
-    images: [c.image || ogCard(c.name, c.address)],
+    shareSubtitle: c.address,
   });
 }

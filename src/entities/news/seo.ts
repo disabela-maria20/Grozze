@@ -4,7 +4,6 @@ import type { Metadata } from 'next';
 import {
   absoluteUrl,
   metaText,
-  ogCard,
   pageMetadata,
   SITE_NAME,
   SITE_URL,
@@ -53,7 +52,8 @@ export function newsPageMetadata(
     path,
     type: 'article',
     description: article.summary || article.content,
-    images: [article.coverImageUrl || ogCard(article.title, 'Notícias')],
+    shareSubtitle: 'Notícias',
+    shareImage: article.coverImageUrl,
     publishedTime: article.publishedAt,
     modifiedTime: article.updatedAt,
     authors: article.author ? [article.author.name] : undefined,
