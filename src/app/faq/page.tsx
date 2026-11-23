@@ -46,7 +46,9 @@ export default function Page() {
         <div className="divide-y divide-line">
           {ITEMS.map(([question, answer]) => (
             <details key={question} className="py-4.5">
-              <summary className="cursor-pointer text-xl">{question}</summary>
+              <summary className="cursor-pointer text-xl py-2">
+                {question}
+              </summary>
               <p className="text-[15px] text-[#c0cbc2] leading-relaxed mt-3">
                 {answer}
               </p>

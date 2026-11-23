@@ -75,27 +75,33 @@ function CinemaSessionsBlock({
   const theater = cinema(cid);
   return (
     <article className="py-5.5 first:pt-2.5 border-t border-line first:border-0">
-      <div className="flex justify-between items-start gap-4">
-        <div className="min-w-0">
-          <h3 className="text-[23px] leading-[1.15] -tracking-[0.03em] m-0 mb-1.5">
-            {theater?.name || 'Cinema'}
-          </h3>
-          <p className="text-[13px] text-muted m-0 break-words">
-            {theater?.address || ''}
-          </p>
-        </div>
-        <div className="flex items-center gap-2.5 shrink-0">
+      <div className="flex justify-between items-start gap-4 max-sm:gap-2.5">
+        <h3 className="min-w-0 break-words text-[23px] max-sm:text-[19px] leading-[1.15] -tracking-[0.03em] m-0 mb-1.5">
+          {theater?.name || 'Cinema'}
+        </h3>
+        <div className="flex items-center gap-2.5 max-sm:gap-1.5 shrink-0">
           <HeartButton kind="cinema" id={cid} label={theater?.name} path="" />
           {!scope && (
+            // On phones only the arrow shows (a 44px target), so the name
+            // keeps the width
             <Link
-              className="text-xs inline-flex items-center gap-1 text-[#dce3dc] hover:text-lime"
+              className="min-h-11 text-xs inline-flex items-center justify-center gap-1 text-[#dce3dc] hover:text-lime max-sm:w-11 max-sm:rounded-full max-sm:border max-sm:border-line"
               href={`/cinema/${cid}`}
+              aria-label={`Ver cinema ${theater?.name || ''}`.trim()}
             >
-              Ver cinema <Icon name="arrow" className="w-3.5 h-3.5" />
+              <span className="max-sm:sr-only">Ver cinema</span>
+              <Icon
+                name="arrow"
+                className="w-3.5 h-3.5 max-sm:w-4 max-sm:h-4"
+              />
             </Link>
           )}
         </div>
       </div>
+      {/* Below the name row, the address gets the card's full width */}
+      <p className="text-[13px] text-muted m-0 break-words">
+        {theater?.address || ''}
+      </p>
       <RoomBlocks rows={rows} preferences={preferences} />
     </article>
   );
@@ -148,7 +154,7 @@ function FavoriteDiscovery() {
       <button
         type="button"
         onClick={() => openDialog('auth', { signup: false })}
-        className="min-h-10 text-[13px] px-3.5 py-2 rounded-full border border-lime/40 bg-bg/55 whitespace-nowrap hover:bg-lime hover:text-[#081004] transition-colors max-sm:col-span-2 max-sm:w-fit"
+        className="min-h-11 text-[13px] px-3.5 py-2 rounded-full border border-lime/40 bg-bg/55 whitespace-nowrap hover:bg-lime hover:text-[#081004] transition-colors max-sm:col-span-2 max-sm:w-fit"
       >
         Entrar ou criar conta <Icon name="arrow" className="w-4 h-4 inline" />
       </button>
@@ -375,7 +381,7 @@ function EmptyProgram({
   }
 
   return (
-    <section id="sessoes" className="py-8 scroll-mt-[170px]">
+    <section id="sessoes" className="py-8">
       <ProgramEyebrow />
       <h2 className="text-[32px] tracking-tight mb-5">Escolha sua sessão</h2>
       {picker}
@@ -612,7 +618,7 @@ export function MovieProgram({
 
   if (!hasLocation(location)) {
     return (
-      <section id="sessoes" className="py-8 scroll-mt-[170px]">
+      <section id="sessoes" className="py-8">
         <ProgramEyebrow />
         <h2 className="text-[32px] tracking-tight mb-2">Escolha sua sessão</h2>
         <p className="text-muted m-0 mb-4">
@@ -640,11 +646,7 @@ export function MovieProgram({
   }
 
   return (
-    <section
-      id="sessoes"
-      className="py-8 scroll-mt-[170px]"
-      data-program-movie={m.id}
-    >
+    <section id="sessoes" className="py-8" data-program-movie={m.id}>
       <ProgramEyebrow />
       <h2 className="text-[32px] max-sm:text-[27px] tracking-tight mb-5">
         Escolha sua sessão

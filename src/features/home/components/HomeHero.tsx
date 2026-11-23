@@ -123,11 +123,11 @@ export function HomeHero({ list }: { list: Movie[] }) {
           </div>
         </div>
       </div>
-      <div className="absolute left-0 right-0 bottom-5.5 flex items-center justify-center gap-2.5">
+      <div className="absolute left-0 right-0 bottom-5.5 max-sm:bottom-2.5 flex items-center justify-center gap-2.5 max-sm:gap-0">
         {list.map((slide, slideIndex) => (
           <button
             key={slide.id}
-            className="w-8 h-8 border-0 rounded-full bg-none p-0 inline-grid place-items-center"
+            className="w-8 h-8 max-sm:w-11 max-sm:h-11 border-0 rounded-full bg-none p-0 inline-grid place-items-center"
             aria-current={slideIndex === current}
             aria-label={`Destacar ${slide.t}`}
             onClick={() => setIndex(slideIndex)}
@@ -139,7 +139,7 @@ export function HomeHero({ list }: { list: Movie[] }) {
         ))}
         <button
           type="button"
-          className="bg-bg/55 border border-line rounded-full w-8 h-8 grid place-items-center ml-2.5"
+          className="bg-bg/55 border border-line rounded-full w-8 h-8 max-sm:w-11 max-sm:h-11 grid place-items-center ml-2.5 max-sm:ml-1"
           aria-label={`${paused ? 'Retomar' : 'Pausar'} carrossel`}
           onClick={() => setPaused((wasPaused) => !wasPaused)}
         >

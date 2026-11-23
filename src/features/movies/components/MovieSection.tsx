@@ -44,7 +44,7 @@ export function MovieSection({
           </div>
           {morePath && !loading && list.length > 7 && (
             <Link
-              className="text-[13px] max-sm:text-xs shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[#dce3dc] hover:text-lime transition-colors"
+              className="min-h-11 text-[13px] max-sm:text-xs shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[#dce3dc] hover:text-lime transition-colors"
               href={morePath}
             >
               Ver todos <Icon name="arrow" className="w-4 h-4" />

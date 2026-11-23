@@ -109,12 +109,12 @@ export function Header() {
         ) : (
           <SiteBrandAndNav activeRoot={activeRoot} />
         )}
-        <div className="ml-auto flex items-center gap-2">
+        <div className="ml-auto flex items-center gap-2 max-sm:gap-1">
           <button
             type="button"
             onClick={() => openDialog('location')}
             aria-label="Definir localização"
-            className="tool min-w-11 h-11 border border-line bg-[#080d0a]/45 rounded-full inline-flex items-center justify-center px-3.5 gap-2 text-[13px] hover:border-lime/40 transition-colors max-sm:w-[35px] max-sm:min-w-[35px] max-sm:border-transparent max-sm:px-0"
+            className="tool min-w-11 h-11 border border-line bg-[#080d0a]/45 rounded-full inline-flex items-center justify-center px-3.5 gap-2 text-[13px] hover:border-lime/40 transition-colors max-sm:w-11 max-sm:border-transparent max-sm:px-0"
           >
             <span className="w-2 h-2 rounded-full bg-lime shadow-[0_0_0_4px_var(--color-lime-soft)] max-sm:hidden" />
             <Icon name="pin" className="max-sm:w-5 max-sm:h-5" />
@@ -136,7 +136,7 @@ export function Header() {
             type="button"
             onClick={accountAction}
             aria-label={logged ? `Abrir conta de ${profile!.name}` : 'Entrar'}
-            className="tool h-11 border border-line bg-[#080d0a]/45 rounded-full inline-flex items-center px-3.5 gap-2 text-[13px] hover:border-lime/40 transition-colors max-sm:px-0 max-sm:border-0 max-sm:bg-transparent"
+            className="tool h-11 border border-line bg-[#080d0a]/45 rounded-full inline-flex items-center px-3.5 gap-2 text-[13px] hover:border-lime/40 transition-colors max-sm:w-11 max-sm:justify-center max-sm:px-0 max-sm:border-0 max-sm:bg-transparent"
           >
             <Avatar />
             <span className="max-[1160px]:hidden max-sm:hidden">

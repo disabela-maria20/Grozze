@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { setUrlParam } from '@/shared/lib/route';
 import { normalize } from '@/shared/lib/text';
 import { status, useCityProgram } from '@/entities/movie';
 import { useAppStore } from '@/shared/store';
@@ -20,21 +21,24 @@ const STATUS_OPTIONS: [string, string][] = [
 ];
 
 /**
- * `?status=` picks the initial filter; the `key` starts over when a link
- * changes it while this page is open.
+ * The movie list. The status filter (`?status=`) and the search (`?q=`)
+ * live in the URL: links can open it filtered, and the back button and a
+ * reload keep what the user picked.
  */
 export function CatalogApp() {
-  const initialStatus = useSearchParams().get('status') ?? 'all';
-  return <Catalog key={initialStatus} initialStatus={initialStatus} />;
-}
-
-function Catalog({ initialStatus }: { initialStatus: string }) {
+  const searchParams = useSearchParams();
   const content = useAppStore((s) => s.content);
   const openDialog = useAppStore((s) => s.openDialog);
   const cityProgram = useCityProgram();
   const cityMovieIds = cityProgram.movieIds;
-  const [query, setQuery] = useState('');
-  const [filmStatus, setFilmStatus] = useState(initialStatus);
+  const filmStatus = searchParams.get('status') ?? 'all';
+  // Typed text stays local (the URL follows it) so the caret never jumps
+  const [query, setQueryState] = useState(() => searchParams.get('q') ?? '');
+  const setQuery = (value: string) => {
+    setQueryState(value);
+    setUrlParam('q', value.trim());
+  };
+  const setFilmStatus = (value: string) => setUrlParam('status', value, 'all');
 
   const list = useMemo(() => {
     const normalizedQuery = normalize(query);

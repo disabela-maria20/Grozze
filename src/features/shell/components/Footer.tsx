@@ -82,7 +82,7 @@ function FooterLinkGroup({ group: [heading, links] }: { group: FooterGroup }) {
         <Link
           key={path}
           href={`/${path}`}
-          className="block py-1 text-[13px] text-muted hover:text-lime transition-colors"
+          className="block py-1 max-sm:py-3 text-[13px] text-muted hover:text-lime transition-colors"
         >
           {label}
         </Link>
@@ -132,7 +132,7 @@ export function Footer() {
           <span>© 2026 Grozze.</span>
           <button
             type="button"
-            className="text-faint hover:text-lime"
+            className="text-faint hover:text-lime max-sm:py-3 max-sm:text-left"
             onClick={openConsent}
           >
             Preferências de cookies

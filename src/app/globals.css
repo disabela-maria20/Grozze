@@ -61,11 +61,21 @@
   [aria-disabled='true'] {
     cursor: not-allowed;
   }
+
+  /* Keyboard focus shows in the brand color (the browser's default ring
+     barely shows on the dark theme). Mouse and touch clicks don't trigger
+     it; fields with `outline-none` keep their own focused border. */
+  :focus-visible {
+    outline: 2px solid var(--color-lime);
+    outline-offset: 2px;
+  }
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 180px;
+  /* Anchors and keyboard focus stop below the fixed header (84px; 76px on
+     phones) and above the phone's bottom bar */
+  scroll-padding-top: 104px;
   scroll-padding-bottom: 90px;
   color-scheme: dark;
   /* Barra de rolagem no tema do site (herdada por todas as áreas roláveis) */
@@ -115,6 +125,13 @@ body::before {
     rgba(200, 255, 57, 0.04),
     transparent 52%
   );
+}
+
+/* While a dialog or the menu is open (DialogShell adds the class) only it
+   scrolls; the reserved gutter keeps the page from shifting sideways */
+html:has(body.has-overlay) {
+  overflow: hidden;
+  scrollbar-gutter: stable;
 }
 
 [hidden] {
@@ -271,6 +288,12 @@ body::before {
   animation:
     film-run 0.9s linear infinite,
     film-flicker 1.8s ease-in-out infinite;
+}
+
+@media (max-width: 699px) {
+  html {
+    scroll-padding-top: 88px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

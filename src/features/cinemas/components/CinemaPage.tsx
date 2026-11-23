@@ -82,7 +82,7 @@ export function CinemaPage({ id }: { id: string }) {
           </button>
           {cinemaInfo.siteUrl && (
             <a
-              className="text-[13px] inline-flex items-center gap-1.5 text-[#dce3dc] hover:text-lime transition-colors"
+              className="min-h-11 text-[13px] inline-flex items-center gap-1.5 text-[#dce3dc] hover:text-lime transition-colors"
               href={cinemaInfo.siteUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -183,7 +183,7 @@ function CinemaProgram({ cinemaId }: { cinemaId: string }) {
   }
 
   return (
-    <section id="sessoes" className="py-8 scroll-mt-[170px]">
+    <section id="sessoes" className="py-8">
       <p className="text-[11px] tracking-[0.17em] uppercase font-extrabold text-lime mb-2">
         Programação
       </p>

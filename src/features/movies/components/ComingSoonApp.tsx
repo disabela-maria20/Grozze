@@ -1,7 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { setUrlParam } from '@/shared/lib/route';
 import { allMovies, movie, movieHref, status } from '@/entities/movie';
 import { dateLabel, MONTH_NAMES, validDate } from '@/shared/lib/date';
 import { unique } from '@/shared/lib/text';
@@ -25,7 +27,15 @@ export function ComingSoonApp() {
     () => unique(list.map((film) => film.releaseDate.slice(0, 4))).sort(),
     [list]
   );
-  const [year, setYear] = useState(years[0] || '');
+  // Year and month live in the URL (`?ano=2027&mes=03`): back from a movie
+  // and a reload land on the month the user was browsing
+  const searchParams = useSearchParams();
+  const pickedYear = searchParams.get('ano') ?? '';
+  const year = years.includes(pickedYear) ? pickedYear : years[0] || '';
+  const setYear = (value: string) => {
+    setUrlParam('mes', '');
+    setUrlParam('ano', value, years[0]);
+  };
   const months = useMemo(
     () =>
       unique(
@@ -35,9 +45,10 @@ export function ComingSoonApp() {
       ).sort(),
     [list, year]
   );
-  const [month, setMonth] = useState(months[0] || '');
+  const month = searchParams.get('mes') ?? '';
   // Falls back to the first month when the picked one isn't in the year
   const effectiveMonth = months.includes(month) ? month : months[0] || '';
+  const setMonth = (value: string) => setUrlParam('mes', value, months[0]);
 
   const selected = list
     .filter((film) => film.releaseDate.startsWith(year + '-' + effectiveMonth))

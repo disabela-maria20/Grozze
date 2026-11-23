@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { setUrlParam } from '@/shared/lib/route';
 import {
   type Cinema,
   ChooseLocation,
@@ -71,7 +73,13 @@ export function CinemasApp() {
   const cinemaSaved = useIsSaved('cinema');
   const authStatus = useAppStore((s) => s.authStatus);
   const location = useAppStore((s) => s.location);
-  const [query, setQuery] = useState('');
+  // The search follows the URL (`?q=`) so the back button keeps it
+  const searchParams = useSearchParams();
+  const [query, setQueryState] = useState(() => searchParams.get('q') ?? '');
+  const setQuery = (value: string) => {
+    setQueryState(value);
+    setUrlParam('q', value.trim());
+  };
   const [mapOpen, setMapOpen] = useState(false);
 
   const visibleCinemas = useMemo(() => {

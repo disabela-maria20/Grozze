@@ -44,7 +44,7 @@ export function MovieCard({
       <button
         type="button"
         // With a mouse it slides in on hover (or keyboard focus); touch screens always show it
-        className="want-btn absolute bottom-2.5 left-2.5 w-[calc(100%-20px)] z-[3] min-h-[38px] rounded-[11px] bg-bg/90 border border-lime/40 text-xs font-extrabold flex justify-center items-center text-center px-2 hover:bg-lime hover:text-[#081004] transition-[opacity,translate,background-color,color] duration-200 ease-out motion-reduce:transition-none pointer-fine:opacity-0 pointer-fine:translate-y-2 pointer-fine:pointer-events-none group-hover/card:opacity-100 group-hover/card:translate-y-0 group-hover/card:pointer-events-auto group-focus-within/card:opacity-100 group-focus-within/card:translate-y-0 group-focus-within/card:pointer-events-auto"
+        className="want-btn absolute bottom-2.5 left-2.5 w-[calc(100%-20px)] z-[3] min-h-[38px] max-sm:min-h-11 rounded-[11px] bg-bg/90 border border-lime/40 text-xs font-extrabold flex justify-center items-center text-center px-2 hover:bg-lime hover:text-[#081004] transition-[opacity,translate,background-color,color] duration-200 ease-out motion-reduce:transition-none pointer-fine:opacity-0 pointer-fine:translate-y-2 pointer-fine:pointer-events-none group-hover/card:opacity-100 group-hover/card:translate-y-0 group-hover/card:pointer-events-auto group-focus-within/card:opacity-100 group-focus-within/card:translate-y-0 group-focus-within/card:pointer-events-auto"
         onClick={(e) => {
           e.preventDefault();
           requestFavorite('movie', m.id, href);
@@ -71,7 +71,16 @@ export function MovieCard({
             </strong>
           </span>
         ) : label ? (
-          <span className="poster-label absolute left-2 top-2 z-[2] text-[10px] font-extrabold text-lime border border-lime/30 rounded-full bg-bg/90 px-2 py-1 max-w-[calc(100%-60px)]">
+          <span
+            // One line: room for the heart only when it's there, cut with
+            // "…" if a narrow card still can't fit it
+            className={`poster-label absolute left-2 top-2 z-[2] text-[10px] font-extrabold text-lime border border-lime/30 rounded-full bg-bg/90 px-2 py-1 whitespace-nowrap overflow-hidden text-ellipsis ${
+              controls === heartButton
+                ? // Next to the heart a phone card has ~90px: a point smaller fits
+                  'max-w-[calc(100%-58px)] max-sm:text-[9px] max-sm:px-1.5 max-sm:tracking-[-0.01em]'
+                : 'max-w-[calc(100%-16px)]'
+            }`}
+          >
             {label}
           </span>
         ) : null}
