@@ -4,8 +4,9 @@ import Link from 'next/link';
 import { useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { setUrlParam } from '@/shared/lib/route';
-import { allMovies, movie, movieHref, status } from '@/entities/movie';
-import { dateLabel, MONTH_NAMES, validDate } from '@/shared/lib/date';
+import { useComingSoonHighlightQuery } from '@/entities/banner';
+import { allMovies, movie, movieHref, upcoming } from '@/entities/movie';
+import { dateLabel, MONTH_NAMES } from '@/shared/lib/date';
 import { unique } from '@/shared/lib/text';
 import { useAppStore } from '@/shared/store';
 import { MovieCard } from './MovieCard';
@@ -16,13 +17,8 @@ import { SaveButton } from './SaveButton';
 
 export function ComingSoonApp() {
   const content = useAppStore((s) => s.content);
-  const list = useMemo(
-    () =>
-      allMovies(content).filter(
-        (film) => status(film) !== 'now' && validDate(film.releaseDate)
-      ),
-    [content]
-  );
+  const highlight = useComingSoonHighlightQuery();
+  const list = useMemo(() => allMovies(content).filter(upcoming), [content]);
   const years = useMemo(
     () => unique(list.map((film) => film.releaseDate.slice(0, 4))).sort(),
     [list]
@@ -54,8 +50,18 @@ export function ComingSoonApp() {
     .filter((film) => film.releaseDate.startsWith(year + '-' + effectiveMonth))
     .sort((a, b) => a.releaseDate.localeCompare(b.releaseDate));
 
-  // Featured movie, falling back to the first upcoming release
-  const lead = movie('22941', content) || list[0];
+  // Featured movie: the admin's pick (while still in the catalog), else the
+  // next release, preferring one with a banner image. Nothing while the
+  // pick loads, so the default doesn't flash before it.
+  const picked = highlight.data?.movieId;
+  const soonest = [...list].sort((a, b) =>
+    a.releaseDate.localeCompare(b.releaseDate)
+  );
+  const lead = highlight.isPending
+    ? null
+    : (picked && movie(picked, content)) ||
+      soonest.find((film) => film.backdrop) ||
+      soonest[0];
 
   return (
     <div className="page pt-[120px] max-sm:pt-[101px] pb-13 min-h-[65vh]">
@@ -65,6 +71,12 @@ export function ComingSoonApp() {
             Em breve
           </h1>
         </header>
+        {highlight.isPending && list.length > 0 && (
+          <div
+            aria-hidden
+            className="skeleton rounded-app min-h-[420px] max-sm:min-h-[380px] my-5"
+          />
+        )}
         {lead && (
           <section
             className="rounded-app min-h-[420px] my-5 bg-cover bg-center relative overflow-hidden p-10 max-sm:p-5.5 max-sm:min-h-0 isolate"

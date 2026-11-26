@@ -82,6 +82,10 @@ export function status(m: Movie | null | undefined): MovieStatus {
   return 'now';
 }
 
+/** Listed on the coming-soon page: not in theaters yet, with a release date. */
+export const upcoming = (m: Movie): boolean =>
+  status(m) !== 'now' && validDate(m.releaseDate);
+
 /**
  * Tag shown on a movie, from its next session: in theaters when it has a
  * session today, pre-sale when its sessions only start later, and coming

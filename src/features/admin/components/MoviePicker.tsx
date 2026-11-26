@@ -1,31 +1,39 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { allMovies } from '@/entities/movie';
+import { allMovies, type Movie } from '@/entities/movie';
 import { useAppStore } from '@/shared/store';
 import { inputClass } from '@/shared/ui';
 
 /**
  * Seleção de filmes relacionados por NOME (não por id). Lista o catálogo já
  * carregado (CatalogGate), busca por título e guarda os ids escolhidos na ordem.
- * `max` limita a seleção; `reorderable` mostra setas para mudar a ordem.
+ * `max` limita a seleção; `reorderable` mostra setas para mudar a ordem;
+ * `only` restringe os filmes oferecidos.
  */
 export function MoviePicker({
   value,
   onChange,
   max,
   reorderable = false,
+  only,
 }: {
   value: string[];
   onChange: (ids: string[]) => void;
   max?: number;
   reorderable?: boolean;
+  only?: (m: Movie) => boolean;
 }) {
   const content = useAppStore((s) => s.content);
-  const movies = useMemo(() => allMovies(content), [content]);
+  const catalog = useMemo(() => allMovies(content), [content]);
+  const movies = useMemo(
+    () => (only ? catalog.filter(only) : catalog),
+    [catalog, only]
+  );
+  // From the whole catalog: a saved pick may no longer pass `only`
   const titleById = useMemo(
-    () => new Map(movies.map((m) => [m.id, m.t])),
-    [movies]
+    () => new Map(catalog.map((m) => [m.id, m.t])),
+    [catalog]
   );
   const [search, setSearch] = useState('');
   const selectedSet = useMemo(() => new Set(value), [value]);
