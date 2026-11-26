@@ -71,6 +71,10 @@ export function Rail({
       onPointerMove={onPointerMove}
       onPointerUp={endDrag}
       onPointerLeave={endDrag}
+      onPointerCancel={endDrag}
+      // Posters are links: the browser's own link/image drag would take over
+      // the press (and cancel ours), so only the title could move the rail
+      onDragStart={(event) => event.preventDefault()}
       onClickCapture={onClickCapture}
       {...rest}
     >
