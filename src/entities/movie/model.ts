@@ -8,14 +8,26 @@ import { unique } from '@/shared/lib/text';
 /** Movies loaded from the catalog API. Filled by `setMovies`. */
 export const baseMovies = new Map<string, Movie>();
 
+/** Ids of the movies that have upcoming sessions. */
+const withSessions = new Set<string>();
+
 /**
  * Replaces the in-memory movies with the ones fetched from the API, so the
  * synchronous resolvers (`movie`, `allMovies`...) keep working. Call it
  * before rendering anything that reads the catalog (see `CatalogGate`).
+ * `movies` have sessions (`/api/movies`); `comingSoon` are announced
+ * releases (`/api/movies/coming-soon`), with sessions or not.
  */
-export function setMovies(movies: Movie[]) {
+export function setMovies(movies: Movie[], comingSoon: Movie[] = []) {
   baseMovies.clear();
-  for (const m of movies) baseMovies.set(m.id, Object.freeze(m));
+  withSessions.clear();
+  for (const m of movies) {
+    baseMovies.set(m.id, Object.freeze(m));
+    withSessions.add(m.id);
+  }
+  for (const m of comingSoon) {
+    if (!baseMovies.has(m.id)) baseMovies.set(m.id, Object.freeze(m));
+  }
 }
 
 /**
@@ -25,6 +37,8 @@ export function setMovies(movies: Movie[]) {
 export function registerMovies(movies: Movie[]) {
   for (const m of movies) {
     if (!baseMovies.has(m.id)) baseMovies.set(m.id, Object.freeze(m));
+    // In a cinema's program, so it has sessions
+    withSessions.add(m.id);
   }
 }
 
@@ -64,19 +78,19 @@ export function allMovies(overrides?: ContentState | null): Movie[] {
     .filter(Boolean);
 }
 
-/** The API only lists movies that have upcoming sessions. */
-export const hasSessions = (id: string): boolean => baseMovies.has(String(id));
+/** Listed by `/api/movies` (or a cinema's program): it has upcoming sessions. */
+export const hasSessions = (id: string): boolean =>
+  withSessions.has(String(id));
 
 /** Pre-sale starts this many days before the release (sessions required). */
 const PRESALE_DAYS = 7;
 
 export function status(m: Movie | null | undefined): MovieStatus {
   if (!m) return 'soon';
+  // Without sessions a movie is still upcoming (announced, not playing)
+  if (!hasSessions(m.id)) return 'soon';
   if (!validDate(m.releaseDate)) return 'now';
   const today = nowInSaoPaulo().date;
-  const sessions = hasSessions(m.id);
-  // Without sessions, a movie stays upcoming through its release day
-  if (!sessions && m.releaseDate >= today) return 'soon';
   if (m.releaseDate > addDays(today, PRESALE_DAYS)) return 'soon';
   if (m.releaseDate > today) return 'presale';
   return 'now';

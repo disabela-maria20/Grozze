@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { getCinemas } from '@/entities/cinema';
 import { DISTRIBUTORS } from '@/entities/distributor';
-import { getMovies } from '@/entities/movie';
+import { getCatalogMovies } from '@/entities/movie';
 import { grozzeNews } from '@/entities/news';
 import type { GrozzeNewsSummary } from '@/shared/api';
 import { absoluteUrl } from '@/shared/lib/seo';
@@ -53,7 +53,7 @@ async function allNews(): Promise<GrozzeNewsSummary[]> {
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [movies, cinemas, news] = await Promise.all([
-    getMovies().catch(() => []),
+    getCatalogMovies().catch(() => []),
     getCinemas().catch(() => []),
     allNews(),
   ]);

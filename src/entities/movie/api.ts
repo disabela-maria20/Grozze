@@ -120,6 +120,30 @@ export async function getMovies(): Promise<Movie[]> {
   return (res?.movies || []).map(toMovie);
 }
 
+/**
+ * `GET /api/movies/coming-soon` — announced releases, sessions or not.
+ * Empty when the route fails: the coming-soon page then lists only the
+ * upcoming movies `/api/movies` has.
+ */
+export async function getComingSoonMovies(): Promise<Movie[]> {
+  try {
+    const res = await catalogGet<ApiMoviesResponse>('/api/movies/coming-soon');
+    return (res?.movies || []).map(toMovie);
+  } catch {
+    return [];
+  }
+}
+
+/** Every movie the site has a page for: with sessions first, then announced. */
+export async function getCatalogMovies(): Promise<Movie[]> {
+  const [movies, comingSoon] = await Promise.all([
+    getMovies(),
+    getComingSoonMovies(),
+  ]);
+  const ids = new Set(movies.map((m) => m.id));
+  return [...movies, ...comingSoon.filter((m) => !ids.has(m.id))];
+}
+
 const LANGUAGES: Record<string, string> = {
   dubbed: 'Dublado',
   subtitled: 'Legendado',

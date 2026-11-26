@@ -1,7 +1,7 @@
 import { cache } from 'react';
 import type { Metadata } from 'next';
 import { absoluteUrl, metaText, pageMetadata } from '@/shared/lib/seo';
-import { getMovies } from './api';
+import { getCatalogMovies } from './api';
 import { withOverride } from './model';
 import { grozzeMovieOverrides } from './overrides';
 import type { Movie } from './types';
@@ -14,7 +14,7 @@ import type { Movie } from './types';
 export const getMovieForSeo = cache(
   async (id: string): Promise<Movie | null> => {
     const [movies, overrides] = await Promise.all([
-      getMovies().catch(() => []),
+      getCatalogMovies().catch(() => []),
       grozzeMovieOverrides.list().catch(() => null),
     ]);
     const base = movies.find((candidate) => candidate.id === id);
