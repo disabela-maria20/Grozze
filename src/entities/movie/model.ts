@@ -90,6 +90,10 @@ export function allMovies(overrides?: ContentState | null): Movie[] {
 export const hasSessions = (id: string): boolean =>
   withSessions.has(String(id));
 
+/** Listed by `/api/movies/coming-soon` (an announced release). */
+export const inComingSoon = (id: string): boolean =>
+  !!comingSoonIds?.has(String(id));
+
 /** Pre-sale starts this many days before the release (sessions required). */
 const PRESALE_DAYS = 7;
 

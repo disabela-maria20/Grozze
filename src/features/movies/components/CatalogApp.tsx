@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { setUrlParam } from '@/shared/lib/route';
 import { normalize } from '@/shared/lib/text';
-import { status, useCityProgram } from '@/entities/movie';
+import { hasSessions, status, useCityProgram } from '@/entities/movie';
 import { useAppStore } from '@/shared/store';
 import { movieList } from '../lib';
 import { MovieCard } from './MovieCard';
@@ -18,6 +18,7 @@ const STATUS_OPTIONS: [string, string][] = [
   ['all', 'Todos'],
   ['now', 'Em cartaz'],
   ['presale', 'Pré-venda'],
+  ['soon', 'Em breve'],
 ];
 
 /**
@@ -43,8 +44,10 @@ export function CatalogApp() {
   const list = useMemo(() => {
     const normalizedQuery = normalize(query);
     return movieList(content).filter((film) => {
-      // Only movies with sessions in the user's city (once its program is in)
-      if (cityMovieIds && !cityMovieIds.has(film.id)) return false;
+      // Only movies with sessions in the user's city (once its program is
+      // in); announced releases have no sessions yet, so they show anywhere
+      if (cityMovieIds && hasSessions(film.id) && !cityMovieIds.has(film.id))
+        return false;
       const matchesQuery =
         !normalizedQuery ||
         normalize(film.t + ' ' + film.genre).includes(normalizedQuery);
