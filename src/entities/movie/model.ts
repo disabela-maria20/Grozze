@@ -12,20 +12,28 @@ export const baseMovies = new Map<string, Movie>();
 const withSessions = new Set<string>();
 
 /**
+ * Ids `/api/movies/coming-soon` lists (the coming-soon page). `null` when
+ * that route failed: `upcoming` then falls back to the release dates.
+ */
+let comingSoonIds: Set<string> | null = null;
+
+/**
  * Replaces the in-memory movies with the ones fetched from the API, so the
  * synchronous resolvers (`movie`, `allMovies`...) keep working. Call it
  * before rendering anything that reads the catalog (see `CatalogGate`).
  * `movies` have sessions (`/api/movies`); `comingSoon` are announced
  * releases (`/api/movies/coming-soon`), with sessions or not.
  */
-export function setMovies(movies: Movie[], comingSoon: Movie[] = []) {
+export function setMovies(movies: Movie[], comingSoon: Movie[] | null = null) {
   baseMovies.clear();
   withSessions.clear();
+  comingSoonIds = comingSoon && new Set(comingSoon.map((m) => m.id));
   for (const m of movies) {
     baseMovies.set(m.id, Object.freeze(m));
     withSessions.add(m.id);
   }
-  for (const m of comingSoon) {
+  // Movies with sessions keep their richer `/api/movies` entry (banner, trailer)
+  for (const m of comingSoon || []) {
     if (!baseMovies.has(m.id)) baseMovies.set(m.id, Object.freeze(m));
   }
 }
@@ -96,9 +104,13 @@ export function status(m: Movie | null | undefined): MovieStatus {
   return 'now';
 }
 
-/** Listed on the coming-soon page: not in theaters yet, with a release date. */
+/**
+ * Listed on the coming-soon page: the movies `/api/movies/coming-soon`
+ * returns (without it, the ones not in theaters yet), with a release date.
+ */
 export const upcoming = (m: Movie): boolean =>
-  status(m) !== 'now' && validDate(m.releaseDate);
+  validDate(m.releaseDate) &&
+  (comingSoonIds ? comingSoonIds.has(m.id) : status(m) !== 'now');
 
 /**
  * Tag shown on a movie, from its next session: in theaters when it has a

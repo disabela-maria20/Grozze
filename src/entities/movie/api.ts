@@ -4,6 +4,8 @@ import { safeImage, videoId } from '@/shared/lib/media';
 import type { Movie, Showtime } from './types';
 import {
   CATALOG_IMAGE_URL,
+  type ApiComingSoonMovie,
+  type ApiComingSoonResponse,
   type ApiMovie,
   type ApiMoviesResponse,
   catalogGet,
@@ -120,17 +122,42 @@ export async function getMovies(): Promise<Movie[]> {
   return (res?.movies || []).map(toMovie);
 }
 
+/** A coming-soon entry in the `/api/movies` shape, so `toMovie` maps it. */
+const fromComingSoon = (m: ApiComingSoonMovie): ApiMovie => ({
+  id: m.ID,
+  title: String(m.TITULO || ''),
+  original_title: m.ORIGINALTITULO,
+  synopsis: m.SINOPSE,
+  director: m.DIRETOR,
+  cast: m.ELENCO,
+  genres: m.GENERO,
+  duration: m.DURACAO,
+  age_rating: m.IDADE,
+  country_origin: m.ORIGEM,
+  distributor: null,
+  release_date: m.ESTREIA,
+  pre_release_date: m.PRE_ESTREIA,
+  assets: [],
+  poster: m.POSTER,
+  trailer: null,
+});
+
 /**
- * `GET /api/movies/coming-soon` — announced releases, sessions or not.
- * Empty when the route fails: the coming-soon page then lists only the
- * upcoming movies `/api/movies` has.
+ * `GET /api/movies/coming-soon` — the releases the coming-soon page lists,
+ * sessions or not. `null` when the route fails: the page then falls back
+ * to the upcoming movies `/api/movies` has.
  */
-export async function getComingSoonMovies(): Promise<Movie[]> {
+export async function getComingSoonMovies(): Promise<Movie[] | null> {
   try {
-    const res = await catalogGet<ApiMoviesResponse>('/api/movies/coming-soon');
-    return (res?.movies || []).map(toMovie);
+    const res = await catalogGet<ApiComingSoonResponse>(
+      '/api/movies/coming-soon'
+    );
+    if (!res || !Array.isArray(res.movies)) return null;
+    return res.movies
+      .filter((m) => m.ID && m.TITULO)
+      .map((m) => toMovie(fromComingSoon(m)));
   } catch {
-    return [];
+    return null;
   }
 }
 
@@ -141,7 +168,7 @@ export async function getCatalogMovies(): Promise<Movie[]> {
     getComingSoonMovies(),
   ]);
   const ids = new Set(movies.map((m) => m.id));
-  return [...movies, ...comingSoon.filter((m) => !ids.has(m.id))];
+  return [...movies, ...(comingSoon || []).filter((m) => !ids.has(m.id))];
 }
 
 const LANGUAGES: Record<string, string> = {

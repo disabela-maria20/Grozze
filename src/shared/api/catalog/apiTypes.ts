@@ -90,6 +90,34 @@ export interface ApiMoviesResponse {
   movies: ApiMovie[];
 }
 
+/**
+ * `GET /api/movies/coming-soon` uses its own field names (upper case,
+ * Portuguese) and has no assets, trailer or distributor.
+ */
+export interface ApiComingSoonMovie {
+  ID: number;
+  TITULO: string;
+  ORIGINALTITULO: string | null;
+  /** "YYYY-MM-DD HH:mm:ss" */
+  ESTREIA: string | null;
+  PRE_ESTREIA: string | null;
+  SINOPSE: string | null;
+  DIRETOR: string | null;
+  /** Names separated by line breaks. */
+  ELENCO: string | null;
+  GENERO: string | null;
+  /** Minutes, as a string. */
+  DURACAO: string | null;
+  IDADE: string | null;
+  ORIGEM: string | null;
+  /** Image file name, relative to `CATALOG_IMAGE_URL`. */
+  POSTER: string | null;
+}
+
+export interface ApiComingSoonResponse {
+  movies: ApiComingSoonMovie[];
+}
+
 export interface ApiCinemasResponse {
   cinemas: ApiCinema[];
 }

@@ -50,17 +50,19 @@ export function ComingSoonApp() {
     .filter((film) => film.releaseDate.startsWith(year + '-' + effectiveMonth))
     .sort((a, b) => a.releaseDate.localeCompare(b.releaseDate));
 
-  // Featured movie: the admin's pick (while still in the catalog), else the
-  // next release, preferring one with a banner image. Nothing while the
-  // pick loads, so the default doesn't flash before it.
-  const picked = highlight.data?.movieId;
+  // Featured movie: the admin's pick while it's still on this page (not yet
+  // released), else the next release, preferring one with a banner image.
+  // Nothing while the pick loads, so the default doesn't flash before it.
+  const pickedId = highlight.data?.movieId;
+  const picked = pickedId ? movie(pickedId, content) : null;
   const soonest = [...list].sort((a, b) =>
     a.releaseDate.localeCompare(b.releaseDate)
   );
   const lead = highlight.isPending
     ? null
-    : (picked && movie(picked, content)) ||
-      soonest.find((film) => film.backdrop) ||
+    : (picked && upcoming(picked) ? picked : null) ||
+      // A real banner: without one, `backdrop` repeats the poster
+      soonest.find((film) => film.backdrop && film.backdrop !== film.poster) ||
       soonest[0];
 
   return (
