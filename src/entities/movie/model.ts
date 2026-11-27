@@ -104,12 +104,16 @@ export function status(m: Movie | null | undefined): MovieStatus {
   return 'now';
 }
 
+const PRESALE_LABEL = 'Em pré-venda';
+
 /**
  * Listed on the coming-soon page: the movies `/api/movies/coming-soon`
  * returns (without it, the ones not in theaters yet), with a release date.
+ * Movies tagged "Em pré-venda" stay out: their tickets are already on sale.
  */
 export const upcoming = (m: Movie): boolean =>
   validDate(m.releaseDate) &&
+  statusLabel(m) !== PRESALE_LABEL &&
   (comingSoonIds ? comingSoonIds.has(m.id) : status(m) !== 'now');
 
 /**
@@ -121,7 +125,7 @@ export function statusLabel(movie: Movie | null | undefined): string {
   if (!movie) return '';
   const next = movie.firstShowtime;
   if (!next || !validDate(next)) return 'Em breve nos cinemas';
-  return next > nowInSaoPaulo().date ? 'Em pré-venda' : 'Hoje nos cinemas';
+  return next > nowInSaoPaulo().date ? PRESALE_LABEL : 'Hoje nos cinemas';
 }
 
 export function movieHref(id: string, scope?: string | null): string {
